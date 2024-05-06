@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Start the ur_robot_driver &mdash; ur_documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Build the MoveIt! config" href="build_moveit_config.html" />
+    <link rel="prev" title="Assembling the URDF" href="assemble_urdf.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            ur_documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_robot_driver/doc/index.html">Welcome to ur_robot_driver’s documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_robot_driver/doc/index.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../doc/tutorial_index.html">Tutorial examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Custom workcell</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="assemble_urdf.html">Assembling the URDF</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Start the ur_robot_driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="build_moveit_config.html">Build the MoveIt! config</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">ur_documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../doc/tutorial_index.html">Universal Robots ROS tutorials</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Custom workcell</a></li>
+      <li class="breadcrumb-item active">Start the ur_robot_driver</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/doc/ur_tutorials/my_robot_cell/doc/start_ur_driver.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="start-the-ur-robot-driver">
+<h1>Start the ur_robot_driver<a class="headerlink" href="#start-the-ur-robot-driver" title="Link to this heading"></a></h1>
+<p>In the last chapter we created a custom scene description containing our robot. In order to make
+that description usable to <code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> and hence the <code class="docutils literal notranslate"><span class="pre">ur_robot_driver</span></code>, we need to add
+control information. We will also add a custom launchfile to startup our demonstrator.</p>
+<p>We will generate a new package called <code class="docutils literal notranslate"><span class="pre">my_robot_cell_control</span></code> for that purpose.</p>
+<section id="create-a-description-with-ros2-control-tag">
+<h2>Create a description with ros2_control tag<a class="headerlink" href="#create-a-description-with-ros2-control-tag" title="Link to this heading"></a></h2>
+<p>The first step is to create a description containing the control instructions:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">my_robot_cell_control/urdf/my_robot_cell_controlled.urdf.xacro</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="linenos"> 2</span><span class="nt">&lt;robot</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;my_robot_cell&quot;</span><span class="w"> </span><span class="na">xmlns:xacro=</span><span class="s">&quot;http://ros.org/wiki/xacro&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="w">  </span><span class="cm">&lt;!--First, include the macro from our custom description--&gt;</span>
+<span class="linenos"> 5</span><span class="w">  </span><span class="nt">&lt;xacro:include</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;$(find my_robot_cell_description)/urdf/my_robot_cell_macro.xacro&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 6</span><span class="w">  </span><span class="cm">&lt;!--The driver already provides a control tag for the UR arm, we can directly include--&gt;</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="nt">&lt;xacro:include</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;$(find ur_robot_driver)/urdf/ur.ros2_control.xacro&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="cm">&lt;!--We need to specify the arguments used for parametrizing our description--&gt;</span>
+<span class="linenos">10</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ur_type&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;ur20&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">11</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;joint_limit_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg ur_type)/joint_limits.yaml&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">12</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;kinematics_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg ur_type)/default_kinematics.yaml&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">13</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;physical_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg ur_type)/physical_parameters.yaml&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">14</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;visual_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg ur_type)/visual_parameters.yaml&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;robot_ip&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;0.0.0.0&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">17</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;headless_mode&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">18</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ur_script_filename&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_client_library)/resources/external_control.urscript&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">19</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ur_output_recipe_filename&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_robot_driver)/resources/rtde_input_recipe.txt&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">20</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ur_input_recipe_filename&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_robot_driver)/resources/rtde_output_recipe.txt&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">21</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;use_mock_hardware&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">22</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;mock_sensor_commands&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="w">  </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;world&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span><span class="w">  </span><span class="cm">&lt;!--Create the scene description including the robot--&gt;</span>
+<span class="linenos">27</span><span class="w">  </span><span class="nt">&lt;xacro:my_robot_cell</span>
+<span class="linenos">28</span><span class="w">    </span><span class="na">parent=</span><span class="s">&quot;world&quot;</span>
+<span class="linenos">29</span><span class="w">    </span><span class="na">ur_type=</span><span class="s">&quot;$(arg ur_type)&quot;</span>
+<span class="linenos">30</span><span class="w">    </span><span class="na">joint_limits_parameters_file=</span><span class="s">&quot;$(arg joint_limit_parameters_file)&quot;</span>
+<span class="linenos">31</span><span class="w">    </span><span class="na">kinematics_parameters_file=</span><span class="s">&quot;$(arg kinematics_parameters_file)&quot;</span>
+<span class="linenos">32</span><span class="w">    </span><span class="na">physical_parameters_file=</span><span class="s">&quot;$(arg physical_parameters_file)&quot;</span>
+<span class="linenos">33</span><span class="w">    </span><span class="na">visual_parameters_file=</span><span class="s">&quot;$(arg visual_parameters_file)&quot;</span>
+<span class="linenos">34</span><span class="w">  </span><span class="nt">&gt;</span>
+<span class="linenos">35</span><span class="w">    </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0 0 1&quot;</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">36</span><span class="w">  </span><span class="nt">&lt;/xacro:my_robot_cell&gt;</span>
+<span class="linenos">37</span>
+<span class="linenos">38</span><span class="w">  </span><span class="cm">&lt;!--Create the control tag for the UR robot--&gt;</span>
+<span class="linenos">39</span><span class="w">  </span><span class="nt">&lt;xacro:ur_ros2_control</span>
+<span class="linenos">40</span><span class="w">    </span><span class="na">name=</span><span class="s">&quot;$(arg ur_type)&quot;</span>
+<span class="linenos">41</span><span class="w">    </span><span class="na">tf_prefix=</span><span class="s">&quot;$(arg ur_type)_&quot;</span>
+<span class="linenos">42</span><span class="w">    </span><span class="na">kinematics_parameters_file=</span><span class="s">&quot;$(arg kinematics_parameters_file)&quot;</span>
+<span class="linenos">43</span><span class="w">    </span><span class="na">robot_ip=</span><span class="s">&quot;$(arg robot_ip)&quot;</span>
+<span class="linenos">44</span><span class="w">    </span><span class="na">script_filename=</span><span class="s">&quot;$(arg ur_script_filename)&quot;</span>
+<span class="linenos">45</span><span class="w">    </span><span class="na">output_recipe_filename=</span><span class="s">&quot;$(arg ur_output_recipe_filename)&quot;</span>
+<span class="linenos">46</span><span class="w">    </span><span class="na">input_recipe_filename=</span><span class="s">&quot;$(arg ur_input_recipe_filename)&quot;</span>
+<span class="linenos">47</span><span class="w">    </span><span class="na">use_mock_hardware=</span><span class="s">&quot;$(arg use_mock_hardware)&quot;</span>
+<span class="linenos">48</span><span class="w">    </span><span class="na">mock_sensor_commands=</span><span class="s">&quot;$(arg mock_sensor_commands)&quot;</span>
+<span class="linenos">49</span><span class="w">    </span><span class="na">headless_mode=</span><span class="s">&quot;$(arg headless_mode)&quot;</span>
+<span class="linenos">50</span><span class="w">  </span><span class="nt">/&gt;</span>
+<span class="linenos">51</span>
+<span class="linenos">52</span><span class="w">  </span><span class="cm">&lt;!--If you had more controlled devices in your description, e.g. a gripper, you can add another ros2_control tag here--&gt;</span>
+<span class="linenos">53</span>
+<span class="linenos">54</span><span class="nt">&lt;/robot&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>This URDF is very similar to the one we have already assembled. We simply need to include the ros2_control macro,</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">my_robot_cell_control/urdf/my_robot_cell_controlled.urdf.xacro</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;xacro:include</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;$(find ur_robot_driver)/urdf/ur.ros2_control.xacro&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>define the necessary arguments that need to be passed to the macro,</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">my_robot_cell_control/urdf/my_robot_cell_controlled.urdf.xacro</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;robot_ip&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;0.0.0.0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;headless_mode&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ur_script_filename&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_client_library)/resources/external_control.urscript&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ur_output_recipe_filename&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_robot_driver)/resources/rtde_input_recipe.txt&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ur_input_recipe_filename&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_robot_driver)/resources/rtde_output_recipe.txt&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;use_mock_hardware&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;mock_sensor_commands&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>and then call the macro by providing all the specified arguments.</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">my_robot_cell_control/urdf/my_robot_cell_controlled.urdf.xacro</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;xacro:ur_ros2_control</span>
+<span class="w">    </span><span class="na">name=</span><span class="s">&quot;$(arg ur_type)&quot;</span>
+<span class="w">    </span><span class="na">tf_prefix=</span><span class="s">&quot;$(arg ur_type)_&quot;</span>
+<span class="w">    </span><span class="na">kinematics_parameters_file=</span><span class="s">&quot;$(arg kinematics_parameters_file)&quot;</span>
+<span class="w">    </span><span class="na">robot_ip=</span><span class="s">&quot;$(arg robot_ip)&quot;</span>
+<span class="w">    </span><span class="na">script_filename=</span><span class="s">&quot;$(arg ur_script_filename)&quot;</span>
+<span class="w">    </span><span class="na">output_recipe_filename=</span><span class="s">&quot;$(arg ur_output_recipe_filename)&quot;</span>
+<span class="w">    </span><span class="na">input_recipe_filename=</span><span class="s">&quot;$(arg ur_input_recipe_filename)&quot;</span>
+<span class="w">    </span><span class="na">use_mock_hardware=</span><span class="s">&quot;$(arg use_mock_hardware)&quot;</span>
+<span class="w">    </span><span class="na">mock_sensor_commands=</span><span class="s">&quot;$(arg mock_sensor_commands)&quot;</span>
+<span class="w">    </span><span class="na">headless_mode=</span><span class="s">&quot;$(arg headless_mode)&quot;</span>
+<span class="w">  </span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="extract-the-calibration">
+<h2>Extract the calibration<a class="headerlink" href="#extract-the-calibration" title="Link to this heading"></a></h2>
+<p>One very important step is to extract the robot’s specific calibration and save it to our
+workcell’s startup package. For details, please refer to <a class="reference external" href="https://docs.ros.org/en/ros2_packages/rolling/api/ur_robot_driver/installation/robot_setup.html#extract-calibration-information">our documentation on extracting the calibration information</a>.
+For now, we just copy the default one for the ur20.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cp $(ros2 pkg prefix ur_description)/share/ur_description/config/ur20/default_kinematics.yaml \
+  my_robot_cell_control/config/my_robot_calibration.yaml
+</pre></div>
+</div>
+</section>
+<section id="create-robot-state-publisher-launchfile">
+<h2>Create robot_state_publisher launchfile<a class="headerlink" href="#create-robot-state-publisher-launchfile" title="Link to this heading"></a></h2>
+<p>To use the custom controlled description, we need to generate a launchfile loading that description
+(Since it contains less / potentially different) arguments than the “default” one. In that
+launchfile we need to start a <code class="docutils literal notranslate"><span class="pre">robot_state_publisher</span></code> (RSP) node that will get the description as a
+parameter and redistribute it via the <code class="docutils literal notranslate"><span class="pre">robot_description</span></code> topic:</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">my_robot_cell_control/launch/rsp.launch.py</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span>
+<span class="linenos">  2</span><span class="kn">from</span> <span class="nn">launch_ros.actions</span> <span class="kn">import</span> <span class="n">Node</span>
+<span class="linenos">  3</span><span class="kn">from</span> <span class="nn">launch_ros.substitutions</span> <span class="kn">import</span> <span class="n">FindPackageShare</span>
+<span class="linenos">  4</span>
+<span class="linenos">  5</span><span class="kn">from</span> <span class="nn">launch</span> <span class="kn">import</span> <span class="n">LaunchDescription</span>
+<span class="linenos">  6</span><span class="kn">from</span> <span class="nn">launch.actions</span> <span class="kn">import</span> <span class="n">DeclareLaunchArgument</span>
+<span class="linenos">  7</span><span class="kn">from</span> <span class="nn">launch.substitutions</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="linenos">  8</span>    <span class="n">Command</span><span class="p">,</span>
+<span class="linenos">  9</span>    <span class="n">FindExecutable</span><span class="p">,</span>
+<span class="linenos"> 10</span>    <span class="n">LaunchConfiguration</span><span class="p">,</span>
+<span class="linenos"> 11</span>    <span class="n">PathJoinSubstitution</span><span class="p">,</span>
+<span class="linenos"> 12</span><span class="p">)</span>
+<span class="linenos"> 13</span>
+<span class="linenos"> 14</span>
+<span class="linenos"> 15</span><span class="k">def</span> <span class="nf">generate_launch_description</span><span class="p">():</span>
+<span class="linenos"> 16</span>    <span class="n">ur_type</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;ur_type&quot;</span><span class="p">)</span>
+<span class="linenos"> 17</span>    <span class="n">robot_ip</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;robot_ip&quot;</span><span class="p">)</span>
+<span class="linenos"> 18</span>
+<span class="linenos"> 19</span>    <span class="n">use_mock_hardware</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;use_mock_hardware&quot;</span><span class="p">)</span>
+<span class="linenos"> 20</span>    <span class="n">mock_sensor_commands</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;mock_sensor_commands&quot;</span><span class="p">)</span>
+<span class="linenos"> 21</span>
+<span class="linenos"> 22</span>    <span class="n">headless_mode</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;headless_mode&quot;</span><span class="p">)</span>
+<span class="linenos"> 23</span>
+<span class="linenos"> 24</span>    <span class="n">kinematics_parameters_file</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;kinematics_parameters_file&quot;</span><span class="p">)</span>
+<span class="linenos"> 25</span>
+<span class="linenos"> 26</span>    <span class="c1"># Load description with necessary parameters</span>
+<span class="linenos"> 27</span>    <span class="n">robot_description_content</span> <span class="o">=</span> <span class="n">Command</span><span class="p">(</span>
+<span class="linenos"> 28</span>        <span class="p">[</span>
+<span class="linenos"> 29</span>            <span class="n">PathJoinSubstitution</span><span class="p">([</span><span class="n">FindExecutable</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;xacro&quot;</span><span class="p">)]),</span>
+<span class="linenos"> 30</span>            <span class="s2">&quot; &quot;</span><span class="p">,</span>
+<span class="linenos"> 31</span>            <span class="n">PathJoinSubstitution</span><span class="p">(</span>
+<span class="linenos"> 32</span>                <span class="p">[</span>
+<span class="linenos"> 33</span>                    <span class="n">FindPackageShare</span><span class="p">(</span><span class="s2">&quot;my_robot_cell_control&quot;</span><span class="p">),</span>
+<span class="linenos"> 34</span>                    <span class="s2">&quot;urdf&quot;</span><span class="p">,</span>
+<span class="linenos"> 35</span>                    <span class="s2">&quot;my_robot_cell_controlled.urdf.xacro&quot;</span><span class="p">,</span>
+<span class="linenos"> 36</span>                <span class="p">]</span>
+<span class="linenos"> 37</span>            <span class="p">),</span>
+<span class="linenos"> 38</span>            <span class="s2">&quot; &quot;</span><span class="p">,</span>
+<span class="linenos"> 39</span>            <span class="s2">&quot;robot_ip:=&quot;</span><span class="p">,</span>
+<span class="linenos"> 40</span>            <span class="n">robot_ip</span><span class="p">,</span>
+<span class="linenos"> 41</span>            <span class="s2">&quot; &quot;</span><span class="p">,</span>
+<span class="linenos"> 42</span>            <span class="s2">&quot;ur_type:=&quot;</span><span class="p">,</span>
+<span class="linenos"> 43</span>            <span class="n">ur_type</span><span class="p">,</span>
+<span class="linenos"> 44</span>            <span class="s2">&quot; &quot;</span><span class="p">,</span>
+<span class="linenos"> 45</span>            <span class="s2">&quot;kinematics_parameters_file:=&quot;</span><span class="p">,</span>
+<span class="linenos"> 46</span>            <span class="n">kinematics_parameters_file</span><span class="p">,</span>
+<span class="linenos"> 47</span>            <span class="s2">&quot; &quot;</span><span class="p">,</span>
+<span class="linenos"> 48</span>            <span class="s2">&quot;use_mock_hardware:=&quot;</span><span class="p">,</span>
+<span class="linenos"> 49</span>            <span class="n">use_mock_hardware</span><span class="p">,</span>
+<span class="linenos"> 50</span>            <span class="s2">&quot; &quot;</span><span class="p">,</span>
+<span class="linenos"> 51</span>            <span class="s2">&quot;mock_sensor_commands:=&quot;</span><span class="p">,</span>
+<span class="linenos"> 52</span>            <span class="n">mock_sensor_commands</span><span class="p">,</span>
+<span class="linenos"> 53</span>            <span class="s2">&quot; &quot;</span><span class="p">,</span>
+<span class="linenos"> 54</span>            <span class="s2">&quot;headless_mode:=&quot;</span><span class="p">,</span>
+<span class="linenos"> 55</span>            <span class="n">headless_mode</span><span class="p">,</span>
+<span class="linenos"> 56</span>        <span class="p">]</span>
+<span class="linenos"> 57</span>    <span class="p">)</span>
+<span class="linenos"> 58</span>    <span class="n">robot_description</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;robot_description&quot;</span><span class="p">:</span> <span class="n">robot_description_content</span><span class="p">}</span>
+<span class="linenos"> 59</span>
+<span class="linenos"> 60</span>    <span class="n">declared_arguments</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos"> 61</span>    <span class="c1"># UR specific arguments</span>
+<span class="linenos"> 62</span>    <span class="n">declared_arguments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<span class="linenos"> 63</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos"> 64</span>            <span class="s2">&quot;ur_type&quot;</span><span class="p">,</span>
+<span class="linenos"> 65</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Typo/series of used UR robot.&quot;</span><span class="p">,</span>
+<span class="linenos"> 66</span>            <span class="n">choices</span><span class="o">=</span><span class="p">[</span>
+<span class="linenos"> 67</span>                <span class="s2">&quot;ur3&quot;</span><span class="p">,</span>
+<span class="linenos"> 68</span>                <span class="s2">&quot;ur3e&quot;</span><span class="p">,</span>
+<span class="linenos"> 69</span>                <span class="s2">&quot;ur5&quot;</span><span class="p">,</span>
+<span class="linenos"> 70</span>                <span class="s2">&quot;ur5e&quot;</span><span class="p">,</span>
+<span class="linenos"> 71</span>                <span class="s2">&quot;ur10&quot;</span><span class="p">,</span>
+<span class="linenos"> 72</span>                <span class="s2">&quot;ur10e&quot;</span><span class="p">,</span>
+<span class="linenos"> 73</span>                <span class="s2">&quot;ur16e&quot;</span><span class="p">,</span>
+<span class="linenos"> 74</span>                <span class="s2">&quot;ur20&quot;</span><span class="p">,</span>
+<span class="linenos"> 75</span>                <span class="s2">&quot;ur30&quot;</span><span class="p">,</span>
+<span class="linenos"> 76</span>            <span class="p">],</span>
+<span class="linenos"> 77</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;ur20&quot;</span><span class="p">,</span>
+<span class="linenos"> 78</span>        <span class="p">)</span>
+<span class="linenos"> 79</span>    <span class="p">)</span>
+<span class="linenos"> 80</span>    <span class="n">declared_arguments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<span class="linenos"> 81</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos"> 82</span>            <span class="s2">&quot;robot_ip&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;IP address by which the robot can be reached.&quot;</span>
+<span class="linenos"> 83</span>        <span class="p">)</span>
+<span class="linenos"> 84</span>    <span class="p">)</span>
+<span class="linenos"> 85</span>    <span class="n">declared_arguments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<span class="linenos"> 86</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos"> 87</span>            <span class="s2">&quot;kinematics_parameters_file&quot;</span><span class="p">,</span>
+<span class="linenos"> 88</span>            <span class="n">default_value</span><span class="o">=</span><span class="n">PathJoinSubstitution</span><span class="p">(</span>
+<span class="linenos"> 89</span>                <span class="p">[</span>
+<span class="linenos"> 90</span>                    <span class="n">FindPackageShare</span><span class="p">(</span><span class="s2">&quot;my_robot_cell_control&quot;</span><span class="p">),</span>
+<span class="linenos"> 91</span>                    <span class="s2">&quot;config&quot;</span><span class="p">,</span>
+<span class="linenos"> 92</span>                    <span class="s2">&quot;my_robot_calibration.yaml&quot;</span><span class="p">,</span>
+<span class="linenos"> 93</span>                <span class="p">]</span>
+<span class="linenos"> 94</span>            <span class="p">),</span>
+<span class="linenos"> 95</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The calibration configuration of the actual robot used.&quot;</span><span class="p">,</span>
+<span class="linenos"> 96</span>        <span class="p">)</span>
+<span class="linenos"> 97</span>    <span class="p">)</span>
+<span class="linenos"> 98</span>    <span class="n">declared_arguments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<span class="linenos"> 99</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">100</span>            <span class="s2">&quot;use_mock_hardware&quot;</span><span class="p">,</span>
+<span class="linenos">101</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;false&quot;</span><span class="p">,</span>
+<span class="linenos">102</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Start robot with mock hardware mirroring command to its states.&quot;</span><span class="p">,</span>
+<span class="linenos">103</span>        <span class="p">)</span>
+<span class="linenos">104</span>    <span class="p">)</span>
+<span class="linenos">105</span>    <span class="n">declared_arguments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<span class="linenos">106</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">107</span>            <span class="s2">&quot;mock_sensor_commands&quot;</span><span class="p">,</span>
+<span class="linenos">108</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;false&quot;</span><span class="p">,</span>
+<span class="linenos">109</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Enable mock command interfaces for sensors used for simple simulations. &quot;</span>
+<span class="linenos">110</span>            <span class="s2">&quot;Used only if &#39;use_mock_hardware&#39; parameter is true.&quot;</span><span class="p">,</span>
+<span class="linenos">111</span>        <span class="p">)</span>
+<span class="linenos">112</span>    <span class="p">)</span>
+<span class="linenos">113</span>    <span class="n">declared_arguments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<span class="linenos">114</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">115</span>            <span class="s2">&quot;headless_mode&quot;</span><span class="p">,</span>
+<span class="linenos">116</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;false&quot;</span><span class="p">,</span>
+<span class="linenos">117</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Enable headless mode for robot control&quot;</span><span class="p">,</span>
+<span class="linenos">118</span>        <span class="p">)</span>
+<span class="linenos">119</span>    <span class="p">)</span>
+<span class="linenos">120</span>
+<span class="linenos">121</span>    <span class="k">return</span> <span class="n">LaunchDescription</span><span class="p">(</span>
+<span class="linenos">122</span>        <span class="n">declared_arguments</span>
+<span class="linenos">123</span>        <span class="o">+</span> <span class="p">[</span>
+<span class="linenos">124</span>            <span class="n">Node</span><span class="p">(</span>
+<span class="linenos">125</span>                <span class="n">package</span><span class="o">=</span><span class="s2">&quot;robot_state_publisher&quot;</span><span class="p">,</span>
+<span class="linenos">126</span>                <span class="n">executable</span><span class="o">=</span><span class="s2">&quot;robot_state_publisher&quot;</span><span class="p">,</span>
+<span class="linenos">127</span>                <span class="n">output</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span>
+<span class="linenos">128</span>                <span class="n">parameters</span><span class="o">=</span><span class="p">[</span><span class="n">robot_description</span><span class="p">],</span>
+<span class="linenos">129</span>            <span class="p">),</span>
+<span class="linenos">130</span>        <span class="p">]</span>
+<span class="linenos">131</span>    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>With this we could start our workcell using</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>ur_robot_driver<span class="w"> </span>ur_control.launch.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>description_launchfile:<span class="o">=</span><span class="k">$(</span>ros2<span class="w"> </span>pkg<span class="w"> </span>prefix<span class="w"> </span>my_robot_cell_control<span class="k">)</span>/share/my_robot_cell_control/launch/rsp.launch.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>use_mock_hardware:<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>robot_ip:<span class="o">=</span><span class="m">123</span><span class="w"> </span><span class="se">\ </span><span class="c1"># irrelevant since we use mock hardware</span>
+<span class="w">  </span>ur_type:<span class="o">=</span>ur20<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>tf_prefix:<span class="o">=</span>ur20_
+</pre></div>
+</div>
+</section>
+<section id="create-start-robot-launchfile">
+<h2>Create start_robot launchfile<a class="headerlink" href="#create-start-robot-launchfile" title="Link to this heading"></a></h2>
+<p>Since the command above is obviously not very convenient to start our robot, we wrap that into another
+launchfile that includes the <code class="docutils literal notranslate"><span class="pre">ur_control.launch.py</span></code> launchfile with the correct description
+launchfile and prefix:</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">my_robot_cell_control/launch/start_robot.launch.py</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">launch_ros.actions</span> <span class="kn">import</span> <span class="n">Node</span>
+<span class="linenos"> 2</span><span class="kn">from</span> <span class="nn">launch_ros.parameter_descriptions</span> <span class="kn">import</span> <span class="n">ParameterFile</span>
+<span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">launch_ros.substitutions</span> <span class="kn">import</span> <span class="n">FindPackageShare</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="kn">from</span> <span class="nn">launch</span> <span class="kn">import</span> <span class="n">LaunchDescription</span>
+<span class="linenos"> 6</span><span class="kn">from</span> <span class="nn">launch.actions</span> <span class="kn">import</span> <span class="n">DeclareLaunchArgument</span><span class="p">,</span> <span class="n">IncludeLaunchDescription</span>
+<span class="linenos"> 7</span><span class="kn">from</span> <span class="nn">launch.launch_description_sources</span> <span class="kn">import</span> <span class="n">PythonLaunchDescriptionSource</span>
+<span class="linenos"> 8</span><span class="kn">from</span> <span class="nn">launch.substitutions</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="linenos"> 9</span>    <span class="n">Command</span><span class="p">,</span>
+<span class="linenos">10</span>    <span class="n">FindExecutable</span><span class="p">,</span>
+<span class="linenos">11</span>    <span class="n">LaunchConfiguration</span><span class="p">,</span>
+<span class="linenos">12</span>    <span class="n">PathJoinSubstitution</span><span class="p">,</span>
+<span class="linenos">13</span>    <span class="n">TextSubstitution</span><span class="p">,</span>
+<span class="linenos">14</span><span class="p">)</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="k">def</span> <span class="nf">generate_launch_description</span><span class="p">():</span>
+<span class="linenos">18</span>    <span class="n">ur_type</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;ur_type&quot;</span><span class="p">)</span>
+<span class="linenos">19</span>    <span class="n">robot_ip</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;robot_ip&quot;</span><span class="p">)</span>
+<span class="linenos">20</span>    <span class="n">declared_arguments</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos">21</span>    <span class="n">declared_arguments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<span class="linenos">22</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">23</span>            <span class="s2">&quot;ur_type&quot;</span><span class="p">,</span>
+<span class="linenos">24</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Type/series of used UR robot.&quot;</span><span class="p">,</span>
+<span class="linenos">25</span>            <span class="n">choices</span><span class="o">=</span><span class="p">[</span>
+<span class="linenos">26</span>                <span class="s2">&quot;ur3&quot;</span><span class="p">,</span>
+<span class="linenos">27</span>                <span class="s2">&quot;ur3e&quot;</span><span class="p">,</span>
+<span class="linenos">28</span>                <span class="s2">&quot;ur5&quot;</span><span class="p">,</span>
+<span class="linenos">29</span>                <span class="s2">&quot;ur5e&quot;</span><span class="p">,</span>
+<span class="linenos">30</span>                <span class="s2">&quot;ur10&quot;</span><span class="p">,</span>
+<span class="linenos">31</span>                <span class="s2">&quot;ur10e&quot;</span><span class="p">,</span>
+<span class="linenos">32</span>                <span class="s2">&quot;ur16e&quot;</span><span class="p">,</span>
+<span class="linenos">33</span>                <span class="s2">&quot;ur20&quot;</span><span class="p">,</span>
+<span class="linenos">34</span>                <span class="s2">&quot;ur30&quot;</span><span class="p">,</span>
+<span class="linenos">35</span>            <span class="p">],</span>
+<span class="linenos">36</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;ur20&quot;</span><span class="p">,</span>
+<span class="linenos">37</span>        <span class="p">)</span>
+<span class="linenos">38</span>    <span class="p">)</span>
+<span class="linenos">39</span>    <span class="n">declared_arguments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<span class="linenos">40</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">41</span>            <span class="s2">&quot;robot_ip&quot;</span><span class="p">,</span>
+<span class="linenos">42</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;192.168.56.101&quot;</span><span class="p">,</span>  <span class="c1"># put your robot&#39;s IP address here</span>
+<span class="linenos">43</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;IP address by which the robot can be reached.&quot;</span><span class="p">,</span>
+<span class="linenos">44</span>        <span class="p">)</span>
+<span class="linenos">45</span>    <span class="p">)</span>
+<span class="linenos">46</span>
+<span class="linenos">47</span>    <span class="k">return</span> <span class="n">LaunchDescription</span><span class="p">(</span>
+<span class="linenos">48</span>        <span class="n">declared_arguments</span>
+<span class="linenos">49</span>        <span class="o">+</span> <span class="p">[</span>
+<span class="linenos">50</span>            <span class="n">IncludeLaunchDescription</span><span class="p">(</span>
+<span class="linenos">51</span>                <span class="n">PythonLaunchDescriptionSource</span><span class="p">(</span>
+<span class="linenos">52</span>                    <span class="p">[</span>
+<span class="linenos">53</span>                        <span class="n">PathJoinSubstitution</span><span class="p">(</span>
+<span class="linenos">54</span>                            <span class="p">[</span>
+<span class="linenos">55</span>                                <span class="n">FindPackageShare</span><span class="p">(</span><span class="s2">&quot;ur_robot_driver&quot;</span><span class="p">),</span>
+<span class="linenos">56</span>                                <span class="s2">&quot;launch&quot;</span><span class="p">,</span>
+<span class="linenos">57</span>                                <span class="s2">&quot;ur_control.launch.py&quot;</span><span class="p">,</span>
+<span class="linenos">58</span>                            <span class="p">]</span>
+<span class="linenos">59</span>                        <span class="p">)</span>
+<span class="linenos">60</span>                    <span class="p">]</span>
+<span class="linenos">61</span>                <span class="p">),</span>
+<span class="linenos">62</span>                <span class="n">launch_arguments</span><span class="o">=</span><span class="p">{</span>
+<span class="linenos">63</span>                    <span class="s2">&quot;ur_type&quot;</span><span class="p">:</span> <span class="n">ur_type</span><span class="p">,</span>
+<span class="linenos">64</span>                    <span class="s2">&quot;robot_ip&quot;</span><span class="p">:</span> <span class="n">robot_ip</span><span class="p">,</span>
+<span class="linenos">65</span>                    <span class="s2">&quot;tf_prefix&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;ur_type&quot;</span><span class="p">),</span> <span class="s2">&quot;_&quot;</span><span class="p">],</span>
+<span class="linenos">66</span>                    <span class="s2">&quot;description_launchfile&quot;</span><span class="p">:</span> <span class="n">PathJoinSubstitution</span><span class="p">(</span>
+<span class="linenos">67</span>                        <span class="p">[</span>
+<span class="linenos">68</span>                            <span class="n">FindPackageShare</span><span class="p">(</span><span class="s2">&quot;my_robot_cell_control&quot;</span><span class="p">),</span>
+<span class="linenos">69</span>                            <span class="s2">&quot;launch&quot;</span><span class="p">,</span>
+<span class="linenos">70</span>                            <span class="s2">&quot;rsp.launch.py&quot;</span><span class="p">,</span>
+<span class="linenos">71</span>                        <span class="p">]</span>
+<span class="linenos">72</span>                    <span class="p">),</span>
+<span class="linenos">73</span>                <span class="p">}</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span>
+<span class="linenos">74</span>            <span class="p">)</span>
+<span class="linenos">75</span>        <span class="p">]</span>
+<span class="linenos">76</span>    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>With that we can start the robot using</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>my_robot_cell_control<span class="w"> </span>start_robot.launch.py<span class="w"> </span>use_mock_hardware:<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+</section>
+<section id="testing-everything">
+<h2>Testing everything<a class="headerlink" href="#testing-everything" title="Link to this heading"></a></h2>
+<p>Before we can test our code, it’s essential to build and source our Colcon workspace:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#cd to your colcon workspace root, e.g.</span>
+<span class="nb">cd</span><span class="w"> </span>~/colcon_ws
+
+<span class="c1">#source and build your workspace</span>
+colcon<span class="w"> </span>build
+<span class="nb">source</span><span class="w"> </span>install/setup.bash
+</pre></div>
+</div>
+<p>We can start the system in a mocked simulation</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#start the driver with mocked hardware</span>
+ros2<span class="w"> </span>launch<span class="w"> </span>my_robot_cell_control<span class="w"> </span>start_robot.launch.py<span class="w"> </span>use_mock_hardware:<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+<p>Or to use it with a real robot:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#start the driver with real hardware</span>
+ros2<span class="w"> </span>launch<span class="w"> </span>my_robot_cell_control<span class="w"> </span>start_robot.launch.py
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="assemble_urdf.html" class="btn btn-neutral float-left" title="Assembling the URDF" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="build_moveit_config.html" class="btn btn-neutral float-right" title="Build the MoveIt! config" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

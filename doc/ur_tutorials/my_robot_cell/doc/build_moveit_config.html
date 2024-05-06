@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Build the MoveIt! config &mdash; ur_documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="prev" title="Start the ur_robot_driver" href="start_ur_driver.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            ur_documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_robot_driver/doc/index.html">Welcome to ur_robot_driver’s documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_robot_driver/doc/index.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../doc/tutorial_index.html">Tutorial examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Custom workcell</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="assemble_urdf.html">Assembling the URDF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="start_ur_driver.html">Start the ur_robot_driver</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Build the MoveIt! config</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">ur_documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../doc/tutorial_index.html">Universal Robots ROS tutorials</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Custom workcell</a></li>
+      <li class="breadcrumb-item active">Build the MoveIt! config</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/doc/ur_tutorials/my_robot_cell/doc/build_moveit_config.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="build-the-moveit-config">
+<h1>Build the MoveIt! config<a class="headerlink" href="#build-the-moveit-config" title="Link to this heading"></a></h1>
+<p>At this point, you should be able to run the <code class="docutils literal notranslate"><span class="pre">ur_robot_driver</span></code> for your custom UR setup.
+Now, we are only one last step away from actually planning and executing trajectories.</p>
+<p>To utilize MoveIt! 2 for this purpose, which will handle trajectory planning for us, we need to set up a MoveIt! configuration package.
+To create such a <strong>MoveIt! configuration package</strong>, MoveIt! provides a very useful Setup Assistant.</p>
+<section id="setup-assistant">
+<h2>Setup Assistant<a class="headerlink" href="#setup-assistant" title="Link to this heading"></a></h2>
+<p>We can start the MoveIt! Setup Assistant by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>moveit_setup_assistant<span class="w"> </span>setup_assistant.launch.py
+</pre></div>
+</div>
+<p>Please note that MoveIt! itself provides a detailed <a class="reference external" href="https://moveit.picknik.ai/main/doc/examples/setup_assistant/setup_assistant_tutorial.html?highlight=setup%20assistant">tutorial</a> on how to use the Setup Assistant, so you may want to go through that.
+Although the Setup Assistant is very straightforward, there are some tips and tricks we want to discuss in the following sections.</p>
+<p>The first task the MoveIt! Setup Assistant asks us to do is to load the URDF with the optional xacro arguments. If you would like to change the <code class="docutils literal notranslate"><span class="pre">ur_type</span></code> for example, you could also specify that here. For this demonstration we’ll go with our description’s default values.</p>
+<img alt="Load a URDF" src="../../../../_images/load_urdf.png" />
+<p>Next, make sure that the generated <strong>self-collisions</strong> are detected correctly. In our example the robot
+is positioned on the table in such a way, that it collides with the monitor on the table when all
+joints are in the 0 position. Hence, the collision is allowed as “Collision by default”. We remove
+that tick, since we don’t want that collision to be ignored.</p>
+<img alt="Adjust self-collisions - Remove the tick for the collision between monitor and ur20_upper_arm_link." src="../../../../_images/self_collisions.png" />
+<p>We skip adding virtual joints for now and continue with our <strong>planning group(s)</strong>.
+We add a planning group called <strong>ur_arm</strong>. A reasonable and error-resistant approach is to define
+it as a kinematic chain in the following manner:</p>
+<img alt="Kinematic setup for our planning group" src="../../../../_images/planning_group_kinematics.png" />
+<img alt="Kinematic Chain" src="../../../../_images/planning_group_chain.png" />
+<p>Your planning groups should look something like this:</p>
+<img alt="Planning Groups" src="../../../../_images/planning_groups.png" />
+<p>We’ll skip setting up ros2_control related points, since we’ve already configured that in our
+control package.</p>
+<p>In the <strong>MoveIt Controllers</strong> step we setup our desired controller to match the name
+“scaled_joint_trajectory_controller”:</p>
+<img alt="MoveIt! coontrollers configuration" src="../../../../_images/moveit_controllers.png" />
+<p>We skip <strong>perception</strong> as we don’t have any cameras setup in our scenario.</p>
+<p>In the next step we modify the <strong>launch files</strong> being generated by the assistant. We only generate
+“RViz Launch and Config”, “MoveGroup Launch” and “Setup Assistant Launch”. The other launch files
+are for starting a demo using mock hardware, which would basically be a duplication of what we
+already did in our control package. Since we also do not use the Warehouse feature for now, we also
+skip that file.</p>
+<img alt="Select the launch files to be generated" src="../../../../_images/launch_files.png" />
+<p>After the <strong>Author information</strong> we select which configuration files to generate. Again, we strip
+down all the files needed for mock hardware startup.</p>
+<img alt="Select the config files to be generated" src="../../../../_images/config_files.png" />
+<p>With all the information entered, you can <strong>generate</strong> the package and close the setup assistant.</p>
+</section>
+<section id="manual-adaptions">
+<h2>Manual adaptions<a class="headerlink" href="#manual-adaptions" title="Link to this heading"></a></h2>
+<p>Before we can actually use our package we have to adapt the joint limits. Since MoveIt! requires
+joint acceleration limits to be specified but the description doesn’t contain those, we need to
+specify these inside the generated <code class="docutils literal notranslate"><span class="pre">config/joint_limits.yaml</span></code> file.</p>
+<p>They are not part of the arm’s description since there are no physical acceleration limits, as
+those are highly dependent on the robot’s current pose and TCP force (e.g. induced by the weight
+carried at the TCP). Setting the acceleration limits to <code class="docutils literal notranslate"><span class="pre">5.0</span></code> for all joints should be a
+conservative value. Higher values might lead to unwanted slowdowns during execution or even
+protective stops, while lower values will result in slower motions due to slow ramp-up and
+ramp-down parts of the trajectory.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">my_robot_cell_moveit_config/config/joint_limits.yaml</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># joint_limits.yaml allows the dynamics properties specified in the URDF to be overwritten or augmented as needed</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="c1"># For beginners, we downscale velocity and acceleration limits.</span>
+<span class="linenos"> 4</span><span class="c1"># You can always specify higher scaling factors (&lt;= 1.0) in your motion requests.  # Increase the values below to 1.0 to always move at maximum speed.</span>
+<span class="linenos"> 5</span><span class="nt">default_velocity_scaling_factor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+<span class="linenos"> 6</span><span class="nt">default_acceleration_scaling_factor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="c1"># Specific joint properties can be changed with the keys [max_position, min_position, max_velocity, max_acceleration]</span>
+<span class="linenos"> 9</span><span class="c1"># Joint limits can be turned off with [has_velocity_limits, has_acceleration_limits]</span>
+<span class="linenos">10</span><span class="nt">joint_limits</span><span class="p">:</span>
+<span class="linenos">11</span><span class="w">  </span><span class="nt">ur20_elbow_joint</span><span class="p">:</span>
+<span class="linenos">12</span><span class="w">    </span><span class="nt">has_acceleration_limits</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="linenos">13</span><span class="w">    </span><span class="nt">max_acceleration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5.0</span>
+<span class="linenos">14</span><span class="w">  </span><span class="nt">ur20_shoulder_lift_joint</span><span class="p">:</span>
+<span class="linenos">15</span><span class="w">    </span><span class="nt">has_acceleration_limits</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="linenos">16</span><span class="w">    </span><span class="nt">max_acceleration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5.0</span>
+<span class="linenos">17</span><span class="w">  </span><span class="nt">ur20_shoulder_pan_joint</span><span class="p">:</span>
+<span class="linenos">18</span><span class="w">    </span><span class="nt">has_acceleration_limits</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="linenos">19</span><span class="w">    </span><span class="nt">max_acceleration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5.0</span>
+<span class="linenos">20</span><span class="w">  </span><span class="nt">ur20_wrist_1_joint</span><span class="p">:</span>
+<span class="linenos">21</span><span class="w">    </span><span class="nt">has_acceleration_limits</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="linenos">22</span><span class="w">    </span><span class="nt">max_acceleration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5.0</span>
+<span class="linenos">23</span><span class="w">  </span><span class="nt">ur20_wrist_2_joint</span><span class="p">:</span>
+<span class="linenos">24</span><span class="w">    </span><span class="nt">has_acceleration_limits</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="linenos">25</span><span class="w">    </span><span class="nt">max_acceleration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5.0</span>
+<span class="linenos">26</span><span class="w">  </span><span class="nt">ur20_wrist_3_joint</span><span class="p">:</span>
+<span class="linenos">27</span><span class="w">    </span><span class="nt">has_acceleration_limits</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="linenos">28</span><span class="w">    </span><span class="nt">max_acceleration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5.0</span>
+</pre></div>
+</div>
+</div>
+<p>Please note that you could also change the default velocity and acceleration scaling in this file.
+Also, if you want to specify any limits (position or velocity) that differ from your description, you
+can set them here. Remember that does will only be used for planning trajectories, not necessarily
+for execution. If you send trajectories from another source than MoveIt! those limits will not
+apply!</p>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<p>Before we can test our code, it’s essential to build and source our Colcon workspace:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#cd to your colcon workspace root</span>
+<span class="nb">cd</span><span class="w"> </span>~/colcon_ws
+
+<span class="c1">#source and build your workspace</span>
+colcon<span class="w"> </span>build
+<span class="nb">source</span><span class="w"> </span>install/setup.bash
+</pre></div>
+</div>
+<p>Now you are ready to use MoveIt! with an actual <strong>ur20</strong>, MoveIt! itself also provides you with the opportunity to start a robot with mock hardware.</p>
+<p>To startup the complete system, you’ll have to start three launch files in three individual
+terminals.</p>
+<p>First, we need to start a robot, simulated or real. If you start a real robot, make sure that the
+<em>external_control</em> program is active on the robot.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># You can switch to real hardware if you prefer</span>
+ros2<span class="w"> </span>launch<span class="w"> </span>my_robot_cell_control<span class="w"> </span>start_robot.launch.py<span class="w"> </span>use_mock_hardware:<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+<p>Second, we can start the move_group node by running the launch file the setup assistant created for us:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>my_robot_cell_moveit_config<span class="w"> </span>move_group.launch.py
+</pre></div>
+</div>
+<p>If everything went well you should see the output: <strong>“You can start planning now!”</strong>.</p>
+<p>To interact with the MoveIt! setup, you can start RViz with the correct setup file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>my_robot_cell_moveit_config<span class="w"> </span>moveit_rviz.launch.py
+</pre></div>
+</div>
+<p>From that setup you can start developing your application involving a custom move_group interface
+or similar. Please refer to the MoveIt! documentation for further reading.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="start_ur_driver.html" class="btn btn-neutral float-left" title="Start the ur_robot_driver" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

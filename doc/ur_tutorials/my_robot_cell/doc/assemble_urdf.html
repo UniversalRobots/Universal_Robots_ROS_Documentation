@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assembling the URDF &mdash; ur_documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Start the ur_robot_driver" href="start_ur_driver.html" />
+    <link rel="prev" title="Custom workcell" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            ur_documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_robot_driver/doc/index.html">Welcome to ur_robot_driver’s documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_robot_driver/doc/index.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../doc/tutorial_index.html">Tutorial examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Custom workcell</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Assembling the URDF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="start_ur_driver.html">Start the ur_robot_driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="build_moveit_config.html">Build the MoveIt! config</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">ur_documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../doc/tutorial_index.html">Universal Robots ROS tutorials</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Custom workcell</a></li>
+      <li class="breadcrumb-item active">Assembling the URDF</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/doc/ur_tutorials/my_robot_cell/doc/assemble_urdf.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="assembling-the-urdf">
+<h1>Assembling the URDF<a class="headerlink" href="#assembling-the-urdf" title="Link to this heading"></a></h1>
+<p>The <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description">ur_description</a> package provides <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/blob/rolling/urdf/ur_macro.xacro">macro files</a> to generate an instance of a Universal Robots arm.
+We’ll use this to create a custom workcell with a ur20 inside:</p>
+<section id="workcell-description">
+<h2>Workcell description<a class="headerlink" href="#workcell-description" title="Link to this heading"></a></h2>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="linenos"> 2</span><span class="nt">&lt;robot</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;my_robot_cell&quot;</span><span class="w"> </span><span class="na">xmlns:xacro=</span><span class="s">&quot;http://ros.org/wiki/xacro&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="w">  </span><span class="nt">&lt;xacro:include</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;$(find my_robot_cell_description)/urdf/my_robot_cell_macro.xacro&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ur_type&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;ur20&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;joint_limits_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg ur_type)/joint_limits.yaml&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;kinematics_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg ur_type)/default_kinematics.yaml&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;physical_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg ur_type)/physical_parameters.yaml&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">10</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;visual_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg ur_type)/visual_parameters.yaml&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="w">  </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;world&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">13</span><span class="w">  </span><span class="cm">&lt;!--This will create the scene where the robot is located in--&gt;</span>
+<span class="linenos">14</span><span class="w">  </span><span class="nt">&lt;xacro:my_robot_cell</span>
+<span class="linenos">15</span><span class="w">    </span><span class="na">parent=</span><span class="s">&quot;world&quot;</span>
+<span class="linenos">16</span><span class="w">    </span><span class="na">ur_type=</span><span class="s">&quot;$(arg ur_type)&quot;</span>
+<span class="linenos">17</span><span class="w">    </span><span class="na">joint_limits_parameters_file=</span><span class="s">&quot;$(arg joint_limits_parameters_file)&quot;</span>
+<span class="linenos">18</span><span class="w">    </span><span class="na">kinematics_parameters_file=</span><span class="s">&quot;$(arg kinematics_parameters_file)&quot;</span>
+<span class="linenos">19</span><span class="w">    </span><span class="na">physical_parameters_file=</span><span class="s">&quot;$(arg physical_parameters_file)&quot;</span>
+<span class="linenos">20</span><span class="w">    </span><span class="na">visual_parameters_file=</span><span class="s">&quot;$(arg visual_parameters_file)&quot;</span>
+<span class="linenos">21</span><span class="w">    </span><span class="nt">&gt;</span>
+<span class="linenos">22</span><span class="w">      </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0 0 1&quot;</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">23</span><span class="w">  </span><span class="nt">&lt;/xacro:my_robot_cell&gt;</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="nt">&lt;/robot&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s break it down:</p>
+<p>First, we’ll have to <strong>include</strong> the macro to generate our custom workcell:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;xacro:include</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;$(find my_robot_cell_description)/urdf/my_robot_cell_macro.xacro&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>This line only loadeded the macro for generating the robot workcell.</p>
+<p>We will need to provide some parameters to our workcell in order to parametrize the arm. Therefore,
+we need to declare certain arguments that must be passed to the macro.</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ur_type&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;ur20&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;joint_limits_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg ur_type)/joint_limits.yaml&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;kinematics_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg ur_type)/default_kinematics.yaml&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;physical_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg ur_type)/physical_parameters.yaml&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;visual_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg ur_type)/visual_parameters.yaml&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>The workspace macro contains all items within the workcell including the robot arm. If you are not
+experienced in writing URDFs, you may want to refer to this  <a class="reference external" href="https://docs.ros.org/en/rolling/Tutorials/Intermediate/URDF/URDF-Main.html">tutorial</a>. The macro’s content
+is generated using</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;world&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="cm">&lt;!--This will create the scene where the robot is located in--&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:my_robot_cell</span>
+<span class="w">    </span><span class="na">parent=</span><span class="s">&quot;world&quot;</span>
+<span class="w">    </span><span class="na">ur_type=</span><span class="s">&quot;$(arg ur_type)&quot;</span>
+<span class="w">    </span><span class="na">joint_limits_parameters_file=</span><span class="s">&quot;$(arg joint_limits_parameters_file)&quot;</span>
+<span class="w">    </span><span class="na">kinematics_parameters_file=</span><span class="s">&quot;$(arg kinematics_parameters_file)&quot;</span>
+<span class="w">    </span><span class="na">physical_parameters_file=</span><span class="s">&quot;$(arg physical_parameters_file)&quot;</span>
+<span class="w">    </span><span class="na">visual_parameters_file=</span><span class="s">&quot;$(arg visual_parameters_file)&quot;</span>
+<span class="w">    </span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0 0 1&quot;</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/xacro:my_robot_cell&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>Here, a <code class="docutils literal notranslate"><span class="pre">world</span></code> link is created, and the robot workcell is created relative to the <code class="docutils literal notranslate"><span class="pre">world</span></code> link.</p>
+</section>
+<section id="workcell-macro">
+<h2>Workcell macro<a class="headerlink" href="#workcell-macro" title="Link to this heading"></a></h2>
+<p>The workcell macro is defined in the following manner:</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell_macro.urdf.xacro</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="linenos"> 2</span><span class="nt">&lt;robot</span><span class="w"> </span><span class="na">xmlns:xacro=</span><span class="s">&quot;http://ros.org/wiki/xacro&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 3</span><span class="w">  </span><span class="nt">&lt;xacro:include</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;$(find ur_description)/urdf/ur_macro.xacro&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="w">  </span><span class="nt">&lt;xacro:macro</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;my_robot_cell&quot;</span><span class="w"> </span><span class="na">params=</span><span class="s">&quot;</span>
+<span class="linenos"> 6</span><span class="s">    parent</span>
+<span class="linenos"> 7</span><span class="s">    *origin</span>
+<span class="linenos"> 8</span><span class="s">    ur_type</span>
+<span class="linenos"> 9</span><span class="s">    joint_limits_parameters_file</span>
+<span class="linenos">10</span><span class="s">    kinematics_parameters_file</span>
+<span class="linenos">11</span><span class="s">    physical_parameters_file</span>
+<span class="linenos">12</span><span class="s">    visual_parameters_file</span>
+<span class="linenos">13</span><span class="s">    &quot;</span><span class="nt">&gt;</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="w">    </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;table_base_joint&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">16</span><span class="w">      </span><span class="nt">&lt;xacro:insert_block</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;origin&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">17</span><span class="w">      </span><span class="nt">&lt;parent</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;${parent}&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">18</span><span class="w">      </span><span class="nt">&lt;child</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;table&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">19</span><span class="w">    </span><span class="nt">&lt;/joint&gt;</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="w">    </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;table&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">22</span><span class="w">      </span><span class="nt">&lt;visual&gt;</span>
+<span class="linenos">23</span><span class="w">        </span><span class="nt">&lt;geometry&gt;</span>
+<span class="linenos">24</span><span class="w">          </span><span class="nt">&lt;mesh</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;package://my_robot_cell_description/meshes/fzi_table.dae&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">25</span><span class="w">        </span><span class="nt">&lt;/geometry&gt;</span>
+<span class="linenos">26</span><span class="w">        </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0.75 0.5 -1&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">27</span><span class="w">      </span><span class="nt">&lt;/visual&gt;</span>
+<span class="linenos">28</span><span class="w">      </span><span class="nt">&lt;collision&gt;</span>
+<span class="linenos">29</span><span class="w">        </span><span class="nt">&lt;geometry&gt;</span>
+<span class="linenos">30</span><span class="w">          </span><span class="nt">&lt;mesh</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;package://my_robot_cell_description/meshes/fzi_table.dae&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">31</span><span class="w">        </span><span class="nt">&lt;/geometry&gt;</span>
+<span class="linenos">32</span><span class="w">        </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0.75 0.5 -1&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">33</span><span class="w">      </span><span class="nt">&lt;/collision&gt;</span>
+<span class="linenos">34</span><span class="w">    </span><span class="nt">&lt;/link&gt;</span>
+<span class="linenos">35</span>
+<span class="linenos">36</span><span class="w">    </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;monitor&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">37</span><span class="w">      </span><span class="nt">&lt;visual&gt;</span>
+<span class="linenos">38</span><span class="w">        </span><span class="nt">&lt;geometry&gt;</span>
+<span class="linenos">39</span><span class="w">          </span><span class="nt">&lt;mesh</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;package://my_robot_cell_description/meshes/171005_Motek_Monitor_L.dae&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">40</span><span class="w">        </span><span class="nt">&lt;/geometry&gt;</span>
+<span class="linenos">41</span><span class="w">      </span><span class="nt">&lt;/visual&gt;</span>
+<span class="linenos">42</span><span class="w">      </span><span class="nt">&lt;collision&gt;</span>
+<span class="linenos">43</span><span class="w">        </span><span class="nt">&lt;geometry&gt;</span>
+<span class="linenos">44</span><span class="w">          </span><span class="nt">&lt;mesh</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;package://my_robot_cell_description/meshes/171005_Motek_Monitor_L.dae&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">45</span><span class="w">        </span><span class="nt">&lt;/geometry&gt;</span>
+<span class="linenos">46</span><span class="w">      </span><span class="nt">&lt;/collision&gt;</span>
+<span class="linenos">47</span><span class="w">    </span><span class="nt">&lt;/link&gt;</span>
+<span class="linenos">48</span><span class="w">    </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;base_to_monitor&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">49</span><span class="w">      </span><span class="nt">&lt;parent</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;table&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">50</span><span class="w">      </span><span class="nt">&lt;child</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;monitor&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">51</span><span class="w">      </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0.2 0.6 0&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">52</span><span class="w">    </span><span class="nt">&lt;/joint&gt;</span>
+<span class="linenos">53</span>
+<span class="linenos">54</span><span class="w">    </span><span class="nt">&lt;material</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;white&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">55</span><span class="w">      </span><span class="nt">&lt;color</span><span class="w"> </span><span class="na">rgba=</span><span class="s">&quot;1 1 1 1&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">56</span><span class="w">    </span><span class="nt">&lt;/material&gt;</span>
+<span class="linenos">57</span>
+<span class="linenos">58</span><span class="w">    </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;wall&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">59</span><span class="w">      </span><span class="nt">&lt;visual&gt;</span>
+<span class="linenos">60</span><span class="w">        </span><span class="nt">&lt;geometry&gt;</span>
+<span class="linenos">61</span><span class="w">          </span><span class="nt">&lt;mesh</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;package://my_robot_cell_description/meshes/wall.dae&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">62</span><span class="w">        </span><span class="nt">&lt;/geometry&gt;</span>
+<span class="linenos">63</span><span class="w">      </span><span class="nt">&lt;/visual&gt;</span>
+<span class="linenos">64</span><span class="w">      </span><span class="nt">&lt;collision&gt;</span>
+<span class="linenos">65</span><span class="w">        </span><span class="nt">&lt;geometry&gt;</span>
+<span class="linenos">66</span><span class="w">          </span><span class="nt">&lt;box</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;4.44 0.1 2.5&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">67</span><span class="w">        </span><span class="nt">&lt;/geometry&gt;</span>
+<span class="linenos">68</span><span class="w">      </span><span class="nt">&lt;/collision&gt;</span>
+<span class="linenos">69</span><span class="w">    </span><span class="nt">&lt;/link&gt;</span>
+<span class="linenos">70</span><span class="w">    </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;base_to_wall&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">71</span><span class="w">      </span><span class="nt">&lt;parent</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;table&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">72</span><span class="w">      </span><span class="nt">&lt;child</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;wall&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">73</span><span class="w">      </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;1.25 1.5 0.5&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">74</span><span class="w">    </span><span class="nt">&lt;/joint&gt;</span>
+<span class="linenos">75</span>
+<span class="linenos">76</span><span class="w">    </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;robot_mount&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">77</span><span class="w">    </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;base_to_robot_mount&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">78</span><span class="w">      </span><span class="nt">&lt;parent</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;table&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">79</span><span class="w">      </span><span class="nt">&lt;child</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;robot_mount&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">80</span><span class="w">      </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0.845 0.85 0&quot;</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 ${pi}&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">81</span><span class="w">    </span><span class="nt">&lt;/joint&gt;</span>
+<span class="linenos">82</span>
+<span class="linenos">83</span><span class="w">    </span><span class="cm">&lt;!--This will create the specific robot--&gt;</span>
+<span class="linenos">84</span><span class="w">    </span><span class="nt">&lt;xacro:ur_robot</span>
+<span class="linenos">85</span><span class="w">      </span><span class="na">name=</span><span class="s">&quot;${ur_type}&quot;</span>
+<span class="linenos">86</span><span class="w">      </span><span class="na">tf_prefix=</span><span class="s">&quot;${ur_type}_&quot;</span>
+<span class="linenos">87</span><span class="w">      </span><span class="na">parent=</span><span class="s">&quot;robot_mount&quot;</span>
+<span class="linenos">88</span><span class="w">      </span><span class="na">joint_limits_parameters_file=</span><span class="s">&quot;${joint_limits_parameters_file}&quot;</span>
+<span class="linenos">89</span><span class="w">      </span><span class="na">kinematics_parameters_file=</span><span class="s">&quot;${kinematics_parameters_file}&quot;</span>
+<span class="linenos">90</span><span class="w">      </span><span class="na">physical_parameters_file=</span><span class="s">&quot;${physical_parameters_file}&quot;</span>
+<span class="linenos">91</span><span class="w">      </span><span class="na">visual_parameters_file=</span><span class="s">&quot;${visual_parameters_file}&quot;</span>
+<span class="linenos">92</span><span class="w">    </span><span class="nt">&gt;</span>
+<span class="linenos">93</span><span class="w">      </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0 0 0&quot;</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">94</span><span class="w">    </span><span class="nt">&lt;/xacro:ur_robot&gt;</span>
+<span class="linenos">95</span><span class="w">  </span><span class="nt">&lt;/xacro:macro&gt;</span>
+<span class="linenos">96</span>
+<span class="linenos">97</span><span class="nt">&lt;/robot&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>This macro provides an example of what a custom workcell could resemble. Your workspace will likely
+vary from this one. Please feel free to modify this portion of the URDF to match your own setup. In
+this instance, our workspace comprises a table in front of a wall, featuring a monitor, and the
+<strong>ur20</strong> robot arm mounted on top.</p>
+<p>Ensure that your custom workcell includes the parent link, which must be passed to the <strong>ur_robot</strong>
+macro. In this example, we chose to create a link named <strong>robot_mount</strong>.</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="w">    </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;robot_mount&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">2</span><span class="w">    </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;base_to_robot_mount&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">3</span><span class="w">      </span><span class="nt">&lt;parent</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;table&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">4</span><span class="w">      </span><span class="nt">&lt;child</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;robot_mount&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">5</span><span class="w">      </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0.845 0.85 0&quot;</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 ${pi}&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">6</span><span class="w">    </span><span class="nt">&lt;/joint&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>After that we are finally able to actually <strong>create the robot arm</strong> by calling the macro.</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w">    </span><span class="nt">&lt;xacro:ur_robot</span>
+<span class="linenos"> 2</span><span class="w">      </span><span class="na">name=</span><span class="s">&quot;${ur_type}&quot;</span>
+<span class="linenos"> 3</span><span class="w">      </span><span class="na">tf_prefix=</span><span class="s">&quot;${ur_type}_&quot;</span>
+<span class="linenos"> 4</span><span class="w">      </span><span class="na">parent=</span><span class="s">&quot;robot_mount&quot;</span>
+<span class="linenos"> 5</span><span class="w">      </span><span class="na">joint_limits_parameters_file=</span><span class="s">&quot;${joint_limits_parameters_file}&quot;</span>
+<span class="linenos"> 6</span><span class="w">      </span><span class="na">kinematics_parameters_file=</span><span class="s">&quot;${kinematics_parameters_file}&quot;</span>
+<span class="linenos"> 7</span><span class="w">      </span><span class="na">physical_parameters_file=</span><span class="s">&quot;${physical_parameters_file}&quot;</span>
+<span class="linenos"> 8</span><span class="w">      </span><span class="na">visual_parameters_file=</span><span class="s">&quot;${visual_parameters_file}&quot;</span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="nt">&gt;</span>
+<span class="linenos">10</span><span class="w">      </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0 0 0&quot;</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">11</span><span class="w">    </span><span class="nt">&lt;/xacro:ur_robot&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>Note that the <strong>origin</strong> argument is transmitted in a different manner than the other arguments.</p>
+<p>Before we can test our code, it’s essential to build and source our Colcon workspace:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#cd to your colcon workspace root</span>
+<span class="nb">cd</span><span class="w"> </span>~/colcon_ws
+
+<span class="c1">#source and build your workspace</span>
+colcon<span class="w"> </span>build
+<span class="nb">source</span><span class="w"> </span>install/setup.bash
+</pre></div>
+</div>
+<p>We can view our custom workspace by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#launch rviz</span>
+ros2<span class="w"> </span>launch<span class="w"> </span>my_robot_cell_description<span class="w"> </span>view_workspace.launch.py
+</pre></div>
+</div>
+<p>Use the sliders of the <code class="docutils literal notranslate"><span class="pre">joint_state_puplisher_gui</span></code> to move the virtual robot around.
+It should look something like this:</p>
+<img alt="RViz window showing the custom workspace" src="../../../../_images/view_workspace.png" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Custom workcell" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="start_ur_driver.html" class="btn btn-neutral float-right" title="Start the ur_robot_driver" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

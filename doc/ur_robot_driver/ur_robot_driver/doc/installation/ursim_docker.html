@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setup URSim with Docker &mdash; ur_documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Usage" href="../usage.html" />
+    <link rel="prev" title="Installing a URCap on a e-Series robot" href="install_urcap_e_series.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            ur_documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Welcome to ur_robot_driver’s documentation!</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="toc.html">Installation</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="installation.html">Installation of the ur_robot_driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="robot_setup.html">Setting up a UR robot for ur_robot_driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install_urcap_cb3.html">Installing a URCap on a CB3 robot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install_urcap_e_series.html">Installing a URCap on a e-Series robot</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Setup URSim with Docker</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup_tool_communication.html">Setting up the tool communication on an e-Series robot</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_tutorials/doc/tutorial_index.html">Tutorial examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">ur_documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Welcome to ur_robot_driver’s documentation!</a></li>
+          <li class="breadcrumb-item"><a href="toc.html">Installation</a></li>
+      <li class="breadcrumb-item active">Setup URSim with Docker</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/doc/ur_robot_driver/ur_robot_driver/doc/installation/ursim_docker.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="setup-ursim-with-docker">
+<span id="ursim-docker"></span><h1>Setup URSim with Docker<a class="headerlink" href="#setup-ursim-with-docker" title="Link to this heading"></a></h1>
+<p>URSim is the offline simulator by Universal Robots. Packed into a remote or virtual machine it acts almost
+identically to a real robot connected over the network. While it is possible to get URSim running
+locally on a Linux system or inside a VirtualBox virtual machine, we will focus on getting things
+setup using Docker. Using Docker for your simulated robot allows you to very quickly spin up a robot
+testing instance with very little computational overload.</p>
+<p>This guide will assume that you have Docker already installed and setup such that you can startup
+Docker containers using your current user.</p>
+<section id="start-a-ursim-docker-container">
+<h2>Start a URSim docker container<a class="headerlink" href="#start-a-ursim-docker-container" title="Link to this heading"></a></h2>
+<p>To startup a simulated robot run the following command. This will start a Docker container named
+<code class="docutils literal notranslate"><span class="pre">ursim</span></code> and startup a simulated UR5e robot. It exposes ports 5900 and 6080 for the browser-based
+polyscope access. Note that this will expose the simulated robot to your local area network if you
+don’t have any further level of security such as a firewall active. To prevent this, you can either
+skip the port forwarding instructions (skip the two <code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">port:port</span></code> statements) in which case
+you’ll have to use the container’s IP address to access the polyscope gui rather than <code class="docutils literal notranslate"><span class="pre">localhost</span></code> or
+you can restrict the port forwarding to a certain network interface (such as the looppack interface)
+see Docker’s upstream documentation on port exposure for further information.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">5900</span>:5900<span class="w"> </span>-p<span class="w"> </span><span class="m">6080</span>:6080<span class="w"> </span>--name<span class="w"> </span>ursim<span class="w"> </span>universalrobots/ursim_e-series
+</pre></div>
+</div>
+</section>
+<section id="external-control">
+<h2>External Control<a class="headerlink" href="#external-control" title="Link to this heading"></a></h2>
+<p>To use the external control functionality, we will need the <code class="docutils literal notranslate"><span class="pre">external_control</span></code> URCap installed on
+the robot and a program containing its <em>ExternalControl</em> program node. Both can be prepared on the
+host machine either by creating an own Dockerfile containing those or by mounting two folders
+containing installed URCaps and programs. See the Dockerfile’s upstream <a class="reference external" href="https://hub.docker.com/r/universalrobots/ursim_e-series">documentation</a>.</p>
+<p>In this example, we will bind-mount a folder for the programs and URCaps. First, let’s create a
+local folder where we can store things inside:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.ursim/programs
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.ursim/urcaps
+</pre></div>
+</div>
+<p>Then, we can “install” the URCap by placing its <code class="docutils literal notranslate"><span class="pre">.jar</span></code> file inside the urcaps folder</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">URCAP_VERSION</span><span class="o">=</span><span class="m">1</span>.0.5<span class="w"> </span><span class="c1"># latest version as if writing this</span>
+curl<span class="w"> </span>-L<span class="w"> </span>-o<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.ursim/urcaps/externalcontrol-<span class="si">${</span><span class="nv">URCAP_VERSION</span><span class="si">}</span>.jar<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>https://github.com/UniversalRobots/Universal_Robots_ExternalControl_URCap/releases/download/v<span class="si">${</span><span class="nv">URCAP_VERSION</span><span class="si">}</span>/externalcontrol-<span class="si">${</span><span class="nv">URCAP_VERSION</span><span class="si">}</span>.jar
+</pre></div>
+</div>
+<p>With this, start your URSim containers with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">5900</span>:5900<span class="w"> </span>-p<span class="w"> </span><span class="m">6080</span>:6080<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.ursim/urcaps:/urcaps<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.ursim/programs:/ursim/programs<span class="w"> </span>--name<span class="w"> </span>ursim<span class="w"> </span>universalrobots/ursim_e-series
+</pre></div>
+</div>
+<p>With this, you should be able to setup the <code class="docutils literal notranslate"><span class="pre">external_control</span></code> URCap and create a program as
+described in <a class="reference internal" href="install_urcap_e_series.html#install-urcap-e-series"><span class="std std-ref">URCap setup guide</span></a>.</p>
+</section>
+<section id="network-setup">
+<h2>Network setup<a class="headerlink" href="#network-setup" title="Link to this heading"></a></h2>
+<p>As described above, you can always start the URSim container using the default network setup. As long
+as you don’t have any other docker containers running, it will most probably always get the same IP
+address assigned every time. However, to make things a bit more explicit, we can setup our own
+docker network where we can assign a static IP address to our URSim container.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>network<span class="w"> </span>create<span class="w"> </span>--subnet<span class="o">=</span><span class="m">192</span>.168.56.0/24<span class="w"> </span>ursim_net
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">5900</span>:5900<span class="w"> </span>-p<span class="w"> </span><span class="m">6080</span>:6080<span class="w"> </span>--net<span class="w"> </span>ursim_net<span class="w"> </span>--ip<span class="w"> </span><span class="m">192</span>.168.56.101<span class="w"> </span>universalrobots/ursim_e-series
+</pre></div>
+</div>
+<p>The above commands first create a network for docker and then create a container with the URSim
+image attaching to this network.</p>
+<p>As we now have a fixed IP address we can also skip the port exposure as we know the robot’s IP
+address. The VNC web server will be available at <a class="reference external" href="http://192.168.56.101:6080/vnc.html">http://192.168.56.101:6080/vnc.html</a></p>
+</section>
+<section id="script-startup">
+<h2>Script startup<a class="headerlink" href="#script-startup" title="Link to this heading"></a></h2>
+<p>All of the above is put together in a script in the <code class="docutils literal notranslate"><span class="pre">ur_client_library</span></code> package.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>run<span class="w"> </span>ur_client_library<span class="w"> </span>start_ursim.sh
+</pre></div>
+</div>
+<p>This will start a URSim docker container running on <code class="docutils literal notranslate"><span class="pre">192.168.56.101</span></code> with the <code class="docutils literal notranslate"><span class="pre">external_control</span></code>
+URCap preinstalled. Created programs and installation changes will be stored persistently inside
+<code class="docutils literal notranslate"><span class="pre">${HOME}/.ursim/programs</span></code>.</p>
+<p>With this, you can run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>ur_robot_driver<span class="w"> </span>ur_control.launch.py<span class="w"> </span>ur_type:<span class="o">=</span>ur5e<span class="w"> </span>robot_ip:<span class="o">=</span><span class="m">192</span>.168.56.101
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="install_urcap_e_series.html" class="btn btn-neutral float-left" title="Installing a URCap on a e-Series robot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../usage.html" class="btn btn-neutral float-right" title="Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

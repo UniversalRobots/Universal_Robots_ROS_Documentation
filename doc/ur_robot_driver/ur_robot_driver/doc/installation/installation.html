@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation of the ur_robot_driver &mdash; ur_documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Setting up a UR robot for ur_robot_driver" href="robot_setup.html" />
+    <link rel="prev" title="Installation" href="toc.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            ur_documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Welcome to ur_robot_driver’s documentation!</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="toc.html">Installation</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Installation of the ur_robot_driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="robot_setup.html">Setting up a UR robot for ur_robot_driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install_urcap_cb3.html">Installing a URCap on a CB3 robot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install_urcap_e_series.html">Installing a URCap on a e-Series robot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ursim_docker.html">Setup URSim with Docker</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup_tool_communication.html">Setting up the tool communication on an e-Series robot</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_tutorials/doc/tutorial_index.html">Tutorial examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">ur_documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Welcome to ur_robot_driver’s documentation!</a></li>
+          <li class="breadcrumb-item"><a href="toc.html">Installation</a></li>
+      <li class="breadcrumb-item active">Installation of the ur_robot_driver</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/doc/ur_robot_driver/ur_robot_driver/doc/installation/installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation-of-the-ur-robot-driver">
+<h1>Installation of the ur_robot_driver<a class="headerlink" href="#installation-of-the-ur-robot-driver" title="Link to this heading"></a></h1>
+<p>You can either install this driver from binary packages as shown above or build it from source. We
+recommend a binary package installation unless you want to join development and submit changes.</p>
+<section id="install-from-binary-packages">
+<h2>Install from binary packages<a class="headerlink" href="#install-from-binary-packages" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><a class="reference external" href="https://docs.ros.org/en/rolling/Installation/Ubuntu-Install-Debians.html">Install ROS2</a>. This
+branch supports only ROS2 Rolling. For other ROS2 versions, please see the respective branches.</p></li>
+<li><p>Install the driver using</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ros-<span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span>-ur
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="build-from-source">
+<h2>Build from source<a class="headerlink" href="#build-from-source" title="Link to this heading"></a></h2>
+<p>Before building from source please make sure that you actually need to do that. Building from source
+might require some special treatment, especially when it comes to dependency management.
+Dependencies might change from time to time. Upstream packages (such as the library) might change
+their features / API which require changes in this repo. Therefore, this repo’s source builds might
+require upstream repositories to be present in a certain version as otherwise builds might fail.
+Starting from scratch following exactly the steps below should always work, but simply pulling and
+building might fail occasionally.</p>
+<ol class="arabic">
+<li><p><a class="reference external" href="https://docs.ros.org/en/rolling/Installation/Ubuntu-Install-Debians.html">Install ROS2</a>. This
+branch supports only ROS2 Rolling. For other ROS2 versions, please see the respective branches.</p>
+<p>Once installed, please make sure to actually <a class="reference external" href="https://docs.ros.org/en/rolling/Tutorials/Beginner-CLI-Tools/Configuring-ROS2-Environment.html#source-the-setup-files">source ROS2</a> before proceeding.</p>
+</li>
+</ol>
+<ol class="arabic" start="3">
+<li><p>Make sure that <code class="docutils literal notranslate"><span class="pre">colcon</span></code>, its extensions and <code class="docutils literal notranslate"><span class="pre">vcs</span></code> are installed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-colcon-common-extensions<span class="w"> </span>python3-vcstool
+</pre></div>
+</div>
+</li>
+<li><p>Create a new ROS2 workspace:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">COLCON_WS</span><span class="o">=</span>~/workspace/ros_ur_driver
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$COLCON_WS</span>/src
+</pre></div>
+</div>
+</li>
+<li><p>Clone relevant packages (replace <code class="docutils literal notranslate"><span class="pre">&lt;branch&gt;</span></code> with <code class="docutils literal notranslate"><span class="pre">humble</span></code>, <code class="docutils literal notranslate"><span class="pre">iron</span></code> or <code class="docutils literal notranslate"><span class="pre">main</span></code> for rolling), install dependencies, compile, and source the workspace by using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$COLCON_WS</span>
+git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>&lt;branch&gt;<span class="w"> </span>https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver.git<span class="w"> </span>src/Universal_Robots_ROS2_Driver
+vcs<span class="w"> </span>import<span class="w"> </span>src<span class="w"> </span>--skip-existing<span class="w"> </span>--input<span class="w"> </span>src/Universal_Robots_ROS2_Driver/Universal_Robots_ROS2_Driver-not-released.<span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span>.repos
+rosdep<span class="w"> </span>update
+rosdep<span class="w"> </span>install<span class="w"> </span>--ignore-src<span class="w"> </span>--from-paths<span class="w"> </span>src<span class="w"> </span>-y
+colcon<span class="w"> </span>build<span class="w"> </span>--cmake-args<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release
+<span class="nb">source</span><span class="w"> </span>install/setup.bash
+</pre></div>
+</div>
+</li>
+<li><p>When consecutive pulls lead to build errors it is possible that you’ll have to build an upstream
+package from source, as well. See the [detailed build status](ci_status.md). When the binary builds are red, but
+the semi-binary builds are green, you need to build the upstream dependencies from source. The
+easiest way to achieve this, is using the repos file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$COLCON_WS</span>
+vcs<span class="w"> </span>import<span class="w"> </span>src<span class="w"> </span>--skip-existing<span class="w"> </span>--input<span class="w"> </span>src/Universal_Robots_ROS2_Driver/Universal_Robots_ROS2_Driver.<span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span>.repos
+rosdep<span class="w"> </span>update
+rosdep<span class="w"> </span>install<span class="w"> </span>--ignore-src<span class="w"> </span>--from-paths<span class="w"> </span>src<span class="w"> </span>-y
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="toc.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="robot_setup.html" class="btn btn-neutral float-right" title="Setting up a UR robot for ur_robot_driver" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
