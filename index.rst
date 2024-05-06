@@ -8,6 +8,6 @@ This repositorycontains documentation and ROS 2 packages for Universal Robots.
 .. toctree::
    :titlesonly:
 
-   doc/ur_robot_driver/ur_robot_driver/doc/index.rst
+   ur_robot_driver <doc/ur_robot_driver/ur_robot_driver/doc/index.rst>
    Tutorial examples <doc/ur_tutorials/doc/tutorial_index.rst>
 
