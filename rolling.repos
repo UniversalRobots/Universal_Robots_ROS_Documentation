@@ -1,9 +1,9 @@
 repositories:
   ur_robot_driver:
     type: git
-    url: https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver.git
-    version: main
+    url: https://github.com/fmauch/Universal_Robots_ROS2_Driver.git
+    version: general_docs
   ur_tutorials:
     type: git
-    url: https://github.com/UniversalRobots/Universal_Robots_ROS_Tutorials.git
-    version: external_docs
+    url: https://github.com/UniversalRobots/Universal_Robots_ROS2_Tutorials.git
+    version: main
