@@ -4,11 +4,12 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to ur_robot_driver’s documentation! &mdash; ur_documentation 0.1 documentation</title>
+  <title>ur_robot_driver &mdash; ur_ros2_documentation 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
 
   
+    <link rel="shortcut icon" href=""/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -22,7 +23,7 @@
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="Overview" href="overview.html" />
-    <link rel="prev" title="Welcome to the Universal Robots ROS documentation!" href="../../../../index.html" /> 
+    <link rel="prev" title="Welcome to the Universal Robots ROS 2 documentation!" href="../../../../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -34,7 +35,8 @@
           
           
           <a href="../../../../index.html" class="icon icon-home">
-            ur_documentation
+            ur_ros2_documentation
+              <img src="" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -45,14 +47,16 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Welcome to ur_robot_driver’s documentation!</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ur_robot_driver</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation/toc.html">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="usage.html">Usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="setup_tool_communication.html">Setting up the tool communication on an e-Series robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ROS_INTERFACE.html">ROS interface</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_controllers/doc/index.html">ur_controllers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_tutorials/doc/tutorial_index.html">Tutorial examples</a></li>
 </ul>
 
@@ -62,7 +66,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../../index.html">ur_documentation</a>
+          <a href="../../../../index.html">ur_ros2_documentation</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -70,9 +74,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Welcome to ur_robot_driver’s documentation!</li>
+      <li class="breadcrumb-item active">ur_robot_driver</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../../_sources/doc/ur_robot_driver/ur_robot_driver/doc/index.rst.txt" rel="nofollow"> View page source</a>
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_robot_driver/ur_robot_driver/doc/index.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -80,8 +84,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="welcome-to-ur-robot-driver-s-documentation">
-<h1>Welcome to ur_robot_driver’s documentation!<a class="headerlink" href="#welcome-to-ur-robot-driver-s-documentation" title="Link to this heading"></a></h1>
+  <section id="ur-robot-driver">
+<h1>ur_robot_driver<a class="headerlink" href="#ur-robot-driver" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
@@ -91,6 +95,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="installation/toc.html">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation/installation.html">Installation of the ur_robot_driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/real_time.html">Setting up Ubuntu with a PREEMPT_RT kernel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation/robot_setup.html">Setting up a UR robot for ur_robot_driver</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation/install_urcap_cb3.html">Installing a URCap on a CB3 robot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation/install_urcap_e_series.html">Installing a URCap on a e-Series robot</a></li>
@@ -111,21 +116,19 @@
 <li class="toctree-l2"><a class="reference internal" href="setup_tool_communication.html#setup-the-ros-side">Setup the ROS side</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="ROS_INTERFACE.html">ROS interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ROS_INTERFACE.html#nodes">Nodes</a></li>
+</ul>
+</li>
 </ul>
 </div>
-</section>
-<section id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h1>
-<ul class="simple">
-<li><p><a class="reference internal" href="../../../../genindex.html"><span class="std std-ref">Index</span></a></p></li>
-</ul>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../../../../index.html" class="btn btn-neutral float-left" title="Welcome to the Universal Robots ROS documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../../../index.html" class="btn btn-neutral float-left" title="Welcome to the Universal Robots ROS 2 documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="overview.html" class="btn btn-neutral float-right" title="Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

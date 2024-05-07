@@ -4,11 +4,12 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Start the ur_robot_driver &mdash; ur_documentation 0.1 documentation</title>
+  <title>Start the ur_robot_driver &mdash; ur_ros2_documentation 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
 
   
+    <link rel="shortcut icon" href=""/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -34,7 +35,8 @@
           
           
           <a href="../../../../index.html" class="icon icon-home">
-            ur_documentation
+            ur_ros2_documentation
+              <img src="" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -45,8 +47,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_robot_driver/doc/index.html">Welcome to ur_robot_driver’s documentation!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_robot_driver/doc/index.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_controllers/doc/index.html">ur_controllers</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../doc/tutorial_index.html">Tutorial examples</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Custom workcell</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="assemble_urdf.html">Assembling the URDF</a></li>
@@ -64,7 +67,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../../index.html">ur_documentation</a>
+          <a href="../../../../index.html">ur_ros2_documentation</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -76,7 +79,7 @@
           <li class="breadcrumb-item"><a href="index.html">Custom workcell</a></li>
       <li class="breadcrumb-item active">Start the ur_robot_driver</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../../_sources/doc/ur_tutorials/my_robot_cell/doc/start_ur_driver.rst.txt" rel="nofollow"> View page source</a>
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_tutorials/my_robot_cell/doc/start_ur_driver.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -113,8 +116,8 @@ control information. We will also add a custom launchfile to startup our demonst
 <span class="linenos">16</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;robot_ip&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;0.0.0.0&quot;</span><span class="nt">/&gt;</span>
 <span class="linenos">17</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;headless_mode&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 <span class="linenos">18</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ur_script_filename&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_client_library)/resources/external_control.urscript&quot;</span><span class="nt">/&gt;</span>
-<span class="linenos">19</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ur_output_recipe_filename&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_robot_driver)/resources/rtde_input_recipe.txt&quot;</span><span class="nt">/&gt;</span>
-<span class="linenos">20</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ur_input_recipe_filename&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_robot_driver)/resources/rtde_output_recipe.txt&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">19</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ur_output_recipe_filename&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_robot_driver)/resources/rtde_output_recipe.txt&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">20</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ur_input_recipe_filename&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_robot_driver)/resources/rtde_input_recipe.txt&quot;</span><span class="nt">/&gt;</span>
 <span class="linenos">21</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;use_mock_hardware&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 <span class="linenos">22</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;mock_sensor_commands&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 <span class="linenos">23</span>
@@ -165,8 +168,8 @@ control information. We will also add a custom launchfile to startup our demonst
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;robot_ip&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;0.0.0.0&quot;</span><span class="nt">/&gt;</span>
 <span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;headless_mode&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 <span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ur_script_filename&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_client_library)/resources/external_control.urscript&quot;</span><span class="nt">/&gt;</span>
-<span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ur_output_recipe_filename&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_robot_driver)/resources/rtde_input_recipe.txt&quot;</span><span class="nt">/&gt;</span>
-<span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ur_input_recipe_filename&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_robot_driver)/resources/rtde_output_recipe.txt&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ur_output_recipe_filename&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_robot_driver)/resources/rtde_output_recipe.txt&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ur_input_recipe_filename&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_robot_driver)/resources/rtde_input_recipe.txt&quot;</span><span class="nt">/&gt;</span>
 <span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;use_mock_hardware&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 <span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;mock_sensor_commands&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 </pre></div>
@@ -347,8 +350,9 @@ parameter and redistribute it via the <code class="docutils literal notranslate"
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>ur_robot_driver<span class="w"> </span>ur_control.launch.py<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>description_launchfile:<span class="o">=</span><span class="k">$(</span>ros2<span class="w"> </span>pkg<span class="w"> </span>prefix<span class="w"> </span>my_robot_cell_control<span class="k">)</span>/share/my_robot_cell_control/launch/rsp.launch.py<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>use_mock_hardware:<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>robot_ip:<span class="o">=</span><span class="m">123</span><span class="w"> </span><span class="se">\ </span><span class="c1"># irrelevant since we use mock hardware</span>
+<span class="w">  </span>robot_ip:<span class="o">=</span><span class="m">123</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>ur_type:<span class="o">=</span>ur20<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>rviz_config_file:<span class="o">=</span><span class="k">$(</span>ros2<span class="w"> </span>pkg<span class="w"> </span>prefix<span class="w"> </span>my_robot_cell_description<span class="k">)</span>/share/my_robot_cell_description/rviz/urdf.rviz<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>tf_prefix:<span class="o">=</span>ur20_
 </pre></div>
 </div>
@@ -367,75 +371,86 @@ launchfile and prefix:</p>
 <span class="linenos"> 5</span><span class="kn">from</span> <span class="nn">launch</span> <span class="kn">import</span> <span class="n">LaunchDescription</span>
 <span class="linenos"> 6</span><span class="kn">from</span> <span class="nn">launch.actions</span> <span class="kn">import</span> <span class="n">DeclareLaunchArgument</span><span class="p">,</span> <span class="n">IncludeLaunchDescription</span>
 <span class="linenos"> 7</span><span class="kn">from</span> <span class="nn">launch.launch_description_sources</span> <span class="kn">import</span> <span class="n">PythonLaunchDescriptionSource</span>
-<span class="linenos"> 8</span><span class="kn">from</span> <span class="nn">launch.substitutions</span> <span class="kn">import</span> <span class="p">(</span>
-<span class="linenos"> 9</span>    <span class="n">Command</span><span class="p">,</span>
-<span class="linenos">10</span>    <span class="n">FindExecutable</span><span class="p">,</span>
-<span class="linenos">11</span>    <span class="n">LaunchConfiguration</span><span class="p">,</span>
-<span class="linenos">12</span>    <span class="n">PathJoinSubstitution</span><span class="p">,</span>
-<span class="linenos">13</span>    <span class="n">TextSubstitution</span><span class="p">,</span>
-<span class="linenos">14</span><span class="p">)</span>
-<span class="linenos">15</span>
+<span class="linenos"> 8</span><span class="kn">from</span> <span class="nn">launch.conditions</span> <span class="kn">import</span> <span class="n">IfCondition</span>
+<span class="linenos"> 9</span><span class="kn">from</span> <span class="nn">launch.substitutions</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="linenos">10</span>    <span class="n">Command</span><span class="p">,</span>
+<span class="linenos">11</span>    <span class="n">FindExecutable</span><span class="p">,</span>
+<span class="linenos">12</span>    <span class="n">LaunchConfiguration</span><span class="p">,</span>
+<span class="linenos">13</span>    <span class="n">PathJoinSubstitution</span><span class="p">,</span>
+<span class="linenos">14</span>    <span class="n">TextSubstitution</span><span class="p">,</span>
+<span class="linenos">15</span><span class="p">)</span>
 <span class="linenos">16</span>
-<span class="linenos">17</span><span class="k">def</span> <span class="nf">generate_launch_description</span><span class="p">():</span>
-<span class="linenos">18</span>    <span class="n">ur_type</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;ur_type&quot;</span><span class="p">)</span>
-<span class="linenos">19</span>    <span class="n">robot_ip</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;robot_ip&quot;</span><span class="p">)</span>
-<span class="linenos">20</span>    <span class="n">declared_arguments</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="linenos">21</span>    <span class="n">declared_arguments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-<span class="linenos">22</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
-<span class="linenos">23</span>            <span class="s2">&quot;ur_type&quot;</span><span class="p">,</span>
-<span class="linenos">24</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Type/series of used UR robot.&quot;</span><span class="p">,</span>
-<span class="linenos">25</span>            <span class="n">choices</span><span class="o">=</span><span class="p">[</span>
-<span class="linenos">26</span>                <span class="s2">&quot;ur3&quot;</span><span class="p">,</span>
-<span class="linenos">27</span>                <span class="s2">&quot;ur3e&quot;</span><span class="p">,</span>
-<span class="linenos">28</span>                <span class="s2">&quot;ur5&quot;</span><span class="p">,</span>
-<span class="linenos">29</span>                <span class="s2">&quot;ur5e&quot;</span><span class="p">,</span>
-<span class="linenos">30</span>                <span class="s2">&quot;ur10&quot;</span><span class="p">,</span>
-<span class="linenos">31</span>                <span class="s2">&quot;ur10e&quot;</span><span class="p">,</span>
-<span class="linenos">32</span>                <span class="s2">&quot;ur16e&quot;</span><span class="p">,</span>
-<span class="linenos">33</span>                <span class="s2">&quot;ur20&quot;</span><span class="p">,</span>
-<span class="linenos">34</span>                <span class="s2">&quot;ur30&quot;</span><span class="p">,</span>
-<span class="linenos">35</span>            <span class="p">],</span>
-<span class="linenos">36</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;ur20&quot;</span><span class="p">,</span>
-<span class="linenos">37</span>        <span class="p">)</span>
-<span class="linenos">38</span>    <span class="p">)</span>
-<span class="linenos">39</span>    <span class="n">declared_arguments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-<span class="linenos">40</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
-<span class="linenos">41</span>            <span class="s2">&quot;robot_ip&quot;</span><span class="p">,</span>
-<span class="linenos">42</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;192.168.56.101&quot;</span><span class="p">,</span>  <span class="c1"># put your robot&#39;s IP address here</span>
-<span class="linenos">43</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;IP address by which the robot can be reached.&quot;</span><span class="p">,</span>
-<span class="linenos">44</span>        <span class="p">)</span>
-<span class="linenos">45</span>    <span class="p">)</span>
-<span class="linenos">46</span>
-<span class="linenos">47</span>    <span class="k">return</span> <span class="n">LaunchDescription</span><span class="p">(</span>
-<span class="linenos">48</span>        <span class="n">declared_arguments</span>
-<span class="linenos">49</span>        <span class="o">+</span> <span class="p">[</span>
-<span class="linenos">50</span>            <span class="n">IncludeLaunchDescription</span><span class="p">(</span>
-<span class="linenos">51</span>                <span class="n">PythonLaunchDescriptionSource</span><span class="p">(</span>
-<span class="linenos">52</span>                    <span class="p">[</span>
-<span class="linenos">53</span>                        <span class="n">PathJoinSubstitution</span><span class="p">(</span>
-<span class="linenos">54</span>                            <span class="p">[</span>
-<span class="linenos">55</span>                                <span class="n">FindPackageShare</span><span class="p">(</span><span class="s2">&quot;ur_robot_driver&quot;</span><span class="p">),</span>
-<span class="linenos">56</span>                                <span class="s2">&quot;launch&quot;</span><span class="p">,</span>
-<span class="linenos">57</span>                                <span class="s2">&quot;ur_control.launch.py&quot;</span><span class="p">,</span>
-<span class="linenos">58</span>                            <span class="p">]</span>
-<span class="linenos">59</span>                        <span class="p">)</span>
-<span class="linenos">60</span>                    <span class="p">]</span>
-<span class="linenos">61</span>                <span class="p">),</span>
-<span class="linenos">62</span>                <span class="n">launch_arguments</span><span class="o">=</span><span class="p">{</span>
-<span class="linenos">63</span>                    <span class="s2">&quot;ur_type&quot;</span><span class="p">:</span> <span class="n">ur_type</span><span class="p">,</span>
-<span class="linenos">64</span>                    <span class="s2">&quot;robot_ip&quot;</span><span class="p">:</span> <span class="n">robot_ip</span><span class="p">,</span>
-<span class="linenos">65</span>                    <span class="s2">&quot;tf_prefix&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;ur_type&quot;</span><span class="p">),</span> <span class="s2">&quot;_&quot;</span><span class="p">],</span>
-<span class="linenos">66</span>                    <span class="s2">&quot;description_launchfile&quot;</span><span class="p">:</span> <span class="n">PathJoinSubstitution</span><span class="p">(</span>
-<span class="linenos">67</span>                        <span class="p">[</span>
-<span class="linenos">68</span>                            <span class="n">FindPackageShare</span><span class="p">(</span><span class="s2">&quot;my_robot_cell_control&quot;</span><span class="p">),</span>
-<span class="linenos">69</span>                            <span class="s2">&quot;launch&quot;</span><span class="p">,</span>
-<span class="linenos">70</span>                            <span class="s2">&quot;rsp.launch.py&quot;</span><span class="p">,</span>
-<span class="linenos">71</span>                        <span class="p">]</span>
-<span class="linenos">72</span>                    <span class="p">),</span>
-<span class="linenos">73</span>                <span class="p">}</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span>
-<span class="linenos">74</span>            <span class="p">)</span>
-<span class="linenos">75</span>        <span class="p">]</span>
-<span class="linenos">76</span>    <span class="p">)</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="k">def</span> <span class="nf">generate_launch_description</span><span class="p">():</span>
+<span class="linenos">19</span>    <span class="n">ur_type</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;ur_type&quot;</span><span class="p">)</span>
+<span class="linenos">20</span>    <span class="n">robot_ip</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;robot_ip&quot;</span><span class="p">)</span>
+<span class="linenos">21</span>    <span class="n">declared_arguments</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos">22</span>    <span class="n">declared_arguments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<span class="linenos">23</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">24</span>            <span class="s2">&quot;ur_type&quot;</span><span class="p">,</span>
+<span class="linenos">25</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Type/series of used UR robot.&quot;</span><span class="p">,</span>
+<span class="linenos">26</span>            <span class="n">choices</span><span class="o">=</span><span class="p">[</span>
+<span class="linenos">27</span>                <span class="s2">&quot;ur3&quot;</span><span class="p">,</span>
+<span class="linenos">28</span>                <span class="s2">&quot;ur3e&quot;</span><span class="p">,</span>
+<span class="linenos">29</span>                <span class="s2">&quot;ur5&quot;</span><span class="p">,</span>
+<span class="linenos">30</span>                <span class="s2">&quot;ur5e&quot;</span><span class="p">,</span>
+<span class="linenos">31</span>                <span class="s2">&quot;ur10&quot;</span><span class="p">,</span>
+<span class="linenos">32</span>                <span class="s2">&quot;ur10e&quot;</span><span class="p">,</span>
+<span class="linenos">33</span>                <span class="s2">&quot;ur16e&quot;</span><span class="p">,</span>
+<span class="linenos">34</span>                <span class="s2">&quot;ur20&quot;</span><span class="p">,</span>
+<span class="linenos">35</span>                <span class="s2">&quot;ur30&quot;</span><span class="p">,</span>
+<span class="linenos">36</span>            <span class="p">],</span>
+<span class="linenos">37</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;ur20&quot;</span><span class="p">,</span>
+<span class="linenos">38</span>        <span class="p">)</span>
+<span class="linenos">39</span>    <span class="p">)</span>
+<span class="linenos">40</span>    <span class="n">declared_arguments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<span class="linenos">41</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">42</span>            <span class="s2">&quot;robot_ip&quot;</span><span class="p">,</span>
+<span class="linenos">43</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;192.168.56.101&quot;</span><span class="p">,</span>  <span class="c1"># put your robot&#39;s IP address here</span>
+<span class="linenos">44</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;IP address by which the robot can be reached.&quot;</span><span class="p">,</span>
+<span class="linenos">45</span>        <span class="p">)</span>
+<span class="linenos">46</span>    <span class="p">)</span>
+<span class="linenos">47</span>    <span class="n">declared_arguments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<span class="linenos">48</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span><span class="s2">&quot;launch_rviz&quot;</span><span class="p">,</span> <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Launch RViz?&quot;</span><span class="p">)</span>
+<span class="linenos">49</span>    <span class="p">)</span>
+<span class="linenos">50</span>
+<span class="linenos">51</span>    <span class="k">return</span> <span class="n">LaunchDescription</span><span class="p">(</span>
+<span class="linenos">52</span>        <span class="n">declared_arguments</span>
+<span class="linenos">53</span>        <span class="o">+</span> <span class="p">[</span>
+<span class="linenos">54</span>            <span class="n">IncludeLaunchDescription</span><span class="p">(</span>
+<span class="linenos">55</span>                <span class="n">PythonLaunchDescriptionSource</span><span class="p">(</span>
+<span class="linenos">56</span>                    <span class="p">[</span>
+<span class="linenos">57</span>                        <span class="n">PathJoinSubstitution</span><span class="p">(</span>
+<span class="linenos">58</span>                            <span class="p">[</span>
+<span class="linenos">59</span>                                <span class="n">FindPackageShare</span><span class="p">(</span><span class="s2">&quot;ur_robot_driver&quot;</span><span class="p">),</span>
+<span class="linenos">60</span>                                <span class="s2">&quot;launch&quot;</span><span class="p">,</span>
+<span class="linenos">61</span>                                <span class="s2">&quot;ur_control.launch.py&quot;</span><span class="p">,</span>
+<span class="linenos">62</span>                            <span class="p">]</span>
+<span class="linenos">63</span>                        <span class="p">)</span>
+<span class="linenos">64</span>                    <span class="p">]</span>
+<span class="linenos">65</span>                <span class="p">),</span>
+<span class="linenos">66</span>                <span class="n">launch_arguments</span><span class="o">=</span><span class="p">{</span>
+<span class="linenos">67</span>                    <span class="s2">&quot;ur_type&quot;</span><span class="p">:</span> <span class="n">ur_type</span><span class="p">,</span>
+<span class="linenos">68</span>                    <span class="s2">&quot;robot_ip&quot;</span><span class="p">:</span> <span class="n">robot_ip</span><span class="p">,</span>
+<span class="linenos">69</span>                    <span class="s2">&quot;tf_prefix&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;ur_type&quot;</span><span class="p">),</span> <span class="s2">&quot;_&quot;</span><span class="p">],</span>
+<span class="linenos">70</span>                    <span class="s2">&quot;rviz_config_file&quot;</span><span class="p">:</span> <span class="n">PathJoinSubstitution</span><span class="p">(</span>
+<span class="linenos">71</span>                        <span class="p">[</span>
+<span class="linenos">72</span>                            <span class="n">FindPackageShare</span><span class="p">(</span><span class="s2">&quot;my_robot_cell_description&quot;</span><span class="p">),</span>
+<span class="linenos">73</span>                            <span class="s2">&quot;rviz&quot;</span><span class="p">,</span>
+<span class="linenos">74</span>                            <span class="s2">&quot;urdf.rviz&quot;</span><span class="p">,</span>
+<span class="linenos">75</span>                        <span class="p">]</span>
+<span class="linenos">76</span>                    <span class="p">),</span>
+<span class="linenos">77</span>                    <span class="s2">&quot;description_launchfile&quot;</span><span class="p">:</span> <span class="n">PathJoinSubstitution</span><span class="p">(</span>
+<span class="linenos">78</span>                        <span class="p">[</span>
+<span class="linenos">79</span>                            <span class="n">FindPackageShare</span><span class="p">(</span><span class="s2">&quot;my_robot_cell_control&quot;</span><span class="p">),</span>
+<span class="linenos">80</span>                            <span class="s2">&quot;launch&quot;</span><span class="p">,</span>
+<span class="linenos">81</span>                            <span class="s2">&quot;rsp.launch.py&quot;</span><span class="p">,</span>
+<span class="linenos">82</span>                        <span class="p">]</span>
+<span class="linenos">83</span>                    <span class="p">),</span>
+<span class="linenos">84</span>                <span class="p">}</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span>
+<span class="linenos">85</span>            <span class="p">),</span>
+<span class="linenos">86</span>        <span class="p">]</span>
+<span class="linenos">87</span>    <span class="p">)</span>
 </pre></div>
 </div>
 </div>

@@ -4,11 +4,12 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Assembling the URDF &mdash; ur_documentation 0.1 documentation</title>
+  <title>Assembling the URDF &mdash; ur_ros2_documentation 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
 
   
+    <link rel="shortcut icon" href=""/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -34,7 +35,8 @@
           
           
           <a href="../../../../index.html" class="icon icon-home">
-            ur_documentation
+            ur_ros2_documentation
+              <img src="" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -45,8 +47,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_robot_driver/doc/index.html">Welcome to ur_robot_driver’s documentation!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_robot_driver/doc/index.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_controllers/doc/index.html">ur_controllers</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../doc/tutorial_index.html">Tutorial examples</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Custom workcell</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Assembling the URDF</a></li>
@@ -64,7 +67,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../../index.html">ur_documentation</a>
+          <a href="../../../../index.html">ur_ros2_documentation</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -76,7 +79,7 @@
           <li class="breadcrumb-item"><a href="index.html">Custom workcell</a></li>
       <li class="breadcrumb-item active">Assembling the URDF</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../../_sources/doc/ur_tutorials/my_robot_cell/doc/assemble_urdf.rst.txt" rel="nofollow"> View page source</a>
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_tutorials/my_robot_cell/doc/assemble_urdf.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -314,7 +317,7 @@ colcon<span class="w"> </span>build
 </div>
 <p>We can view our custom workspace by running:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#launch rviz</span>
-ros2<span class="w"> </span>launch<span class="w"> </span>my_robot_cell_description<span class="w"> </span>view_workspace.launch.py
+ros2<span class="w"> </span>launch<span class="w"> </span>my_robot_cell_description<span class="w"> </span>view_robot.launch.py
 </pre></div>
 </div>
 <p>Use the sliders of the <code class="docutils literal notranslate"><span class="pre">joint_state_puplisher_gui</span></code> to move the virtual robot around.
