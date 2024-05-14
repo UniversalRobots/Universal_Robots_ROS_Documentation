@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ur_description &mdash; ur_ros2_documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
+    <link rel="shortcut icon" href=""/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="ur_robot_driver" href="../../ur_robot_driver/ur_robot_driver/doc/index.html" />
+    <link rel="prev" title="Welcome to the Universal Robots ROS 2 documentation!" href="../../../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ur_ros2_documentation
+              <img src="" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ur_description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_tutorials/doc/tutorial_index.html">Tutorial examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ur_ros2_documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">ur_description</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_description/doc/index.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ur-description">
+<h1>ur_description<a class="headerlink" href="#ur-description" title="Link to this heading"></a></h1>
+<p>This package contains the kinematic and visual description of Universal Robots manipulators for ROS
+2.</p>
+<section id="structure-of-the-repository">
+<h2>Structure of the repository<a class="headerlink" href="#structure-of-the-repository" title="Link to this heading"></a></h2>
+<p>As the kinematics of all models is roughly the same and varies only in the meshes, the DH
+parameters and the physical parameters, the description uses xacro macros in order to make it reuse
+as much as possible. This way it is less likely that errors are introduced in one of the models.</p>
+<p>Therefore, the description is split up into multiple URDF/XACRO files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">urdf/ur_macro.xacro</span></code> - macro file with UR-manipulator description. This file is usually included into external projects to visualize and configure UR manipulators properly. An example how to use this macro is in <code class="docutils literal notranslate"><span class="pre">urdf/ur.urdf.xacro</span></code> file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">urdf/ur.urdf.xacro</span></code> - an example scene where the robot is standing alone without any
+environment. This is obviously not a real-life example, as the robot has to be mounted somewhere.</p></li>
+</ul>
+<p>The kinematic description itself uses config files to get parametrized to the correct robot model.</p>
+<img alt="Structure of the description's parametrization" src="../../../_images/structure.svg" /><dl class="simple">
+<dt>Basically, the description can be modified using configuration values stored in four files:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">config/urXX/default_kinematics.yaml</span></code> - This contains the calibration values as they can be
+extracted from the robot. Changing these values with the one extracted from a real robot will
+result in a description matching the real robot exactly (w.r.t the <code class="docutils literal notranslate"><span class="pre">tool0</span></code> frame). It is highly
+recommended to use matching kinematic values in real-world applications.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config/urXX/joint_limits.yaml</span></code> - If you’d like to further restrict the robot’s joint limits,
+these limits can be modified there.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config/urXX/physical_parameters.yaml</span></code> - Everything regarding physics simulation parameters
+(e.g. inertia poses and values) can be tuned here.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config/urXX/visual_parameters.yaml</span></code> - Some users change certain visual aspects, e.g. replacing
+the cap on the wrist_3_link. This config file specifies which meshes (both, visual and collision)
+should be used.</p></li>
+</ul>
+</dd>
+</dl>
+<p>The four configuration files have to be passed to <code class="docutils literal notranslate"><span class="pre">ur_macro.xacro</span></code> (more specific to the macro
+defined in that file) which is done inside the <code class="docutils literal notranslate"><span class="pre">ur.urdf.xacro</span></code>. Contents of the files are parsed
+inside <code class="docutils literal notranslate"><span class="pre">inc/ur_common.xacro</span></code>.</p>
+<dl class="simple">
+<dt>Arguments that have to be passed to the main <code class="docutils literal notranslate"><span class="pre">ur.urdf.xacro</span></code> file are:</dt><dd><ul class="simple">
+<li><p>kinematics_params - Filename to the <code class="docutils literal notranslate"><span class="pre">default_kinematics.yaml</span></code> (or equivalent specific kinematics) file</p></li>
+<li><p>joint_limit_params - Filename to the <code class="docutils literal notranslate"><span class="pre">joint_limits.yaml</span></code> file</p></li>
+<li><p>physical_params - Filename to the <code class="docutils literal notranslate"><span class="pre">physical_parameters.yaml</span></code> file</p></li>
+<li><p>visual_params - Filename to the <code class="docutils literal notranslate"><span class="pre">visual_params.yaml</span></code> file</p></li>
+</ul>
+</dd>
+</dl>
+<p>The launchfile <code class="docutils literal notranslate"><span class="pre">launch/view_ur.launch.py</span></code> abstracts these four parameters to one <code class="docutils literal notranslate"><span class="pre">ur_type</span></code> argument
+which will basically replace the <code class="docutils literal notranslate"><span class="pre">urXX</span></code> part of the paths as shown in the picture above.</p>
+<section id="ros2-control-integration">
+<h3>ros2_control integration<a class="headerlink" href="#ros2-control-integration" title="Link to this heading"></a></h3>
+<p><a class="reference external" href="https://control.ros.org">ros2_control</a> uses the robot_description in order to describe the
+robot’s control structure. Since this will vary for the respective control method (Driver for real
+robot, Gazebo simulation, mock_hardware simulation, etc.) this is kept inside the respective control repository. This
+repository provides macros for including the common control description (Joints with their
+interfaces) as well as an example using mock hardware.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">urdf/ros2_control_mock_hardware.xacro</span></code> - xacro providing the control description for
+mock_hardware.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">urdf/ur_mocked.urdf.xacro</span></code> - an example for a controlled robot consisting of the kinematic
+description and the control description.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">urdf/inc/ur_joint_control.xacro</span></code> - macro for describing the joints’ control structure.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">urdf/inc/ur_sensors.xacro</span></code> - macro for describing the robot’s sensors for ros2_control</p></li>
+</ul>
+</section>
+</section>
+<section id="creating-your-own-description-including-this-description">
+<h2>Creating your own description including this description<a class="headerlink" href="#creating-your-own-description-including-this-description" title="Link to this heading"></a></h2>
+<p>In real-world applications you will most probably have a more complex description consisting of more objects than just the robot. It is recommended to create a separate ROS package containing this particular description. Inside this description you could also store your robot-specific kinematics parameters file.</p>
+<p>See the <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Tutorials/tree/main/my_robot_cell/my_robot_cell_description">custom workcell example</a> as an example for integrating this description in your own scene description.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../../index.html" class="btn btn-neutral float-left" title="Welcome to the Universal Robots ROS 2 documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../ur_robot_driver/ur_robot_driver/doc/index.html" class="btn btn-neutral float-right" title="ur_robot_driver" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
