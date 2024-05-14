@@ -3,7 +3,7 @@
 This repository contains the build scripts to generate the Universal Robots documentation around
 the packages.
 
-The rendered result of this will be placed online at some point in the near future.
+The rendered result of this can be viewed at [https://docs.universal-robots.com/Universal_Robots_ROS2_Documentation/](https://docs.universal-robots.com/Universal_Robots_ROS2_Documentation/).
 
 ## Building the documentation locally
 In order to build the documentation locally, you'll need to 
