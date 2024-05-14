@@ -19,7 +19,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = "ur_ros2_documentation"
+project = "Universal Robots ROS 2 Documentation"
 copyright = "2024, Universal Robots A/S"
 author = "Felix Exner"
 
