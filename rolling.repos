@@ -5,8 +5,8 @@ repositories:
     version: rolling
   ur_robot_driver:
     type: git
-    url: https://github.com/fmauch/Universal_Robots_ROS2_Driver.git
-    version: general_docs
+    url: https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver.git
+    version: main
   ur_tutorials:
     type: git
     url: https://github.com/UniversalRobots/Universal_Robots_ROS2_Tutorials.git
