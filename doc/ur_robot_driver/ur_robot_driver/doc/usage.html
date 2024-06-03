@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Usage &mdash; ur_ros2_documentation 0.1 documentation</title>
+  <title>Usage &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
 
@@ -35,7 +35,7 @@
           
           
           <a href="../../../../index.html" class="icon icon-home">
-            ur_ros2_documentation
+            Universal Robots ROS 2 Documentation
               <img src="" class="logo" alt="Logo"/>
           </a>
 <div role="search">
@@ -58,7 +58,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../ur_calibration/doc/index.html">ur_calibration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_tutorials/doc/tutorial_index.html">Tutorial examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../migration_notes.html">Migration Notes</a></li>
 </ul>
 
         </div>
@@ -67,7 +69,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../../index.html">ur_ros2_documentation</a>
+          <a href="../../../../index.html">Universal Robots ROS 2 Documentation</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -230,26 +232,14 @@ image</a> provided by Universal Robots (See
 <section id="using-moveit">
 <h2>Using MoveIt<a class="headerlink" href="#using-moveit" title="Link to this heading"></a></h2>
 <p><a class="reference external" href="https://moveit.ros.org">MoveIt!</a> support is built-in into this driver already.</p>
-<section id="real-robot-ursim">
-<h3>Real robot / URSim<a class="headerlink" href="#real-robot-ursim" title="Link to this heading"></a></h3>
 <p>To test the driver with the example MoveIt-setup, first start the driver as described
-<a class="reference external" href="#start-hardware-simulator-or-mockup">above</a>.</p>
+<a class="reference external" href="#start-hardware-simulator-or-mockup">above</a> and then start the MoveIt! nodes using</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ros2</span> <span class="n">launch</span> <span class="n">ur_moveit_config</span> <span class="n">ur_moveit</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span> <span class="n">ur_type</span><span class="o">:=</span><span class="n">ur5e</span> <span class="n">launch_rviz</span><span class="o">:=</span><span class="n">true</span>
 </pre></div>
 </div>
 <p>Now you should be able to use the MoveIt Plugin in rviz2 to plan and execute trajectories with the
 robot as explained <a class="reference external" href="https://moveit.picknik.ai/main/doc/tutorials/quickstart_in_rviz/quickstart_in_rviz_tutorial.html">here</a>.</p>
-</section>
-<section id="mock-hardware">
-<h3>Mock hardware<a class="headerlink" href="#mock-hardware" title="Link to this heading"></a></h3>
-<p>Currently, the <code class="docutils literal notranslate"><span class="pre">scaled_joint_trajectory_controller</span></code> does not work with ros2_control mock_hardware. There is an
-<a class="reference external" href="https://github.com/ros-controls/ros2_control/pull/822">upstream Merge-Request</a> pending to fix that. Until this is merged and released, you’ll have to fallback to the <code class="docutils literal notranslate"><span class="pre">joint_trajectory_controller</span></code> by passing <code class="docutils literal notranslate"><span class="pre">initial_controller:=joint_trajectory_controller</span></code> to the driver’s startup. Also, you’ll have to tell MoveIt! that you’re using mock_hardware as it then has to map to the other controller:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ros2</span> <span class="n">launch</span> <span class="n">ur_robot_driver</span> <span class="n">ur_control</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span> <span class="n">ur_type</span><span class="o">:=</span><span class="n">ur5e</span> <span class="n">robot_ip</span><span class="o">:=</span><span class="n">yyy</span><span class="o">.</span><span class="n">yyy</span><span class="o">.</span><span class="n">yyy</span><span class="o">.</span><span class="n">yyy</span> <span class="n">use_mock_hardware</span><span class="o">:=</span><span class="n">true</span> <span class="n">launch_rviz</span><span class="o">:=</span><span class="n">false</span> <span class="n">initial_joint_controller</span><span class="o">:=</span><span class="n">joint_trajectory_controller</span>
-<span class="c1"># and in another shell</span>
-<span class="n">ros2</span> <span class="n">launch</span> <span class="n">ur_moveit_config</span> <span class="n">ur_moveit</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span> <span class="n">ur_type</span><span class="o">:=</span><span class="n">ur5e</span> <span class="n">launch_rviz</span><span class="o">:=</span><span class="n">true</span> <span class="n">use_mock_hardware</span><span class="o">:=</span><span class="n">true</span>
-</pre></div>
-</div>
-</section>
+<p>For more details, please see <a class="reference internal" href="../../ur_moveit_config/doc/index.html#ur-moveit-config"><span class="std std-ref">ur_moveit_config</span></a>.</p>
 </section>
 <section id="robot-frames">
 <h2>Robot frames<a class="headerlink" href="#robot-frames" title="Link to this heading"></a></h2>

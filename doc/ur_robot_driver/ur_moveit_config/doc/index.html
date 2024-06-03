@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Feature list and roadmap &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
+  <title>ur_moveit_config &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
 
@@ -21,7 +21,9 @@
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../../search.html" /> 
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Universal Robots ROS tutorials" href="../../../ur_tutorials/doc/tutorial_index.html" />
+    <link rel="prev" title="ur_controllers" href="../../ur_controllers/doc/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,12 +46,12 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_description/doc/index.html">ur_description</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">ur_robot_driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ur_calibration/doc/index.html">ur_calibration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ur_controllers/doc/index.html">ur_controllers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ur_moveit_config</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_tutorials/doc/tutorial_index.html">Tutorial examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../migration_notes.html">Migration Notes</a></li>
 </ul>
@@ -68,9 +70,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Feature list and roadmap</li>
+      <li class="breadcrumb-item active">ur_moveit_config</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_robot_driver/ur_robot_driver/doc/features.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_robot_driver/ur_moveit_config/doc/index.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -78,86 +80,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="feature-list-and-roadmap">
-<h1>Feature list and roadmap<a class="headerlink" href="#feature-list-and-roadmap" title="Link to this heading"></a></h1>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Feature</p></th>
-<th class="head"><p>ROS2 Driver</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>joint-position-based control</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-odd"><td><p>scaled joint-position-based control</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-even"><td><p>joint-velocity-based control</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-odd"><td><p>Cartesian position-based control</p></td>
-<td><p>no</p></td>
-</tr>
-<tr class="row-even"><td><p>Cartesian twist-based control</p></td>
-<td><p>no</p></td>
-</tr>
-<tr class="row-odd"><td><p>Trajectory forwarding for execution on robot</p></td>
-<td><p>no</p></td>
-</tr>
-<tr class="row-even"><td><p>reporting of tcp wrench</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-odd"><td><p>pausing of programs</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-even"><td><p>continue trajectories after EM-Stop resume</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-odd"><td><p>continue trajectories after protective stop</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-even"><td><p>panel interaction in between possible</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-odd"><td><p>get and set IO states</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-even"><td><p>use <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ToolComm_Forwarder_URCap">tool communication forwarder</a> on e-series</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-odd"><td><p>use the driver without a teach pendant necessary</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-even"><td><p>support of CB1 and CB2 robots</p></td>
-<td><p>no</p></td>
-</tr>
-<tr class="row-odd"><td><p>trajectory extrapolation on robot on missing packages</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-even"><td><p>use ROS as drop-in for TP-programs</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-odd"><td><p>headless mode</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-even"><td><p>extract calibration from robot</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-odd"><td><p>send custom script commands to robot</p></td>
-<td><p>no</p></td>
-</tr>
-<tr class="row-even"><td><p>Reconnect on a disconnected robot</p></td>
-<td><p>yes</p></td>
-</tr>
-</tbody>
-</table>
+  <section id="ur-moveit-config">
+<span id="id1"></span><h1>ur_moveit_config<a class="headerlink" href="#ur-moveit-config" title="Link to this heading"></a></h1>
+<p>This package contains an <strong>example</strong> MoveIt! configuration for Universal Robots arms. Since the
+default description contains only the arm, this MoveIt! configuration package also only contains the
+arm without any objects around it.
+In a real-world scenario it is recommended to create a robot_description modelling the robot with its surroundings (e.g. table where it is mounted on, objects in its environment, etc.) and to generate a
+<em>scenario_moveit_config</em> package from that description as explained in the <a class="reference internal" href="../../../ur_tutorials/my_robot_cell/doc/index.html#custom-workcell-tutorial"><span class="std std-ref">Custom workcell
+tutorial</span></a>.</p>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<p>With a running driver (real hardware, URSim or mocked hardware), simply start the MoveIt!
+interaction using</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ros2</span> <span class="n">launch</span> <span class="n">ur_moveit_config</span> <span class="n">ur_moveit</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span> <span class="n">ur_type</span><span class="o">:=</span><span class="n">ur5e</span> <span class="n">launch_rviz</span><span class="o">:=</span><span class="n">true</span>
+</pre></div>
+</div>
+<p>Now you should be able to use the MoveIt Plugin in rviz2 to plan and execute trajectories with the
+robot as explained <a class="reference external" href="https://moveit.picknik.ai/main/doc/tutorials/quickstart_in_rviz/quickstart_in_rviz_tutorial.html">here</a>.</p>
+</section>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../ur_controllers/doc/index.html" class="btn btn-neutral float-left" title="ur_controllers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../../ur_tutorials/doc/tutorial_index.html" class="btn btn-neutral float-right" title="Universal Robots ROS tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
