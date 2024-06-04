@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Universal Robots ROS tutorials &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
+  <title>Polyscope version compatibility &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -25,8 +25,8 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Custom workcell" href="../my_robot_cell/doc/index.html" />
-    <link rel="prev" title="ur_moveit_config" href="../../ur_robot_driver/ur_moveit_config/doc/index.html" /> 
+    <link rel="next" title="Library architecture" href="architecture.html" />
+    <link rel="prev" title="Build / installation" href="installation.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -50,16 +50,19 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../ur_client_library/doc/index.html">ur_client_library</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">ur_client_library</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Build / installation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Polyscope version compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html">Library architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="real_time.html">Setup for real-time scheduling</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../ur_description/doc/index.html">ur_description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_calibration/doc/index.html">ur_calibration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_controllers/doc/index.html">ur_controllers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../my_robot_cell/doc/index.html">Custom workcell</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_tutorials/doc/tutorial_index.html">Tutorial examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../migration_notes.html">Migration Notes</a></li>
 </ul>
 
@@ -77,9 +80,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Universal Robots ROS tutorials</li>
+          <li class="breadcrumb-item"><a href="index.html">ur_client_library</a></li>
+      <li class="breadcrumb-item active">Polyscope version compatibility</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_tutorials/doc/tutorial_index.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_client_library/doc/polyscope_compatibility.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -87,30 +91,41 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="universal-robots-ros-tutorials">
-<h1>Universal Robots ROS tutorials<a class="headerlink" href="#universal-robots-ros-tutorials" title="Link to this heading"></a></h1>
-<p>These tutorials should help users to get their custom use cases running.</p>
-<section id="example-tutorials">
-<h2>Example tutorials<a class="headerlink" href="#example-tutorials" title="Link to this heading"></a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../my_robot_cell/doc/index.html">Custom workcell</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../my_robot_cell/doc/assemble_urdf.html">Assembling the URDF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../my_robot_cell/doc/start_ur_driver.html">Start the ur_robot_driver</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../my_robot_cell/doc/build_moveit_config.html">Build the MoveIt! config</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</section>
+  <section id="polyscope-version-compatibility">
+<h1>Polyscope version compatibility<a class="headerlink" href="#polyscope-version-compatibility" title="Link to this heading"></a></h1>
+<p>The table below shows breaking changes in the library compared to Polyscope versions. Compatibility
+is listed for CB3 robots (versions 3.x.y) and e-Series robots (versions 5.x.y) respectively.</p>
+<p>It might be possible to use the library in a more recent version than the compatible versions listed
+below, but that might either require some manual modifications or not using a subset of features.
+For that reason the breaking changes are also listed inside the table. Please note that choosing a
+higher library version than recommended happens on your own risk and will not be supported.</p>
+<p>If your Polyscope version is less than the minimum required version for the latest library version,
+we suggest to upgrade your robot’s software. Please refer to the robot’s user manual how to update
+your robot.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Polyscope version</p></th>
+<th class="head"><p>Max. version</p></th>
+<th class="head"><p>Max. tag</p></th>
+<th class="head"><p>Breaking changes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>&lt; 3.14.3 / 5.9.4</p></td>
+<td><p>1.1.0</p></td>
+<td><p><a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/tree/polyscope_compat_break_1">polyscope_compat_break_1</a></p></td>
+<td><p><a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/pull/110">tcp_offset in RTDE interface</a></p></td>
+</tr>
+</tbody>
+</table>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../../ur_robot_driver/ur_moveit_config/doc/index.html" class="btn btn-neutral float-left" title="ur_moveit_config" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../my_robot_cell/doc/index.html" class="btn btn-neutral float-right" title="Custom workcell" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="installation.html" class="btn btn-neutral float-left" title="Build / installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="architecture.html" class="btn btn-neutral float-right" title="Library architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

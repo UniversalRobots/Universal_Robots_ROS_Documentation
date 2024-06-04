@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Library architecture &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+
+  
+    <link rel="shortcut icon" href=""/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Setup for real-time scheduling" href="real_time.html" />
+    <link rel="prev" title="Polyscope version compatibility" href="polyscope_compatibility.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Documentation
+              <img src="" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">ur_client_library</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Build / installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polyscope_compatibility.html">Polyscope version compatibility</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Library architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="real_time.html">Setup for real-time scheduling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_tutorials/doc/tutorial_index.html">Tutorial examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../migration_notes.html">Migration Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Universal Robots ROS 2 Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">ur_client_library</a></li>
+      <li class="breadcrumb-item active">Library architecture</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_client_library/doc/architecture.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="library-architecture">
+<h1>Library architecture<a class="headerlink" href="#library-architecture" title="Link to this heading"></a></h1>
+<p>The image below shows a rough architecture overview that should help developers to use the different
+modules present in this library. Note that this is an incomplete view on the classes involved.</p>
+<a class="reference internal image-reference" href="../../../_images/dataflow.svg"><img alt="Data flow" src="../../../_images/dataflow.svg" width="100%" /></a>
+<p>The core of this library is the <code class="docutils literal notranslate"><span class="pre">UrDriver</span></code> class which creates a
+fully functioning robot interface. For details on how to use it, please see the [Example
+driver](#example-driver) section.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">UrDriver</span></code>’s modules will be explained in the following.</p>
+<section id="rtdeclient">
+<h2>RTDEClient<a class="headerlink" href="#rtdeclient" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">RTDEClient</span></code> class serves as a standalone
+<a class="reference external" href="https://www.universal-robots.com/articles/ur-articles/real-time-data-exchange-rtde-guide/">RTDE</a>
+client. To use the RTDE-Client, you’ll have to initialize and start it separately:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">RTDEClient</span><span class="w"> </span><span class="nf">my_client</span><span class="p">(</span><span class="n">ROBOT_IP</span><span class="p">,</span><span class="w"> </span><span class="n">notifier</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_RECIPE</span><span class="p">);</span>
+<span class="n">my_client</span><span class="p">.</span><span class="n">init</span><span class="p">();</span>
+<span class="n">my_client</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">DataPackage</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data_pkg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_client</span><span class="p">.</span><span class="n">getDataPackage</span><span class="p">(</span><span class="n">READ_TIMEOUT</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">data_pkg</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">data_pkg</span><span class="o">-&gt;</span><span class="n">toString</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Upon construction, two recipe files have to be given, one for the RTDE inputs, one for the RTDE
+outputs. Please refer to the <a class="reference external" href="https://www.universal-robots.com/articles/ur-articles/real-time-data-exchange-rtde-guide/">RTDE
+guide</a>
+on which elements are available.</p>
+<p>Inside the <code class="docutils literal notranslate"><span class="pre">RTDEclient</span></code> data is received in a separate thread, parsed by the <code class="docutils literal notranslate"><span class="pre">RTDEParser</span></code> and
+added to a pipeline queue.</p>
+<p>Right after calling <code class="docutils literal notranslate"><span class="pre">my_client.start()</span></code>, it should be made sure to read the buffer from the
+<code class="docutils literal notranslate"><span class="pre">RTDEClient</span></code> by calling <code class="docutils literal notranslate"><span class="pre">getDataPackage()</span></code> frequently. The Client’s queue can only contain 1
+item at a time, so a <code class="docutils literal notranslate"><span class="pre">Pipeline</span> <span class="pre">producer</span> <span class="pre">overflowed!</span></code> error will be raised if the buffer isn’t read
+before the next package arrives.</p>
+<p>For writing data to the RTDE interface, use the <code class="docutils literal notranslate"><span class="pre">RTDEWriter</span></code> member of the <code class="docutils literal notranslate"><span class="pre">RTDEClient</span></code>. It can be
+retrieved by calling <code class="docutils literal notranslate"><span class="pre">getWriter()</span></code> method. The <code class="docutils literal notranslate"><span class="pre">RTDEWriter</span></code> provides convenience methods to write
+all data available at the RTDE interface. Make sure that the required keys are configured inside the
+input recipe, as otherwise the send-methods will return <code class="docutils literal notranslate"><span class="pre">false</span></code> if the data field is not setup in
+the recipe.</p>
+<p>An example of a standalone RTDE-client can be found in the <code class="docutils literal notranslate"><span class="pre">examples</span></code> subfolder. To run it make
+sure to</p>
+<ul class="simple">
+<li><p>have an instance of a robot controller / URSim running at the configured IP address (or adapt the
+address to your needs)</p></li>
+<li><p>run it from the package’s main folder, as for simplicity reasons it doesn’t use any sophisticated
+method to locate the required files.</p></li>
+</ul>
+<section id="rtdewriter">
+<h3>RTDEWriter<a class="headerlink" href="#rtdewriter" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">RTDEWriter</span></code> class provides an interface to write data to the RTDE interface. Data fields that
+should be written have to be defined inside the <code class="docutils literal notranslate"><span class="pre">INPUT_RECIPE</span></code> as noted above.</p>
+<p>The class offers specific methods for every RTDE input possible to write.</p>
+<p>Data is sent asynchronously to the RTDE interface.</p>
+</section>
+</section>
+<section id="reverseinterface">
+<h2>ReverseInterface<a class="headerlink" href="#reverseinterface" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">ReverseInterface</span></code> opens a TCP port on which a custom protocol is implemented between the
+robot and the control PC. The port can be specified in the class constructor.</p>
+<p>It’s basic functionality is to send a vector of floating point data together with a mode. It is
+meant to send joint positions or velocities together with a mode that tells the robot how to
+interpret those values (e.g. <code class="docutils literal notranslate"><span class="pre">SERVOJ</span></code>, <code class="docutils literal notranslate"><span class="pre">SPEEDJ</span></code>). Therefore, this interface can be used to do
+motion command streaming to the robot.</p>
+<p>In order to use this class in an application together with a robot, make sure that a corresponding
+URScript is running on the robot that can interpret the commands sent. See <a class="reference external" href="../resources/external_control.urscript">this example
+script</a> for reference.</p>
+<p>Also see the <a class="reference internal" href="#scriptsender"><span class="std std-ref">ScriptSender</span></a> for a way to define the corresponding URScript on the
+control PC and sending it to the robot upon request.</p>
+</section>
+<section id="scriptsender">
+<span id="id1"></span><h2>ScriptSender<a class="headerlink" href="#scriptsender" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">ScriptSender</span></code> class opens a tcp socket on the remote PC whose single purpose it is to answer
+with a URScript code snippet on a “<em>request_program</em>” request. The script code itself has to be
+given to the class constructor.</p>
+<p>Use this class in conjunction with the <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ExternalControl_URCap">External Control URCap</a> which will make the
+corresponding request when starting a program on the robot that contains the <strong>External Control</strong>
+program node. In order to work properly, make sure that the IP address and script sender port are
+configured correctly on the robot.</p>
+</section>
+<section id="other-public-interface-functions">
+<h2>Other public interface functions<a class="headerlink" href="#other-public-interface-functions" title="Link to this heading"></a></h2>
+<p>This section shall explain the public interface functions that haven’t been covered above</p>
+<section id="check-calibration">
+<h3>check_calibration()<a class="headerlink" href="#check-calibration" title="Link to this heading"></a></h3>
+<p>This function opens a connection to the primary interface where it will receive a calibration
+information as the first message. The checksum from this calibration info is compared to the one
+given to this function. Connection to the primary interface is dropped afterwards.</p>
+</section>
+<section id="sendscript">
+<h3>sendScript()<a class="headerlink" href="#sendscript" title="Link to this heading"></a></h3>
+<p>This function sends given URScript code directly to the secondary interface. The
+<code class="docutils literal notranslate"><span class="pre">sendRobotProgram()</span></code> function is a special case that will send the script code given in the
+<code class="docutils literal notranslate"><span class="pre">RTDEClient</span></code> constructor.</p>
+</section>
+</section>
+<section id="dashboardclient">
+<h2>DashboardClient<a class="headerlink" href="#dashboardclient" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">DashboardClient</span></code> wraps the calls on the <a class="reference external" href="https://www.universal-robots.com/articles/ur-articles/dashboard-server-e-series-port-29999/">Dashboard server</a>
+directly into C++ functions.</p>
+<p>After connecting to the dashboard server by using the <code class="docutils literal notranslate"><span class="pre">connect()</span></code> function, dashboard calls can be
+sent using the <code class="docutils literal notranslate"><span class="pre">sendAndReceive()</span></code> function. Answers from the dashboard server will be returned as
+string from this function. If no answer is received, a <code class="docutils literal notranslate"><span class="pre">UrException</span></code> is thrown.</p>
+<p>Note: In order to make this more useful developers are expected to wrap this bare interface into
+something that checks the returned string for something that is expected. See the
+<a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/blob/master/ur_robot_driver/include/ur_robot_driver/dashboard_client_ros.h">DashboardClientROS</a> as an example.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="polyscope_compatibility.html" class="btn btn-neutral float-left" title="Polyscope version compatibility" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="real_time.html" class="btn btn-neutral float-right" title="Setup for real-time scheduling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

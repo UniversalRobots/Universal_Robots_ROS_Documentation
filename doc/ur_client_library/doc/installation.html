@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Build / installation &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+
+  
+    <link rel="shortcut icon" href=""/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Polyscope version compatibility" href="polyscope_compatibility.html" />
+    <link rel="prev" title="ur_client_library" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Documentation
+              <img src="" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">ur_client_library</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Build / installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polyscope_compatibility.html">Polyscope version compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html">Library architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="real_time.html">Setup for real-time scheduling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_tutorials/doc/tutorial_index.html">Tutorial examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../migration_notes.html">Migration Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Universal Robots ROS 2 Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">ur_client_library</a></li>
+      <li class="breadcrumb-item active">Build / installation</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_client_library/doc/installation.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="build-installation">
+<h1>Build / installation<a class="headerlink" href="#build-installation" title="Link to this heading"></a></h1>
+<section id="plain-cmake">
+<h2>Plain cmake<a class="headerlink" href="#plain-cmake" title="Link to this heading"></a></h2>
+<p>To build this library standalone so that you can build you own
+applications using this library, follow the usual cmake procedure:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>&lt;clone<span class="w"> </span>of<span class="w"> </span>this<span class="w"> </span>repository&gt;
+<span class="gp">$ </span>mkdir<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+<span class="gp">$ </span>cmake<span class="w"> </span>..
+<span class="gp">$ </span>make
+<span class="gp">$ </span>sudo<span class="w"> </span>make<span class="w"> </span>install
+</pre></div>
+</div>
+<p>This will install the library into your system so that it can be used by
+other cmake projects directly.</p>
+</section>
+<section id="inside-a-ros-ros-2-workspace">
+<h2>Inside a ROS / ROS 2 workspace<a class="headerlink" href="#inside-a-ros-ros-2-workspace" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">ur_client_library</span></code> is available in all maintained ROS distribution and can be installed
+using</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-&lt;distro&gt;-ur-client-library
+</pre></div>
+</div>
+<p>Unless you explicitly want to contribute to this library we recommend using the binary installation
+instead of building from source as explained below.</p>
+<section id="ros-noetic">
+<h3>ROS noetic<a class="headerlink" href="#ros-noetic" title="Link to this heading"></a></h3>
+<p>If you want to build this library inside a ROS workspace, e.g. because
+you want to build the <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS_Driver">Universal Robots ROS
+driver</a>
+from source, you cannot use <code class="docutils literal notranslate"><span class="pre">catkin_make</span></code> directly, as this library is
+not a catkin package. Instead, you will have to use
+<a class="reference external" href="http://docs.ros.org/independent/api/rep/html/rep-0134.html">catkin_make_isolated</a>
+or <a class="reference external" href="https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_build.html">catkin
+build</a>
+to build your workspace.</p>
+</section>
+<section id="ros-2">
+<h3>ROS 2<a class="headerlink" href="#ros-2" title="Link to this heading"></a></h3>
+<p>If you want to build this library inside a ROS 2 workspace, e.g. because
+you want to build the <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver">Universal Robots ROS2
+driver</a>
+from source, simply clone this project into your workspace and build your workspace as usual.</p>
+</section>
+</section>
+<section id="use-this-library-in-other-projects">
+<h2>Use this library in other projects<a class="headerlink" href="#use-this-library-in-other-projects" title="Link to this heading"></a></h2>
+<p>When you want to use this library in other cmake projects, make sure to</p>
+<ul class="simple">
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">find_package(ur_client_library</span> <span class="pre">REQUIRED)</span></code> to your <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code></p></li>
+<li><p>add <code class="docutils literal notranslate"><span class="pre">ur_client_library::urcl</span></code> to the list of <code class="docutils literal notranslate"><span class="pre">target_link_libraries(...)</span></code> commands inside your
+<code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file</p></li>
+</ul>
+<p>As a minimal example, take the following “project”:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/*main.cpp*/</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ur_client_library/ur/dashboard_client.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">urcl</span><span class="o">::</span><span class="n">DashboardClient</span><span class="w"> </span><span class="n">my_client</span><span class="p">(</span><span class="s">&quot;192.168.56.101&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">connected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_client</span><span class="p">.</span><span class="n">connect</span><span class="p">();</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">connected</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">answer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_client</span><span class="p">.</span><span class="n">sendAndReceive</span><span class="p">(</span><span class="s">&quot;PolyscopeVersion</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">answer</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">my_client</span><span class="p">.</span><span class="n">disconnect</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="c"># CMakeLists.txt</span>
+
+<span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.0.2</span><span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span><span class="s">minimal_example</span><span class="p">)</span>
+
+<span class="nb">find_package</span><span class="p">(</span><span class="s">ur_client_library</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">db_client</span><span class="w"> </span><span class="s">main.cpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">db_client</span><span class="w"> </span><span class="s">ur_client_library::urcl</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="ur_client_library" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="polyscope_compatibility.html" class="btn btn-neutral float-right" title="Polyscope version compatibility" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

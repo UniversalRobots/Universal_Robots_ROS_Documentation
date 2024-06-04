@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setup for real-time scheduling &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+
+  
+    <link rel="shortcut icon" href=""/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="ur_description" href="../../ur_description/doc/index.html" />
+    <link rel="prev" title="Library architecture" href="architecture.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Documentation
+              <img src="" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">ur_client_library</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Build / installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polyscope_compatibility.html">Polyscope version compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html">Library architecture</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Setup for real-time scheduling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_tutorials/doc/tutorial_index.html">Tutorial examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../migration_notes.html">Migration Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Universal Robots ROS 2 Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">ur_client_library</a></li>
+      <li class="breadcrumb-item active">Setup for real-time scheduling</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_client_library/doc/real_time.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="setup-for-real-time-scheduling">
+<span id="real-time-setup"></span><h1>Setup for real-time scheduling<a class="headerlink" href="#setup-for-real-time-scheduling" title="Link to this heading"></a></h1>
+<p>In order to run the <code class="docutils literal notranslate"><span class="pre">universal_robot_driver</span></code>, we highly recommend to setup a ubuntu system with
+real-time capabilities. Especially with a robot from the e-Series the higher control frequency
+might lead to non-smooth trajectory execution if not run using a real-time-enabled system.</p>
+<p>You might still be able to control the robot using a non-real-time system. This is, however, not recommended.</p>
+<p>While the best-performing strategy would be to use a real-time enabled kernel, using a lowlatency
+kernel has shown to be sufficient in many situations which is why this is also shown as an option
+here.</p>
+<section id="installing-a-lowlatency-kernel">
+<h2>Installing a lowlatency-kernel<a class="headerlink" href="#installing-a-lowlatency-kernel" title="Link to this heading"></a></h2>
+<p>Installing a lowlatency kernel is pretty straightforward:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>linux-lowlatency
+</pre></div>
+</div>
+</section>
+<section id="setting-up-ubuntu-with-a-preempt-rt-kernel">
+<h2>Setting up Ubuntu with a PREEMPT_RT kernel<a class="headerlink" href="#setting-up-ubuntu-with-a-preempt-rt-kernel" title="Link to this heading"></a></h2>
+<p>To get real-time support into a ubuntu system, the following steps have to be performed:</p>
+<ol class="arabic simple">
+<li><p>Get the sources of a real-time kernel</p></li>
+<li><p>Compile the real-time kernel</p></li>
+<li><p>Setup user privileges to execute real-time tasks</p></li>
+</ol>
+<p>This guide will help you setup your system with a real-time kernel.</p>
+<section id="preparing">
+<h3>Preparing<a class="headerlink" href="#preparing" title="Link to this heading"></a></h3>
+<p>To build the kernel, you will need a couple of tools available on your system. You can install them
+using</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>build-essential<span class="w"> </span>bc<span class="w"> </span>ca-certificates<span class="w"> </span>gnupg2<span class="w"> </span>libssl-dev<span class="w"> </span>wget<span class="w"> </span>gawk<span class="w"> </span>flex<span class="w"> </span>bison<span class="w"> </span>libelf-dev<span class="w"> </span>dwarves
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For different kernel versions the dependencies might be different than that. If you experience
+problems such as <code class="docutils literal notranslate"><span class="pre">fatal</span> <span class="pre">error:</span> <span class="pre">liXYZ.h:</span> <span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory</span></code> during compilation, try to
+install the library’s corresponding <code class="docutils literal notranslate"><span class="pre">dev</span></code>-package.</p>
+</div>
+<p>Before you download the sources of a real-time-enabled kernel, check the kernel version that is currently installed:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>uname<span class="w"> </span>-r
+<span class="go">5.15.0-107-generic</span>
+</pre></div>
+</div>
+<p>To continue with this tutorial, please create a temporary folder and navigate into it. You should
+have sufficient space (around 25GB) there, as the extracted kernel sources take much space. After
+the new kernel is installed, you can delete this folder again.</p>
+<p>In this example we will use a temporary folder inside our home folder:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/rt_kernel_build
+<span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/rt_kernel_build
+</pre></div>
+</div>
+<p>All future commands are expected to be run inside this folder. If the folder is different, the <code class="docutils literal notranslate"><span class="pre">$</span></code>
+sign will be prefixed with a path relative to the above folder.</p>
+</section>
+<section id="getting-the-sources-for-a-real-time-kernel">
+<h3>Getting the sources for a real-time kernel<a class="headerlink" href="#getting-the-sources-for-a-real-time-kernel" title="Link to this heading"></a></h3>
+<p>To build a real-time kernel, we first need to get the kernel sources and the real-time patch.</p>
+<p>First, we must decide on the kernel version that we want to use. Above, we
+determined that our system has a 5.15 kernel installed. However, real-time
+patches exist only for selected kernel versions. Those can be found on the
+<a class="reference external" href="https://wiki.linuxfoundation.org/realtime/preempt_rt_versions">linuxfoundation wiki</a>.</p>
+<p>In this example, we will select a 5.15.158 kernel with RT patch version 76. Select a kernel version close  to the
+one installed on your system. For easier reference later on we will export version information to
+our shell environment. Make sure to execute all following commands in this shell.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">KERNEL_MAJOR_VERSION</span><span class="o">=</span><span class="m">5</span>
+<span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">KERNEL_MINOR_VERSION</span><span class="o">=</span><span class="m">15</span>
+<span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">KERNEL_PATCH_VERSION</span><span class="o">=</span><span class="m">158</span>
+<span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">RT_PATCH_VERSION</span><span class="o">=</span><span class="m">76</span>
+<span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">KERNEL_VERSION</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$KERNEL_MAJOR_VERSION</span><span class="s2">.</span><span class="nv">$KERNEL_MINOR_VERSION</span><span class="s2">.</span><span class="nv">$KERNEL_PATCH_VERSION</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>Go ahead and download the kernel sources, patch sources and their signature files:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>wget<span class="w"> </span>https://cdn.kernel.org/pub/linux/kernel/projects/rt/<span class="nv">$KERNEL_MAJOR_VERSION</span>.<span class="nv">$KERNEL_MINOR_VERSION</span>/patch-<span class="nv">$KERNEL_VERSION</span>-rt<span class="nv">$RT_PATCH_VERSION</span>.patch.xz
+<span class="gp">$ </span>wget<span class="w"> </span>https://cdn.kernel.org/pub/linux/kernel/projects/rt/<span class="nv">$KERNEL_MAJOR_VERSION</span>.<span class="nv">$KERNEL_MINOR_VERSION</span>/patch-<span class="nv">$KERNEL_VERSION</span>-rt<span class="nv">$RT_PATCH_VERSION</span>.patch.sign
+<span class="gp">$ </span>wget<span class="w"> </span>https://www.kernel.org/pub/linux/kernel/v<span class="nv">$KERNEL_MAJOR_VERSION</span>.x/linux-<span class="nv">$KERNEL_VERSION</span>.tar.xz
+<span class="gp">$ </span>wget<span class="w"> </span>https://www.kernel.org/pub/linux/kernel/v<span class="nv">$KERNEL_MAJOR_VERSION</span>.x/linux-<span class="nv">$KERNEL_VERSION</span>.tar.sign
+</pre></div>
+</div>
+<p>To unzip the downloaded files do</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>xz<span class="w"> </span>-dk<span class="w"> </span>patch-<span class="nv">$KERNEL_VERSION</span>-rt<span class="nv">$RT_PATCH_VERSION</span>.patch.xz
+<span class="gp">$ </span>xz<span class="w"> </span>-d<span class="w"> </span>linux-<span class="nv">$KERNEL_VERSION</span>.tar.xz
+</pre></div>
+</div>
+<section id="verification">
+<h4>Verification<a class="headerlink" href="#verification" title="Link to this heading"></a></h4>
+<p>Technically, you can skip this section, it is however highly recommended to verify the file
+integrity of such a core component of your system!</p>
+<p>To verify file integrity, you must first import public keys by the kernel developers and the patch
+author. For the kernel sources use (as suggested on
+<a class="reference external" href="https://www.kernel.org/signature.html">kernel.org</a>)</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gpg2<span class="w"> </span>--locate-keys<span class="w"> </span>torvalds@kernel.org<span class="w"> </span>gregkh@kernel.org
+</pre></div>
+</div>
+<p>and for the patch view the gpg information</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gpg2<span class="w"> </span>--verify<span class="w"> </span>patch-<span class="nv">$KERNEL_VERSION</span>-rt<span class="nv">$RT_PATCH_VERSION</span>.patch.sign
+<span class="go">gpg: assuming signed data in &#39;patch-5.15.158-rt76.patch&#39;</span>
+<span class="go">gpg: Signature made Fri May  3 17:12:45 2024 UTC</span>
+<span class="go">gpg:                using RSA key AD85102A6BE1CDFE9BCA84F36CEF3D27CA5B141E</span>
+<span class="go">gpg: Can&#39;t check signature: No public key</span>
+</pre></div>
+</div>
+<p>So, we need to import the key using</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys AD85102A6BE1CDFE9BCA84F36CEF3D27CA5B141E</span>
+</pre></div>
+</div>
+<p>Now we can verify the downloaded sources:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gpg2<span class="w"> </span>--verify<span class="w"> </span>linux-<span class="nv">$KERNEL_VERSION</span>.tar.sign
+<span class="go">gpg: assuming signed data in &#39;linux-5.15.158.tar&#39;</span>
+<span class="go">gpg: Signature made Thu May  2 14:28:07 2024 UTC</span>
+<span class="go">gpg:                using RSA key 647F28654894E3BD457199BE38DBBDC86092693E</span>
+<span class="go">gpg: Good signature from &quot;Greg Kroah-Hartman &lt;gregkh@kernel.org&gt;&quot; [unknown]</span>
+<span class="go">gpg: WARNING: This key is not certified with a trusted signature!</span>
+<span class="go">gpg:          There is no indication that the signature belongs to the owner.</span>
+<span class="go">Primary key fingerprint: 647F 2865 4894 E3BD 4571  99BE 38DB BDC8 6092 693E</span>
+</pre></div>
+</div>
+<p>and</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gpg2<span class="w"> </span>--verify<span class="w"> </span>patch-<span class="nv">$KERNEL_VERSION</span>-rt<span class="nv">$RT_PATCH_VERSION</span>.patch.sign
+<span class="go">gpg: assuming signed data in &#39;patch-5.15.158-rt76.patch&#39;</span>
+<span class="go">gpg: Signature made Fri May  3 17:12:45 2024 UTC</span>
+<span class="go">gpg:                using RSA key AD85102A6BE1CDFE9BCA84F36CEF3D27CA5B141E</span>
+<span class="go">gpg: Good signature from &quot;Joseph Salisbury &lt;joseph.salisbury@canonical.com&gt;&quot; [unknown]</span>
+<span class="go">gpg:                 aka &quot;Joseph Salisbury &lt;josephtsalisbury@gmail.com&gt;&quot; [unknown]</span>
+<span class="go">gpg:                 aka &quot;Joseph Salisbury &lt;joseph.salisbury@ubuntu.com&gt;&quot; [unknown]</span>
+<span class="go">gpg: WARNING: This key is not certified with a trusted signature!</span>
+<span class="go">gpg:          There is no indication that the signature belongs to the owner.</span>
+<span class="go">Primary key fingerprint: AD85 102A 6BE1 CDFE 9BCA  84F3 6CEF 3D27 CA5B 141E</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="compilation">
+<h3>Compilation<a class="headerlink" href="#compilation" title="Link to this heading"></a></h3>
+<p>Before we can compile the sources, we have to extract the tar archive and apply the patch</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>tar<span class="w"> </span>xf<span class="w"> </span>linux-<span class="nv">$KERNEL_VERSION</span>.tar
+<span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>linux-<span class="nv">$KERNEL_VERSION</span>
+<span class="gp">$ </span>xzcat<span class="w"> </span>../patch-<span class="nv">$KERNEL_VERSION</span>-rt<span class="nv">$RT_PATCH_VERSION</span>.patch.xz<span class="w"> </span><span class="p">|</span><span class="w"> </span>patch<span class="w"> </span>-p1
+</pre></div>
+</div>
+<p>Now to configure your kernel, just type</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>make<span class="w"> </span>oldconfig
+</pre></div>
+</div>
+<p>This will ask for kernel options. For everything else then the <code class="docutils literal notranslate"><span class="pre">Preemption</span> <span class="pre">Model</span></code> use the default
+value (just press Enter) or adapt to your preferences. For the preemption model select <code class="docutils literal notranslate"><span class="pre">Fully</span> <span class="pre">Preemptible</span> <span class="pre">Kernel</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Preemption Model</span>
+<span class="go">  1. No Forced Preemption (Server) (PREEMPT_NONE)</span>
+<span class="go">&gt; 2. Voluntary Kernel Preemption (Desktop) (PREEMPT_VOLUNTARY)</span>
+<span class="go">  3. Preemptible Kernel (Low-Latency Desktop) (PREEMPT)</span>
+<span class="go">  4. Fully Preemptible Kernel (Real-Time) (PREEMPT_RT) (NEW)</span>
+<span class="go">choice[1-4?]: 4</span>
+</pre></div>
+</div>
+<p>On newer kernels you need to disable some key checking:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>scripts/config<span class="w"> </span>--disable<span class="w"> </span>SYSTEM_TRUSTED_KEYS
+<span class="gp">$ </span>scripts/config<span class="w"> </span>--disable<span class="w"> </span>SYSTEM_REVOCATION_KEYS
+</pre></div>
+</div>
+<p>Now you can build the kernel. This will take some time…</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>make<span class="w"> </span>-j<span class="w"> </span><span class="sb">`</span>getconf<span class="w"> </span>_NPROCESSORS_ONLN<span class="sb">`</span><span class="w"> </span>deb-pkg
+</pre></div>
+</div>
+<p>After building, install the <code class="docutils literal notranslate"><span class="pre">linux-headers</span></code> and <code class="docutils literal notranslate"><span class="pre">linux-image</span></code> packages in the parent folder (only
+the ones without the <code class="docutils literal notranslate"><span class="pre">-dbg</span></code> in the name)</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>../linux-headers-<span class="nv">$KERNEL_VERSION</span>-rt<span class="nv">$RT_PATCH_VERSION</span>*.deb<span class="w"> </span><span class="se">\</span>
+<span class="w">                   </span>../linux-image-<span class="nv">$KERNEL_VERSION</span>-rt<span class="nv">$RT_PATCH_VERSION</span>*.deb
+</pre></div>
+</div>
+</section>
+</section>
+<section id="setup-user-privileges-to-use-real-time-scheduling">
+<h2>Setup user privileges to use real-time scheduling<a class="headerlink" href="#setup-user-privileges-to-use-real-time-scheduling" title="Link to this heading"></a></h2>
+<p>To be able to schedule threads with user privileges (what the driver will do) you’ll have to change
+the user’s limits by changing <code class="docutils literal notranslate"><span class="pre">/etc/security/limits.conf</span></code> (See <a class="reference external" href="https://manpages.ubuntu.com/manpages/bionic/man5/limits.conf.5.html">the manpage</a> for details)</p>
+<p>We recommend to setup a group for real-time users instead of writing a fixed username into the config
+file:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>groupadd<span class="w"> </span>realtime
+<span class="gp">$ </span>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>realtime<span class="w"> </span><span class="k">$(</span>whoami<span class="k">)</span>
+</pre></div>
+</div>
+<p>Then, make sure <code class="docutils literal notranslate"><span class="pre">/etc/security/limits.conf</span></code> contains</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@realtime</span> <span class="n">soft</span> <span class="n">rtprio</span> <span class="mi">99</span>
+<span class="nd">@realtime</span> <span class="n">soft</span> <span class="n">priority</span> <span class="mi">99</span>
+<span class="nd">@realtime</span> <span class="n">soft</span> <span class="n">memlock</span> <span class="mi">102400</span>
+<span class="nd">@realtime</span> <span class="n">hard</span> <span class="n">rtprio</span> <span class="mi">99</span>
+<span class="nd">@realtime</span> <span class="n">hard</span> <span class="n">priority</span> <span class="mi">99</span>
+<span class="nd">@realtime</span> <span class="n">hard</span> <span class="n">memlock</span> <span class="mi">102400</span>
+</pre></div>
+</div>
+<p>Note: You will have to log out and log back in (Not only close your terminal window) for these
+changes to take effect. No need to do this now, as we will reboot later on, anyway.</p>
+</section>
+<section id="setup-grub-to-always-boot-the-lowlatency-real-time-kernel">
+<h2>Setup GRUB to always boot the lowlatency / real-time kernel<a class="headerlink" href="#setup-grub-to-always-boot-the-lowlatency-real-time-kernel" title="Link to this heading"></a></h2>
+<p>To make the new kernel the default kernel that the system will boot into every time, you’ll have to
+change the grub config file inside <code class="docutils literal notranslate"><span class="pre">/etc/default/grub</span></code>.</p>
+<p>Note: This works for ubuntu, but might not be working for other linux systems. It might be necessary
+to use another menuentry name there.</p>
+<p>But first, let’s find out the name of the entry that we will want to make the default. You can list
+all available kernels using</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>awk<span class="w"> </span>-F<span class="se">\&#39;</span><span class="w"> </span><span class="s1">&#39;/menuentry |submenu / {print $1 $2}&#39;</span><span class="w"> </span>/boot/grub/grub.cfg
+<span class="go">menuentry Ubuntu</span>
+<span class="go">submenu Advanced options for Ubuntu</span>
+<span class="go">        menuentry Ubuntu, with Linux 5.15.158-rt76</span>
+<span class="go">        menuentry Ubuntu, with Linux 5.15.158-rt76 (recovery mode)</span>
+<span class="go">        menuentry Ubuntu, with Linux 5.15.0-107-lowlatency</span>
+<span class="go">        menuentry Ubuntu, with Linux 5.15.0-107-lowlatency (recovery mode)</span>
+<span class="go">        menuentry Ubuntu, with Linux 5.15.0-107-generic</span>
+<span class="go">        menuentry Ubuntu, with Linux 5.15.0-107-generic (recovery mode)</span>
+</pre></div>
+</div>
+<p>From the output above, we’ll need to generate a string with the pattern <code class="docutils literal notranslate"><span class="pre">&quot;submenu_name&gt;entry_name&quot;</span></code>. In our case this would be</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Advanced options for Ubuntu&gt;Ubuntu, with Linux 5.15.158-rt76&quot;</span>
+</pre></div>
+</div>
+<p><strong>The double quotes and no spaces around the</strong> <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> <strong>are important!</strong></p>
+<p>With this, we can setup the default grub entry and then update the grub menu entries. Don’t forget this last step!</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;s/^GRUB_DEFAULT=.*/GRUB_DEFAULT=\&quot;Advanced options for Ubuntu&gt;Ubuntu, with Linux </span><span class="si">${</span><span class="nv">KERNEL_VERSION</span><span class="si">}</span><span class="s2">-rt</span><span class="si">${</span><span class="nv">RT_PATCH_VERSION</span><span class="si">}</span><span class="s2">\&quot;/&quot;</span><span class="w"> </span>/etc/default/grub
+<span class="gp">$ </span>sudo<span class="w"> </span>update-grub
+</pre></div>
+</div>
+</section>
+<section id="reboot-the-pc">
+<h2>Reboot the PC<a class="headerlink" href="#reboot-the-pc" title="Link to this heading"></a></h2>
+<p>After having performed the above mentioned steps, reboot the PC. It should boot into the correct
+kernel automatically.</p>
+</section>
+<section id="check-for-preemption-capabilities">
+<h2>Check for preemption capabilities<a class="headerlink" href="#check-for-preemption-capabilities" title="Link to this heading"></a></h2>
+<p>Make sure that the kernel does indeed support real-time scheduling:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>uname<span class="w"> </span>-v<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="s2">&quot; &quot;</span><span class="w"> </span>-f1-4
+<span class="gp">#</span><span class="m">1</span><span class="w"> </span>SMP<span class="w"> </span>PREEMPT_RT<span class="w"> </span>Tue
+</pre></div>
+</div>
+</section>
+<section id="optional-disable-cpu-speed-scaling">
+<h2>Optional: Disable CPU speed scaling<a class="headerlink" href="#optional-disable-cpu-speed-scaling" title="Link to this heading"></a></h2>
+<p>Many modern CPUs support changing their clock frequency dynamically depending on the currently
+requested computation resources. In some cases this can lead to small interruptions in execution.
+While the real-time scheduled controller thread should be unaffected by this, any external
+components such as a visual servoing system might be interrupted for a short period on scaling
+changes.</p>
+<p>To check and modify the power saving mode, install cpufrequtils:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>cpufrequtils
+</pre></div>
+</div>
+<p>Run <code class="docutils literal notranslate"><span class="pre">cpufreq-info</span></code> to check available “governors” and the current CPU Frequency (<code class="docutils literal notranslate"><span class="pre">current</span> <span class="pre">CPU</span>
+<span class="pre">frequency</span> <span class="pre">is</span> <span class="pre">XXX</span> <span class="pre">MHZ</span></code>). In the following we will set the governor to “performance”.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>disable<span class="w"> </span>ondemand
+<span class="gp">$ </span>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>cpufrequtils
+<span class="gp">$ </span>sudo<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;echo &quot;GOVERNOR=performance&quot; &gt; /etc/default/cpufrequtils&#39;</span>
+<span class="gp">$ </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>cpufrequtils
+</pre></div>
+</div>
+<p>This disables the <code class="docutils literal notranslate"><span class="pre">ondemand</span></code> CPU scaling daemon, creates a <code class="docutils literal notranslate"><span class="pre">cpufrequtils</span></code> config file and restarts
+the <code class="docutils literal notranslate"><span class="pre">cpufrequtils</span></code> service. Check with <code class="docutils literal notranslate"><span class="pre">cpufreq-info</span></code>.</p>
+<p>For further information about governors, please see the <a class="reference external" href="https://www.kernel.org/doc/Documentation/cpu-freq/governors.txt">kernel
+documentation</a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="architecture.html" class="btn btn-neutral float-left" title="Library architecture" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../ur_description/doc/index.html" class="btn btn-neutral float-right" title="ur_description" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
