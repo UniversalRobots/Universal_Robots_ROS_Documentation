@@ -39,6 +39,7 @@ release = "0.1"
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    "sphinx_copybutton",
     "sphinx.ext.githubpages",
     "sphinx.ext.todo",
     "sphinx_rtd_theme",
@@ -190,6 +191,7 @@ epub_exclude_files = ["search.html"]
 
 
 # -- Extension configuration -------------------------------------------------
+copybutton_exclude = '.linenos, .gp, .go'
 
 # -- Options for todo extension ----------------------------------------------
 
