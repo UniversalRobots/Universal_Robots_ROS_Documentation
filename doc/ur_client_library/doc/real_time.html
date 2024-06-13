@@ -272,12 +272,12 @@ file:</p>
 </pre></div>
 </div>
 <p>Then, make sure <code class="docutils literal notranslate"><span class="pre">/etc/security/limits.conf</span></code> contains</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@realtime</span> <span class="n">soft</span> <span class="n">rtprio</span> <span class="mi">99</span>
-<span class="nd">@realtime</span> <span class="n">soft</span> <span class="n">priority</span> <span class="mi">99</span>
-<span class="nd">@realtime</span> <span class="n">soft</span> <span class="n">memlock</span> <span class="mi">102400</span>
-<span class="nd">@realtime</span> <span class="n">hard</span> <span class="n">rtprio</span> <span class="mi">99</span>
-<span class="nd">@realtime</span> <span class="n">hard</span> <span class="n">priority</span> <span class="mi">99</span>
-<span class="nd">@realtime</span> <span class="n">hard</span> <span class="n">memlock</span> <span class="mi">102400</span>
+<div class="highlight-linuxconfig notranslate"><div class="highlight"><pre><span></span><span class="s">@realtime soft rtprio 99</span>
+<span class="s">@realtime soft priority 99</span>
+<span class="s">@realtime soft memlock 102400</span>
+<span class="s">@realtime hard rtprio 99</span>
+<span class="s">@realtime hard priority 99</span>
+<span class="s">@realtime hard memlock 102400</span>
 </pre></div>
 </div>
 <p>Note: You will have to log out and log back in (Not only close your terminal window) for these
@@ -303,7 +303,7 @@ all available kernels using</p>
 </pre></div>
 </div>
 <p>From the output above, we’ll need to generate a string with the pattern <code class="docutils literal notranslate"><span class="pre">&quot;submenu_name&gt;entry_name&quot;</span></code>. In our case this would be</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Advanced options for Ubuntu&gt;Ubuntu, with Linux 5.15.158-rt76&quot;</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&quot;Advanced options for Ubuntu&gt;Ubuntu, with Linux 5.15.158-rt76&quot;
 </pre></div>
 </div>
 <p><strong>The double quotes and no spaces around the</strong> <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> <strong>are important!</strong></p>
