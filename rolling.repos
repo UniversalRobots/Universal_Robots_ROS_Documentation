@@ -2,7 +2,7 @@ repositories:
   ur_client_library:
     type: git
     url: https://github.com/UniversalRobots/Universal_Robots_Client_Library.git
-    version: sphinx_doc
+    version: master
   ur_description:
     type: git
     url: https://github.com/UniversalRobots/Universal_Robots_ROS2_Description.git
