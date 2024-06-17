@@ -209,7 +209,7 @@ html_context = {
     "logo": "logo.png"
 }
 
-html_favicon = "images/favicon.ico"
-html_logo = "images/logo.png"
+html_favicon = "_static/logo.png"
+html_logo = "_static/logo.png"
 
 github_url = "https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation"
