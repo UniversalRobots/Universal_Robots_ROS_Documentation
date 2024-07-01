@@ -97,6 +97,26 @@ ROS controller in terms of multiples of 20 ms. Now the timeout is directly confi
 <code class="docutils literal notranslate"><span class="pre">robot_receive_timeout</span></code> parameter of the hardware interface.</p>
 </section>
 </section>
+<section id="ur-description">
+<h3>ur_description<a class="headerlink" href="#ur-description" title="Link to this heading"></a></h3>
+<section id="ros2-control-xacro-tag-moved-to-driver-package">
+<h4>ros2_control xacro tag moved to driver package<a class="headerlink" href="#ros2-control-xacro-tag-moved-to-driver-package" title="Link to this heading"></a></h4>
+<p>The description package no longer adds the <code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> tag to the robot’s URDF. This is done
+in the driver / simulation repos now. The description package still provides macros for the
+system-independent parts such as joint configurations and an example using mock_hardware with the
+robot.</p>
+</section>
+<section id="enforce-absolute-paths-in-launchfiles">
+<h4>Enforce absolute paths in launchfiles<a class="headerlink" href="#enforce-absolute-paths-in-launchfiles" title="Link to this heading"></a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">view_ur.launch.py</span></code> launchfile now expects an absolute path for the description file and RViz
+config file. Before it was expecting a <code class="docutils literal notranslate"><span class="pre">description_package</span></code> and a <code class="docutils literal notranslate"><span class="pre">description_file</span></code> argument
+with a relative path to the package.
+This way, users can provide their own description file and / or RViz config without the need to
+replicate the complete package structure.</p>
+<p>Absolute paths can still be generated dynamically using a package + relative path structure inside
+other launchfiles or by using <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">pkg</span> <span class="pre">prefix</span></code> on the command line.</p>
+</section>
+</section>
 </section>
 </section>
 
