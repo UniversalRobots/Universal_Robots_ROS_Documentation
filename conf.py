@@ -55,6 +55,7 @@ source_suffix = '.rst'
 
 # The master toctree document.
 master_doc = "index"
+numfig = True
 
 ros_distro = "rolling"
 distro_title = "Rolling"
