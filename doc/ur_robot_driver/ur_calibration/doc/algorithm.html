@@ -107,12 +107,12 @@ the other side.</p>
 <p>We can build a robot description that splits each DH segment into two links: One for <code class="docutils literal notranslate"><span class="pre">d</span></code> and
 <code class="docutils literal notranslate"><span class="pre">theta</span></code> representing the rotational part of the joint and one for <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">alpha</span></code>
 representing the “passive” part of the joint displacing the next link.
-<code class="xref std std-numref docutils literal notranslate"><span class="pre">calibration_example</span></code> shows (a part of) the description matching the parameters above. The
+<a class="reference internal" href="#calibration-example"><span class="std std-numref">Fig. 1</span></a> shows (a part of) the description matching the parameters above. The
 arm links are left out of the image as they are really far away.</p>
 <figure class="align-default" id="id1">
 <span id="calibration-example"></span><img alt="Example of a calibrated model" src="../../../../_images/calibration_example.png" />
 <figcaption>
-<p><span class="caption-text">This shows an example calibrated model when using the DH parameters directly as explained above.
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">This shows an example calibrated model when using the DH parameters directly as explained above.
 The two arm links are virtually displaced very far from the physical robot while the TCP ends up
 at the correct location again</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
@@ -126,7 +126,7 @@ UR10e:</p>
 <span class="nt">dh_alpha</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1.570796327 0.2     0       1.570796327 -1.570796327 0</span><span class="w">      </span><span class="p p-Indicator">]</span>
 </pre></div>
 </div>
-<p>The resulting uncorrected model can be seen in <code class="xref std std-numref docutils literal notranslate"><span class="pre">calibration_uncorrected</span></code>. The upper arm is
+<p>The resulting uncorrected model can be seen in <a class="reference internal" href="#calibration-uncorrected"><span class="std std-numref">Fig. 2</span></a>. The upper arm is
 placed 1 m to the left of the shoulder, the upper arm is placed 0.5 m further out and there’s an
 added <code class="docutils literal notranslate"><span class="pre">alpha</span></code> rotation in joint2.</p>
 <p>Note: This is not a valid calibration, so when placing this “calibration” on a robot and using the
@@ -134,10 +134,10 @@ correction, we won’t get correct tcp pose results. This only serves as a exagg
 <figure class="align-default" id="id2">
 <span id="calibration-uncorrected"></span><img alt="Exaggerated calibrated model" src="../../../../_images/calibration_uncorrected.png" />
 <figcaption>
-<p><span class="caption-text">This shows an artificial calibration only to show the algorithm. This is no valid calibration!</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">This shows an artificial calibration only to show the algorithm. This is no valid calibration!</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
 </figure>
-<p>In <code class="xref std std-numref docutils literal notranslate"><span class="pre">calibration_uncorrected</span></code> the separation between the two DH components can be seen quite
+<p>In <a class="reference internal" href="#calibration-uncorrected"><span class="std std-numref">Fig. 2</span></a> the separation between the two DH components can be seen quite
 clearly. joint2’s <code class="docutils literal notranslate"><span class="pre">d</span></code> and <code class="docutils literal notranslate"><span class="pre">theta</span></code> parameters are represented by <code class="docutils literal notranslate"><span class="pre">upper_arm_d</span></code> and its <code class="docutils literal notranslate"><span class="pre">a</span></code>
 and <code class="docutils literal notranslate"><span class="pre">alpha</span></code> parameters result in <code class="docutils literal notranslate"><span class="pre">upper_arm_a</span></code>.</p>
 <p>The “correction” step tries to bring the two arm segments back to their physical representation.
@@ -161,12 +161,12 @@ read by the description package.</p>
 <p>Also, no correction of the visual meshes is performed. Strictly speaking, the visual
 model is not 100 % correct, but with a calibrated model and ideal meshes this cannot be achieved and
 the inaccuracies introduced by this are considered negligible.</p>
-<p>The example as visualized in <code class="xref std std-numref docutils literal notranslate"><span class="pre">calibration_example</span></code> looks as follows if a description with
+<p>The example as visualized in <a class="reference internal" href="#calibration-example"><span class="std std-numref">Fig. 1</span></a> looks as follows if a description with
 the correct parameters is loaded:</p>
 <figure class="align-default" id="id3">
 <img alt="Example with corrected kinematics structure" src="../../../../_images/calibration_example_corrected.png" />
 <figcaption>
-<p><span class="caption-text">This shows the model from <code class="xref std std-numref docutils literal notranslate"><span class="pre">calibration_example</span></code> with the calibration correction applied.
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">This shows the model from <a class="reference internal" href="#calibration-example"><span class="std std-numref">Fig. 1</span></a> with the calibration correction applied.
 The robot is correctly assembled and the <code class="docutils literal notranslate"><span class="pre">base-&gt;tool0</span></code> transformation is exactly the same as
 on the robot controller.</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
 </figcaption>
