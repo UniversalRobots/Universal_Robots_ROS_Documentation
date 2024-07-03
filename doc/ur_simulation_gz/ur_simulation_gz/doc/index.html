@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Feature list and roadmap &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
+  <title>ur_simulation_gz &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
@@ -24,7 +24,9 @@
         <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../../search.html" /> 
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="ur_moveit_config" href="../../../ur_robot_driver/ur_moveit_config/doc/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,14 +49,18 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_client_library/doc/index.html">ur_client_library</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_description/doc/index.html">ur_description</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">ur_robot_driver</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ur_calibration/doc/index.html">ur_calibration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ur_controllers/doc/index.html">ur_controllers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ur_simulation_gz</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html">Usage</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_tutorials/doc/tutorial_index.html">Tutorial examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../migration_notes.html">Migration Notes</a></li>
 </ul>
@@ -73,9 +79,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Feature list and roadmap</li>
+      <li class="breadcrumb-item active">ur_simulation_gz</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_robot_driver/ur_robot_driver/doc/features.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_simulation_gz/ur_simulation_gz/doc/index.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -83,86 +89,41 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="feature-list-and-roadmap">
-<h1>Feature list and roadmap<a class="headerlink" href="#feature-list-and-roadmap" title="Link to this heading"></a></h1>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Feature</p></th>
-<th class="head"><p>ROS2 Driver</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>joint-position-based control</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-odd"><td><p>scaled joint-position-based control</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-even"><td><p>joint-velocity-based control</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-odd"><td><p>Cartesian position-based control</p></td>
-<td><p>no</p></td>
-</tr>
-<tr class="row-even"><td><p>Cartesian twist-based control</p></td>
-<td><p>no</p></td>
-</tr>
-<tr class="row-odd"><td><p>Trajectory forwarding for execution on robot</p></td>
-<td><p>no</p></td>
-</tr>
-<tr class="row-even"><td><p>reporting of tcp wrench</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-odd"><td><p>pausing of programs</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-even"><td><p>continue trajectories after EM-Stop resume</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-odd"><td><p>continue trajectories after protective stop</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-even"><td><p>panel interaction in between possible</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-odd"><td><p>get and set IO states</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-even"><td><p>use <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ToolComm_Forwarder_URCap">tool communication forwarder</a> on e-series</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-odd"><td><p>use the driver without a teach pendant necessary</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-even"><td><p>support of CB1 and CB2 robots</p></td>
-<td><p>no</p></td>
-</tr>
-<tr class="row-odd"><td><p>trajectory extrapolation on robot on missing packages</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-even"><td><p>use ROS as drop-in for TP-programs</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-odd"><td><p>headless mode</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-even"><td><p>extract calibration from robot</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-odd"><td><p>send custom script commands to robot</p></td>
-<td><p>no</p></td>
-</tr>
-<tr class="row-even"><td><p>Reconnect on a disconnected robot</p></td>
-<td><p>yes</p></td>
-</tr>
-</tbody>
-</table>
+  <section id="ur-simulation-gz">
+<h1>ur_simulation_gz<a class="headerlink" href="#ur-simulation-gz" title="Link to this heading"></a></h1>
+<p>This package contains configurations and example files for Gazebo simulation of Universal Robots manipulators.</p>
+<section id="structure-of-the-repository">
+<h2>Structure of the repository<a class="headerlink" href="#structure-of-the-repository" title="Link to this heading"></a></h2>
+<p>To set up the simulation the used files are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">urdf/ur_gz.ros2_control.xacro</span></code> - macro for ros2_control configuration, defining the initial joint positions and the hardware interface plugin for the simulation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">urdf/ur_gz.urdf.xacro</span></code> - main file that contains the robot description, defines reference for the Gazebo world and initializes ros2_control Gazebo plugin.</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#setup-ros2-workspace">Setup ROS2 Workspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#configure-and-build-workspace">Configure and build Workspace</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#launch-files">Launch Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#customization">Customization</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../../ur_robot_driver/ur_moveit_config/doc/index.html" class="btn btn-neutral float-left" title="ur_moveit_config" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Usage &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/logo.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Universal Robots ROS tutorials" href="../../../ur_tutorials/doc/tutorial_index.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Documentation
+              <img src="../../../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_client_library/doc/index.html">ur_client_library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">ur_simulation_gz</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_tutorials/doc/tutorial_index.html">Tutorial examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../migration_notes.html">Migration Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Universal Robots ROS 2 Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">ur_simulation_gz</a></li>
+      <li class="breadcrumb-item active">Usage</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_simulation_gz/ur_simulation_gz/doc/usage.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h1>
+<section id="launch-files">
+<h2>Launch Files<a class="headerlink" href="#launch-files" title="Link to this heading"></a></h2>
+<p>To launch the simulation, two files can be used:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">launch/ur_sim_control.launch.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">launch/ur_sim_moveit.launch.py</span></code></p></li>
+</ul>
+<p>They both start Gazebo, but only the second launches MoveIt! together with it, allowing to plan motions using either MoveGroup interfaces or the Motion Planning panel in Rviz.</p>
+<p>So, if only Gazebo and Rviz are needed:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>launch<span class="w"> </span>ur_simulation_gz<span class="w"> </span>ur_sim_control.launch.py<span class="w"> </span>ur_type:<span class="o">=</span>ur10e
+</pre></div>
+</div>
+<p>Which can be tested by using a test script from <code class="docutils literal notranslate"><span class="pre">ur_robot_driver</span></code> (if installed), in a new terminal:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>launch<span class="w"> </span>ur_robot_driver<span class="w"> </span>test_joint_trajectory_controller.launch.py
+</pre></div>
+</div>
+<p>If we also want to be able to use MoveIt!, then:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>launch<span class="w"> </span>ur_simulation_gz<span class="w"> </span>ur_sim_moveit.launch.py<span class="w"> </span>ur_type:<span class="o">=</span>ur10e
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../../_images/gz_simulation_moveit.png"><img alt="Gazebo with MoveIt!" src="../../../../_images/gz_simulation_moveit.png" style="width: 95%;" /></a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All the additional launch arguments are described in the launch files themselves.</p>
+</div>
+</section>
+<section id="customization">
+<h2>Customization<a class="headerlink" href="#customization" title="Link to this heading"></a></h2>
+<p>Beyond the default usage, the package offers some customization options.</p>
+<section id="custom-description">
+<h3>Custom Description<a class="headerlink" href="#custom-description" title="Link to this heading"></a></h3>
+<p>To use a custom robot / scene description, the launch argument <code class="docutils literal notranslate"><span class="pre">description_file</span></code> can be specified,  which allows to pass the absolute path of a custom description to both launchers. Together with it, it could be useful to choose a custom Rviz configuration file and the launch argument <code class="docutils literal notranslate"><span class="pre">rviz_config_file</span></code> can be passed for that. An example of their usage:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>launch<span class="w"> </span>ur_simulation_gz<span class="w"> </span>ur_sim_control.launch.py<span class="w"> </span>ur_type:<span class="o">=</span>ur10e<span class="w"> </span>description_file:<span class="o">=</span><span class="s2">&quot;/home/ubuntu/ur_gz_test.urdf.xacro&quot;</span><span class="w"> </span>rviz_config_file:<span class="o">=</span><span class="s2">&quot;/home/ubuntu/rviz_test.rviz&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="tf-prefix">
+<h3>tf_prefix<a class="headerlink" href="#tf-prefix" title="Link to this heading"></a></h3>
+<p>Also here, like in the driver package, it is possible to specify a tf_prefix using the <code class="docutils literal notranslate"><span class="pre">tf_prefix</span></code> launch argument, but for this package this is not the only step required. Since controller loading is handled differently, it is necessary to define a custom controllers file with the desired tf_prefix. Assuming <code class="docutils literal notranslate"><span class="pre">tf_prefix:=&quot;alice_&quot;</span></code>, an example of such file could be:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">controller_manager</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ros__parameters</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">update_rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500</span><span class="w">  </span><span class="c1"># Hz</span>
+
+<span class="w">    </span><span class="nt">joint_state_broadcaster</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">joint_state_broadcaster/JointStateBroadcaster</span>
+
+<span class="w">    </span><span class="nt">joint_trajectory_controller</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">joint_trajectory_controller/JointTrajectoryController</span>
+
+
+<span class="nt">joint_trajectory_controller</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ros__parameters</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">joints</span><span class="p">:</span>
+<span class="hll"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alice_shoulder_pan_joint</span>
+</span><span class="hll"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alice_shoulder_lift_joint</span>
+</span><span class="hll"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alice_elbow_joint</span>
+</span><span class="hll"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alice_wrist_1_joint</span>
+</span><span class="hll"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alice_wrist_2_joint</span>
+</span><span class="hll"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alice_wrist_3_joint</span>
+</span><span class="w">    </span><span class="nt">command_interfaces</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">position</span>
+<span class="w">    </span><span class="nt">state_interfaces</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">position</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">velocity</span>
+<span class="w">    </span><span class="nt">state_publish_rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100.0</span>
+<span class="w">    </span><span class="nt">action_monitor_rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20.0</span>
+<span class="w">    </span><span class="nt">allow_partial_joints_goal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">constraints</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">stopped_velocity_tolerance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.2</span>
+<span class="w">      </span><span class="nt">goal_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="hll"><span class="w">      </span><span class="nt">alice_shoulder_pan_joint</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> trajectory</span><span class="p">:</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="nt"> goal</span><span class="p">:</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</span><span class="hll"><span class="w">      </span><span class="nt">alice_shoulder_lift_joint</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> trajectory</span><span class="p">:</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="nt"> goal</span><span class="p">:</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</span><span class="hll"><span class="w">      </span><span class="nt">alice_elbow_joint</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> trajectory</span><span class="p">:</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="nt"> goal</span><span class="p">:</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</span><span class="hll"><span class="w">      </span><span class="nt">alice_wrist_1_joint</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> trajectory</span><span class="p">:</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="nt"> goal</span><span class="p">:</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</span><span class="hll"><span class="w">      </span><span class="nt">alice_wrist_2_joint</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> trajectory</span><span class="p">:</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="nt"> goal</span><span class="p">:</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</span><span class="hll"><span class="w">      </span><span class="nt">alice_wrist_3_joint</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> trajectory</span><span class="p">:</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">,</span><span class="nt"> goal</span><span class="p">:</span><span class="w"> </span><span class="nv">0.1</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</span></pre></div>
+</div>
+<p>To load the newly defined file, it is possible to specify its absolute path with the <code class="docutils literal notranslate"><span class="pre">controllers_file</span></code> argument. Together with it the desired prefix should be also be specified as argument, like in the following example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>launch<span class="w"> </span>ur_simulation_gz<span class="w"> </span>ur_sim_control.launch.py<span class="w"> </span>ur_type:<span class="o">=</span>ur10e<span class="w"> </span>tf_prefix:<span class="o">=</span><span class="s2">&quot;alice_&quot;</span><span class="w"> </span>controllers_file:<span class="o">=</span><span class="s2">&quot;/home/ubuntu/ur_controllers_test.yaml&quot;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">tf_prefix</span></code> argument is not available for <code class="docutils literal notranslate"><span class="pre">ur_sim_moveit.launch.py</span></code>, since it would require a custom definition of the moveit config package for properly setting it up.</p>
+</div>
+</section>
+<section id="custom-world">
+<h3>Custom World<a class="headerlink" href="#custom-world" title="Link to this heading"></a></h3>
+<p>The last customization option allows to instantiate the robot in a proper setup instead of an empty world, like the given launch files do by default. The first step to create a complete simulation is to define a world file (.sdf): for this example we can use a simple custom world <code class="docutils literal notranslate"><span class="pre">test_world.sdf</span></code>, located it in <code class="docutils literal notranslate"><span class="pre">ur_gz_simulation/doc/resources</span></code>. For more details about building worlds in Gazebo, it’s possible to check the <a class="reference external" href="https://gazebosim.org/docs/harmonic/sdf_worlds">related tutorial</a>.
+To use the new world changes it’s enough to specify its absolute path in the <code class="docutils literal notranslate"><span class="pre">world_file</span></code> argument:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>launch<span class="w"> </span>ur_simulation_gz<span class="w"> </span>ur_sim_control.launch.py<span class="w"> </span>ur_type:<span class="o">=</span>ur10e<span class="w"> </span>world_file:<span class="o">=</span>&lt;path_to_gz_simulation&gt;/doc/resources/test_world.sdf
+</pre></div>
+</div>
+<p>or using MoveIt!</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>launch<span class="w"> </span>ur_simulation_gz<span class="w"> </span>ur_sim_moveit.launch.py<span class="w"> </span>ur_type:<span class="o">=</span>ur10e<span class="w"> </span>world_file:<span class="o">=</span>&lt;path_to_gz_simulation&gt;/doc/resources/test_world.sdf
+</pre></div>
+</div>
+<p>In this way, when launching the simulation, Gazebo will use the indicated custom world instead of the default empty, like in the following picture.</p>
+<a class="reference internal image-reference" href="../../../../_images/gz_simulation_custom_world.png"><img alt="Gazebo custom world" src="../../../../_images/gz_simulation_custom_world.png" style="width: 95%;" /></a>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../../ur_tutorials/doc/tutorial_index.html" class="btn btn-neutral float-right" title="Universal Robots ROS tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
