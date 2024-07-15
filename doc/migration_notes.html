@@ -150,6 +150,34 @@ replicate the complete package structure.</p>
 other launchfiles or by using <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">pkg</span> <span class="pre">prefix</span></code> on the command line.</p>
 </section>
 </section>
+<section id="ur-simulation-gz">
+<h3>ur_simulation_gz<a class="headerlink" href="#ur-simulation-gz" title="Link to this heading"></a></h3>
+<section id="updated-argument-name-for-tf-prefix">
+<h4>Updated argument name for tf_prefix<a class="headerlink" href="#updated-argument-name-for-tf-prefix" title="Link to this heading"></a></h4>
+<p>To have coherency between the driver and the GZ simulation, the launch argument to use tf_prefix has been changed from <code class="docutils literal notranslate"><span class="pre">prefix</span></code> to <code class="docutils literal notranslate"><span class="pre">tf_prefix</span></code>. Moreover, differently from the driver, using such argument for this package requires the user to also provide their own controllers file, as explained in <a class="reference internal" href="ur_simulation_gz/ur_simulation_gz/doc/usage.html#tf-prefix-gz"><span class="std std-ref">tf_prefix for GZ</span></a>.</p>
+</section>
+<section id="update-arguments-for-moveit">
+<h4>Update arguments for MoveIt!<a class="headerlink" href="#update-arguments-for-moveit" title="Link to this heading"></a></h4>
+<p>As part of the restructuring of the <code class="docutils literal notranslate"><span class="pre">ur_moveit_config</span></code> pkg, all the arguments that were previously passed to <code class="docutils literal notranslate"><span class="pre">ur_moveit.launch.py</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">description_file</span></code>, <code class="docutils literal notranslate"><span class="pre">safety_limits</span></code> or <code class="docutils literal notranslate"><span class="pre">prefix</span></code>) have been removed, in favor of the only <code class="docutils literal notranslate"><span class="pre">moveit_launch_file</span></code> argument.</p>
+<p>This is due to the underlying assumption for the specified launch file to be part of a custom moveit_config pkg that already contains the correct references to a custom description pkg and related parameters.</p>
+<p>In particular, the
+option of specifying a <code class="docutils literal notranslate"><span class="pre">tf_prefix</span></code> for the <code class="docutils literal notranslate"><span class="pre">ur_moveit_config</span></code> has been removed, hence if it is needed in a GZ simulation with MoveIt!, it is expected to be handled by the user through a proper definition for it in a custom moveit_config.</p>
+</section>
+<section id="id3">
+<h4>Enforce absolute paths in launchfiles<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<p>All launchfiles now expect an absolute path for files that should be used to alter the launch
+process (e.g. description file, controllers file). Before it was expecting e.g. a
+<code class="docutils literal notranslate"><span class="pre">description_package</span></code> and a <code class="docutils literal notranslate"><span class="pre">description_file</span></code> argument with a relative path to the package.</p>
+<p>The default files have not been changed, so unless you specified your custom package / file
+combinations, you won’t need to update that to an absolute path.</p>
+<p>Absolute paths can still be generated dynamically using a package + relative path structure inside
+other launchfiles or by using <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">pkg</span> <span class="pre">prefix</span></code> on the command line. For example, you can do</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>launch<span class="w"> </span>ur_gz_simulation<span class="w"> </span>ur_sim_control.launch.py<span class="w"> </span>ur_type:<span class="o">=</span>ur20<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>controllers_file:<span class="o">=</span><span class="k">$(</span>ros2<span class="w"> </span>pkg<span class="w"> </span>prefix<span class="w"> </span>my_robot_cell_control<span class="k">)</span>/share/my_robot_cell_control/config/ros2_controllers.yaml
+</pre></div>
+</div>
+</section>
+</section>
 </section>
 </section>
 
