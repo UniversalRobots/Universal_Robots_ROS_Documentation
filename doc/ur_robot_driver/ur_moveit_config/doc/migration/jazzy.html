@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ur_moveit_config &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+
+  
+    <link rel="shortcut icon" href="../../../../../_static/logo.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Documentation
+              <img src="../../../../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_client_library/doc/index.html">ur_client_library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_tutorials/doc/tutorial_index.html">Tutorial examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../migration_notes.html">Migration Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Universal Robots ROS 2 Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">ur_moveit_config</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_robot_driver/ur_moveit_config/doc/migration/jazzy.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ur-moveit-config">
+<h1>ur_moveit_config<a class="headerlink" href="#ur-moveit-config" title="Link to this heading"></a></h1>
+<section id="restructuring-for-moveit-configs-builder-compatibility">
+<h2>Restructuring for moveit_configs_builder compatibility<a class="headerlink" href="#restructuring-for-moveit-configs-builder-compatibility" title="Link to this heading"></a></h2>
+<p>Many config files have been either renamed or rewritten in order to allow this package to use the moveit_configs_builder. In this way, it becomes a good basic example for packages of this kind: from this perspective, aiming for simplicity and not for completeness, it consequently avoids the implementation of all the possible features offered by the configs builder, e.g. the multiple IK solutions available, which are left to the users to be explored.</p>
+</section>
+<section id="robot-description-and-semantic-description-updates">
+<h2>Robot description and semantic description updates<a class="headerlink" href="#robot-description-and-semantic-description-updates" title="Link to this heading"></a></h2>
+<p>Differently from before, the package allows to load the description from the robot_state_publisher’s topic, also adding a “lazy” starting possibility of the move_group. In fact, the launcher waits 10 seconds for the description topic to be available, giving the user enough time to launch the robot_state_publisher.</p>
+<p>In addition to that, now the launcher also allows the move_group to publish the semantic description. Enabled by the argument <code class="docutils literal notranslate"><span class="pre">publish_robot_description_semantic</span></code>, it improves the reusability of the launch file: including the <code class="docutils literal notranslate"><span class="pre">ur_moveit.launch.py</span></code> in a custom launch file and then launching the MoveGroupInterface, allows users to do avoid manual definition for the srdf, since the MoveGroupInterface will pull such info from the move_group node.</p>
+</section>
+<section id="removed-tf-prefix-support">
+<h2>Removed tf_prefix support<a class="headerlink" href="#removed-tf-prefix-support" title="Link to this heading"></a></h2>
+<p>Switching to the moveit_configs_builder doesn’t allow the <code class="docutils literal notranslate"><span class="pre">tf_prefix</span></code> option to work anymore, hence motivating its removal from this package.
+This is due to the presence of config files containing information about joints, like <code class="docutils literal notranslate"><span class="pre">joint_limits.yaml</span></code>: since they can’t handle argument substitution during loading inside the configs builder, the <code class="docutils literal notranslate"><span class="pre">tf_prefix</span></code> can’t be specified for them.
+If necessary, this is left to be handled by the user through a definition for it in a custom moveit_config package.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

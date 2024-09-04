@@ -133,7 +133,8 @@ Available controllers:</p>
 <li><p>scaled_joint_trajectory_controller</p></li>
 </ul>
 <p>Note: <em>joint_state_broadcaster</em>, <em>speed_scaling_state_broadcaster</em>, <em>force_torque_sensor_broadcaster</em>, and <em>io_and_status_controller</em> will always start.</p>
-<p><em>HINT</em> : list all loaded controllers using <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">control</span> <span class="pre">list_controllers</span></code> command.</p>
+<p><em>HINT</em> : list all loaded controllers using <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">control</span> <span class="pre">list_controllers</span></code> command. For this,
+the package <code class="docutils literal notranslate"><span class="pre">ros2controlcli</span></code> must be installed (<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">ros-${ROS_DISTRO}-ros2controlcli</span></code>).</p>
 </li>
 </ul>
 <p><strong>NOTE</strong>: The package can simulate hardware with the ros2_control <code class="docutils literal notranslate"><span class="pre">MockSystem</span></code>. This emulator enables an environment for testing of “piping” of hardware and controllers, as well as testing robot’s descriptions. For more details see <a class="reference external" href="https://ros-controls.github.io/control.ros.org/">ros2_control documentation</a> for more details.</p>
@@ -206,9 +207,9 @@ image</a> provided by Universal Robots (See
 </section>
 <section id="sending-commands-to-controllers">
 <h3>2. Sending commands to controllers<a class="headerlink" href="#sending-commands-to-controllers" title="Link to this heading"></a></h3>
-<p>Before running any commands, first check the controllers’ state using <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">control</span> <span class="pre">list_controllers</span></code>.</p>
+<p>Before running any commands, first check the controllers’ state using <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">control</span> <span class="pre">list_controllers</span></code> (Remember to install the <code class="docutils literal notranslate"><span class="pre">ros2controlcli</span></code> package as mentioned above).</p>
 <ul>
-<li><p>Send some goal to the Joint Trajectory Controller by using a demo node from <a class="reference external" href="https://github.com/ros-controls/ros2_control_demos">ros2_control_demos</a> package by starting  the following command in another terminal:</p>
+<li><p>Send some goal to the Joint Trajectory Controller by using a demo node from <a class="reference external" href="https://github.com/ros-controls/ros2_controllers/blob/master/ros2_controllers_test_nodes/ros2_controllers_test_nodes/publisher_joint_trajectory_controller.py">ros2_controllers_test_nodes</a> package by starting  the following command in another terminal:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ros2</span> <span class="n">launch</span> <span class="n">ur_robot_driver</span> <span class="n">test_scaled_joint_trajectory_controller</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
@@ -225,6 +226,23 @@ image</a> provided by Universal Robots (See
 <p>After a few seconds the robot should move(or jump when using emulation).</p>
 </li>
 </ul>
+<p>In case you want to write your own ROS node to move the robot, there is an example python node included that you can use as a start.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>run<span class="w"> </span>ur_robot_driver<span class="w"> </span>example_move.py
+<span class="go">[INFO] [1720623611.547903428] [jtc_client]: Waiting for action server on scaled_joint_trajectory_controller/follow_joint_trajectory</span>
+<span class="go">[INFO] [1720623611.548368095] [jtc_client]: Executing trajectory traj0</span>
+<span class="go">[INFO] [1720623620.530203889] [jtc_client]: Done with result: SUCCESSFUL</span>
+<span class="go">[INFO] [1720623622.530668700] [jtc_client]: Executing trajectory traj1</span>
+<span class="go">[INFO] [1720623630.582108072] [jtc_client]: Done with result: SUCCESSFUL</span>
+<span class="go">[INFO] [1720623632.582576444] [jtc_client]: Done with all trajectories</span>
+<span class="go">[INFO] [1720623632.582957452] [jtc_client]: Done</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is a very basic node that doesn’t have the same safety checks as the test nodes above. Look
+at the code and make sure that the robot is able to perform the motions safely before running
+this on a real robot!</p>
+</div>
 </section>
 <section id="using-only-robot-description">
 <h3>3. Using only robot description<a class="headerlink" href="#using-only-robot-description" title="Link to this heading"></a></h3>
@@ -261,7 +279,8 @@ configured on the TP, then the additional transformation will show in <code clas
 <section id="custom-urscript-commands">
 <h2>Custom URScript commands<a class="headerlink" href="#custom-urscript-commands" title="Link to this heading"></a></h2>
 <p>The driver’s package contains a <code class="docutils literal notranslate"><span class="pre">urscript_interface</span></code> node that allows sending URScript snippets
-directly to the robot. It gets started in the driver’s launchfiles by default. To use it, simply
+directly to the robot when the robot is in remote control mode.</p>
+<p>It gets started in the driver’s launchfiles by default. To use it, simply
 publish a message to its interface:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># simple popup</span>
 ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/urscript_interface/script_command<span class="w"> </span>std_msgs/msg/String<span class="w"> </span><span class="s1">&#39;{data: popup(&quot;hello&quot;)}&#39;</span><span class="w"> </span>--once
@@ -274,7 +293,8 @@ restarted again. Depending whether you use headless mode or not, you’ll have t
 external_control program again.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Currently, there is no feedback on the code’s correctness. If the code sent to the
+<p>On E-series robots or newer the robot needs to be in remote control mode in order to execute custom URScript commands.
+Currently, there is no feedback on the code’s correctness. If the code sent to the
 robot is incorrect, it will silently not get executed. Make sure that you send valid URScript code!</p>
 </div>
 <section id="multi-line-programs">
