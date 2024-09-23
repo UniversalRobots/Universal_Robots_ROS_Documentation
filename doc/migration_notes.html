@@ -25,6 +25,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Iron to Jazzy" href="migration_jazzy.html" />
     <link rel="prev" title="Build the MoveIt! config" href="ur_tutorials/my_robot_cell/doc/build_moveit_config.html" /> 
 </head>
 
@@ -57,7 +58,10 @@
 <li class="toctree-l1"><a class="reference internal" href="ur_robot_driver/ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ur_tutorials/doc/tutorial_index.html">Tutorial examples</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Migration Notes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Migration Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="migration_jazzy.html">Iron to Jazzy</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -88,96 +92,38 @@
 <h1>Migration Notes<a class="headerlink" href="#migration-notes" title="Link to this heading"></a></h1>
 <section id="iron-to-jazzy">
 <h2>Iron to Jazzy<a class="headerlink" href="#iron-to-jazzy" title="Link to this heading"></a></h2>
-<section id="ur-robot-driver">
-<h3>ur_robot_driver<a class="headerlink" href="#ur-robot-driver" title="Link to this heading"></a></h3>
-<section id="keep-alive-count-robot-receive-timeout">
-<h4>keep_alive_count -&gt; robot_receive_timeout<a class="headerlink" href="#keep-alive-count-robot-receive-timeout" title="Link to this heading"></a></h4>
-<p>Doing real-time control with a robot requires the control pc to conform to certain timing
-constraints. For this <code class="docutils literal notranslate"><span class="pre">keep_alive_count</span></code> was used to estimate the tolerance that was given to the
-ROS controller in terms of multiples of 20 ms. Now the timeout is directly configured using the
-<code class="docutils literal notranslate"><span class="pre">robot_receive_timeout</span></code> parameter of the hardware interface.</p>
-</section>
-<section id="ros2-control-xacro-tag-moved-to-driver-package">
-<h4>ros2_control xacro tag moved to driver package<a class="headerlink" href="#ros2-control-xacro-tag-moved-to-driver-package" title="Link to this heading"></a></h4>
-<p>The description package no longer adds the <code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> tag to the robot’s URDF. This is done
-in the driver now. Therefore, there is a <code class="docutils literal notranslate"><span class="pre">urdf</span></code> folder containing the macro for generating a
-<code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> tag and a ready-to-use xacro file for a UR robot with a <code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> tag.</p>
-<p>If you want to create your own controlled robot, you should mimic that structure, as done e.g. in
-the <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Tutorials/blob/main/my_robot_cell/my_robot_cell_control/urdf/my_robot_cell_controlled.urdf.xacro">custom_workcell_tutorial</a>.</p>
-</section>
-<section id="robot-description-is-now-distributed-by-the-robot-state-publisher">
-<h4>robot_description is now distributed by the robot_state_publisher<a class="headerlink" href="#robot-description-is-now-distributed-by-the-robot-state-publisher" title="Link to this heading"></a></h4>
-<p>The <code class="docutils literal notranslate"><span class="pre">robot_description</span></code> isn’t propagated to all interested parties as a parameter. Instead, only
-the <code class="docutils literal notranslate"><span class="pre">robot_state_publisher</span></code> is provided with the parameter, republishing it on the
-<code class="docutils literal notranslate"><span class="pre">robot_description</span></code> topic.</p>
-<p>Therefore, there is a new launchfile <code class="docutils literal notranslate"><span class="pre">ur_rsp.launch.py</span></code> which takes care about loading the
-description and starting the <code class="docutils literal notranslate"><span class="pre">robot_state_publisher</span></code>. If you create a description that needs
-other parameters than the packaged one, you can write your own <code class="docutils literal notranslate"><span class="pre">rsp</span></code> launch file and pass that as
-<code class="docutils literal notranslate"><span class="pre">description_launchfile</span></code> argument to <code class="docutils literal notranslate"><span class="pre">ur_control.launch.py</span></code>.</p>
-</section>
-<section id="enforce-absolute-paths-in-launchfiles">
-<h4>Enforce absolute paths in launchfiles<a class="headerlink" href="#enforce-absolute-paths-in-launchfiles" title="Link to this heading"></a></h4>
-<p>All launchfiles now expect an absolute path for files that should be used to alter the launch
-process (e.g. description file, controllers file). Before it was expecting e.g. a
-<code class="docutils literal notranslate"><span class="pre">description_package</span></code> and a <code class="docutils literal notranslate"><span class="pre">description_file</span></code> argument with a relative path to the package.</p>
-<p>The default files have not been changed, so unless you specified your custom package / file
-combinations, you will need to update that to an absolute path.</p>
-<p>Absolute paths can still be generated dynamically using a package + relative path structure inside
-other launchfiles or by using <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">pkg</span> <span class="pre">prefix</span></code> on the command line. For example, you can do</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>launch<span class="w"> </span>ur_robot_driver<span class="w"> </span>ur_control.launch.py<span class="w"> </span>ur_type:<span class="o">=</span>ur20<span class="w"> </span>robot_ip:<span class="o">=</span><span class="m">192</span>.168.56.101<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>kinematics_params_file:<span class="o">=</span><span class="k">$(</span>ros2<span class="w"> </span>pkg<span class="w"> </span>prefix<span class="w"> </span>my_robot_cell_control<span class="k">)</span>/share/my_robot_cell_control/config/my_robot_calibration.yaml
-</pre></div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="migration_jazzy.html">Iron to Jazzy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ur_robot_driver/ur_robot_driver/doc/migration/jazzy.html">ur_robot_driver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ur_robot_driver/ur_robot_driver/doc/migration/jazzy.html#keep-alive-count-robot-receive-timeout">keep_alive_count -&gt; robot_receive_timeout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ur_robot_driver/ur_robot_driver/doc/migration/jazzy.html#ros2-control-xacro-tag-moved-to-driver-package">ros2_control xacro tag moved to driver package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ur_robot_driver/ur_robot_driver/doc/migration/jazzy.html#robot-description-is-now-distributed-by-the-robot-state-publisher">robot_description is now distributed by the robot_state_publisher</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ur_robot_driver/ur_robot_driver/doc/migration/jazzy.html#enforce-absolute-paths-in-launchfiles">Enforce absolute paths in launchfiles</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ur_robot_driver/ur_moveit_config/doc/migration/jazzy.html">ur_moveit_config</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ur_robot_driver/ur_moveit_config/doc/migration/jazzy.html#restructuring-for-moveit-configs-builder-compatibility">Restructuring for moveit_configs_builder compatibility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ur_robot_driver/ur_moveit_config/doc/migration/jazzy.html#robot-description-and-semantic-description-updates">Robot description and semantic description updates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ur_robot_driver/ur_moveit_config/doc/migration/jazzy.html#removed-tf-prefix-support">Removed tf_prefix support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ur_description/doc/migration/jazzy.html">ur_description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ur_description/doc/migration/jazzy.html#ros2-control-xacro-tag-moved-to-driver-package">ros2_control xacro tag moved to driver package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ur_description/doc/migration/jazzy.html#enforce-absolute-paths-in-launchfiles">Enforce absolute paths in launchfiles</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ur_simulation_gz/ur_simulation_gz/doc/migration/jazzy.html">ur_simulation_gz</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ur_simulation_gz/ur_simulation_gz/doc/migration/jazzy.html#updated-argument-name-for-tf-prefix">Updated argument name for tf_prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ur_simulation_gz/ur_simulation_gz/doc/migration/jazzy.html#update-arguments-for-moveit">Update arguments for MoveIt!</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ur_simulation_gz/ur_simulation_gz/doc/migration/jazzy.html#enforce-absolute-paths-in-launchfiles">Enforce absolute paths in launchfiles</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 </div>
-</section>
-</section>
-<section id="ur-description">
-<h3>ur_description<a class="headerlink" href="#ur-description" title="Link to this heading"></a></h3>
-<section id="id1">
-<h4>ros2_control xacro tag moved to driver package<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
-<p>The description package no longer adds the <code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> tag to the robot’s URDF. This is done
-in the driver / simulation repos now. The description package still provides macros for the
-system-independent parts such as joint configurations and an example using mock_hardware with the
-robot.</p>
-</section>
-<section id="id2">
-<h4>Enforce absolute paths in launchfiles<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
-<p>The <code class="docutils literal notranslate"><span class="pre">view_ur.launch.py</span></code> launchfile now expects an absolute path for the description file and RViz
-config file. Before it was expecting a <code class="docutils literal notranslate"><span class="pre">description_package</span></code> and a <code class="docutils literal notranslate"><span class="pre">description_file</span></code> argument
-with a relative path to the package.
-This way, users can provide their own description file and / or RViz config without the need to
-replicate the complete package structure.</p>
-<p>Absolute paths can still be generated dynamically using a package + relative path structure inside
-other launchfiles or by using <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">pkg</span> <span class="pre">prefix</span></code> on the command line.</p>
-</section>
-</section>
-<section id="ur-simulation-gz">
-<h3>ur_simulation_gz<a class="headerlink" href="#ur-simulation-gz" title="Link to this heading"></a></h3>
-<section id="updated-argument-name-for-tf-prefix">
-<h4>Updated argument name for tf_prefix<a class="headerlink" href="#updated-argument-name-for-tf-prefix" title="Link to this heading"></a></h4>
-<p>To have coherency between the driver and the GZ simulation, the launch argument to use tf_prefix has been changed from <code class="docutils literal notranslate"><span class="pre">prefix</span></code> to <code class="docutils literal notranslate"><span class="pre">tf_prefix</span></code>. Moreover, differently from the driver, using such argument for this package requires the user to also provide their own controllers file, as explained in <a class="reference internal" href="ur_simulation_gz/ur_simulation_gz/doc/usage.html#tf-prefix-gz"><span class="std std-ref">tf_prefix for GZ</span></a>.</p>
-</section>
-<section id="update-arguments-for-moveit">
-<h4>Update arguments for MoveIt!<a class="headerlink" href="#update-arguments-for-moveit" title="Link to this heading"></a></h4>
-<p>As part of the restructuring of the <code class="docutils literal notranslate"><span class="pre">ur_moveit_config</span></code> pkg, all the arguments that were previously passed to <code class="docutils literal notranslate"><span class="pre">ur_moveit.launch.py</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">description_file</span></code>, <code class="docutils literal notranslate"><span class="pre">safety_limits</span></code> or <code class="docutils literal notranslate"><span class="pre">prefix</span></code>) have been removed, in favor of the only <code class="docutils literal notranslate"><span class="pre">moveit_launch_file</span></code> argument.</p>
-<p>This is due to the underlying assumption for the specified launch file to be part of a custom moveit_config pkg that already contains the correct references to a custom description pkg and related parameters.</p>
-<p>In particular, the
-option of specifying a <code class="docutils literal notranslate"><span class="pre">tf_prefix</span></code> for the <code class="docutils literal notranslate"><span class="pre">ur_moveit_config</span></code> has been removed, hence if it is needed in a GZ simulation with MoveIt!, it is expected to be handled by the user through a proper definition for it in a custom moveit_config.</p>
-</section>
-<section id="id3">
-<h4>Enforce absolute paths in launchfiles<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
-<p>All launchfiles now expect an absolute path for files that should be used to alter the launch
-process (e.g. description file, controllers file). Before it was expecting e.g. a
-<code class="docutils literal notranslate"><span class="pre">description_package</span></code> and a <code class="docutils literal notranslate"><span class="pre">description_file</span></code> argument with a relative path to the package.</p>
-<p>The default files have not been changed, so unless you specified your custom package / file
-combinations, you won’t need to update that to an absolute path.</p>
-<p>Absolute paths can still be generated dynamically using a package + relative path structure inside
-other launchfiles or by using <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">pkg</span> <span class="pre">prefix</span></code> on the command line. For example, you can do</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>launch<span class="w"> </span>ur_gz_simulation<span class="w"> </span>ur_sim_control.launch.py<span class="w"> </span>ur_type:<span class="o">=</span>ur20<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>controllers_file:<span class="o">=</span><span class="k">$(</span>ros2<span class="w"> </span>pkg<span class="w"> </span>prefix<span class="w"> </span>my_robot_cell_control<span class="k">)</span>/share/my_robot_cell_control/config/ros2_controllers.yaml
-</pre></div>
-</div>
-</section>
-</section>
 </section>
 </section>
 
@@ -186,6 +132,7 @@ other launchfiles or by using <code class="docutils literal notranslate"><span c
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="ur_tutorials/my_robot_cell/doc/build_moveit_config.html" class="btn btn-neutral float-left" title="Build the MoveIt! config" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="migration_jazzy.html" class="btn btn-neutral float-right" title="Iron to Jazzy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
