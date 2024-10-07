@@ -1,0 +1,223 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UR Hardware interface parameters &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=7ab3649f" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/logo.png"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Dashboard client" href="dashboard_client.html" />
+    <link rel="prev" title="Setting up the tool communication on an e-Series robot" href="setup_tool_communication.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Documentation
+              <img src="../../../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_client_library/doc/index.html">ur_client_library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">ur_robot_driver</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/toc.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/toc.html">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operation_modes.html">Operation modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_tool_communication.html">Setting up the tool communication on an e-Series robot</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">UR Hardware interface parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dashboard_client.html">Dashboard client</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../migration_notes.html">Migration Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Universal Robots ROS 2 Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">ur_robot_driver</a></li>
+      <li class="breadcrumb-item active">UR Hardware interface parameters</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_robot_driver/ur_robot_driver/doc/hardware_interface_parameters.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ur-hardware-interface-parameters">
+<h1>UR Hardware interface parameters<a class="headerlink" href="#ur-hardware-interface-parameters" title="Link to this heading"></a></h1>
+<p>Note that parameters are passed through the ros2_control xacro definition.</p>
+<section id="headless-mode">
+<h2>headless_mode<a class="headerlink" href="#headless-mode" title="Link to this heading"></a></h2>
+<p>Start robot in headless mode. This does not require the ‘External Control’ URCap to be running on the robot, but this will send the URScript to the robot directly. On e-Series robots this requires the robot to run in ‘remote-control’ mode.</p>
+</section>
+<section id="input-recipe-filename-required">
+<h2>input_recipe_filename (Required)<a class="headerlink" href="#input-recipe-filename-required" title="Link to this heading"></a></h2>
+<p>Path to the file containing the recipe used for requesting RTDE inputs.</p>
+</section>
+<section id="kinematics-hash-required">
+<h2>kinematics/hash (Required)<a class="headerlink" href="#kinematics-hash-required" title="Link to this heading"></a></h2>
+<p>Hash of the calibration reported by the robot. This is used for validating the robot description is
+using the correct calibration. If the robot’s calibration doesn’t match this hash, an error will be
+printed. You can use the robot as usual, however Cartesian poses of the endeffector might be
+inaccurate. See the “ur_calibration” package on help how to generate your own hash matching your
+actual robot.</p>
+</section>
+<section id="non-blocking-read-default-true">
+<h2>non_blocking_read (default: “true”)<a class="headerlink" href="#non-blocking-read-default-true" title="Link to this heading"></a></h2>
+<p>If set to false, the ROS control cycle will wait for the robot to send a status update. Tests have
+shown that better real-time performance is achievable when setting this to <code class="docutils literal notranslate"><span class="pre">true</span></code>. Required to be
+set to <code class="docutils literal notranslate"><span class="pre">true</span></code> when combining with other hardware components.</p>
+</section>
+<section id="output-recipe-filename-required">
+<h2>output_recipe_filename (Required)<a class="headerlink" href="#output-recipe-filename-required" title="Link to this heading"></a></h2>
+<p>Path to the file containing the recipe used for requesting RTDE outputs.</p>
+</section>
+<section id="reverse-port-required">
+<h2>reverse_port (Required)<a class="headerlink" href="#reverse-port-required" title="Link to this heading"></a></h2>
+<p>Port that will be used by to communicate between the robot controller and the driver. This port needs to be free and will be opened on the host running the driver.</p>
+</section>
+<section id="robot-ip-required">
+<h2>robot_ip (Required)<a class="headerlink" href="#robot-ip-required" title="Link to this heading"></a></h2>
+<p>The robot’s IP address.</p>
+</section>
+<section id="script-filename-required">
+<h2>script_filename (Required)<a class="headerlink" href="#script-filename-required" title="Link to this heading"></a></h2>
+<p>Path to the urscript code that will be sent to the robot.</p>
+</section>
+<section id="script-sender-port-required">
+<h2>script_sender_port (Required)<a class="headerlink" href="#script-sender-port-required" title="Link to this heading"></a></h2>
+<p>Network port which the driver provides the URScript program that needs to run on the robot. This number needs to be configured for the [External Control URCap](<a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ExternalControl_URCap">https://github.com/UniversalRobots/Universal_Robots_ExternalControl_URCap</a>).
+This port needs to be free and will be opened on the host running the driver.</p>
+</section>
+<section id="servoj-gain-required">
+<h2>servoj_gain (Required)<a class="headerlink" href="#servoj-gain-required" title="Link to this heading"></a></h2>
+<p>Specify the gain for the underlying servoj command. This will be used whenever position control is
+active. A higher value will lead to sharper motions, but might also introduce
+higher jerks and vibrations.</p>
+<p>Range: [100 - 3000]</p>
+</section>
+<section id="servoj-lookahead-time-required">
+<h2>servoj_lookahead_time (Required)<a class="headerlink" href="#servoj-lookahead-time-required" title="Link to this heading"></a></h2>
+<p>Specify lookahead_time parameter of underlying servoj command. This will be used whenever position
+control is active. A higher value will result in smoother trajectories, but will also introduce a
+higher delay between the commands sent from ROS and the motion being executed on the robot.</p>
+<p>Unit: seconds, range: [0.03 - 0.2]</p>
+</section>
+<section id="tool-baud-rate-required">
+<h2>tool_baud_rate (Required)<a class="headerlink" href="#tool-baud-rate-required" title="Link to this heading"></a></h2>
+<p>Baud rate used for tool communication. Will be set as soon as the UR-Program on the robot is started. See UR documentation for valid baud rates.  Note: This parameter is only evaluated, when the parameter “use_tool_communication” is set to <code class="docutils literal notranslate"><span class="pre">true</span></code>.  Then, this parameter is required.</p>
+<p>This can also be configured using the robot teach pendant. Remember to save the installation on the robot to keep the setting after reboot.</p>
+</section>
+<section id="tool-parity-required">
+<h2>tool_parity (Required)<a class="headerlink" href="#tool-parity-required" title="Link to this heading"></a></h2>
+<p>Parity used for tool communication. Will be set as soon as the UR-Program on the robot is started. Can be 0 (None), 1 (odd) and 2 (even).  Note: This parameter is only evaluated, when the parameter “use_tool_communication” is set to <code class="docutils literal notranslate"><span class="pre">true</span></code>.  Then, this parameter is required.</p>
+<p>This can also be configured using the robot teach pendant. Remember to save the installation on the robot to keep the setting after reboot.</p>
+</section>
+<section id="tool-rx-idle-chars-required">
+<h2>tool_rx_idle_chars (Required)<a class="headerlink" href="#tool-rx-idle-chars-required" title="Link to this heading"></a></h2>
+<p>Number of idle chars for the RX unit used for tool communication. Will be set as soon as the UR-Program on the robot is started. Valid values: min=1.0, max=40.0  Note: This parameter is only evaluated, when the parameter “use_tool_communication” is set to <code class="docutils literal notranslate"><span class="pre">true</span></code>.  Then, this parameter is required.</p>
+<p>This can also be configured using the robot teach pendant. Remember to save the installation on the robot to keep the setting after reboot.</p>
+</section>
+<section id="tool-stop-bits-required">
+<h2>tool_stop_bits (Required)<a class="headerlink" href="#tool-stop-bits-required" title="Link to this heading"></a></h2>
+<p>Number of stop bits used for tool communication. Will be set as soon as the UR-Program on the robot is started. Can be 1 or 2.  Note: This parameter is only evaluated, when the parameter “use_tool_communication” is set to <code class="docutils literal notranslate"><span class="pre">true</span></code>.  Then, this parameter is required.</p>
+<p>This can also be configured using the robot teach pendant. Remember to save the installation on the robot to keep the setting after reboot.</p>
+</section>
+<section id="tool-tx-idle-chars-required">
+<h2>tool_tx_idle_chars (Required)<a class="headerlink" href="#tool-tx-idle-chars-required" title="Link to this heading"></a></h2>
+<p>Number of idle chars for the TX unit used for tool communication. Will be set as soon as the UR-Program on the robot is started. Valid values: min=0.0, max=40.0  Note: This parameter is only evaluated, when the parameter “use_tool_communication” is set to <code class="docutils literal notranslate"><span class="pre">true</span></code>.  Then, this parameter is required.</p>
+<p>This can also be configured using the robot teach pendant. Remember to save the installation on the robot to keep the setting after reboot.</p>
+</section>
+<section id="tool-voltage-required">
+<h2>tool_voltage (Required)<a class="headerlink" href="#tool-voltage-required" title="Link to this heading"></a></h2>
+<p>Tool voltage that will be set as soon as the UR-Program on the robot is started. Note: This parameter is only evaluated, when the parameter “use_tool_communication” is set to <code class="docutils literal notranslate"><span class="pre">true</span></code>. Then, this parameter is required.</p>
+<p>This can also be configured using the robot teach pendant. Remember to save the installation on the robot to keep the setting after reboot.</p>
+</section>
+<section id="use-tool-communication-required">
+<h2>use_tool_communication (Required)<a class="headerlink" href="#use-tool-communication-required" title="Link to this heading"></a></h2>
+<p>Should the tool’s RS485 interface be forwarded to the ROS machine? This is only available on e-Series models. Setting this parameter to <code class="docutils literal notranslate"><span class="pre">true</span></code> requires multiple other parameters to be set as well.
+For more info please see <a class="reference internal" href="setup_tool_communication.html#setup-tool-communication"><span class="std std-ref">tool communication setup guide</span></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="setup_tool_communication.html" class="btn btn-neutral float-left" title="Setting up the tool communication on an e-Series robot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dashboard_client.html" class="btn btn-neutral float-right" title="Dashboard client" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,269 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Usage &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=7ab3649f" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+
+  
+    <link rel="shortcut icon" href="../../../../../_static/logo.png"/>
+      <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Startup the driver" href="startup.html" />
+    <link rel="prev" title="Setup URSim with Docker" href="../installation/ursim_docker.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Documentation
+              <img src="../../../../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_client_library/doc/index.html">ur_client_library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">ur_robot_driver</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/toc.html">Installation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="startup.html">Startup the driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="move.html">Move the robot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.html">Controllers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html">Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="script_code.html">Sending URScript code to the robot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../operation_modes.html">Operation modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup_tool_communication.html">Setting up the tool communication on an e-Series robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hardware_interface_parameters.html">UR Hardware interface parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dashboard_client.html">Dashboard client</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../migration_notes.html">Migration Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Universal Robots ROS 2 Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">ur_robot_driver</a></li>
+      <li class="breadcrumb-item active">Usage</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_robot_driver/ur_robot_driver/doc/usage/toc.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h1>
+<p>This chapter explains how to use the <code class="docutils literal notranslate"><span class="pre">ur_robot_driver</span></code></p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="startup.html">Startup the driver</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#prepare-the-robot">Prepare the robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#launch-files">Launch files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#finish-startup-on-the-robot">Finish startup on the robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#continuation-after-interruptions">Continuation after interruptions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="move.html">Move the robot</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="move.html#using-moveit">Using MoveIt</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html#where-are-controllers-defined">Where are controllers defined?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html#how-do-controllers-get-loaded-and-started">How do controllers get loaded and started?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html#read-only-broadcasters">Read-only broadcasters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controllers.html#joint-state-broadcaster">joint_state_broadcaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.html#speed-scaling-state-broadcaster">speed_scaling_state_broadcaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.html#force-torque-sensor-broadcaster">force_torque_sensor_broadcaster</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html#commanding-controllers">Commanding controllers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controllers.html#scaled-joint-trajectory-controller-default-motion-controller">scaled_joint_trajectory_controller (Default motion controller)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.html#io-and-status-controller">io_and_status_controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.html#forward-velocity-controller">forward_velocity_controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.html#forward-position-controller">forward_position_controller</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="simulation.html">Simulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#usage-with-official-ur-simulator">Usage with official UR simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#mock-hardware">Mock hardware</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="script_code.html">Sending URScript code to the robot</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="script_code.html#custom-urscript-commands">Custom URScript commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="script_code.html#multi-line-programs">Multi-line programs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="script_code.html#non-interrupting-programs">Non-interrupting programs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="quick-start">
+<h2>Quick start<a class="headerlink" href="#quick-start" title="Link to this heading"></a></h2>
+<section id="driver-startup">
+<h3>Driver startup<a class="headerlink" href="#driver-startup" title="Link to this heading"></a></h3>
+<ul>
+<li><p>To start it with hardware, use:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>launch<span class="w"> </span>ur_robot_driver<span class="w"> </span>ur_control.launch.py<span class="w"> </span>ur_type:<span class="o">=</span>&lt;UR_TYPE&gt;<span class="w"> </span>robot_ip:<span class="o">=</span>&lt;IP_OF_THE_ROBOT&gt;<span class="w"> </span>launch_rviz:<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+<p>After starting the launch file start the external_control URCap program from the pendant, as described <a class="reference internal" href="startup.html#robot-startup-program"><span class="std std-ref">here</span></a>.</p>
+</li>
+<li><p>To run it with URSim check details about it in <a class="reference internal" href="simulation.html#usage-with-official-ur-simulator"><span class="std std-ref">this section</span></a>.</p></li>
+<li><p>To use mocked hardware (capability of ros2_control), use <code class="docutils literal notranslate"><span class="pre">use_mock_hardware</span></code> argument, like:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>launch<span class="w"> </span>ur_robot_driver<span class="w"> </span>ur_control.launch.py<span class="w"> </span>ur_type:<span class="o">=</span>ur5e<span class="w"> </span>robot_ip:<span class="o">=</span>yyy.yyy.yyy.yyy<span class="w"> </span>use_mock_hardware:<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="sending-commands-to-controllers">
+<h3>Sending commands to controllers<a class="headerlink" href="#sending-commands-to-controllers" title="Link to this heading"></a></h3>
+<p>Once the driver is started, you can use it like any other ROS robot arm driver by sending
+trajectories to the <code class="docutils literal notranslate"><span class="pre">/scaled_joint_trajectory_controller/follow_joint_trajectory</span></code> action. If
+you’re new to that, please have a look at the section “<a class="reference internal" href="move.html#move-the-robot"><span class="std std-ref">Move the robot</span></a>”.</p>
+</section>
+</section>
+<section id="robot-frames">
+<h2>Robot frames<a class="headerlink" href="#robot-frames" title="Link to this heading"></a></h2>
+<p>While most tf frames come from the URDF and are published from the <code class="docutils literal notranslate"><span class="pre">robot_state_publisher</span></code>, there
+are a couple of things to know:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">base</span></code> frame is the robot’s base as the robot controller sees it.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">tool0</span></code> is the tool frame as calculated using forward kinematics. If there is no additional
+tool configured on the Teach pendant (TP) and the URDF uses the specific robot’s
+<a class="reference internal" href="../installation/robot_setup.html#calibration-extraction"><span class="std std-ref">calibration</span></a> the lookup from <code class="docutils literal notranslate"><span class="pre">base</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">tool0</span></code> should be the
+same as the tcp pose shown on the TP when the feature “Base” is selected.</p></li>
+</ul>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<p>This section will cover some previously raised issues.</p>
+<section id="i-started-everything-but-i-cannot-control-the-robot">
+<h3>I started everything, but I cannot control the robot<a class="headerlink" href="#i-started-everything-but-i-cannot-control-the-robot" title="Link to this heading"></a></h3>
+<p>The driver is started, but trajectory execution doesn’t work. Instead, the driver logs</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Can</span><span class="s1">&#39;t accept new action goals. Controller is not running.</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">External</span> <span class="pre">Control</span></code> program node from the URCap is not running on the robot. Make sure to
+create a program containing this node on the robot and start it using the “Play” button
+<a class="reference internal" href="../../../../../_images/play_button.svg"><img alt="play_button" src="../../../../../_images/play_button.svg" style="width: 20px; height: 20px;" /></a>. Inside the ROS terminal you should see the output <code class="docutils literal notranslate"><span class="pre">Robot</span> <span class="pre">connected</span> <span class="pre">to</span> <span class="pre">reverse</span>
+<span class="pre">interface.</span> <span class="pre">Ready</span> <span class="pre">to</span> <span class="pre">receive</span> <span class="pre">control</span> <span class="pre">commands.</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When interacting with the teach pendant, or sending other primary programs to the robot, the
+program will be stopped. On the ROS terminal you will see an output <code class="docutils literal notranslate"><span class="pre">Connection</span> <span class="pre">to</span> <span class="pre">reverse</span> <span class="pre">interface</span> <span class="pre">dropped.</span></code>. Please see the section <a class="reference internal" href="startup.html#continuation-after-interruptions"><span class="std std-ref">Continuation after interruptions</span></a> for details on how to continue.</p>
+</div>
+<p>In general, make sure you’re starting up the robot as explained <a class="reference internal" href="startup.html#ur-robot-driver-startup"><span class="std std-ref">here</span></a>.</p>
+</section>
+<section id="when-starting-the-program-on-the-teach-pendant-i-get-an-error-the-connection-to-the-remote-pc-could-not-be-established">
+<h3>When starting the program on the teach pendant, I get an error “The connection to the remote PC could not be established”<a class="headerlink" href="#when-starting-the-program-on-the-teach-pendant-i-get-an-error-the-connection-to-the-remote-pc-could-not-be-established" title="Link to this heading"></a></h3>
+<p>Make sure, the IP address setup is correct, as described in the setup guides
+(<a class="reference internal" href="../installation/install_urcap_cb3.html#install-urcap-cb3"><span class="std std-ref">CB3 robots</span></a>, <a class="reference internal" href="../installation/install_urcap_e_series.html#install-urcap-e-series"><span class="std std-ref">e-Series robots</span></a>)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This error can also show up, when the ROS driver is not running.</p>
+</div>
+</section>
+<section id="when-starting-the-driver-it-crashes-with-variable-speed-slider-mask-is-currently-controlled-by-another-rtde-client">
+<h3>When starting the driver, it crashes with “Variable ‘speed_slider_mask’ is currently controlled by another RTDE client”<a class="headerlink" href="#when-starting-the-driver-it-crashes-with-variable-speed-slider-mask-is-currently-controlled-by-another-rtde-client" title="Link to this heading"></a></h3>
+<p>Probably, there is a fieldbus enabled on the robot. Currently, this driver cannot be used together
+with an enabled fieldbus. Disable any fieldbus to workaround this error. <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/issues/204">ROS 1 driver issue
+#204</a> contains a guide
+how to do
+this.</p>
+</section>
+<section id="i-sent-raw-script-code-to-the-robot-but-it-is-not-executed">
+<h3>I sent raw script code to the robot but it is not executed<a class="headerlink" href="#i-sent-raw-script-code-to-the-robot-but-it-is-not-executed" title="Link to this heading"></a></h3>
+<p>On the e-Series the robot has to be in <a class="reference internal" href="../operation_modes.html#operation-modes"><span class="std std-ref">remote control mode</span></a> to accept script code from an external source. This has to be switched from the Teach-Pendant.</p>
+</section>
+<section id="using-the-dashboard-doesn-t-work">
+<h3>Using the dashboard doesn’t work<a class="headerlink" href="#using-the-dashboard-doesn-t-work" title="Link to this heading"></a></h3>
+<p>On the e-Series the robot has to be in <a class="reference internal" href="../operation_modes.html#operation-modes"><span class="std std-ref">remote control mode</span></a> to accept certain calls on the dashboard server. See <a class="reference internal" href="../dashboard_client.html#dashboard-client"><span class="std std-ref">Available dashboard commands</span></a> for details.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../installation/ursim_docker.html" class="btn btn-neutral float-left" title="Setup URSim with Docker" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="startup.html" class="btn btn-neutral float-right" title="Startup the driver" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

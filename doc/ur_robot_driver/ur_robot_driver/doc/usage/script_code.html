@@ -1,0 +1,191 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sending URScript code to the robot &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=7ab3649f" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+
+  
+    <link rel="shortcut icon" href="../../../../../_static/logo.png"/>
+      <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Operation modes" href="../operation_modes.html" />
+    <link rel="prev" title="Simulation" href="simulation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Documentation
+              <img src="../../../../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_client_library/doc/index.html">ur_client_library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">ur_robot_driver</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/toc.html">Installation</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="toc.html">Usage</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="startup.html">Startup the driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="move.html">Move the robot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.html">Controllers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html">Simulation</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Sending URScript code to the robot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../operation_modes.html">Operation modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup_tool_communication.html">Setting up the tool communication on an e-Series robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hardware_interface_parameters.html">UR Hardware interface parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dashboard_client.html">Dashboard client</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../migration_notes.html">Migration Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Universal Robots ROS 2 Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">ur_robot_driver</a></li>
+          <li class="breadcrumb-item"><a href="toc.html">Usage</a></li>
+      <li class="breadcrumb-item active">Sending URScript code to the robot</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_robot_driver/ur_robot_driver/doc/usage/script_code.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sending-urscript-code-to-the-robot">
+<h1>Sending URScript code to the robot<a class="headerlink" href="#sending-urscript-code-to-the-robot" title="Link to this heading"></a></h1>
+<section id="custom-urscript-commands">
+<span id="script-command-interface"></span><h2>Custom URScript commands<a class="headerlink" href="#custom-urscript-commands" title="Link to this heading"></a></h2>
+<p>The driver’s package contains a <code class="docutils literal notranslate"><span class="pre">urscript_interface</span></code> node that allows sending URScript snippets
+directly to the robot when the robot is in remote control mode.</p>
+<p>It gets started in the driver’s launchfiles by default. To use it, simply
+publish a message to its interface:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># simple popup</span>
+ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/urscript_interface/script_command<span class="w"> </span>std_msgs/msg/String<span class="w"> </span><span class="s1">&#39;{data: popup(&quot;hello&quot;)}&#39;</span><span class="w"> </span>--once
+</pre></div>
+</div>
+<p>Be aware, that running a program on this interface (meaning publishing script code to that interface) stops any running program on the robot.
+Thus, the motion-interpreting program that is started by the driver gets stopped and has to be
+restarted again. Depending whether you use <a class="reference internal" href="../operation_modes.html#headless-mode"><span class="std std-ref">Headless mode</span></a> or not, you’ll have to call the
+<code class="docutils literal notranslate"><span class="pre">resend_program</span></code> service or press the <code class="docutils literal notranslate"><span class="pre">play</span></code> button on the teach panel to start the
+external control URCap program again.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On E-series robots or newer the robot needs to be in <em>remote control mode</em> in order to execute custom URScript commands.
+Currently, there is no feedback on the code’s correctness. If the code sent to the
+robot is incorrect, it will silently not get executed. Make sure that you send valid URScript code!</p>
+</div>
+<section id="multi-line-programs">
+<h3>Multi-line programs<a class="headerlink" href="#multi-line-programs" title="Link to this heading"></a></h3>
+<p>When you want to define multi-line programs, make sure to check that newlines are correctly
+interpreted from your message. For this purpose the driver prints the program as it is being sent to
+the robot. When sending a multi-line program from the command line, you can use an empty line
+between each statement:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>/urscript_interface/script_command<span class="w"> </span>std_msgs/msg/String<span class="w"> </span><span class="s1">&#39;{data:</span>
+<span class="s1">&quot;def my_prog():</span>
+
+<span class="s1">  set_digital_out(1, True)</span>
+
+<span class="s1">  movej(p[0.2, 0.3, 0.8, 0, 0, 3.14], a=1.2, v=0.25, r=0)</span>
+
+<span class="s1">  textmsg(\&quot;motion finished\&quot;)</span>
+
+<span class="s1">end&quot;}&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="non-interrupting-programs">
+<h3>Non-interrupting programs<a class="headerlink" href="#non-interrupting-programs" title="Link to this heading"></a></h3>
+<p>To prevent interrupting the main program, you can send certain commands as <a class="reference external" href="https://www.universal-robots.com/articles/ur/programming/secondary-program/">secondary programs</a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>/urscript_interface/script_command<span class="w"> </span>std_msgs/msg/String<span class="w"> </span><span class="s1">&#39;{data:</span>
+<span class="s1">  &quot;sec my_prog():</span>
+
+<span class="s1">    textmsg(\&quot;This is a log message\&quot;)</span>
+
+<span class="s1">  end&quot;}&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="simulation.html" class="btn btn-neutral float-left" title="Simulation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../operation_modes.html" class="btn btn-neutral float-right" title="Operation modes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

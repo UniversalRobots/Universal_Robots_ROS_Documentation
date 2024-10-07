@@ -1,0 +1,186 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operation modes &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=7ab3649f" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/logo.png"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Setting up the tool communication on an e-Series robot" href="setup_tool_communication.html" />
+    <link rel="prev" title="Sending URScript code to the robot" href="usage/script_code.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Documentation
+              <img src="../../../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_client_library/doc/index.html">ur_client_library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">ur_robot_driver</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/toc.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/toc.html">Usage</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Operation modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_tool_communication.html">Setting up the tool communication on an e-Series robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html">UR Hardware interface parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dashboard_client.html">Dashboard client</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../migration_notes.html">Migration Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Universal Robots ROS 2 Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">ur_robot_driver</a></li>
+      <li class="breadcrumb-item active">Operation modes</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_robot_driver/ur_robot_driver/doc/operation_modes.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="operation-modes">
+<span id="id1"></span><h1>Operation modes<a class="headerlink" href="#operation-modes" title="Link to this heading"></a></h1>
+<p>There are two different sets of <strong>modes</strong> that are used throughout this documentation:</p>
+<ul class="simple">
+<li><p>The ROS2 driver’s mode of operation: <em>Teach Pendant mode</em> and <em>Headless mode</em>.</p></li>
+<li><p>The Robot’s control mode: <em>local control mode</em> and <em>remote control mode</em>. (Not applicable to the CB3 series)</p></li>
+</ul>
+<p>Both will be explained below.</p>
+<section id="robot-s-control-modes">
+<h2>Robot’s control modes<a class="headerlink" href="#robot-s-control-modes" title="Link to this heading"></a></h2>
+<p>E-series robots can operate in different command modes: It can be either in <em>local control mode</em> where the teach pendant is the single point of control, or in <em>remote control mode</em> where the teach pendant is locked and cannot be used to start any motion, including freedrive. Note that the ability to change to <em>remote control mode</em> has to be explicitly enabled in the robot’s settings under Settings -&gt; System -&gt; Remote Control. See the [robot manual](<a class="reference external" href="https://myur.universal-robots.com/manuals">https://myur.universal-robots.com/manuals</a>) for details.</p>
+<p>The remote control mode is needed for many aspects of this driver such as</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#headless-mode"><span class="std std-ref">Headless mode</span></a></p></li>
+<li><p><a class="reference internal" href="usage/script_code.html#script-command-interface"><span class="std std-ref">Sending script code to the robot</span></a></p></li>
+<li><p>Many <a class="reference internal" href="dashboard_client.html#dashboard-client"><span class="std std-ref">dashboard</span></a> functionalities such as</p>
+<ul>
+<li><p>restarting the robot after protective / EM-Stop</p></li>
+<li><p>powering on the robot and do brake release</p></li>
+<li><p>loading and starting programs</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="driver-s-operation-modes">
+<h2>Driver’s operation modes<a class="headerlink" href="#driver-s-operation-modes" title="Link to this heading"></a></h2>
+<p>There are two fundamentally different control modes of the UR ROS driver to control a UR robot or the URSim robot simulator:
+- <em>Teach Pendant mode</em> using the <a class="reference internal" href="installation/install_urcap_e_series.html#install-urcap-e-series"><span class="std std-ref">External Control URCap</span></a>
+- <em>Headless mode</em> that works without interacting with Teach pendant, when <em>remote control mode</em> has been selected on the teach pendant.</p>
+<section id="teach-pendant-mode">
+<span id="id2"></span><h3>Teach Pendant Mode<a class="headerlink" href="#teach-pendant-mode" title="Link to this heading"></a></h3>
+<p>In Teach Pendant mode you will need the <a class="reference internal" href="installation/install_urcap_e_series.html#install-urcap-e-series"><span class="std std-ref">External Control URCap</span></a>
+installed on the robot. Please follow the installation guidelines for the <a class="reference internal" href="installation/install_urcap_cb3.html#install-urcap-cb3"><span class="std std-ref">CB3</span></a> or <a class="reference internal" href="installation/install_urcap_e_series.html#install-urcap-e-series"><span class="std std-ref">E-series</span></a>. Remember to set the correct IP address for the ROS driver host computer, and ensure the configured port number matches the <code class="docutils literal notranslate"><span class="pre">script_sender_port</span></code> defined in the ROS driver’s launch arguments, default is 50002.</p>
+<p>With that, create a program containing the <em>External Control</em> program node and press “play” on the teach pendant to start the program.
+Hereafter the URCap will request script code from the ROS driver and execute it, once the program enters that node. In addition, the ROS driver can return the control to the Teach pendent program. This gives the possibility to combine the teach pendant program and the use of the ROS driver.</p>
+<p>Please note that a running program will stop as soon as another program is sent to the robot, either by sending it directly through this driver or by pressing any motion-related button on the teach pendant. Therefore, the ROS drivers will not be able to send commands to the robot again afterward until the ROS driver’s program has been restarted. This can be done using the “play” button on the teach pendant.</p>
+<p>If this is necessary, you will see the output <code class="docutils literal notranslate"><span class="pre">Connection</span> <span class="pre">to</span> <span class="pre">reverse</span> <span class="pre">interface</span> <span class="pre">dropped.</span></code> from the driver.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is also possible to use the ROS driver’s <em>Teach Pendant mode</em> with the robot’s <em>remote control
+mode</em> together. In this case you will need to load and start the program containing the <em>External
+Control URCap</em> program node through the <a class="reference internal" href="dashboard_client.html#dashboard-client"><span class="std std-ref">Dashboard client</span></a>’s <code class="docutils literal notranslate"><span class="pre">load_program</span></code> and <code class="docutils literal notranslate"><span class="pre">play</span></code>
+services.</p>
+</div>
+</section>
+<section id="headless-mode">
+<span id="id3"></span><h3>Headless mode<a class="headerlink" href="#headless-mode" title="Link to this heading"></a></h3>
+<p>When headless mode is activated while launching the ROS driver, the URScript code will be sent directly to the robot controller and started directly.</p>
+<p>Please note, that a running program will stop as soon as another program is sent to the robot, either by sending it directly through this driver, or by pressing any motion-related button on the teach pendant. Therefore, the ROS driver will not be able to send commands to the robot again afterward until the ROS driver’s program has been restarted.
+The robot program can be restarted using the <code class="docutils literal notranslate"><span class="pre">/io_and_status_controller/resend_robot_program</span></code> service.
+If this is necessary, you will see the output <code class="docutils literal notranslate"><span class="pre">Connection</span> <span class="pre">to</span> <span class="pre">reverse</span> <span class="pre">interface</span> <span class="pre">dropped.</span></code> from the driver.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On e-Series robots and newer, the robot must be in <em>remote control mode</em> as explained above in order to use the
+ROS driver’s <em>Headless mode</em>.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="usage/script_code.html" class="btn btn-neutral float-left" title="Sending URScript code to the robot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="setup_tool_communication.html" class="btn btn-neutral float-right" title="Setting up the tool communication on an e-Series robot" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

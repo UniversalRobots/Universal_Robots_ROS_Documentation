@@ -1,0 +1,244 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard client &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=7ab3649f" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/logo.png"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="ur_calibration" href="../../ur_calibration/doc/index.html" />
+    <link rel="prev" title="UR Hardware interface parameters" href="hardware_interface_parameters.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Documentation
+              <img src="../../../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_client_library/doc/index.html">ur_client_library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">ur_robot_driver</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/toc.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/toc.html">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operation_modes.html">Operation modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_tool_communication.html">Setting up the tool communication on an e-Series robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html">UR Hardware interface parameters</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Dashboard client</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../migration_notes.html">Migration Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Universal Robots ROS 2 Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">ur_robot_driver</a></li>
+      <li class="breadcrumb-item active">Dashboard client</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_robot_driver/ur_robot_driver/doc/dashboard_client.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dashboard-client">
+<span id="id1"></span><h1>Dashboard client<a class="headerlink" href="#dashboard-client" title="Link to this heading"></a></h1>
+<section id="advertised-services">
+<h2>Advertised Services<a class="headerlink" href="#advertised-services" title="Link to this heading"></a></h2>
+<section id="add-to-log-ur-dashboard-msgs-addtolog">
+<h3>add_to_log (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/interfaces/srv/AddToLog.html">ur_dashboard_msgs/AddToLog</a>)<a class="headerlink" href="#add-to-log-ur-dashboard-msgs-addtolog" title="Link to this heading"></a></h3>
+<p>Service to add a message to the robot’s log</p>
+</section>
+<section id="brake-release-std-srvs-trigger">
+<h3>brake_release (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/interfaces/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#brake-release-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>Service to release the brakes. If the robot is currently powered off, it will get powered on the fly.</p>
+</section>
+<section id="clear-operational-mode-std-srvs-trigger">
+<h3>clear_operational_mode (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/interfaces/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#clear-operational-mode-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>If this service is called the operational mode can again be changed from PolyScope, and the user password is enabled.</p>
+</section>
+<section id="close-popup-std-srvs-trigger">
+<h3>close_popup (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/interfaces/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#close-popup-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>Close a (non-safety) popup on the teach pendant.</p>
+</section>
+<section id="close-safety-popup-std-srvs-trigger">
+<h3>close_safety_popup (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/interfaces/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#close-safety-popup-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>Close a safety popup on the teach pendant.</p>
+</section>
+<section id="connect-std-srvs-trigger">
+<h3>connect (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/interfaces/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#connect-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>Service to reconnect to the dashboard server</p>
+</section>
+<section id="get-loaded-program-ur-dashboard-msgs-getloadedprogram">
+<h3>get_loaded_program (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/interfaces/srv/GetLoadedProgram.html">ur_dashboard_msgs/GetLoadedProgram</a>)<a class="headerlink" href="#get-loaded-program-ur-dashboard-msgs-getloadedprogram" title="Link to this heading"></a></h3>
+<p>Load a robot installation from a file</p>
+</section>
+<section id="get-robot-mode-ur-dashboard-msgs-getrobotmode">
+<h3>get_robot_mode (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/interfaces/srv/GetRobotMode.html">ur_dashboard_msgs/GetRobotMode</a>)<a class="headerlink" href="#get-robot-mode-ur-dashboard-msgs-getrobotmode" title="Link to this heading"></a></h3>
+<p>Service to query the current robot mode</p>
+</section>
+<section id="get-safety-mode-ur-dashboard-msgs-getsafetymode">
+<h3>get_safety_mode (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/interfaces/srv/GetSafetyMode.html">ur_dashboard_msgs/GetSafetyMode</a>)<a class="headerlink" href="#get-safety-mode-ur-dashboard-msgs-getsafetymode" title="Link to this heading"></a></h3>
+<p>Service to query the current safety mode</p>
+</section>
+<section id="load-installation-ur-dashboard-msgs-load">
+<h3>load_installation (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/interfaces/srv/Load.html">ur_dashboard_msgs/Load</a>)<a class="headerlink" href="#load-installation-ur-dashboard-msgs-load" title="Link to this heading"></a></h3>
+<p>Load a robot installation from a file</p>
+</section>
+<section id="load-program-ur-dashboard-msgs-load">
+<h3>load_program (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/interfaces/srv/Load.html">ur_dashboard_msgs/Load</a>)<a class="headerlink" href="#load-program-ur-dashboard-msgs-load" title="Link to this heading"></a></h3>
+<p>Load a robot program from a file</p>
+</section>
+<section id="pause-std-srvs-trigger">
+<h3>pause (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/interfaces/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#pause-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>Pause a running program.</p>
+</section>
+<section id="play-std-srvs-trigger">
+<h3>play (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/interfaces/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#play-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>Start execution of a previously loaded program</p>
+</section>
+<section id="popup-ur-dashboard-msgs-popup">
+<h3>popup (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/interfaces/srv/Popup.html">ur_dashboard_msgs/Popup</a>)<a class="headerlink" href="#popup-ur-dashboard-msgs-popup" title="Link to this heading"></a></h3>
+<p>Service to show a popup on the UR Teach pendant.</p>
+</section>
+<section id="power-off-std-srvs-trigger">
+<h3>power_off (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/interfaces/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#power-off-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>Power off the robot motors</p>
+</section>
+<section id="power-on-std-srvs-trigger">
+<h3>power_on (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/interfaces/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#power-on-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>Power on the robot motors. To fully start the robot, call ‘brake_release’ afterwards.</p>
+</section>
+<section id="program-running-ur-dashboard-msgs-isprogramrunning">
+<h3>program_running (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/interfaces/srv/IsProgramRunning.html">ur_dashboard_msgs/IsProgramRunning</a>)<a class="headerlink" href="#program-running-ur-dashboard-msgs-isprogramrunning" title="Link to this heading"></a></h3>
+<p>Query whether there is currently a program running</p>
+</section>
+<section id="program-saved-ur-dashboard-msgs-isprogramsaved">
+<h3>program_saved (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/interfaces/srv/IsProgramSaved.html">ur_dashboard_msgs/IsProgramSaved</a>)<a class="headerlink" href="#program-saved-ur-dashboard-msgs-isprogramsaved" title="Link to this heading"></a></h3>
+<p>Query whether the current program is saved</p>
+</section>
+<section id="program-state-ur-dashboard-msgs-getprogramstate">
+<h3>program_state (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/interfaces/srv/GetProgramState.html">ur_dashboard_msgs/GetProgramState</a>)<a class="headerlink" href="#program-state-ur-dashboard-msgs-getprogramstate" title="Link to this heading"></a></h3>
+<p>Service to query the current program state</p>
+</section>
+<section id="quit-ur-dashboard-msgs-getloadedprogram">
+<h3>quit (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/interfaces/srv/GetLoadedProgram.html">ur_dashboard_msgs/GetLoadedProgram</a>)<a class="headerlink" href="#quit-ur-dashboard-msgs-getloadedprogram" title="Link to this heading"></a></h3>
+<p>Disconnect from the dashboard service.</p>
+</section>
+<section id="raw-request-ur-dashboard-msgs-rawrequest">
+<h3>raw_request (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/interfaces/srv/RawRequest.html">ur_dashboard_msgs/RawRequest</a>)<a class="headerlink" href="#raw-request-ur-dashboard-msgs-rawrequest" title="Link to this heading"></a></h3>
+<p>General purpose service to send arbitrary messages to the dashboard server</p>
+</section>
+<section id="restart-safety-std-srvs-trigger">
+<h3>restart_safety (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/interfaces/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#restart-safety-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>Used when robot gets a safety fault or violation to restart the safety. After safety has been rebooted the robot will be in Power Off. NOTE: You should always ensure it is okay to restart the system. It is highly recommended to check the error log before using this command (either via PolyScope or e.g. ssh connection).</p>
+</section>
+<section id="shutdown-std-srvs-trigger">
+<h3>shutdown (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/interfaces/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#shutdown-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>Shutdown the robot controller</p>
+</section>
+<section id="stop-std-srvs-trigger">
+<h3>stop (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/interfaces/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#stop-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>Stop program execution on the robot</p>
+</section>
+<section id="unlock-protective-stop-std-srvs-trigger">
+<h3>unlock_protective_stop (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/interfaces/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#unlock-protective-stop-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>Dismiss a protective stop to continue robot movements. NOTE: It is the responsibility of the user to ensure the cause of the protective stop is resolved before calling this service.</p>
+</section>
+</section>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<section id="receive-timeout-required">
+<h3>receive_timeout (Required)<a class="headerlink" href="#receive-timeout-required" title="Link to this heading"></a></h3>
+<p>Timeout (in seconds, double) after which a call to the dashboard server will be considered failure if no answer has been received.</p>
+</section>
+<section id="robot-ip-required">
+<h3>robot_ip (Required)<a class="headerlink" href="#robot-ip-required" title="Link to this heading"></a></h3>
+<p>The IP address under which the robot is reachable.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hardware_interface_parameters.html" class="btn btn-neutral float-left" title="UR Hardware interface parameters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../ur_calibration/doc/index.html" class="btn btn-neutral float-right" title="ur_calibration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

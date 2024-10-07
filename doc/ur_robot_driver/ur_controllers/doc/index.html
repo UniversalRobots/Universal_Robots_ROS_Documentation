@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
@@ -6,22 +8,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ur_controllers &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=7ab3649f" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
 
   
     <link rel="shortcut icon" href="../../../../_static/logo.png"/>
-  <!--[if lt IE 9]>
-    <script src="../../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
-        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
-        <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -57,7 +55,6 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">ur_controllers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../ur_tutorials/doc/tutorial_index.html">Tutorial examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../migration_notes.html">Migration Notes</a></li>
 </ul>
 
@@ -87,30 +84,29 @@
              
   <section id="ur-controllers">
 <h1>ur_controllers<a class="headerlink" href="#ur-controllers" title="Link to this heading"></a></h1>
-<p>This package contains controllers and hardware interface for <code class="docutils literal notranslate"><span class="pre">ros_control</span></code> that are special to the UR
+<p>This package contains controllers and hardware interface for <code class="docutils literal notranslate"><span class="pre">ros2_controllers</span></code> that are special to the UR
 robot family. Currently this contains:</p>
 <ul class="simple">
-<li><p>A <strong>speed_scaling_interface</strong> to read the value of the current speed scaling into controllers.</p></li>
-<li><p>A <strong>scaled_joint_command_interface</strong> that provides access to joint values and commands in
-combination with the speed scaling value.</p></li>
-<li><p>A <strong>speed_scaling_state_controller</strong> that publishes the current execution speed as reported by
+<li><p>A <strong>speed_scaling_state_broadcaster</strong> that publishes the current execution speed as reported by
 the robot to a topic interface. Values are floating points between 0 and 1.</p></li>
 <li><p>A <strong>scaled_joint_trajectory_controller</strong> that is similar to the <em>joint_trajectory_controller</em>,
-but it uses the speed scaling reported by the robot to reduce progress in the trajectory.</p></li>
+but it uses the speed scaling reported to align progress of the trajectory between the robot and controller.</p></li>
+<li><p>A <strong>io_and_status_controller</strong> that allows setting I/O ports, controlling some UR-specific
+functionality and publishes status information about the robot.</p></li>
 </ul>
 <section id="about-this-package">
 <h2>About this package<a class="headerlink" href="#about-this-package" title="Link to this heading"></a></h2>
-<p>This package contains controllers not being available in the default <code class="docutils literal notranslate"><span class="pre">ros_control</span></code> set. They are
-created to support more features offered by the UR robot family. Any of these controllers are
+<p>This package contains controllers not being available in the default <code class="docutils literal notranslate"><span class="pre">ros2_controllers</span></code> set. They are
+created to support more features offered by the UR robot family. Some of these controllers are
 example implementations for certain features and are intended to be generalized and merged
-into the default <code class="docutils literal notranslate"><span class="pre">ros_control</span></code> controller set at some future point.</p>
+into the default <code class="docutils literal notranslate"><span class="pre">ros2_controllers</span></code> controller set at some future point.</p>
 </section>
 <section id="controller-description">
 <h2>Controller description<a class="headerlink" href="#controller-description" title="Link to this heading"></a></h2>
 <p>This packages offers a couple of specific controllers that will be explained in the following
 sections.</p>
 <section id="ur-controllers-speedscalingstatebroadcaster">
-<h3>ur_controllers/SpeedScalingStateBroadcaster<a class="headerlink" href="#ur-controllers-speedscalingstatebroadcaster" title="Link to this heading"></a></h3>
+<span id="speed-scaling-state-broadcaster"></span><h3>ur_controllers/SpeedScalingStateBroadcaster<a class="headerlink" href="#ur-controllers-speedscalingstatebroadcaster" title="Link to this heading"></a></h3>
 <p>This controller publishes the current actual execution speed as reported by the robot. Values are
 floating points between 0 and 1.</p>
 <p>In the <a class="reference external" href="https://index.ros.org/p/ur_robot_driver/github-UniversalRobots-Universal_Robots_ROS2_Driver/">ur_robot_driver</a>
@@ -119,8 +115,8 @@ fields <code class="docutils literal notranslate"><span class="pre">speed_scalin
 teach pendant) and <code class="docutils literal notranslate"><span class="pre">target_speed_fraction</span></code> (Which is the fraction to which execution gets slowed
 down by the controller).</p>
 </section>
-<section id="position-controllers-scaledjointtrajectorycontroller-and-velocity-controllers-scaledjointtrajectorycontroller">
-<h3>position_controllers/ScaledJointTrajectoryController and velocity_controllers/ScaledJointTrajectoryController<a class="headerlink" href="#position-controllers-scaledjointtrajectorycontroller-and-velocity-controllers-scaledjointtrajectorycontroller" title="Link to this heading"></a></h3>
+<section id="ur-controlers-scaledjointtrajectorycontroller">
+<span id="scaled-jtc"></span><h3>ur_controlers/ScaledJointTrajectoryController<a class="headerlink" href="#ur-controlers-scaledjointtrajectorycontroller" title="Link to this heading"></a></h3>
 <p>These controllers work similar to the well-known
 <a class="reference external" href="https://control.ros.org/master/doc/ros2_controllers/joint_trajectory_controller/doc/userdoc.html">joint_trajectory_controller</a>.</p>
 <p>However, they are extended to handle the robot’s execution speed specifically. Because the default
@@ -138,7 +134,8 @@ program node running on the robot controller.</p></li>
 <li><p>The program interpreting motion commands could be paused.</p></li>
 </ul>
 <p>The following plot illustrates the problem:</p>
-<a class="reference external image-reference" href="traj_without_speed_scaling.png"><img alt="Trajectory execution with default trajectory controller" src="../../../../_images/traj_without_speed_scaling.png" /></a>
+<a class="reference external image-reference" href="traj_without_speed_scaling.png"><img alt="Trajectory execution with default trajectory controller" src="../../../../_images/traj_without_speed_scaling.png" />
+</a>
 <p>The graph shows a trajectory with one joint being moved to a target point and back to its starting
 point. As the joint’s speed is limited to a very low setting on the teach pendant, speed scaling
 (black line) activates and limits the joint speed (green line). As a result, the target
@@ -152,13 +149,46 @@ additional path deviations. Pausing the program or hitting the E-stop effectivel
 <code class="docutils literal notranslate"><span class="pre">speed_scaling</span></code> being 0 meaning the trajectory will not be continued until the program is continued.
 This way, trajectory executions can be explicitly paused and continued.</p>
 <p>With the scaled version of the trajectory controller the example motion shown in the previous diagram becomes:</p>
-<a class="reference external image-reference" href="traj_with_speed_scaling.png"><img alt="Trajectory execution with scaled_joint_trajectory_controller" src="../../../../_images/traj_with_speed_scaling.png" /></a>
+<a class="reference external image-reference" href="traj_with_speed_scaling.png"><img alt="Trajectory execution with scaled_joint_trajectory_controller" src="../../../../_images/traj_with_speed_scaling.png" />
+</a>
 <p>The deviation between trajectory interpolation on the ROS side and actual robot execution stays minimal and the
 robot reaches the intermediate setpoint instead of returning “too early” as in the example above.</p>
 <p>Under the hood this is implemented by proceeding the trajectory not by a full time step but only by
 the fraction determined by the current speed scaling. If speed scaling is currently at 50% then
 interpolation of the current control cycle will start half a time step after the beginning of the
 previous control cycle.</p>
+</section>
+<section id="ur-controllers-gpiocontroller">
+<span id="io-and-status-controller"></span><h3>ur_controllers/GPIOController<a class="headerlink" href="#ur-controllers-gpiocontroller" title="Link to this heading"></a></h3>
+<p>This controller allows setting I/O ports, controlling some UR-specific functionality and publishes
+status information about the robot.</p>
+<section id="published-topics">
+<h4>Published topics<a class="headerlink" href="#published-topics" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">~/io_states</span> <span class="pre">[ur_msgs/msg/IOStates]</span></code>: Status of all I/O ports</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/robot_mode</span> <span class="pre">[ur_dashboard_msgs/msg/RobotMode]</span></code>: The current robot mode (e.g. <code class="docutils literal notranslate"><span class="pre">POWER_OFF</span></code>,
+<code class="docutils literal notranslate"><span class="pre">IDLE</span></code>, <code class="docutils literal notranslate"><span class="pre">RUNNING</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/robot_program_running</span> <span class="pre">[std_msgs/msg/Bool]</span></code>: Publishes whether <strong>the External Control
+program</strong> is running or not. If this is <code class="docutils literal notranslate"><span class="pre">false</span></code> no commands can be sent to the robot.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/safety_mode</span> <span class="pre">[ur_dashboard_msgs/msg/SafetyMode]</span></code>: The robot’s current safety mode (e.g.
+<code class="docutils literal notranslate"><span class="pre">PROTECTIVE_STOP</span></code>, <code class="docutils literal notranslate"><span class="pre">ROBOT_EMERGENCY_STOP</span></code>, <code class="docutils literal notranslate"><span class="pre">NORMAL</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/tool_data</span> <span class="pre">[ur_msgs/msg/ToolDataMsg]</span></code>: Information about the robot’s tool configuration</p></li>
+</ul>
+</section>
+<section id="advertised-services">
+<h4>Advertised services<a class="headerlink" href="#advertised-services" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">~/hand_back_control</span> <span class="pre">[std_srvs/srv/Trigger]</span></code>: Calling this service will make the robot program
+exit the <em>External Control</em> program node and continue with the rest of the program.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/resend_robot_program</span> <span class="pre">[std_srvs/srv/Trigger]</span></code>: When <a class="reference internal" href="../../ur_robot_driver/doc/operation_modes.html#headless-mode"><span class="std std-ref">Headless mode</span></a> is used, this
+service can be used to restart the <em>External Control</em> program on the robot.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/set_io</span> <span class="pre">[ur_msgs/srv/SetIO]</span></code>: Set an output pin on the robot.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/set_payload</span> <span class="pre">[ur_msgs/srv/SetPayload]</span></code>: Change the robot’s payload on-the-fly.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/set_speed_slider</span> <span class="pre">[ur_msgs/srv/SetSpeedSliderFraction]</span></code>: Set the value of the speed slider.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/zero_ftsensor</span> <span class="pre">[std_srvs/srv/Trigger]</span></code>: Zeroes the reported wrench of the force torque
+sensor.</p></li>
+</ul>
+</section>
 </section>
 </section>
 </section>
