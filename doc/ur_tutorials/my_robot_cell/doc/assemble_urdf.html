@@ -22,7 +22,9 @@
       <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../../search.html" /> 
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Start the ur_robot_driver" href="start_ur_driver.html" />
+    <link rel="prev" title="Custom workcell" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,7 +47,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_client_library/doc/index.html">ur_client_library</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_description/doc/index.html">ur_description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
@@ -53,6 +55,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_controllers/doc/index.html">ur_controllers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../tutorial_index.html">Tutorial examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Custom workcell</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Assembling the URDF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="start_ur_driver.html">Start the ur_robot_driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="build_moveit_config.html">Build the MoveIt! config</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../migration_notes.html">Migration Notes</a></li>
 </ul>
 
@@ -70,6 +81,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../tutorial_index.html">Universal Robots ROS tutorials</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Custom workcell</a></li>
       <li class="breadcrumb-item active">Assembling the URDF</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_tutorials/my_robot_cell/doc/assemble_urdf.rst" class="fa fa-github"> Edit on GitHub</a>
@@ -87,7 +100,7 @@ We’ll use this to create a custom workcell with a ur20 inside:</p>
 <section id="workcell-description">
 <h2>Workcell description<a class="headerlink" href="#workcell-description" title="Link to this heading"></a></h2>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 1 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
 <span class="linenos"> 2</span><span class="nt">&lt;robot</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;my_robot_cell&quot;</span><span class="w"> </span><span class="na">xmlns:xacro=</span><span class="s">&quot;http://ros.org/wiki/xacro&quot;</span><span class="nt">&gt;</span>
 <span class="linenos"> 3</span>
@@ -119,7 +132,7 @@ We’ll use this to create a custom workcell with a ur20 inside:</p>
 <p>Let’s break it down:</p>
 <p>First, we’ll have to <strong>include</strong> the macro to generate our custom workcell:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 2 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;xacro:include</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;$(find my_robot_cell_description)/urdf/my_robot_cell_macro.xacro&quot;</span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
@@ -128,7 +141,7 @@ We’ll use this to create a custom workcell with a ur20 inside:</p>
 <p>We will need to provide some parameters to our workcell in order to parametrize the arm. Therefore,
 we need to declare certain arguments that must be passed to the macro.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 3 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ur_type&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;ur20&quot;</span><span class="nt">/&gt;</span>
 <span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;joint_limits_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg ur_type)/joint_limits.yaml&quot;</span><span class="nt">/&gt;</span>
 <span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;kinematics_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg ur_type)/default_kinematics.yaml&quot;</span><span class="nt">/&gt;</span>
@@ -141,7 +154,7 @@ we need to declare certain arguments that must be passed to the macro.</p>
 experienced in writing URDFs, you may want to refer to this  <a class="reference external" href="https://docs.ros.org/en/rolling/Tutorials/Intermediate/URDF/URDF-Main.html">tutorial</a>. The macro’s content
 is generated using</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 4 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;world&quot;</span><span class="nt">/&gt;</span>
 <span class="w">  </span><span class="cm">&lt;!--This will create the scene where the robot is located in--&gt;</span>
 <span class="w">  </span><span class="nt">&lt;xacro:my_robot_cell</span>
@@ -163,7 +176,7 @@ is generated using</p>
 <h2>Workcell macro<a class="headerlink" href="#workcell-macro" title="Link to this heading"></a></h2>
 <p>The workcell macro is defined in the following manner:</p>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell_macro.urdf.xacro</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 5 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell_macro.urdf.xacro</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
 <span class="linenos"> 2</span><span class="nt">&lt;robot</span><span class="w"> </span><span class="na">xmlns:xacro=</span><span class="s">&quot;http://ros.org/wiki/xacro&quot;</span><span class="nt">&gt;</span>
 <span class="linenos"> 3</span><span class="w">  </span><span class="nt">&lt;xacro:include</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;$(find ur_description)/urdf/ur_macro.xacro&quot;</span><span class="nt">/&gt;</span>
@@ -271,7 +284,7 @@ this instance, our workspace comprises a table in front of a wall, featuring a m
 <p>Ensure that your custom workcell includes the parent link, which must be passed to the <strong>ur_robot</strong>
 macro. In this example, we chose to create a link named <strong>robot_mount</strong>.</p>
 <div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 6 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="w">    </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;robot_mount&quot;</span><span class="nt">/&gt;</span>
 <span class="linenos">2</span><span class="w">    </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;base_to_robot_mount&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
 <span class="linenos">3</span><span class="w">      </span><span class="nt">&lt;parent</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;table&quot;</span><span class="nt">/&gt;</span>
@@ -283,7 +296,7 @@ macro. In this example, we chose to create a link named <strong>robot_mount</str
 </div>
 <p>After that we are finally able to actually <strong>create the robot arm</strong> by calling the macro.</p>
 <div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 7 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w">    </span><span class="nt">&lt;xacro:ur_robot</span>
 <span class="linenos"> 2</span><span class="w">      </span><span class="na">name=</span><span class="s">&quot;${ur_type}&quot;</span>
 <span class="linenos"> 3</span><span class="w">      </span><span class="na">tf_prefix=</span><span class="s">&quot;${ur_type}_&quot;</span>
@@ -322,7 +335,10 @@ It should look something like this:</p>
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Custom workcell" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="start_ur_driver.html" class="btn btn-neutral float-right" title="Start the ur_robot_driver" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

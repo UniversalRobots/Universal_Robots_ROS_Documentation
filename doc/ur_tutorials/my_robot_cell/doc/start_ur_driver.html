@@ -22,7 +22,9 @@
       <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../../search.html" /> 
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Build the MoveIt! config" href="build_moveit_config.html" />
+    <link rel="prev" title="Assembling the URDF" href="assemble_urdf.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,7 +47,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_client_library/doc/index.html">ur_client_library</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_description/doc/index.html">ur_description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
@@ -53,6 +55,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_controllers/doc/index.html">ur_controllers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../tutorial_index.html">Tutorial examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Custom workcell</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="assemble_urdf.html">Assembling the URDF</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Start the ur_robot_driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="build_moveit_config.html">Build the MoveIt! config</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../migration_notes.html">Migration Notes</a></li>
 </ul>
 
@@ -70,6 +81,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../tutorial_index.html">Universal Robots ROS tutorials</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Custom workcell</a></li>
       <li class="breadcrumb-item active">Start the ur_robot_driver</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_tutorials/my_robot_cell/doc/start_ur_driver.rst" class="fa fa-github"> Edit on GitHub</a>
@@ -90,7 +103,7 @@ control information. We will also add a custom launchfile to startup our demonst
 <h2>Create a description with ros2_control tag<a class="headerlink" href="#create-a-description-with-ros2-control-tag" title="Link to this heading"></a></h2>
 <p>The first step is to create a description containing the control instructions:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">my_robot_cell_control/urdf/my_robot_cell_controlled.urdf.xacro</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 8 </span><span class="caption-text">my_robot_cell_control/urdf/my_robot_cell_controlled.urdf.xacro</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
 <span class="linenos"> 2</span><span class="nt">&lt;robot</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;my_robot_cell&quot;</span><span class="w"> </span><span class="na">xmlns:xacro=</span><span class="s">&quot;http://ros.org/wiki/xacro&quot;</span><span class="nt">&gt;</span>
 <span class="linenos"> 3</span>
@@ -150,14 +163,14 @@ control information. We will also add a custom launchfile to startup our demonst
 </div>
 <p>This URDF is very similar to the one we have already assembled. We simply need to include the ros2_control macro,</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">my_robot_cell_control/urdf/my_robot_cell_controlled.urdf.xacro</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 9 </span><span class="caption-text">my_robot_cell_control/urdf/my_robot_cell_controlled.urdf.xacro</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;xacro:include</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;$(find ur_robot_driver)/urdf/ur.ros2_control.xacro&quot;</span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
 </div>
 <p>define the necessary arguments that need to be passed to the macro,</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text">my_robot_cell_control/urdf/my_robot_cell_controlled.urdf.xacro</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 10 </span><span class="caption-text">my_robot_cell_control/urdf/my_robot_cell_controlled.urdf.xacro</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;robot_ip&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;0.0.0.0&quot;</span><span class="nt">/&gt;</span>
 <span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;headless_mode&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 <span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ur_script_filename&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_client_library)/resources/external_control.urscript&quot;</span><span class="nt">/&gt;</span>
@@ -170,7 +183,7 @@ control information. We will also add a custom launchfile to startup our demonst
 </div>
 <p>and then call the macro by providing all the specified arguments.</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-text">my_robot_cell_control/urdf/my_robot_cell_controlled.urdf.xacro</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 11 </span><span class="caption-text">my_robot_cell_control/urdf/my_robot_cell_controlled.urdf.xacro</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;xacro:ur_ros2_control</span>
 <span class="w">    </span><span class="na">name=</span><span class="s">&quot;$(arg ur_type)&quot;</span>
 <span class="w">    </span><span class="na">tf_prefix=</span><span class="s">&quot;$(arg ur_type)_&quot;</span>
@@ -204,7 +217,7 @@ For now, we just copy the default one for the ur20.</p>
 launchfile we need to start a <code class="docutils literal notranslate"><span class="pre">robot_state_publisher</span></code> (RSP) node that will get the description as a
 parameter and redistribute it via the <code class="docutils literal notranslate"><span class="pre">robot_description</span></code> topic:</p>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-text">my_robot_cell_control/launch/rsp.launch.py</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 12 </span><span class="caption-text">my_robot_cell_control/launch/rsp.launch.py</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
 <div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span>
 <span class="linenos">  2</span><span class="kn">from</span> <span class="nn">launch_ros.actions</span> <span class="kn">import</span> <span class="n">Node</span>
 <span class="linenos">  3</span><span class="kn">from</span> <span class="nn">launch_ros.substitutions</span> <span class="kn">import</span> <span class="n">FindPackageShare</span>
@@ -356,7 +369,7 @@ parameter and redistribute it via the <code class="docutils literal notranslate"
 launchfile that includes the <code class="docutils literal notranslate"><span class="pre">ur_control.launch.py</span></code> launchfile with the correct description
 launchfile and prefix:</p>
 <div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-text">my_robot_cell_control/launch/start_robot.launch.py</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 13 </span><span class="caption-text">my_robot_cell_control/launch/start_robot.launch.py</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
 <div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">launch_ros.actions</span> <span class="kn">import</span> <span class="n">Node</span>
 <span class="linenos"> 2</span><span class="kn">from</span> <span class="nn">launch_ros.parameter_descriptions</span> <span class="kn">import</span> <span class="n">ParameterFile</span>
 <span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">launch_ros.substitutions</span> <span class="kn">import</span> <span class="n">FindPackageShare</span>
@@ -479,7 +492,10 @@ ros2<span class="w"> </span>launch<span class="w"> </span>my_robot_cell_control<
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="assemble_urdf.html" class="btn btn-neutral float-left" title="Assembling the URDF" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="build_moveit_config.html" class="btn btn-neutral float-right" title="Build the MoveIt! config" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

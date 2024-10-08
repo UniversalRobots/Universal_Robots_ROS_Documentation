@@ -15,5 +15,5 @@ This repositorycontains documentation and ROS 2 packages for Universal Robots.
    ur_controllers <doc/ur_robot_driver/ur_controllers/doc/index.rst>
    ur_moveit_config <doc/ur_robot_driver/ur_moveit_config/doc/index.rst>
    ur_simulation_gz <doc/ur_simulation_gz/ur_simulation_gz/doc/index.rst>
-   Tutorial examples <doc/ur_tutorials/doc/tutorial_index.rst>
+   Tutorial examples <doc/ur_tutorials/tutorial_index.rst>
    doc/migration_notes.rst
