@@ -184,6 +184,8 @@ exit the <em>External Control</em> program node and continue with the rest of th
 <li><p><code class="docutils literal notranslate"><span class="pre">~/resend_robot_program</span> <span class="pre">[std_srvs/srv/Trigger]</span></code>: When <a class="reference internal" href="../../ur_robot_driver/doc/operation_modes.html#headless-mode"><span class="std std-ref">Headless mode</span></a> is used, this
 service can be used to restart the <em>External Control</em> program on the robot.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">~/set_io</span> <span class="pre">[ur_msgs/srv/SetIO]</span></code>: Set an output pin on the robot.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/set_analog_output</span> <span class="pre">[ur_msgs/srv/SetAnalogOutput]</span></code>: Set an analog output on the robot. This
+also allows specifying the domain.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">~/set_payload</span> <span class="pre">[ur_msgs/srv/SetPayload]</span></code>: Change the robot’s payload on-the-fly.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">~/set_speed_slider</span> <span class="pre">[ur_msgs/srv/SetSpeedSliderFraction]</span></code>: Set the value of the speed slider.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">~/zero_ftsensor</span> <span class="pre">[std_srvs/srv/Trigger]</span></code>: Zeroes the reported wrench of the force torque
