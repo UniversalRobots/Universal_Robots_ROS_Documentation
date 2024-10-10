@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Assembling the URDF &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=7ab3649f" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
 
   
@@ -96,7 +96,9 @@
   <section id="assembling-the-urdf">
 <h1>Assembling the URDF<a class="headerlink" href="#assembling-the-urdf" title="Link to this heading"></a></h1>
 <p>The <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description">ur_description</a> package provides <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/blob/rolling/urdf/ur_macro.xacro">macro files</a> to generate an instance of a Universal Robots arm.
-We’ll use this to create a custom workcell with a ur20 inside:</p>
+We’ll use this to create a custom workcell with a ur20 inside. In this section we will only go into
+detail about the URDF / xacro files, not the complete package structure. Please see the
+<a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Tutorials/blob/main/my_robot_cell/my_robot_cell_description">description package source code</a> for all other files assembling the description package.</p>
 <section id="workcell-description">
 <h2>Workcell description<a class="headerlink" href="#workcell-description" title="Link to this heading"></a></h2>
 <div class="literal-block-wrapper docutils container" id="id1">
