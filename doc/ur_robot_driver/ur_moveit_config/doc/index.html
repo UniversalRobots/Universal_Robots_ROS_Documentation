@@ -16,7 +16,7 @@
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
-      <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
@@ -100,6 +100,28 @@ interaction using</p>
 </div>
 <p>Now you should be able to use the MoveIt Plugin in rviz2 to plan and execute trajectories with the
 robot as explained <a class="reference external" href="https://moveit.picknik.ai/main/doc/tutorials/quickstart_in_rviz/quickstart_in_rviz_tutorial.html">here</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The MoveIt configuration provided here has Trajectory Execution Monitoring (TEM) <em>disabled</em>, as the
+Scaled Joint Trajectory Controller may cause trajectories to be executed at a lower velocity
+than they were originally planned by MoveIt. MoveIt’s TEM however is not aware of this
+deliberate slow-down due to scaling and will in most cases unnecessarily (and unexpectedly)
+abort goals.</p>
+<p>Until this incompatibility is resolved, the default value for <code class="docutils literal notranslate"><span class="pre">execution_duration_monitoring</span></code>
+is set to <code class="docutils literal notranslate"><span class="pre">false</span></code>. Users who wish to temporarily (re)enable TEM at runtime (for use with
+other, non-scaling controllers) can do so using the ROS 2 parameter services supported by
+MoveIt.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 1 </span><span class="caption-text">moveit_controllers.yaml</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">trajectory_execution</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">allowed_execution_duration_scaling</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.2</span>
+<span class="w">  </span><span class="nt">allowed_goal_duration_margin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+<span class="w">  </span><span class="nt">allowed_start_tolerance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.01</span>
+<span class="w">  </span><span class="nt">execution_duration_monitoring</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"> </span><span class="c1"># May lead to unexpectedly aborted goals with scaled JTC</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
