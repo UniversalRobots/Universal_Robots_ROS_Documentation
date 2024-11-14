@@ -142,6 +142,13 @@ address to your needs)</p></li>
 <li><p>run it from the package’s main folder, as for simplicity reasons it doesn’t use any sophisticated
 method to locate the required files.</p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">URDriver</span></code> class creates a <code class="docutils literal notranslate"><span class="pre">RTDEClient</span></code> during initialization using the provided
+recipes and utilizing the robot model’s maximum frequency. If you would like to use a different
+frequency, please use the <code class="docutils literal notranslate"><span class="pre">resetRTDEClient()</span></code> method after the <code class="docutils literal notranslate"><span class="pre">UrDriver</span></code> object has been
+created.</p>
+</div>
 <section id="rtdewriter">
 <h3>RTDEWriter<a class="headerlink" href="#rtdewriter" title="Link to this heading"></a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">RTDEWriter</span></code> class provides an interface to write data to the RTDE interface. Data fields that
