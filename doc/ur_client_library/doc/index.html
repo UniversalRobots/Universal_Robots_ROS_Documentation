@@ -50,7 +50,7 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">ur_client_library</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html">Build / installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polyscope_compatibility.html">Polyscope version compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polyscope_compatibility.html">PolyScope version compatibility</a></li>
 <li class="toctree-l2"><a class="reference internal" href="architecture.html">Library architecture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example.html">Example driver</a></li>
 <li class="toctree-l2"><a class="reference internal" href="real_time.html">Setup for real-time scheduling</a></li>
@@ -92,6 +92,9 @@
              
   <section id="ur-client-library">
 <h1>ur_client_library<a class="headerlink" href="#ur-client-library" title="Link to this heading"></a></h1>
+<p>This documentation should help you to get started with the UR Client Library. The UR Client Library
+is a C++ library that allows you to control a UR robot from a remote computer. The library is open-source and
+can be found on <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_Client_Library">GitHub</a>.</p>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
@@ -105,20 +108,39 @@
 <li class="toctree-l2"><a class="reference internal" href="installation.html#use-this-library-in-other-projects">Use this library in other projects</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="polyscope_compatibility.html">Polyscope version compatibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polyscope_compatibility.html">PolyScope version compatibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="architecture.html">Library architecture</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="architecture.html#rtdeclient">RTDEClient</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="architecture.html#rtdewriter">RTDEWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture/dashboard_client.html">DashboardClient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture/reverse_interface.html">ReverseInterface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture/reverse_interface.html#communication-protocol">Communication protocol</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="architecture.html#reverseinterface">ReverseInterface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="architecture.html#scriptsender">ScriptSender</a></li>
-<li class="toctree-l2"><a class="reference internal" href="architecture.html#other-public-interface-functions">Other public interface functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="architecture.html#check-calibration">check_calibration()</a></li>
-<li class="toctree-l3"><a class="reference internal" href="architecture.html#sendscript">sendScript()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture/rtde_client.html">RTDEClient</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture/rtde_client.html#rtdewriter">RTDEWriter</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="architecture.html#dashboardclient">DashboardClient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture/script_command_interface.html">Script Command Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture/script_command_interface.html#communication-protocol">Communication protocol</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="architecture/script_command_interface.html#data-sent-to-the-robot">Data sent to the robot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="architecture/script_command_interface.html#data-sent-from-the-robot">Data sent from the robot</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture/script_sender.html">ScriptSender</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture/trajectory_point_interface.html">Trajectory Point Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture/trajectory_point_interface.html#communication-protocol">Communication protocol</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture/ur_driver.html">UrDriver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture/ur_driver.html#public-helper-functions">Public helper functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="architecture/ur_driver.html#checkcalibration-const-std-string-checksum"><code class="docutils literal notranslate"><span class="pre">checkCalibration(const</span> <span class="pre">std::string</span> <span class="pre">checksum)</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="architecture/ur_driver.html#sendscript-const-std-string-program"><code class="docutils literal notranslate"><span class="pre">sendScript(const</span> <span class="pre">std::string&amp;</span> <span class="pre">program)</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#dataflow-overview-with-urdriver">Dataflow overview with UrDriver</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="example.html">Example driver</a></li>

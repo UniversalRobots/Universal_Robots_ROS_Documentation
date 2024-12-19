@@ -409,6 +409,50 @@ A value larger than 1 can make force mode unstable, e.g. in case of collisions o
 </dl>
 </section>
 </section>
+<section id="ur-controllers-freedrivemodecontroller">
+<span id="freedrive-mode-controller"></span><h3>ur_controllers/FreedriveModeController<a class="headerlink" href="#ur-controllers-freedrivemodecontroller" title="Link to this heading"></a></h3>
+<p>This controller activates the robot’s <em>Freedrive Mode</em>, allowing to manually move the robot’ joints.
+This controller can’t be combined with any other motion controller.</p>
+<section id="id3">
+<h4>Parameters<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Parameter name</p></td>
+<td><p>Type</p></td>
+<td><p>Default value</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tf_prefix</span></code></p></td>
+<td><p>string</p></td>
+<td><p>&lt;empty&gt;</p></td>
+<td><p>Urdf prefix of the corresponding arm</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">inactive_timeout</span></code></p></td>
+<td><p>int</p></td>
+<td><p>1</p></td>
+<td><p>Time interval (in seconds) of message inactivity after which freedrive is deactivated</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="usage">
+<h4>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h4>
+<p>The controller provides the <code class="docutils literal notranslate"><span class="pre">~/enable_freedrive_mode</span></code> topic of type <code class="docutils literal notranslate"><span class="pre">[std_msgs/msg/Bool]</span></code> for handling activation and deactivation:</p>
+<ul>
+<li><p>to start and keep freedrive active, you’ll have to frequently publish a <code class="docutils literal notranslate"><span class="pre">True</span></code> msg on the indicated topic.
+If no further messages are received by the controller within the <code class="docutils literal notranslate"><span class="pre">inactive_timeout</span></code> seconds,
+freedrive mode will be deactivated. Hence, it is recommended to publish a <code class="docutils literal notranslate"><span class="pre">True</span></code> message at least every
+<code class="docutils literal notranslate"><span class="pre">inactive_timeout/2</span></code> seconds.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ros2</span> <span class="n">topic</span> <span class="n">pub</span> <span class="o">--</span><span class="n">rate</span> <span class="mi">2</span> <span class="o">/</span><span class="n">freedrive_mode_controller</span><span class="o">/</span><span class="n">enable_freedrive_mode</span> <span class="n">std_msgs</span><span class="o">/</span><span class="n">msg</span><span class="o">/</span><span class="n">Bool</span> <span class="s2">&quot;{data: true}&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>to deactivate freedrive mode is enough to publish a <code class="docutils literal notranslate"><span class="pre">False</span></code> msg on the indicated topic or
+to deactivate the controller or to stop publishing <code class="docutils literal notranslate"><span class="pre">True</span></code> on the enable topic and wait for the
+controller timeout.</p></li>
+</ul>
+</section>
+</section>
 </section>
 </section>
 

@@ -1,0 +1,192 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ScriptSender &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/logo.png"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Trajectory Point Interface" href="trajectory_point_interface.html" />
+    <link rel="prev" title="Script Command Interface" href="script_command_interface.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Documentation
+              <img src="../../../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">ur_client_library</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installation.html">Build / installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../polyscope_compatibility.html">PolyScope version compatibility</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../architecture.html">Library architecture</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dashboard_client.html">DashboardClient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reverse_interface.html">ReverseInterface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rtde_client.html">RTDEClient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="script_command_interface.html">Script Command Interface</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">ScriptSender</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trajectory_point_interface.html">Trajectory Point Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ur_driver.html">UrDriver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../example.html">Example driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../real_time.html">Setup for real-time scheduling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_tutorials/tutorial_index.html">Tutorial examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../migration_notes.html">Migration Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Universal Robots ROS 2 Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">ur_client_library</a></li>
+          <li class="breadcrumb-item"><a href="../architecture.html">Library architecture</a></li>
+      <li class="breadcrumb-item active">ScriptSender</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_client_library/doc/architecture/script_sender.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="scriptsender">
+<span id="script-sender"></span><h1>ScriptSender<a class="headerlink" href="#scriptsender" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">ScriptSender</span></code> class opens a tcp socket listens for “<em>request_program</em>” request. Upon such a
+request, a predefined URScript code is sent to the caller. The script code itself has to be passed
+to the <code class="docutils literal notranslate"><span class="pre">ScriptSender</span></code>’s constructor.</p>
+<p>Use this class in conjunction with the <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ExternalControl_URCap">External Control URCap</a> which will make the
+corresponding request when starting a program on the robot that contains the <strong>External Control</strong>
+program node. In order to work properly, make sure that the IP address and script sender port are
+configured correctly on the robot.</p>
+<p>The following example creates a <code class="docutils literal notranslate"><span class="pre">ScriptSender</span></code> listening on port <code class="docutils literal notranslate"><span class="pre">12345</span></code> and sends the script
+<code class="docutils literal notranslate"><span class="pre">textmsg(&quot;Hello,</span> <span class="pre">World!&quot;)</span></code> when requested. A fully compilable example can be found in <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/blob/master/examples/script_sender.cpp">script_sender.cpp</a></p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 4 </span><span class="caption-text">examples/script_sender.cpp</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">33</span><span class="k">constexpr</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">PORT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12345</span><span class="p">;</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span>
+<span class="linenos">36</span><span class="p">{</span>
+<span class="linenos">37</span><span class="w">  </span><span class="c1">// Parse how may seconds to run</span>
+<span class="linenos">38</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">second_to_run</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="linenos">39</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos">40</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos">41</span><span class="w">    </span><span class="n">second_to_run</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<span class="linenos">42</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">43</span><span class="w">  </span><span class="n">urcl</span><span class="o">::</span><span class="n">control</span><span class="o">::</span><span class="n">ScriptSender</span><span class="w"> </span><span class="n">sender</span><span class="p">(</span><span class="n">PORT</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;textmsg(</span><span class="se">\&quot;</span><span class="s">Hello, World!</span><span class="se">\&quot;</span><span class="s">)&quot;</span><span class="p">);</span>
+<span class="linenos">44</span>
+<span class="linenos">45</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">stringstream</span><span class="w"> </span><span class="n">ss</span><span class="p">;</span>
+<span class="linenos">46</span><span class="w">  </span><span class="n">ss</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Waiting for incoming requests on port &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">PORT</span><span class="p">;</span>
+<span class="linenos">47</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">second_to_run</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">48</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos">49</span><span class="w">    </span><span class="n">ss</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; for &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">second_to_run</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; seconds&quot;</span><span class="p">;</span>
+<span class="linenos">50</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">51</span><span class="w">  </span><span class="k">else</span>
+<span class="linenos">52</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos">53</span><span class="w">    </span><span class="n">ss</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; indefinitely&quot;</span><span class="p">;</span>
+<span class="linenos">54</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">55</span>
+<span class="linenos">56</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ss</span><span class="p">.</span><span class="n">str</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">57</span>
+<span class="linenos">58</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">start_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">system_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+<span class="linenos">59</span><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">second_to_run</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">system_clock</span><span class="o">::</span><span class="n">now</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="n">second_to_run</span><span class="p">))</span>
+<span class="linenos">60</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos">61</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">500</span><span class="p">));</span>
+<span class="linenos">62</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">63</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Timeout reached&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">64</span>
+<span class="linenos">65</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">66</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>PolyScope X users cannot use the URCap linked above. There is a development version of a URCapX
+available at <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ExternalControl_URCapX">https://github.com/UniversalRobots/Universal_Robots_ExternalControl_URCapX</a>.</p>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="script_command_interface.html" class="btn btn-neutral float-left" title="Script Command Interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="trajectory_point_interface.html" class="btn btn-neutral float-right" title="Trajectory Point Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
