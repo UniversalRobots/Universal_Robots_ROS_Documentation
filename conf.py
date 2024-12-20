@@ -21,7 +21,7 @@
 
 project = "Universal Robots ROS 2 Documentation"
 copyright = "2024, Universal Robots A/S"
-author = "Felix Exner"
+author = "Universal Robots A/S"
 
 # The short X.Y version
 version = ""
@@ -142,7 +142,7 @@ latex_documents = [
         master_doc,
         "ur_documentation.tex",
         "ur\\_documentation Documentation",
-        "Felix Exner",
+        "Universal Robots A/S",
         "manual",
     ),
 ]
@@ -206,11 +206,12 @@ html_context = {
     "github_version": repos_file_branch + "/",
     "conf_py_path": "/",
     "source_suffix": source_suffix,
-    "favicon": "favicon.ico",
-    "logo": "logo.png"
 }
 
-html_favicon = "_static/logo.png"
-html_logo = "_static/logo.png"
+html_logo = "_static/images/ur_logo.svg"
+html_favicon = "_static/images/icon.svg"
+html_css_files = [
+    'css/ur_theme.css',
+]
 
 github_url = "https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation"
