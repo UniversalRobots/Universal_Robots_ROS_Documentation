@@ -10,9 +10,10 @@
       <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/ur_theme.css?v=b67a8c70" />
 
   
-    <link rel="shortcut icon" href="../../../../../_static/logo.png"/>
+    <link rel="shortcut icon" href="../../../../../_static/icon.svg"/>
       <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../../../_static/documentation_options.js?v=2709fde1"></script>
@@ -37,7 +38,7 @@
           
           <a href="../../../../../index.html" class="icon icon-home">
             Universal Robots ROS 2 Documentation
-              <img src="../../../../../_static/logo.png" class="logo" alt="Logo"/>
+              <img src="../../../../../_static/ur_logo.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
@@ -154,8 +155,8 @@ guide</span></a>.</p>
 inside a colcon workspace).</p>
 </section>
 <section id="extract-calibration-information">
-<h2>Extract calibration information<a class="headerlink" href="#extract-calibration-information" title="Link to this heading"></a></h2>
-<p id="calibration-extraction">Each UR robot is calibrated inside the factory giving exact forward and inverse kinematics. To also
+<span id="calibration-extraction"></span><h2>Extract calibration information<a class="headerlink" href="#extract-calibration-information" title="Link to this heading"></a></h2>
+<p>Each UR robot is calibrated inside the factory giving exact forward and inverse kinematics. To also
 make use of this in ROS, you first have to extract the calibration information from the robot.</p>
 <p>Though this step is not necessary to control the robot using this driver, it is highly recommended
 to do so, as otherwise endeffector positions might be off in the magnitude of centimeters.</p>
@@ -164,8 +165,13 @@ to do so, as otherwise endeffector positions might be off in the magnitude of ce
 robot_ip:<span class="o">=</span>&lt;robot_ip&gt;<span class="w"> </span>target_filename:<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/my_robot_calibration.yaml&quot;</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The robot must be powered on (can be idle) before executing this script.</p>
+</div>
 <p>For the parameter <code class="docutils literal notranslate"><span class="pre">robot_ip</span></code> insert the IP address on which the ROS pc can reach the robot. As
 <code class="docutils literal notranslate"><span class="pre">target_filename</span></code> provide an absolute path where the result will be saved to.</p>
+<p>See <a class="reference internal" href="../usage/startup.html#ur-robot-driver-startup"><span class="std std-ref">Startup the driver</span></a> for instructions on using the extracted calibration information.</p>
 </section>
 </section>
 

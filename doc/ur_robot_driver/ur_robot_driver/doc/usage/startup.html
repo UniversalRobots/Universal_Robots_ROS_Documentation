@@ -10,9 +10,10 @@
       <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/ur_theme.css?v=b67a8c70" />
 
   
-    <link rel="shortcut icon" href="../../../../../_static/logo.png"/>
+    <link rel="shortcut icon" href="../../../../../_static/icon.svg"/>
       <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../../../_static/documentation_options.js?v=2709fde1"></script>
@@ -37,7 +38,7 @@
           
           <a href="../../../../../index.html" class="icon icon-home">
             Universal Robots ROS 2 Documentation
-              <img src="../../../../../_static/logo.png" class="logo" alt="Logo"/>
+              <img src="../../../../../_static/ur_logo.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
@@ -122,6 +123,7 @@ nodes for UR robots. The only required arguments are the <code class="docutils l
 <code class="docutils literal notranslate"><span class="pre">ur20</span></code>, <code class="docutils literal notranslate"><span class="pre">ur30</span></code>.</p>
 <p>Other important arguments are:</p>
 <ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">kinematics_params_file</span></code> (default: <em>None</em>) - Path to the calibration file extracted from the robot, as described in <a class="reference internal" href="../installation/robot_setup.html#calibration-extraction"><span class="std std-ref">Extract calibration information</span></a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">use_mock_hardware</span></code> (default: <em>false</em> ) - Use simple hardware emulator from ros2_control. Useful for testing launch files, descriptions, etc.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">headless_mode</span></code> (default: <em>false</em>) - Start driver in <a class="reference internal" href="../operation_modes.html#headless-mode"><span class="std std-ref">Headless mode</span></a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">launch_rviz</span></code> (default: <em>true</em>) - Start RViz together with the driver.</p></li>
@@ -158,8 +160,25 @@ the robot that you have created earlier.</p>
 already.</p></li>
 </ul>
 </section>
-<section id="continuation-after-interruptions">
-<span id="id1"></span><h2>Continuation after interruptions<a class="headerlink" href="#continuation-after-interruptions" title="Link to this heading"></a></h2>
+<section id="verify-calibration-info-is-being-used-correctly">
+<span id="continuation-after-interruptions"></span><h2>Verify calibration info is being used correctly<a class="headerlink" href="#verify-calibration-info-is-being-used-correctly" title="Link to this heading"></a></h2>
+<p id="verify-calibration">If you passed a path to an extracted calibration via the <em>kinematics_params_file</em>
+parameter, ensure that the loaded calibration matches that of the robot by inspecting the console
+output after launching the <code class="docutils literal notranslate"><span class="pre">ur_robot_driver</span></code>. If the calibration does not match, you will see an error:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">INFO</span><span class="p">]</span> <span class="p">[</span><span class="mf">1694437690.406932381</span><span class="p">]</span> <span class="p">[</span><span class="n">URPositionHardwareInterface</span><span class="p">]:</span> <span class="n">Calibration</span> <span class="n">checksum</span><span class="p">:</span> <span class="s1">&#39;calib_xxxxxxxxxxxxxxxxxxx&#39;</span>
+<span class="p">[</span><span class="n">ERROR</span><span class="p">]</span> <span class="p">[</span><span class="mf">1694437690.516957265</span><span class="p">]</span> <span class="p">[</span><span class="n">URPositionHardwareInterface</span><span class="p">]:</span> <span class="n">The</span> <span class="n">calibration</span> <span class="n">parameters</span> <span class="n">of</span> <span class="n">the</span> <span class="n">connected</span> <span class="n">robot</span> <span class="n">don</span><span class="s1">&#39;t match the ones from the given kinematics config file.</span>
+</pre></div>
+</div>
+<p>With the correct calibration you should see:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">INFO</span><span class="p">]</span> <span class="p">[</span><span class="mf">1694437690.406932381</span><span class="p">]</span> <span class="p">[</span><span class="n">URPositionHardwareInterface</span><span class="p">]:</span> <span class="n">Calibration</span> <span class="n">checksum</span><span class="p">:</span> <span class="s1">&#39;calib_xxxxxxxxxxxxxxxxxxx&#39;</span>
+<span class="p">[</span><span class="n">INFO</span><span class="p">]</span> <span class="p">[</span><span class="mf">1694437690.516957265</span><span class="p">]</span> <span class="p">[</span><span class="n">URPositionHardwareInterface</span><span class="p">]:</span> <span class="n">Calibration</span> <span class="n">checked</span> <span class="n">successfully</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Alternatively, search for the term <em>checksum</em> in the console output after launching the driver.
+Verify that the printed checksum matches that on the final line of your extracted calibration file.</p>
+</section>
+<section id="id1">
+<h2>Continuation after interruptions<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <p>Whenever the <em>External Control URCap</em> program gets interrupted, it has to be unpaused / restarted.</p>
 <p>If that happens, you will see the output <code class="docutils literal notranslate"><span class="pre">Connection</span> <span class="pre">to</span> <span class="pre">reverse</span> <span class="pre">interface</span> <span class="pre">dropped.</span></code></p>
 <p>This can happen, e,g, when</p>
