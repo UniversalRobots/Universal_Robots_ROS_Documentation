@@ -132,6 +132,16 @@ image</a> provided by Universal Robots (See
 environment for testing of “piping” of hardware and controllers, as well as testing robot’s
 descriptions. For more details see <a class="reference external" href="https://control.ros.org/rolling/doc/ros2_control/hardware_interface/doc/mock_components_userdoc.html">ros2_control documentation</a>
 for more details.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some driver functionalities currently don’t work with mock hardware:</p>
+<ul class="simple">
+<li><p>The TCP pose broadcaster does not work.</p></li>
+<li><p>The passthrough trajectory controller does not function when calling the follow joint trajectory action.</p></li>
+<li><p>The force mode controller also does not respond when trying to start force mode.</p></li>
+<li><p>The GPIO controller cannot verify that it has changed the state of an I/O pin, so it will report a failure when trying to set an I/O pin.</p></li>
+</ul>
+</div>
 </section>
 </section>
 
