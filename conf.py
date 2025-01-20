@@ -39,10 +39,11 @@ release = "0.1"
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    "sphinx_copybutton",
     "sphinx.ext.githubpages",
     "sphinx.ext.todo",
+    "sphinx_copybutton",
     "sphinx_rtd_theme",
+    "sphinx_tabs.tabs",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
