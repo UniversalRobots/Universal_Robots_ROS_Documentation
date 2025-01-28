@@ -24,7 +24,7 @@
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
-    <link rel="next" title="Installing a URCap on a CB3 robot" href="install_urcap_cb3.html" />
+    <link rel="next" title="Usage" href="../usage/toc.html" />
     <link rel="prev" title="Installation of the ur_robot_driver" href="installation.html" /> 
 </head>
 
@@ -56,9 +56,6 @@
 <li class="toctree-l2 current"><a class="reference internal" href="toc.html">Installation</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="installation.html">Installation of the ur_robot_driver</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Setting up a UR robot for ur_robot_driver</a></li>
-<li class="toctree-l3"><a class="reference internal" href="install_urcap_cb3.html">Installing a URCap on a CB3 robot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="install_urcap_e_series.html">Installing a URCap on a e-Series robot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ursim_docker.html">Setup URSim with Docker</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../usage/toc.html">Usage</a></li>
@@ -103,90 +100,11 @@
            <div itemprop="articleBody">
              
   <section id="setting-up-a-ur-robot-for-ur-robot-driver">
-<span id="robot-setup"></span><h1>Setting up a UR robot for ur_robot_driver<a class="headerlink" href="#setting-up-a-ur-robot-for-ur-robot-driver" title="Link to this heading"></a></h1>
-<section id="network-setup">
-<h2>Network setup<a class="headerlink" href="#network-setup" title="Link to this heading"></a></h2>
-<p>There are many possible ways to connect a UR robot. This section describes a good example using static IP addresses and a direct connection from the PC to the Robot to minimize latency introduced by network hardware. Though a good network switch usually works fine, as well.</p>
-<ol class="arabic simple">
-<li><p>Connect the UR control box directly to the remote PC with an ethernet cable.</p></li>
-<li><p>Open the network settings from the UR teach pendant (Setup Robot -&gt; Network) and enter these settings:</p></li>
-</ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">IP</span> <span class="n">address</span><span class="p">:</span> <span class="mf">192.168.1.102</span>
-<span class="n">Subnet</span> <span class="n">mask</span><span class="p">:</span> <span class="mf">255.255.255.0</span>
-<span class="n">Default</span> <span class="n">gateway</span><span class="p">:</span> <span class="mf">192.168.1.1</span>
-<span class="n">Preferred</span> <span class="n">DNS</span> <span class="n">server</span><span class="p">:</span> <span class="mf">192.168.1.1</span>
-<span class="n">Alternative</span> <span class="n">DNS</span> <span class="n">server</span><span class="p">:</span> <span class="mf">0.0.0.0</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><dl class="simple">
-<dt>Enable remote control (Not applicable on PolyScope X versions)</dt><dd><ol class="arabic simple">
-<li><p>Go to the hamburger menu -&gt; settings.</p></li>
-<li><p>Go to System -&gt; Remote control.</p></li>
-<li><p>Unlock the menu using the admin password, and enable Remote Control.</p></li>
-<li><p>Press exit.</p></li>
-<li><p>The robot can now be toggled between local and remote control in the upper right hand corner.</p></li>
-</ol>
-</dd>
-</dl>
-</li>
-</ul>
-<a class="reference internal image-reference" href="../../../../../_images/remote_control.png"><img alt="Screenshot showing remote control toggle." src="../../../../../_images/remote_control.png" style="width: 600px;" />
-</a>
-<ul class="simple">
-<li><dl class="simple">
-<dt><strong>If using PolyScope 5.10 or greater:</strong></dt><dd><ol class="arabic simple">
-<li><p>Go to the hamburger menu -&gt; settings.</p></li>
-<li><p>Go to Security -&gt; Services.</p></li>
-<li><p>Unlock the menu using the admin password.</p></li>
-<li><p>Enable the Dashboard Server (Not applicable on PolyScope X versions), Primary Client Interface, Secondary Client Interface and Real-Time Data Exchange (RTDE) interfaces.</p></li>
-<li><p>Lock the menu and press exit.</p></li>
-</ol>
-</dd>
-</dl>
-</li>
-<li><p>PolyScope 5 screen:</p></li>
-</ul>
-<a class="reference internal image-reference" href="../../../../../_images/services_polyscope5.png"><img alt="Screenshot from PolyScope 5.xx services menu." src="../../../../../_images/services_polyscope5.png" style="width: 600px;" />
-</a>
-<ul class="simple">
-<li><p>PolyScope X screen:</p></li>
-</ul>
-<a class="reference internal image-reference" href="../../../../../_images/services_polyscopex.jpg"><img alt="Screenshot from PolyScope X screen." src="../../../../../_images/services_polyscopex.jpg" style="width: 600px;" />
-</a>
-<section id="remote-pc-setup">
-<h3>Remote PC Setup<a class="headerlink" href="#remote-pc-setup" title="Link to this heading"></a></h3>
-<ol class="arabic simple">
-<li><p>On the remote PC, turn off all network devices except the “wired connection”, e.g. turn off wifi.</p></li>
-<li><p>Open Network Settings and create a new Wired connection with these settings. You may want to name this new connection <code class="docutils literal notranslate"><span class="pre">UR</span></code> or something similar:</p></li>
-</ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">IPv4</span>
-<span class="n">Manual</span>
-<span class="n">Address</span><span class="p">:</span> <span class="mf">192.168.1.101</span>
-<span class="n">Netmask</span><span class="p">:</span> <span class="mf">255.255.255.0</span>
-<span class="n">Gateway</span><span class="p">:</span> <span class="mf">192.168.1.1</span>
-</pre></div>
-</div>
-<ol class="arabic simple">
-<li><p>Verify the connection from the PC with e.g. ping.</p></li>
-</ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ping</span> <span class="mf">192.168.1.102</span>
-</pre></div>
-</div>
-</section>
-</section>
-<section id="prepare-the-robot">
-<h2>Prepare the robot<a class="headerlink" href="#prepare-the-robot" title="Link to this heading"></a></h2>
-<p>This section describes installation and launching of the URCap program from the pendant. It allows ROS to control the robot externally. Generally, you will launch the driver via ROS then start URCap from the pendant.</p>
-<p>For using the <em>ur_robot_driver</em> with a real robot you need to install the
-<strong>externalcontrol urcap</strong>. The latest release can be downloaded from <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ExternalControl_URCap/releases">its own repository</a>.</p>
-<p><strong>Note</strong>: For installing this URCap a minimal PolyScope version of 3.14.3 or 5.9.4 (in case of e-Series) is
-necessary.</p>
-<p>For installing the necessary URCap and creating a program, please see the individual tutorials on
-how to <a class="reference internal" href="install_urcap_cb3.html#install-urcap-cb3"><span class="std std-ref">setup a cb3 robot</span></a> or how to
-<a class="reference internal" href="install_urcap_e_series.html#install-urcap-e-series"><span class="std std-ref">setup an e-Series robot</span></a>.</p>
-<p>To setup the tool communication on an e-Series robot, please consider the <a class="reference internal" href="../setup_tool_communication.html#setup-tool-communication"><span class="std std-ref">tool communication setup
-guide</span></a>.</p>
+<h1>Setting up a UR robot for ur_robot_driver<a class="headerlink" href="#setting-up-a-ur-robot-for-ur-robot-driver" title="Link to this heading"></a></h1>
+<section id="prepare-robot-and-network-connection">
+<h2>Prepare robot and network connection<a class="headerlink" href="#prepare-robot-and-network-connection" title="Link to this heading"></a></h2>
+<p>Before you can use the <code class="docutils literal notranslate"><span class="pre">ur_robot_driver</span></code> you need to prepare the robot and the network
+connection as described in the <a class="reference internal" href="../../../../ur_client_library/doc/setup/robot_setup.html#robot-setup"><span class="std std-ref">Robot setup</span></a>  and <a class="reference internal" href="../../../../ur_client_library/doc/setup/network_setup.html#network-setup"><span class="std std-ref">Network setup</span></a> section of the UR Client Library documentation.</p>
 </section>
 <section id="prepare-the-ros-pc">
 <h2>Prepare the ROS PC<a class="headerlink" href="#prepare-the-ros-pc" title="Link to this heading"></a></h2>
@@ -219,7 +137,7 @@ robot_ip:<span class="o">=</span>&lt;robot_ip&gt;<span class="w"> </span>target_
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="installation.html" class="btn btn-neutral float-left" title="Installation of the ur_robot_driver" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="install_urcap_cb3.html" class="btn btn-neutral float-right" title="Installing a URCap on a CB3 robot" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../usage/toc.html" class="btn btn-neutral float-right" title="Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

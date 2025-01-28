@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trajectory Point Interface &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
+  <title>Network setup &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
@@ -24,8 +24,8 @@
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="UrDriver" href="ur_driver.html" />
-    <link rel="prev" title="ScriptSender" href="script_sender.html" /> 
+    <link rel="next" title="Setup URSim with Docker" href="ursim_docker.html" />
+    <link rel="prev" title="Robot setup" href="robot_setup.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,19 +51,14 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">ur_client_library</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../installation.html">Build / installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../setup.html">Setup a robot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../polyscope_compatibility.html">PolyScope version compatibility</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../architecture.html">Library architecture</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="dashboard_client.html">DashboardClient</a></li>
-<li class="toctree-l3"><a class="reference internal" href="reverse_interface.html">ReverseInterface</a></li>
-<li class="toctree-l3"><a class="reference internal" href="rtde_client.html">RTDEClient</a></li>
-<li class="toctree-l3"><a class="reference internal" href="script_command_interface.html">Script Command Interface</a></li>
-<li class="toctree-l3"><a class="reference internal" href="script_sender.html">ScriptSender</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Trajectory Point Interface</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ur_driver.html">UrDriver</a></li>
-<li class="toctree-l3"><a class="reference internal" href="instruction_executor.html">Instruction Executor</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../setup.html">Setup a robot</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="robot_setup.html">Robot setup</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Network setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ursim_docker.html">Setup URSim with Docker</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../polyscope_compatibility.html">PolyScope version compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html">Library architecture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../example.html">Example driver</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../real_time.html">Setup for real-time scheduling</a></li>
 </ul>
@@ -93,10 +88,10 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">ur_client_library</a></li>
-          <li class="breadcrumb-item"><a href="../architecture.html">Library architecture</a></li>
-      <li class="breadcrumb-item active">Trajectory Point Interface</li>
+          <li class="breadcrumb-item"><a href="../setup.html">Setup a robot</a></li>
+      <li class="breadcrumb-item active">Network setup</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_client_library/doc/architecture/trajectory_point_interface.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_client_library/doc/setup/network_setup.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -104,56 +99,47 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="trajectory-point-interface">
-<span id="id1"></span><h1>Trajectory Point Interface<a class="headerlink" href="#trajectory-point-interface" title="Link to this heading"></a></h1>
-<p>The <code class="docutils literal notranslate"><span class="pre">TrajectoryPointInterface</span></code> allows sending trajectory points to the robot. It is intended to
-be used in conjunction with the <a class="reference internal" href="reverse_interface.html#reverse-interface"><span class="std std-ref">ReverseInterface</span></a> during trajectory forwarding.</p>
-<p>Communication regarding trajectory point execution would usually look like this:</p>
-<figure class="align-default">
-<a class="reference internal image-reference" href="../../../../_images/trajectory_interface.svg"><img alt="Trajectory interface" src="../../../../_images/trajectory_interface.svg" style="width: 100%;" />
-</a>
-</figure>
-<p>Basically, the <code class="docutils literal notranslate"><span class="pre">TrajectoryPointInterface</span></code> transfers the trajectory points from the external
-control PC to the robot for execution. Execution isn’t started, before a start command is sent via
-the <code class="docutils literal notranslate"><span class="pre">ReverseInterface</span></code>. Once trajectory execution is done (either successful, failed or canceled
-externally), the robot will send a response back to the control PC via the trajectory socket.</p>
-<section id="communication-protocol">
-<h2>Communication protocol<a class="headerlink" href="#communication-protocol" title="Link to this heading"></a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">TrajectoryPointInterface</span></code>’s “trajectory_socket” on the robot is expecting 32 bit integer
-representations in 21 datafields. The data fields have the following meaning:</p>
-<table class="docutils align-default" id="id2">
-<caption><span class="caption-number">Table 10 </span><span class="caption-text">trajectory_socket message format</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
-<thead>
-<tr class="row-odd"><th class="head"><p>index</p></th>
-<th class="head"><p>meaning</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>0-5</p></td>
-<td><p>trajectory point positions (floating point)</p></td>
-</tr>
-<tr class="row-odd"><td><p>6-11</p></td>
-<td><p>trajectory point velocities (floating point)</p></td>
-</tr>
-<tr class="row-even"><td><p>12-17</p></td>
-<td><p>trajectory point accelerations (floating point)</p></td>
-</tr>
-<tr class="row-odd"><td><p>18</p></td>
-<td><p>trajectory point type (0: JOINT, 1: CARTESIAN, 2: JOINT_SPLINE)</p></td>
-</tr>
-<tr class="row-even"><td><p>19</p></td>
-<td><p>trajectory point time (in seconds, floating point)</p></td>
-</tr>
-<tr class="row-odd"><td><p>20</p></td>
-<td><p>depending on trajectory point type</p>
-<ul class="simple">
-<li><p>JOINT, CARTESIAN: point blend radius (in meters, floating point)</p></li>
-<li><p>JOINT_SPLINE: spline type (1: CUBIC, 2: QUINTIC)</p></li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
+  <section id="network-setup">
+<span id="id1"></span><h1>Network setup<a class="headerlink" href="#network-setup" title="Link to this heading"></a></h1>
+<section id="robot-setup">
+<h2>Robot setup<a class="headerlink" href="#robot-setup" title="Link to this heading"></a></h2>
+<p>There are many possible ways to connect a UR robot. This section describes a good example using static IP addresses and a direct connection from the PC to the Robot to minimize latency introduced by network hardware. Though a good network switch usually works fine, as well.</p>
+<ol class="arabic simple">
+<li><p>Connect the UR control box directly to the remote PC with an ethernet cable.</p></li>
+<li><p>Open the network settings from the UR teach pendant (Setup Robot -&gt; Network) and enter these settings:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">IP</span> <span class="n">address</span><span class="p">:</span> <span class="mf">192.168.56.101</span>
+<span class="n">Subnet</span> <span class="n">mask</span><span class="p">:</span> <span class="mf">255.255.255.0</span>
+<span class="n">Default</span> <span class="n">gateway</span><span class="p">:</span> <span class="mf">192.168.56.1</span>
+<span class="n">Preferred</span> <span class="n">DNS</span> <span class="n">server</span><span class="p">:</span> <span class="mf">192.168.56.1</span>
+<span class="n">Alternative</span> <span class="n">DNS</span> <span class="n">server</span><span class="p">:</span> <span class="mf">0.0.0.0</span>
+</pre></div>
+</div>
+</section>
+<section id="remote-pc-setup">
+<h2>Remote PC setup<a class="headerlink" href="#remote-pc-setup" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>On the remote PC, turn off all network devices except the “wired connection”, e.g. turn off
+wifi. You can skip this step if you are certain that no other active connection is using the
+same IP range.</p></li>
+<li><p>Open Network Settings and create a new Wired connection with these settings. You may want to name this new connection <code class="docutils literal notranslate"><span class="pre">UR</span></code> or something similar:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">IPv4</span>
+<span class="n">Manual</span>
+<span class="n">Address</span><span class="p">:</span> <span class="mf">192.168.56.1</span>
+<span class="n">Netmask</span><span class="p">:</span> <span class="mf">255.255.255.0</span>
+</pre></div>
+</div>
+</li>
+<li><p>Verify the connection from the PC with e.g. ping. You should see something like this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ping<span class="w"> </span><span class="m">192</span>.168.56.101
+<span class="go">PING 192.168.56.101 (192.168.56.101) 56(84) bytes of data.</span>
+<span class="go">64 bytes from 192.168.56.101: icmp_seq=1 ttl=64 time=0.037 ms</span>
+<span class="go">64 bytes from 192.168.56.101: icmp_seq=2 ttl=64 time=0.043 ms</span>
+<span class="go">64 bytes from 192.168.56.101: icmp_seq=3 ttl=64 time=0.047 ms</span>
+</pre></div>
+</div>
+</li>
+</ol>
 </section>
 </section>
 
@@ -161,8 +147,8 @@ representations in 21 datafields. The data fields have the following meaning:</p
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="script_sender.html" class="btn btn-neutral float-left" title="ScriptSender" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="ur_driver.html" class="btn btn-neutral float-right" title="UrDriver" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="robot_setup.html" class="btn btn-neutral float-left" title="Robot setup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ursim_docker.html" class="btn btn-neutral float-right" title="Setup URSim with Docker" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
