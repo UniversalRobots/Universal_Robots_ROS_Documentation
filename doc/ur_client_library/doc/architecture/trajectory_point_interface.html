@@ -117,6 +117,14 @@ be used in conjunction with the <a class="reference internal" href="reverse_inte
 control PC to the robot for execution. Execution isn’t started, before a start command is sent via
 the <code class="docutils literal notranslate"><span class="pre">ReverseInterface</span></code>. Once trajectory execution is done (either successful, failed or canceled
 externally), the robot will send a response back to the control PC via the trajectory socket.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">TrajectoryPointInterface</span></code> simply forwards the trajectory points to the robot. Execution
+is done using respective URScript functions such as <a class="reference external" href="https://www.universal-robots.com/manuals/EN/HTML/SW5_20/Content/prod-scriptmanual/G5/movej_qa14v105t0r.htm">movej</a>
+or <a class="reference external" href="https://www.universal-robots.com/manuals/EN/HTML/SW5_20/Content/prod-scriptmanual/G5/movel_posea12v025t.htm">movel</a>.
+Therefore, all parameters and restrictions of these functions apply. For example, velocity and
+acceleration parameters will be ignored if there is a time &gt; 0 given.</p>
+</div>
 <section id="communication-protocol">
 <h2>Communication protocol<a class="headerlink" href="#communication-protocol" title="Link to this heading"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">TrajectoryPointInterface</span></code>’s “trajectory_socket” on the robot is expecting 32 bit integer

@@ -116,6 +116,14 @@ to point motions easily accessible. Currently, it supports the following instruc
 <p>The Instruction Executor uses the <a class="reference internal" href="trajectory_point_interface.html#trajectory-point-interface"><span class="std std-ref">Trajectory Point Interface</span></a> and the
 <a class="reference internal" href="reverse_interface.html#reverse-interface"><span class="std std-ref">ReverseInterface</span></a>
 for sending motion instructions to the robot. Hence, it requires a <a class="reference internal" href="ur_driver.html#ur-driver"><span class="std std-ref">UrDriver</span></a> object.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">InstructionExecutor</span></code> simply forwards the trajectory points to the robot. Execution
+is done using respective URScript functions such as <a class="reference external" href="https://www.universal-robots.com/manuals/EN/HTML/SW5_20/Content/prod-scriptmanual/G5/movej_qa14v105t0r.htm">movej</a>
+or <a class="reference external" href="https://www.universal-robots.com/manuals/EN/HTML/SW5_20/Content/prod-scriptmanual/G5/movel_posea12v025t.htm">movel</a>.
+Therefore, all parameters and restrictions of these functions apply. For example, velocity and
+acceleration parameters will be ignored if there is a time &gt; 0 given.</p>
+</div>
 <p>As a minimal working example, please see <code class="docutils literal notranslate"><span class="pre">examples/instruction_executor.cpp</span></code> example:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-number">Listing 5 </span><span class="caption-text">examples/instruction_executor.cpp</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
