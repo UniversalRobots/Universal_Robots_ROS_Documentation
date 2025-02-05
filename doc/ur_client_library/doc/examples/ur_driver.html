@@ -1,0 +1,254 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example driver &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/ur_theme.css?v=b67a8c70" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/icon.svg"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Setup for real-time scheduling" href="../real_time.html" />
+    <link rel="prev" title="Trajectory Joint Interface example" href="trajectory_point_interface.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Documentation
+              <img src="../../../../_static/ur_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">ur_client_library</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installation.html">Build / installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup.html">Setup a robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../polyscope_compatibility.html">PolyScope version compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html">Library architecture</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../examples.html">Usage examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dashboard_client.html">Dashboard client example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="force_mode.html">Force Mode example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="freedrive.html">Freedrive Mode example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruction_executor.html">Instruction Executor example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="primary_pipeline.html">Primary Pipeline example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="primary_pipeline_calibration.html">Primary Pipeline Calibration example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rtde_client.html">RTDE Client example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="script_sender.html">Script Sender example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spline_example.html">Spline Interpolation example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tool_contact_example.html">Tool Contact example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trajectory_point_interface.html">Trajectory Joint Interface example</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Example driver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../real_time.html">Setup for real-time scheduling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_tutorials/tutorial_index.html">Tutorial examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../migration_notes.html">Migration Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Universal Robots ROS 2 Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">ur_client_library</a></li>
+          <li class="breadcrumb-item"><a href="../examples.html">Usage examples</a></li>
+      <li class="breadcrumb-item active">Example driver</li>
+      <li class="wy-breadcrumbs-aside">
+              <!-- User defined GitHub URL -->
+              <a href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/blob/master/doc/examples/ur_driver.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="example-driver">
+<span id="id1"></span><h1>Example driver<a class="headerlink" href="#example-driver" title="Link to this heading"></a></h1>
+<p>In the <code class="docutils literal notranslate"><span class="pre">examples</span></code> subfolder you will find a minimal example of a running driver. It starts an
+instance of the <code class="docutils literal notranslate"><span class="pre">UrDriver</span></code> class and prints the RTDE values read from the controller. To run it make
+sure to</p>
+<ul class="simple">
+<li><p>have an instance of a robot controller / URSim running at the configured IP address (or adapt the
+address to your needs)</p></li>
+<li><p>run it from the package’s main folder (the one where the README.md file is stored), as for
+simplicity reasons it doesn’t use any sophisticated method to locate the required files.</p></li>
+</ul>
+<p>This page will walk you through the <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/blob/master/examples/full_driver.cpp">full_driver.cpp</a>
+example.</p>
+<section id="initialization">
+<h2>Initialization<a class="headerlink" href="#initialization" title="Link to this heading"></a></h2>
+<p>At first, we create a <code class="docutils literal notranslate"><span class="pre">UrDriver</span></code> object giving it the robot’s IP address, script file and RTDE
+recipes.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 42 </span><span class="caption-text">examples/full_driver.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">129</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">ToolCommSetup</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tool_comm_setup</span><span class="p">;</span>
+<span class="linenos">130</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">headless</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="linenos">131</span><span class="w">  </span><span class="n">g_my_driver</span><span class="p">.</span><span class="n">reset</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">UrDriver</span><span class="p">(</span><span class="n">robot_ip</span><span class="p">,</span><span class="w"> </span><span class="n">SCRIPT_FILE</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">handleRobotProgramState</span><span class="p">,</span><span class="w"> </span><span class="n">headless</span><span class="p">,</span>
+<span class="linenos">132</span><span class="w">                                 </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">tool_comm_setup</span><span class="p">)));</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="robot-control-loop">
+<h2>Robot control loop<a class="headerlink" href="#robot-control-loop" title="Link to this heading"></a></h2>
+<p>This example reads the robot’s joint positions, increments / decrements the 5th axis and sends that
+back as a joint command for the next cycle. This way, the robot will move its wrist first until a
+positive limit and then back to 0.</p>
+<p>To read the joint data, the driver’s RTDE client is used:</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 43 </span><span class="caption-text">examples/full_driver.cpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">154</span><span class="w">  </span><span class="c1">// Once RTDE communication is started, we have to make sure to read from the interface buffer, as</span>
+<span class="linenos">155</span><span class="w">  </span><span class="c1">// otherwise we will get pipeline overflows. Therefor, do this directly before starting your main</span>
+<span class="linenos">156</span><span class="w">  </span><span class="c1">// loop.</span>
+<span class="linenos">157</span><span class="w">  </span><span class="n">g_my_driver</span><span class="o">-&gt;</span><span class="n">startRTDECommunication</span><span class="p">();</span>
+<span class="linenos">158</span><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">passed_positive_part</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">passed_negative_part</span><span class="p">))</span>
+<span class="linenos">159</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos">160</span><span class="w">    </span><span class="c1">// Read latest RTDE package. This will block for a hard-coded timeout (see UrDriver), so the</span>
+<span class="linenos">161</span><span class="w">    </span><span class="c1">// robot will effectively be in charge of setting the frequency of this loop.</span>
+<span class="linenos">162</span><span class="w">    </span><span class="c1">// In a real-world application this thread should be scheduled with real-time priority in order</span>
+<span class="linenos">163</span><span class="w">    </span><span class="c1">// to ensure that this is called in time.</span>
+<span class="linenos">164</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">DataPackage</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data_pkg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_my_driver</span><span class="o">-&gt;</span><span class="n">getDataPackage</span><span class="p">();</span>
+<span class="linenos">165</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">data_pkg</span><span class="p">)</span>
+<span class="linenos">166</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">167</span><span class="w">      </span><span class="n">URCL_LOG_WARN</span><span class="p">(</span><span class="s">&quot;Could not get fresh data package from robot&quot;</span><span class="p">);</span>
+<span class="linenos">168</span><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">169</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">170</span><span class="w">    </span><span class="c1">// Read current joint positions from robot data</span>
+<span class="linenos">171</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">data_pkg</span><span class="o">-&gt;</span><span class="n">getData</span><span class="p">(</span><span class="s">&quot;actual_q&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">g_joint_positions</span><span class="p">))</span>
+<span class="linenos">172</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">173</span><span class="w">      </span><span class="c1">// This throwing should never happen unless misconfigured</span>
+<span class="linenos">174</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">error_msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Did not find &#39;actual_q&#39; in data sent from robot. This should not happen!&quot;</span><span class="p">;</span>
+<span class="linenos">175</span><span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="n">error_msg</span><span class="p">);</span>
+<span class="linenos">176</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">177</span>
+<span class="linenos">178</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">first_pass</span><span class="p">)</span>
+<span class="linenos">179</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">180</span><span class="w">      </span><span class="n">joint_target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_joint_positions</span><span class="p">;</span>
+<span class="linenos">181</span><span class="w">      </span><span class="n">first_pass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="linenos">182</span><span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>The first read operation will initialize the target buffer with the current robot position. Next,
+the target joint configuration is calculated:</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 44 </span><span class="caption-text">examples/full_driver.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">184</span><span class="w">    </span><span class="c1">// Open loop control. The target is incremented with a constant each control loop</span>
+<span class="linenos">185</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">passed_positive_part</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">false</span><span class="p">)</span>
+<span class="linenos">186</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">187</span><span class="w">      </span><span class="n">increment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">increment_constant</span><span class="p">;</span>
+<span class="linenos">188</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">g_joint_positions</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos">189</span><span class="w">      </span><span class="p">{</span>
+<span class="linenos">190</span><span class="w">        </span><span class="n">passed_positive_part</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="linenos">191</span><span class="w">      </span><span class="p">}</span>
+<span class="linenos">192</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">193</span><span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">passed_negative_part</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">false</span><span class="p">)</span>
+<span class="linenos">194</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">195</span><span class="w">      </span><span class="n">increment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">increment_constant</span><span class="p">;</span>
+<span class="linenos">196</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">g_joint_positions</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">197</span><span class="w">      </span><span class="p">{</span>
+<span class="linenos">198</span><span class="w">        </span><span class="n">passed_negative_part</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="linenos">199</span><span class="w">      </span><span class="p">}</span>
+<span class="linenos">200</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">201</span><span class="w">    </span><span class="n">joint_target</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">increment</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>To send the control command, the robot’s <a class="reference internal" href="../architecture/reverse_interface.html#reverse-interface"><span class="std std-ref">ReverseInterface</span></a> is used via the
+<code class="docutils literal notranslate"><span class="pre">writeJointCommand()</span></code> function:</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Listing 45 </span><span class="caption-text">examples/full_driver.cpp</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">202</span><span class="w">    </span><span class="c1">// Setting the RobotReceiveTimeout time is for example purposes only. This will make the example running more</span>
+<span class="linenos">203</span><span class="w">    </span><span class="c1">// reliable on non-realtime systems. Use with caution in productive applications.</span>
+<span class="linenos">204</span><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_my_driver</span><span class="o">-&gt;</span><span class="n">writeJointCommand</span><span class="p">(</span><span class="n">joint_target</span><span class="p">,</span><span class="w"> </span><span class="n">comm</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">MODE_SERVOJ</span><span class="p">,</span>
+<span class="linenos">205</span><span class="w">                                              </span><span class="n">RobotReceiveTimeout</span><span class="o">::</span><span class="n">millisec</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span>
+<span class="linenos">206</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">ret</span><span class="p">)</span>
+<span class="linenos">207</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">208</span><span class="w">      </span><span class="n">URCL_LOG_ERROR</span><span class="p">(</span><span class="s">&quot;Could not send joint command. Is the robot in remote control?&quot;</span><span class="p">);</span>
+<span class="linenos">209</span><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">210</span><span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="trajectory_point_interface.html" class="btn btn-neutral float-left" title="Trajectory Joint Interface example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../real_time.html" class="btn btn-neutral float-right" title="Setup for real-time scheduling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

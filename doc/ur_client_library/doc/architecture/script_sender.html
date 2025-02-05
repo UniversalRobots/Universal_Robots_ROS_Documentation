@@ -64,7 +64,7 @@
 <li class="toctree-l3"><a class="reference internal" href="instruction_executor.html">Instruction Executor</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../example.html">Example driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html">Usage examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../real_time.html">Setup for real-time scheduling</a></li>
 </ul>
 </li>
@@ -113,47 +113,7 @@ to the <code class="docutils literal notranslate"><span class="pre">ScriptSender
 corresponding request when starting a program on the robot that contains the <strong>External Control</strong>
 program node. In order to work properly, make sure that the IP address and script sender port are
 configured correctly on the robot.</p>
-<p>The following example creates a <code class="docutils literal notranslate"><span class="pre">ScriptSender</span></code> listening on port <code class="docutils literal notranslate"><span class="pre">12345</span></code> and sends the script
-<code class="docutils literal notranslate"><span class="pre">textmsg(&quot;Hello,</span> <span class="pre">World!&quot;)</span></code> when requested. A fully compilable example can be found in <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/blob/master/examples/script_sender.cpp">script_sender.cpp</a></p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 4 </span><span class="caption-text">examples/script_sender.cpp</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">33</span><span class="k">constexpr</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">PORT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12345</span><span class="p">;</span>
-<span class="linenos">34</span>
-<span class="linenos">35</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span>
-<span class="linenos">36</span><span class="p">{</span>
-<span class="linenos">37</span><span class="w">  </span><span class="c1">// Parse how may seconds to run</span>
-<span class="linenos">38</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">second_to_run</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
-<span class="linenos">39</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
-<span class="linenos">40</span><span class="w">  </span><span class="p">{</span>
-<span class="linenos">41</span><span class="w">    </span><span class="n">second_to_run</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
-<span class="linenos">42</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">43</span><span class="w">  </span><span class="n">urcl</span><span class="o">::</span><span class="n">control</span><span class="o">::</span><span class="n">ScriptSender</span><span class="w"> </span><span class="n">sender</span><span class="p">(</span><span class="n">PORT</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;textmsg(</span><span class="se">\&quot;</span><span class="s">Hello, World!</span><span class="se">\&quot;</span><span class="s">)&quot;</span><span class="p">);</span>
-<span class="linenos">44</span>
-<span class="linenos">45</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">stringstream</span><span class="w"> </span><span class="n">ss</span><span class="p">;</span>
-<span class="linenos">46</span><span class="w">  </span><span class="n">ss</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Waiting for incoming requests on port &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">PORT</span><span class="p">;</span>
-<span class="linenos">47</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">second_to_run</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
-<span class="linenos">48</span><span class="w">  </span><span class="p">{</span>
-<span class="linenos">49</span><span class="w">    </span><span class="n">ss</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; for &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">second_to_run</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; seconds&quot;</span><span class="p">;</span>
-<span class="linenos">50</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">51</span><span class="w">  </span><span class="k">else</span>
-<span class="linenos">52</span><span class="w">  </span><span class="p">{</span>
-<span class="linenos">53</span><span class="w">    </span><span class="n">ss</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; indefinitely&quot;</span><span class="p">;</span>
-<span class="linenos">54</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">55</span>
-<span class="linenos">56</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ss</span><span class="p">.</span><span class="n">str</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="linenos">57</span>
-<span class="linenos">58</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">start_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">system_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
-<span class="linenos">59</span><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">second_to_run</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">system_clock</span><span class="o">::</span><span class="n">now</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="n">second_to_run</span><span class="p">))</span>
-<span class="linenos">60</span><span class="w">  </span><span class="p">{</span>
-<span class="linenos">61</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">500</span><span class="p">));</span>
-<span class="linenos">62</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">63</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Timeout reached&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="linenos">64</span>
-<span class="linenos">65</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="linenos">66</span><span class="p">}</span>
-</pre></div>
-</div>
-</div>
+<p>An example of how to use the <code class="docutils literal notranslate"><span class="pre">ScriptSender</span></code> class can be found in the <a class="reference internal" href="../examples/script_sender.html#script-sender-example"><span class="std std-ref">Script Sender example</span></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>PolyScope X users cannot use the URCap linked above. There is a development version of a URCapX

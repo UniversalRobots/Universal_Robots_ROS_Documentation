@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Example driver &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
+  <title>Usage examples &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -24,7 +24,7 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Setup for real-time scheduling" href="real_time.html" />
+    <link rel="next" title="Dashboard client example" href="examples/dashboard_client.html" />
     <link rel="prev" title="Instruction Executor" href="architecture/instruction_executor.html" /> 
 </head>
 
@@ -54,7 +54,21 @@
 <li class="toctree-l2"><a class="reference internal" href="setup.html">Setup a robot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="polyscope_compatibility.html">PolyScope version compatibility</a></li>
 <li class="toctree-l2"><a class="reference internal" href="architecture.html">Library architecture</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Example driver</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Usage examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/dashboard_client.html">Dashboard client example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/force_mode.html">Force Mode example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/freedrive.html">Freedrive Mode example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/instruction_executor.html">Instruction Executor example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/primary_pipeline.html">Primary Pipeline example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/primary_pipeline_calibration.html">Primary Pipeline Calibration example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/rtde_client.html">RTDE Client example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/script_sender.html">Script Sender example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/spline_example.html">Spline Interpolation example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/tool_contact_example.html">Tool Contact example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/trajectory_point_interface.html">Trajectory Joint Interface example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/ur_driver.html">Example driver</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="real_time.html">Setup for real-time scheduling</a></li>
 </ul>
 </li>
@@ -83,9 +97,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">ur_client_library</a></li>
-      <li class="breadcrumb-item active">Example driver</li>
+      <li class="breadcrumb-item active">Usage examples</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_client_library/doc/example.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_client_library/doc/examples.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -93,17 +107,34 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="example-driver">
-<span id="id1"></span><h1>Example driver<a class="headerlink" href="#example-driver" title="Link to this heading"></a></h1>
-<p>In the <code class="docutils literal notranslate"><span class="pre">examples</span></code> subfolder you will find a minimal example of a running driver. It starts an
-instance of the <code class="docutils literal notranslate"><span class="pre">UrDriver</span></code> class and prints the RTDE values read from the controller. To run it make
-sure to</p>
-<ul class="simple">
-<li><p>have an instance of a robot controller / URSim running at the configured IP address (or adapt the
-address to your needs)</p></li>
-<li><p>run it from the package’s main folder (the one where this README.md file is stored), as for
-simplicity reasons it doesn’t use any sophisticated method to locate the required files.</p></li>
+  <section id="usage-examples">
+<h1>Usage examples<a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h1>
+<p>This library contains a number of examples how this library can be used. You can use them as a
+starting point for your own applications.</p>
+<p>All examples take a robot’s IP address as a first argument and some of them take a maximum run
+duration (in seconds) as second argument. If the second argument is omitted, some of the examples
+may be running forever until manually stopped.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Most of these examples use the driver’s headless mode. Therefore, on an e-Series (PolyScope 5) robot, the robot has to be
+in <em>remote control mode</em> to work.</p>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/dashboard_client.html">Dashboard client example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/force_mode.html">Force Mode example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/freedrive.html">Freedrive Mode example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/instruction_executor.html">Instruction Executor example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/primary_pipeline.html">Primary Pipeline example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/primary_pipeline_calibration.html">Primary Pipeline Calibration example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/rtde_client.html">RTDE Client example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/script_sender.html">Script Sender example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/spline_example.html">Spline Interpolation example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/tool_contact_example.html">Tool Contact example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/trajectory_point_interface.html">Trajectory Joint Interface example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/ur_driver.html">Example driver</a></li>
 </ul>
+</div>
 </section>
 
 
@@ -111,7 +142,7 @@ simplicity reasons it doesn’t use any sophisticated method to locate the requi
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="architecture/instruction_executor.html" class="btn btn-neutral float-left" title="Instruction Executor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="real_time.html" class="btn btn-neutral float-right" title="Setup for real-time scheduling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="examples/dashboard_client.html" class="btn btn-neutral float-right" title="Dashboard client example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

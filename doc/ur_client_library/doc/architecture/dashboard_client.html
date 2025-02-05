@@ -64,7 +64,7 @@
 <li class="toctree-l3"><a class="reference internal" href="instruction_executor.html">Instruction Executor</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../example.html">Example driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html">Usage examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../real_time.html">Setup for real-time scheduling</a></li>
 </ul>
 </li>
@@ -132,7 +132,12 @@ the given timeout is reached.</p>
 <span class="linenos">71</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="linenos">72</span><span class="w">  </span><span class="p">}</span>
 <span class="linenos">73</span>
-<span class="linenos">74</span><span class="w">  </span><span class="n">my_dashboard</span><span class="o">-&gt;</span><span class="n">commandCloseSafetyPopup</span><span class="p">();</span>
+<span class="linenos">74</span><span class="w">  </span><span class="c1">// Get the PolyScope version</span>
+<span class="linenos">75</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">version</span><span class="p">;</span>
+<span class="linenos">76</span><span class="w">  </span><span class="n">my_dashboard</span><span class="o">-&gt;</span><span class="n">commandPolyscopeVersion</span><span class="p">(</span><span class="n">version</span><span class="p">);</span>
+<span class="linenos">77</span><span class="w">  </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="n">version</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+<span class="linenos">78</span>
+<span class="linenos">79</span><span class="w">  </span><span class="n">my_dashboard</span><span class="o">-&gt;</span><span class="n">commandCloseSafetyPopup</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>

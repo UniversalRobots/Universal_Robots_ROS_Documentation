@@ -1,0 +1,249 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RTDE Client example &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/ur_theme.css?v=b67a8c70" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/icon.svg"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Script Sender example" href="script_sender.html" />
+    <link rel="prev" title="Primary Pipeline Calibration example" href="primary_pipeline_calibration.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Documentation
+              <img src="../../../../_static/ur_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">ur_client_library</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installation.html">Build / installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup.html">Setup a robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../polyscope_compatibility.html">PolyScope version compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html">Library architecture</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../examples.html">Usage examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dashboard_client.html">Dashboard client example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="force_mode.html">Force Mode example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="freedrive.html">Freedrive Mode example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruction_executor.html">Instruction Executor example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="primary_pipeline.html">Primary Pipeline example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="primary_pipeline_calibration.html">Primary Pipeline Calibration example</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">RTDE Client example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="script_sender.html">Script Sender example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spline_example.html">Spline Interpolation example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tool_contact_example.html">Tool Contact example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trajectory_point_interface.html">Trajectory Joint Interface example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ur_driver.html">Example driver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../real_time.html">Setup for real-time scheduling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_tutorials/tutorial_index.html">Tutorial examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../migration_notes.html">Migration Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Universal Robots ROS 2 Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">ur_client_library</a></li>
+          <li class="breadcrumb-item"><a href="../examples.html">Usage examples</a></li>
+      <li class="breadcrumb-item active">RTDE Client example</li>
+      <li class="wy-breadcrumbs-aside">
+              <!-- User defined GitHub URL -->
+              <a href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/blob/master/doc/examples/rtde_client.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="rtde-client-example">
+<span id="id1"></span><h1>RTDE Client example<a class="headerlink" href="#rtde-client-example" title="Link to this heading"></a></h1>
+<p>This example shows how to use the <code class="docutils literal notranslate"><span class="pre">RTDEClient</span></code> class for the robot’s <a class="reference external" href="https://www.universal-robots.com/articles/ur/interface-communication/real-time-data-exchange-rtde-guide/">Real-Time Data Exchange
+(RTDE) interface</a>.</p>
+<p>The RTDE client has to be initialized with a list of keys that should be streamed from the robot
+and a list of keys that should be sent to the robot. The client will then start a background thread
+establishing communication.</p>
+<p>In this example, those keys are stored in two text files relative to this repository’s root:
+<code class="docutils literal notranslate"><span class="pre">rtde_input_keys.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">rtde_output_keys.txt</span></code>. The example will read those files and use them
+to initialize the RTDE client.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 27 </span><span class="caption-text">examples/rtde_client.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">40</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">OUTPUT_RECIPE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;examples/resources/rtde_output_recipe.txt&quot;</span><span class="p">;</span>
+<span class="linenos">41</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">INPUT_RECIPE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;examples/resources/rtde_input_recipe.txt&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>Internally, the RTDE client uses the same producer / consumer architecture as show in the
+<a class="reference internal" href="primary_pipeline.html#primary-pipeline-example"><span class="std std-ref">Primary Pipeline example</span></a> example. However, it doesn’t have a consumer thread, so data has to
+be read by the user to avoid the pipeline’s queue from overflowing.</p>
+<section id="creating-an-rtde-client">
+<h2>Creating an RTDE Client<a class="headerlink" href="#creating-an-rtde-client" title="Link to this heading"></a></h2>
+<p>An RTDE client can be directly created passing the robot’s IP address, a <code class="docutils literal notranslate"><span class="pre">INotifier</span></code> object, an
+output and an input recipe. Optionally, a communication frequency can be passed as well. If that is
+omitted, RTDE communication will be established at the robot’s control frequency.</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 28 </span><span class="caption-text">examples/rtde_client.cpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">74</span><span class="w">  </span><span class="n">comm</span><span class="o">::</span><span class="n">INotifier</span><span class="w"> </span><span class="n">notifier</span><span class="p">;</span>
+<span class="linenos">75</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">rtde_frequency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span><span class="w">  </span><span class="c1">// Hz</span>
+<span class="linenos">76</span><span class="w">  </span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">RTDEClient</span><span class="w"> </span><span class="nf">my_client</span><span class="p">(</span><span class="n">robot_ip</span><span class="p">,</span><span class="w"> </span><span class="n">notifier</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">rtde_frequency</span><span class="p">);</span>
+<span class="linenos">77</span><span class="w">  </span><span class="n">my_client</span><span class="p">.</span><span class="n">init</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<p>An RTDE data package containing every key-value pair from the output recipe can be fetched using
+the <code class="docutils literal notranslate"><span class="pre">getDataPackage()</span></code> method. This method will block until a new package is available.</p>
+</section>
+<section id="reading-data-from-the-rtde-client">
+<h2>Reading data from the RTDE client<a class="headerlink" href="#reading-data-from-the-rtde-client" title="Link to this heading"></a></h2>
+<p>Once the RTDE client is initialized, we’ll have to start communication separately. As mentioned
+above, we’ll have to read data from the client once communication is started, hence we start
+communication right before a loop reading data.</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 29 </span><span class="caption-text">examples/rtde_client.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 84</span><span class="w">  </span><span class="c1">// Once RTDE communication is started, we have to make sure to read from the interface buffer, as</span>
+<span class="linenos"> 85</span><span class="w">  </span><span class="c1">// otherwise we will get pipeline overflows. Therefor, do this directly before starting your main</span>
+<span class="linenos"> 86</span><span class="w">  </span><span class="c1">// loop.</span>
+<span class="linenos"> 87</span><span class="w">  </span><span class="n">my_client</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+<span class="linenos"> 88</span>
+<span class="linenos"> 89</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">start_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">steady_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+<span class="linenos"> 90</span><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">second_to_run</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span>
+<span class="linenos"> 91</span><span class="w">         </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">duration_cast</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">steady_clock</span><span class="o">::</span><span class="n">now</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="p">).</span><span class="n">count</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span>
+<span class="linenos"> 92</span><span class="w">             </span><span class="n">second_to_run</span><span class="p">)</span>
+<span class="linenos"> 93</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos"> 94</span><span class="w">    </span><span class="c1">// Read latest RTDE package. This will block for READ_TIMEOUT, so the</span>
+<span class="linenos"> 95</span><span class="w">    </span><span class="c1">// robot will effectively be in charge of setting the frequency of this loop unless RTDE</span>
+<span class="linenos"> 96</span><span class="w">    </span><span class="c1">// communication doesn&#39;t work in which case the user will be notified.</span>
+<span class="linenos"> 97</span><span class="w">    </span><span class="c1">// In a real-world application this thread should be scheduled with real-time priority in order</span>
+<span class="linenos"> 98</span><span class="w">    </span><span class="c1">// to ensure that this is called in time.</span>
+<span class="linenos"> 99</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">DataPackage</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data_pkg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_client</span><span class="p">.</span><span class="n">getDataPackage</span><span class="p">(</span><span class="n">READ_TIMEOUT</span><span class="p">);</span>
+<span class="linenos">100</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">data_pkg</span><span class="p">)</span>
+<span class="linenos">101</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">102</span><span class="w">      </span><span class="c1">// Data fields in the data package are accessed by their name. Only names present in the</span>
+<span class="linenos">103</span><span class="w">      </span><span class="c1">// output recipe can be accessed. Otherwise this function will return false.</span>
+<span class="linenos">104</span><span class="w">      </span><span class="n">data_pkg</span><span class="o">-&gt;</span><span class="n">getData</span><span class="p">(</span><span class="s">&quot;target_speed_fraction&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">target_speed_fraction</span><span class="p">);</span>
+<span class="linenos">105</span><span class="w">      </span><span class="n">printFraction</span><span class="p">(</span><span class="n">target_speed_fraction</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;target_speed_fraction&quot;</span><span class="p">);</span>
+<span class="linenos">106</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">107</span><span class="w">    </span><span class="k">else</span>
+<span class="linenos">108</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">109</span><span class="w">      </span><span class="c1">// The client isn&#39;t connected properly anymore / doesn&#39;t receive any data anymore. Stop the</span>
+<span class="linenos">110</span><span class="w">      </span><span class="c1">// program.</span>
+<span class="linenos">111</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Could not get fresh data package from robot&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">112</span><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">113</span><span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="writing-data-to-the-rtde-client">
+<h2>Writing Data to the RTDE client<a class="headerlink" href="#writing-data-to-the-rtde-client" title="Link to this heading"></a></h2>
+<p>In this example, we use the RTDE client to oscillate the speed slider on the teach pendant between
+0 and 1. While this doesn’t bear any practical use it shows how sending data to the RTDE interface
+works.</p>
+<p>To send data to the RTDE client, we can use <code class="docutils literal notranslate"><span class="pre">RTDEWriter</span></code> object stored in the RTDE client. This
+has methods implemented for each data type that can be sent to the robot. The input recipe used to
+initialize the RTDE client has to contain the keys necessary to send that specific data.</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Listing 30 </span><span class="caption-text">examples/rtde_client.cpp</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">130</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">my_client</span><span class="p">.</span><span class="n">getWriter</span><span class="p">().</span><span class="n">sendSpeedSlider</span><span class="p">(</span><span class="n">speed_slider_fraction</span><span class="p">))</span>
+<span class="linenos">131</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">132</span><span class="w">      </span><span class="c1">// This will happen for example, when the required keys are not configured inside the input</span>
+<span class="linenos">133</span><span class="w">      </span><span class="c1">// recipe.</span>
+<span class="linenos">134</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[1;31mSending RTDE data failed.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[0m</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">135</span><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">136</span><span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Many RTDE inputs require setting up the data key and a mask key. See the <a class="reference external" href="https://www.universal-robots.com/articles/ur/interface-communication/real-time-data-exchange-rtde-guide/">RTDE guide</a>
+for more information.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="primary_pipeline_calibration.html" class="btn btn-neutral float-left" title="Primary Pipeline Calibration example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="script_sender.html" class="btn btn-neutral float-right" title="Script Sender example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
