@@ -42,6 +42,7 @@ extensions = [
     "sphinx.ext.githubpages",
     "sphinx.ext.todo",
     "sphinx_copybutton",
+    "sphinx_multiversion",
     "sphinx_rtd_theme",
     "sphinx_tabs.tabs",
 ]
@@ -113,7 +114,6 @@ html_static_path = ["_static"]
 # default: ``['localtoc.html', 'relations.html', 'sourcelink.html',
 # 'searchbox.html']``.
 #
-# html_sidebars = {}
 
 
 # -- Options for HTMLHelp output ---------------------------------------------
@@ -222,3 +222,19 @@ html_css_files = [
 ]
 
 github_url = "https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation"
+
+smv_branch_whitelist = r"^(|humble|main)$"
+smv_released_pattern = r"^refs/(heads|remotes/[^/]+)/(humble).*$"
+smv_remote_whitelist = r"^(origin)$"
+smv_latest_version = "main"
+smv_eol_versions = ["humble"]
+
+def github_link_rewrite_branch(app, pagename, templatename, context, doctree):
+    if app.config.smv_current_version != "":
+        context["github_version"] = app.config.smv_current_version + "/"
+        context["eol_versions"] = app.config.smv_eol_versions
+
+def setup(app):
+    app.connect("html-page-context", github_link_rewrite_branch)
+    app.add_config_value("smv_eol_versions", [], "html")
+    app.add_config_value("macros", {}, True)
