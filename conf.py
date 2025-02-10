@@ -52,7 +52,7 @@ templates_path = ["_templates"]
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 #
-source_suffix = '.rst'
+source_suffix = ".rst"
 
 # The master toctree document.
 master_doc = "index"
@@ -73,11 +73,15 @@ language = "en"
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store",
-                    "**/CHANGELOG.rst", "**/README.rst",
-                    "**/.work", # act temp files
-                    ".venv", # local virtualenv
-                   ]
+exclude_patterns = [
+    "_build",
+    "Thumbs.db",
+    ".DS_Store",
+    "**/CHANGELOG.rst",
+    "**/README.rst",
+    "**/.work",  # act temp files
+    ".venv",  # local virtualenv
+]
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = None
@@ -153,7 +157,9 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [(master_doc, "ur_documentation", "ur_documentation Documentation", [author], 1)]
+man_pages = [
+    (master_doc, "ur_documentation", "ur_documentation Documentation", [author], 1)
+]
 
 
 # -- Options for Texinfo output ----------------------------------------------
@@ -193,7 +199,7 @@ epub_exclude_files = ["search.html"]
 
 
 # -- Extension configuration -------------------------------------------------
-copybutton_exclude = '.linenos, .gp, .go'
+copybutton_exclude = ".linenos, .gp, .go"
 
 # -- Options for todo extension ----------------------------------------------
 
@@ -212,7 +218,7 @@ html_context = {
 html_logo = "_static/images/ur_logo.svg"
 html_favicon = "_static/images/icon.svg"
 html_css_files = [
-    'css/ur_theme.css',
+    "css/ur_theme.css",
 ]
 
 github_url = "https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation"
