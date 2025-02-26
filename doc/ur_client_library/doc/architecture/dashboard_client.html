@@ -119,25 +119,25 @@ the given timeout is reached.</p>
 <p>The <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/blob/master/examples/dashboard_example.cpp">dashboard_example.cpp</a> shows how to use this class:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-number">Listing 3 </span><span class="caption-text">examples/dashboard_example.cpp</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">61</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">my_dashboard</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">DashboardClient</span><span class="o">&gt;</span><span class="p">(</span><span class="n">robot_ip</span><span class="p">);</span>
-<span class="linenos">62</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">my_dashboard</span><span class="o">-&gt;</span><span class="n">connect</span><span class="p">())</span>
-<span class="linenos">63</span><span class="w">  </span><span class="p">{</span>
-<span class="linenos">64</span><span class="w">    </span><span class="n">URCL_LOG_ERROR</span><span class="p">(</span><span class="s">&quot;Could not connect to dashboard&quot;</span><span class="p">);</span>
-<span class="linenos">65</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="linenos">66</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">67</span>
-<span class="linenos">68</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">my_dashboard</span><span class="o">-&gt;</span><span class="n">commandPowerOff</span><span class="p">())</span>
-<span class="linenos">69</span><span class="w">  </span><span class="p">{</span>
-<span class="linenos">70</span><span class="w">    </span><span class="n">URCL_LOG_ERROR</span><span class="p">(</span><span class="s">&quot;Could not send power off&quot;</span><span class="p">);</span>
-<span class="linenos">71</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="linenos">72</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">73</span>
-<span class="linenos">74</span><span class="w">  </span><span class="c1">// Get the PolyScope version</span>
-<span class="linenos">75</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">version</span><span class="p">;</span>
-<span class="linenos">76</span><span class="w">  </span><span class="n">my_dashboard</span><span class="o">-&gt;</span><span class="n">commandPolyscopeVersion</span><span class="p">(</span><span class="n">version</span><span class="p">);</span>
-<span class="linenos">77</span><span class="w">  </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="n">version</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
-<span class="linenos">78</span>
-<span class="linenos">79</span><span class="w">  </span><span class="n">my_dashboard</span><span class="o">-&gt;</span><span class="n">commandCloseSafetyPopup</span><span class="p">();</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">59</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">my_dashboard</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">DashboardClient</span><span class="o">&gt;</span><span class="p">(</span><span class="n">robot_ip</span><span class="p">);</span>
+<span class="linenos">60</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">my_dashboard</span><span class="o">-&gt;</span><span class="n">connect</span><span class="p">())</span>
+<span class="linenos">61</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos">62</span><span class="w">    </span><span class="n">URCL_LOG_ERROR</span><span class="p">(</span><span class="s">&quot;Could not connect to dashboard&quot;</span><span class="p">);</span>
+<span class="linenos">63</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">64</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">65</span>
+<span class="linenos">66</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">my_dashboard</span><span class="o">-&gt;</span><span class="n">commandPowerOff</span><span class="p">())</span>
+<span class="linenos">67</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos">68</span><span class="w">    </span><span class="n">URCL_LOG_ERROR</span><span class="p">(</span><span class="s">&quot;Could not send power off&quot;</span><span class="p">);</span>
+<span class="linenos">69</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">70</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">71</span>
+<span class="linenos">72</span><span class="w">  </span><span class="c1">// Get the PolyScope version</span>
+<span class="linenos">73</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">version</span><span class="p">;</span>
+<span class="linenos">74</span><span class="w">  </span><span class="n">my_dashboard</span><span class="o">-&gt;</span><span class="n">commandPolyscopeVersion</span><span class="p">(</span><span class="n">version</span><span class="p">);</span>
+<span class="linenos">75</span><span class="w">  </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="n">version</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+<span class="linenos">76</span>
+<span class="linenos">77</span><span class="w">  </span><span class="n">my_dashboard</span><span class="o">-&gt;</span><span class="n">commandCloseSafetyPopup</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
