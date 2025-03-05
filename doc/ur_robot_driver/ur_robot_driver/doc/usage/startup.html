@@ -66,6 +66,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../setup_tool_communication.html">Setting up the tool communication on an e-Series robot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hardware_interface_parameters.html">UR Hardware interface parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dashboard_client.html">Dashboard client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../robot_state_helper.html">Robot state helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../controller_stopper.html">Controller stopper</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_calibration/doc/index.html">ur_calibration</a></li>
@@ -161,8 +163,8 @@ already.</p></li>
 </ul>
 </section>
 <section id="verify-calibration-info-is-being-used-correctly">
-<span id="continuation-after-interruptions"></span><h2>Verify calibration info is being used correctly<a class="headerlink" href="#verify-calibration-info-is-being-used-correctly" title="Link to this heading"></a></h2>
-<p id="verify-calibration">If you passed a path to an extracted calibration via the <em>kinematics_params_file</em>
+<span id="verify-calibration"></span><h2>Verify calibration info is being used correctly<a class="headerlink" href="#verify-calibration-info-is-being-used-correctly" title="Link to this heading"></a></h2>
+<p>If you passed a path to an extracted calibration via the <em>kinematics_params_file</em>
 parameter, ensure that the loaded calibration matches that of the robot by inspecting the console
 output after launching the <code class="docutils literal notranslate"><span class="pre">ur_robot_driver</span></code>. If the calibration does not match, you will see an error:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">INFO</span><span class="p">]</span> <span class="p">[</span><span class="mf">1694437690.406932381</span><span class="p">]</span> <span class="p">[</span><span class="n">URPositionHardwareInterface</span><span class="p">]:</span> <span class="n">Calibration</span> <span class="n">checksum</span><span class="p">:</span> <span class="s1">&#39;calib_xxxxxxxxxxxxxxxxxxx&#39;</span>
@@ -177,8 +179,8 @@ output after launching the <code class="docutils literal notranslate"><span clas
 <p>Alternatively, search for the term <em>checksum</em> in the console output after launching the driver.
 Verify that the printed checksum matches that on the final line of your extracted calibration file.</p>
 </section>
-<section id="id1">
-<h2>Continuation after interruptions<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<section id="continuation-after-interruptions">
+<span id="id1"></span><h2>Continuation after interruptions<a class="headerlink" href="#continuation-after-interruptions" title="Link to this heading"></a></h2>
 <p>Whenever the <em>External Control URCap</em> program gets interrupted, it has to be unpaused / restarted.</p>
 <p>If that happens, you will see the output <code class="docutils literal notranslate"><span class="pre">Connection</span> <span class="pre">to</span> <span class="pre">reverse</span> <span class="pre">interface</span> <span class="pre">dropped.</span></code></p>
 <p>This can happen, e,g, when</p>

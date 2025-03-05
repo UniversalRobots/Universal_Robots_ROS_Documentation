@@ -66,6 +66,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../setup_tool_communication.html">Setting up the tool communication on an e-Series robot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hardware_interface_parameters.html">UR Hardware interface parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dashboard_client.html">Dashboard client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../robot_state_helper.html">Robot state helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../controller_stopper.html">Controller stopper</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_calibration/doc/index.html">ur_calibration</a></li>
@@ -112,7 +114,7 @@
 <li class="toctree-l2"><a class="reference internal" href="startup.html#launch-files">Launch files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="startup.html#finish-startup-on-the-robot">Finish startup on the robot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="startup.html#verify-calibration-info-is-being-used-correctly">Verify calibration info is being used correctly</a></li>
-<li class="toctree-l2"><a class="reference internal" href="startup.html#id1">Continuation after interruptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#continuation-after-interruptions">Continuation after interruptions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="move.html">Move the robot</a><ul>
@@ -208,7 +210,7 @@ create a program containing this node on the robot and start it using the “Pla
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>When interacting with the teach pendant, or sending other primary programs to the robot, the
-program will be stopped. On the ROS terminal you will see an output <code class="docutils literal notranslate"><span class="pre">Connection</span> <span class="pre">to</span> <span class="pre">reverse</span> <span class="pre">interface</span> <span class="pre">dropped.</span></code>. Please see the section <a class="reference internal" href="startup.html#continuation-after-interruptions"><span class="std std-ref">Verify calibration info is being used correctly</span></a> for details on how to continue.</p>
+program will be stopped. On the ROS terminal you will see an output <code class="docutils literal notranslate"><span class="pre">Connection</span> <span class="pre">to</span> <span class="pre">reverse</span> <span class="pre">interface</span> <span class="pre">dropped.</span></code>. Please see the section <a class="reference internal" href="startup.html#continuation-after-interruptions"><span class="std std-ref">Continuation after interruptions</span></a> for details on how to continue.</p>
 </div>
 <p>In general, make sure you’re starting up the robot as explained <a class="reference internal" href="startup.html#ur-robot-driver-startup"><span class="std std-ref">here</span></a>.</p>
 </section>

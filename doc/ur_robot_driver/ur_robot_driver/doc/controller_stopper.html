@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ur_calibration &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
+  <title>Controller stopper &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
@@ -24,8 +24,8 @@
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="Usage" href="usage.html" />
-    <link rel="prev" title="Controller stopper" href="../../ur_robot_driver/doc/controller_stopper.html" /> 
+    <link rel="next" title="ur_calibration" href="../../ur_calibration/doc/index.html" />
+    <link rel="prev" title="Robot state helper" href="robot_state_helper.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,12 +51,19 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_client_library/doc/index.html">ur_client_library</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_description/doc/index.html">ur_description</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">ur_calibration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="usage.html">Usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="algorithm.html">Calibration correction algorithm</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">ur_robot_driver</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/toc.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/toc.html">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operation_modes.html">Operation modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_tool_communication.html">Setting up the tool communication on an e-Series robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html">UR Hardware interface parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dashboard_client.html">Dashboard client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="robot_state_helper.html">Robot state helper</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Controller stopper</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_calibration/doc/index.html">ur_calibration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ur_controllers/doc/index.html">ur_controllers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
@@ -78,9 +85,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">ur_calibration</li>
+          <li class="breadcrumb-item"><a href="index.html">ur_robot_driver</a></li>
+      <li class="breadcrumb-item active">Controller stopper</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_robot_driver/ur_calibration/doc/index.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_robot_driver/ur_robot_driver/doc/controller_stopper.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -88,27 +96,37 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="ur-calibration">
-<h1>ur_calibration<a class="headerlink" href="#ur-calibration" title="Link to this heading"></a></h1>
-<p>Package for extracting the factory calibration from a UR robot and changing it to be used by <code class="docutils literal notranslate"><span class="pre">ur_description</span></code> to gain a correct URDF model.</p>
-<p>Each UR robot is calibrated inside the factory giving exact forward and inverse kinematics. To also
-make use of this in ROS, you first have to extract the calibration information from the robot.</p>
-<p>Though this step is not necessary, to control the robot using this driver, it is highly recommended
-to do so, as end effector positions might be off in the magnitude of centimeters.</p>
-<div class="toctree-wrapper compound">
+  <section id="controller-stopper">
+<span id="id1"></span><h1>Controller stopper<a class="headerlink" href="#controller-stopper" title="Link to this heading"></a></h1>
+<p>As explained in the section <a class="reference internal" href="usage/startup.html#robot-startup-program"><span class="std std-ref">Finish startup on the robot</span></a>, the robot needs to run a program in order
+to receive motion commands from the ROS driver. When the program is not running, commands sent to
+the robot will have no effect.</p>
+<p>To make that transparent, the <code class="docutils literal notranslate"><span class="pre">controller_stopper</span></code> node mirrors that state in the ROS
+controller’s state. It listens to the <code class="docutils literal notranslate"><span class="pre">/io_and_status_controller/robot_program_running</span></code> topic and
+deactivates all motion controllers  (or any controller not explicitly marked as “consistent”, see
+below)when the program is not running.</p>
+<p>Once the program is running again, any previously active motion controller will be activated again.</p>
+<p>This way, when sending commands to an inactive controller the caller should be transparently
+informed, that the controller cannot accept commands at the moment.</p>
+<p>In the same way, any running action on the ROS controller will be aborted, as the controller gets
+deactivated by the controller_stopper.</p>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="algorithm.html">Calibration correction algorithm</a></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~consistent_controllers</span></code> (list of strings, default: <code class="docutils literal notranslate"><span class="pre">[]</span></code>)</p>
+<p>A list of controller names that should not be stopped when the program is not running. Any
+controller that doesn’t require the robot program to be running should be in that list.</p>
+</li>
 </ul>
-</div>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../../ur_robot_driver/doc/controller_stopper.html" class="btn btn-neutral float-left" title="Controller stopper" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="usage.html" class="btn btn-neutral float-right" title="Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="robot_state_helper.html" class="btn btn-neutral float-left" title="Robot state helper" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../ur_calibration/doc/index.html" class="btn btn-neutral float-right" title="ur_calibration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
