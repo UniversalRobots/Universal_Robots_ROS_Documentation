@@ -116,7 +116,7 @@ all components from this library.</p>
 <li><p>a <a class="reference internal" href="script_command_interface.html#script-command-interface"><span class="std std-ref">ScriptCommandInterface</span></a></p></li>
 <li><p>a <a class="reference internal" href="script_sender.html#script-sender"><span class="std std-ref">ScriptSender</span></a></p></li>
 <li><p>a <a class="reference internal" href="trajectory_point_interface.html#trajectory-point-interface"><span class="std std-ref">TrajectoryPointInterface</span></a>.</p></li>
-<li><p>a rudimentary client to the robot’s secondary interface</p></li>
+<li><p>a rudimentary client to the robot’s primary interface</p></li>
 <li><p>a couple of helper functions</p></li>
 </ul>
 <p>As this page is not meant to be a full-blown API documentation, not every public method will be
@@ -137,7 +137,7 @@ given to this function. Connection to the primary interface is dropped afterward
 </section>
 <section id="sendscript-const-std-string-program">
 <h3><code class="docutils literal notranslate"><span class="pre">sendScript(const</span> <span class="pre">std::string&amp;</span> <span class="pre">program)</span></code><a class="headerlink" href="#sendscript-const-std-string-program" title="Link to this heading"></a></h3>
-<p>This function sends given URScript code directly to the secondary interface. The
+<p>This function sends given URScript code directly to the primary interface. The
 <code class="docutils literal notranslate"><span class="pre">sendRobotProgram()</span></code> function is a special case that will send the script code given in the
 <code class="docutils literal notranslate"><span class="pre">RTDEClient</span></code> constructor.</p>
 </section>
