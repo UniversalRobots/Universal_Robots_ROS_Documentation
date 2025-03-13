@@ -12,17 +12,12 @@ ur_robot_driver
 .. raw:: html
 
    <table width="100%"  class="docutils align-default">
-     <tr class="row-odd">
-       <th>Humble</th>
-       <th>Jazzy</th>
-       <th>Rolling</th>
+     <tr>
+       <th>Humble (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/tree/humble">humble</a>)</th>
+       <th>Jazzy (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/tree/main">main</a>)</th>
+       <th>Rolling (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/tree/main">main</a>)</th>
      </tr>
-     <tr class="row-even">
-       <td><a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/tree/humble">humble</a></td>
-       <td><a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/tree/main">main</a></td>
-       <td><a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/tree/main">main</a></td>
-     </tr>
-     <tr class="row-odd">
+     <tr>
        <td> <!-- humble -->
          <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/humble-binary-main.yml?query=event%3Aschedule++">
            <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/humble-binary-main.yml/badge.svg?event=schedule"
@@ -78,7 +73,7 @@ ur_robot_driver
          </a>
        </td>
      </tr>
-     <tr class-"row-even">
+     <tr>
        <td> <!-- humble -->
          <a href='https://build.ros2.org/job/Hbin_uJ64__ur_calibration__ubuntu_jammy_amd64__binary/'><img src='https://build.ros2.org/job/Hbin_uJ64__ur_calibration__ubuntu_jammy_amd64__binary/badge/icon?subject=uJ64_ur_calibration'></a><br/>
          <a href='https://build.ros2.org/job/Hbin_uJ64__ur_controllers__ubuntu_jammy_amd64__binary/'><img src='https://build.ros2.org/job/Hbin_uJ64__ur_controllers__ubuntu_jammy_amd64__binary/badge/icon?subject=uJ64_ur_controllers'></a><br/>
@@ -110,14 +105,9 @@ ur_description
 
    <table width="100%" class="docutils align-default">
      <tr>
-       <th>Humble</th>
-       <th>Jazzy</th>
-       <th>Rolling</th>
-     </tr>
-     <tr>
-       <td><a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/tree/humble">humble</a></td>
-       <td><a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/tree/rolling">rolling</a></td>
-       <td><a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/tree/rolling">rolling</a></td>
+       <th>Humble (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/tree/humble">humble</a>)</th>
+       <th>Jazzy (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/tree/rolling">rolling</a>)</th>
+       <th>Rolling (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/tree/rolling">rolling</a>)</th>
      </tr>
      <tr>
        <td>
@@ -171,14 +161,9 @@ ur_simulation_gz
 
    <table width="100%" class="docutils align-default">
      <tr>
-       <th>Humble</th>
-       <th>Jazzy</th>
-       <th>Rolling</th>
-     </tr>
-     <tr>
-       <td><a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/tree/humble">humble</a></td>
-       <td><a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/tree/ros2">ros2</a></td>
-       <td><a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/tree/ros2">ros2</a></td>
+       <th>Humble (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/tree/humble">humble</a>)</th>
+       <th>Jazzy (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/tree/ros2">ros2</a>)</th>
+       <th>Rolling (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/tree/ros2">ros2</a>)</th>
      </tr>
      <tr>
        <td>
