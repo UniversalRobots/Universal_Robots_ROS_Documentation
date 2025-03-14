@@ -1,0 +1,400 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Build status &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/ur_theme.css?v=b67a8c70" />
+
+  
+    <link rel="shortcut icon" href="../_static/icon.svg"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="ur_simulation_gz" href="ur_simulation_gz/ur_simulation_gz/doc/migration/jazzy.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Documentation
+              <img src="../_static/ur_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ur_client_library/doc/index.html">ur_client_library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ur_robot_driver/ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ur_robot_driver/ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ur_robot_driver/ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ur_robot_driver/ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ur_tutorials/tutorial_index.html">Tutorial examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration_notes.html">Migration Notes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Build status</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Universal Robots ROS 2 Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Build status</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/build_status.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="build-status">
+<h1>Build status<a class="headerlink" href="#build-status" title="Link to this heading"></a></h1>
+<p>This page gives a detailed overview of the build status of the full ROS-related software stack. Please note that due to upstream changes some pipelines might turn red temporarily which can be expected behavior, especially the binary-main builds.</p>
+<section id="ros-2">
+<h2>ROS 2<a class="headerlink" href="#ros-2" title="Link to this heading"></a></h2>
+<section id="ur-robot-driver">
+<h3>ur_robot_driver<a class="headerlink" href="#ur-robot-driver" title="Link to this heading"></a></h3>
+<table width="100%"  class="docutils align-default">
+  <tr>
+    <th>Humble (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/tree/humble">humble</a>)</th>
+    <th>Jazzy (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/tree/main">main</a>)</th>
+    <th>Rolling (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/tree/main">main</a>)</th>
+  </tr>
+  <tr>
+    <td> <!-- humble -->
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/humble-binary-main.yml?query=event%3Aschedule++">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/humble-binary-main.yml/badge.svg?event=schedule"
+             alt="Humble Binary Main"/>
+      </a> <br />
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/humble-binary-testing.yml?query=event%3Aschedule++">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/humble-binary-testing.yml/badge.svg?event=schedule"
+             alt="Humble Binary Testing"/>
+      </a> <br />
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/humble-semi-binary-main.yml?query=event%3Aschedule++">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/humble-semi-binary-main.yml/badge.svg?event=schedule"
+             alt="Humble Semi-Binary Main"/>
+      </a> <br />
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/humble-semi-binary-testing.yml?query=event%3Aschedule++">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/humble-semi-binary-testing.yml/badge.svg?event=schedule"
+             alt="Humble Semi-Binary Testing"/>
+      </a>
+    </td>
+    <td> <!-- jazzy -->
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/jazzy-binary-main.yml?query=branch%3Amain+">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/jazzy-binary-main.yml/badge.svg?branch=main"
+             alt="Jazzy Binary Main"/>
+      </a> <br />
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/jazzy-binary-testing.yml?query=branch%3Amain+">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/jazzy-binary-testing.yml/badge.svg?branch=main"
+             alt="Jazzy Binary Testing"/>
+      </a> <br />
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/jazzy-semi-binary-main.yml?query=branch%3Amain+">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/jazzy-semi-binary-main.yml/badge.svg?branch=main"
+             alt="Jazzy Semi-Binary Main"/>
+      </a> <br />
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/jazzy-semi-binary-testing.yml?query=branch%3Amain+">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/jazzy-semi-binary-testing.yml/badge.svg?branch=main"
+             alt="Jazzy Semi-Binary Testing"/>
+      </a>
+    </td>
+    <td> <!-- rolling -->
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/rolling-binary-main.yml?query=branch%3Amain+">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/rolling-binary-main.yml/badge.svg?branch=main"
+             alt="Rolling Binary Main"/>
+      </a> <br />
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/rolling-binary-testing.yml?query=branch%3Amain+">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/rolling-binary-testing.yml/badge.svg?branch=main"
+             alt="Rolling Binary Testing"/>
+      </a> <br />
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/rolling-semi-binary-main.yml?query=branch%3Amain+">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/rolling-semi-binary-main.yml/badge.svg?branch=main"
+             alt="Rolling Semi-Binary Main"/>
+      </a> <br />
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/rolling-semi-binary-testing.yml?query=branch%3Amain+">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/rolling-semi-binary-testing.yml/badge.svg?branch=main"
+             alt="Rolling Semi-Binary Testing"/>
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td> <!-- humble -->
+      <a href='https://build.ros2.org/job/Hbin_uJ64__ur_calibration__ubuntu_jammy_amd64__binary/'><img src='https://build.ros2.org/job/Hbin_uJ64__ur_calibration__ubuntu_jammy_amd64__binary/badge/icon?subject=uJ64_ur_calibration'></a><br/>
+      <a href='https://build.ros2.org/job/Hbin_uJ64__ur_controllers__ubuntu_jammy_amd64__binary/'><img src='https://build.ros2.org/job/Hbin_uJ64__ur_controllers__ubuntu_jammy_amd64__binary/badge/icon?subject=uJ64_ur_controllers'></a><br/>
+      <a href='https://build.ros2.org/job/Hbin_uJ64__ur_dashboard_msgs__ubuntu_jammy_amd64__binary/'><img src='https://build.ros2.org/job/Hbin_uJ64__ur_dashboard_msgs__ubuntu_jammy_amd64__binary/badge/icon?subject=uJ64_ur_dashboard_msgs'></a><br/>
+      <a href='https://build.ros2.org/job/Hbin_uJ64__ur_moveit_config__ubuntu_jammy_amd64__binary/'><img src='https://build.ros2.org/job/Hbin_uJ64__ur_moveit_config__ubuntu_jammy_amd64__binary/badge/icon?subject=uJ64_ur_moveit_config'></a><br/>
+      <a href='https://build.ros2.org/job/Hbin_uJ64__ur_robot_driver__ubuntu_jammy_amd64__binary/'><img src='https://build.ros2.org/job/Hbin_uJ64__ur_robot_driver__ubuntu_jammy_amd64__binary/badge/icon?subject=uJ64_ur_robot_driver'></a>
+    </td>
+    <td> <!-- jazzy -->
+      <a href='https://build.ros2.org/job/Jbin_uN64__ur_calibration__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Jbin_uN64__ur_calibration__ubuntu_noble_amd64__binary/badge/icon?subject=uN64_ur_calibration'></a><br/>
+      <a href='https://build.ros2.org/job/Jbin_uN64__ur_controllers__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Jbin_uN64__ur_controllers__ubuntu_noble_amd64__binary/badge/icon?subject=uN64_ur_controllers'></a><br/>
+      <a href='https://build.ros2.org/job/Jbin_uN64__ur_dashboard_msgs__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Jbin_uN64__ur_dashboard_msgs__ubuntu_noble_amd64__binary/badge/icon?subject=uN64_ur_dashboard_msgs'></a><br/>
+      <a href='https://build.ros2.org/job/Jbin_uN64__ur_moveit_config__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Jbin_uN64__ur_moveit_config__ubuntu_noble_amd64__binary/badge/icon?subject=uN64_ur_moveit_config'></a><br/>
+      <a href='https://build.ros2.org/job/Jbin_uN64__ur_robot_driver__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Jbin_uN64__ur_robot_driver__ubuntu_noble_amd64__binary/badge/icon?subject=uN64_ur_robot_driver'></a>
+    </td>
+    <td> <!-- rolling -->
+      <a href='https://build.ros2.org/job/Rbin_uN64__ur_calibration__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Rbin_uN64__ur_calibration__ubuntu_noble_amd64__binary/badge/icon?subject=uN64_ur_calibration'></a><br/>
+      <a href='https://build.ros2.org/job/Rbin_uN64__ur_controllers__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Rbin_uN64__ur_controllers__ubuntu_noble_amd64__binary/badge/icon?subject=uN64_ur_controllers'></a><br/>
+      <a href='https://build.ros2.org/job/Rbin_uN64__ur_dashboard_msgs__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Rbin_uN64__ur_dashboard_msgs__ubuntu_noble_amd64__binary/badge/icon?subject=uN64_ur_dashboard_msgs'></a><br/>
+      <a href='https://build.ros2.org/job/Rbin_uN64__ur_moveit_config__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Rbin_uN64__ur_moveit_config__ubuntu_noble_amd64__binary/badge/icon?subject=uN64_ur_moveit_config'></a><br/>
+      <a href='https://build.ros2.org/job/Rbin_uN64__ur_robot_driver__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Rbin_uN64__ur_robot_driver__ubuntu_noble_amd64__binary/badge/icon?subject=uN64_ur_robot_driver'></a>
+    </td>
+  </tr>
+</table></section>
+<section id="ur-description">
+<h3>ur_description<a class="headerlink" href="#ur-description" title="Link to this heading"></a></h3>
+<table width="100%" class="docutils align-default">
+  <tr>
+    <th>Humble (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/tree/humble">humble</a>)</th>
+    <th>Jazzy (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/tree/rolling">rolling</a>)</th>
+    <th>Rolling (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/tree/rolling">rolling</a>)</th>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/actions/workflows/humble-binary-main.yml?query=event%3Aschedule++">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/actions/workflows/humble-binary-main.yml/badge.svg?event=schedule"
+             alt="Humble Binary Main"/>
+      </a> <br />
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/actions/workflows/humble-binary-testing.yml?query=event%3Aschedule++">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/actions/workflows/humble-binary-testing.yml/badge.svg?event=schedule"
+             alt="Humble Binary Testing"/>
+      </a> <br />
+    </td>
+    <td>
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/actions/workflows/jazzy-binary-main.yml?query=event%3Aschedule++">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/actions/workflows/jazzy-binary-main.yml/badge.svg?event=schedule"
+             alt="Jazzy Binary Main"/>
+      </a> <br />
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/actions/workflows/jazzy-binary-testing.yml?query=event%3Aschedule++">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/actions/workflows/jazzy-binary-testing.yml/badge.svg?event=schedule"
+             alt="Jazzy Binary Testing"/>
+      </a> <br />
+    </td>
+    <td>
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/actions/workflows/rolling-binary-main.yml?query=event%3Aschedule++">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/actions/workflows/rolling-binary-main.yml/badge.svg?event=schedule"
+             alt="Rolling Binary Main"/>
+      </a> <br />
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/actions/workflows/rolling-binary-testing.yml?query=event%3Aschedule++">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/actions/workflows/rolling-binary-testing.yml/badge.svg?event=schedule"
+             alt="Rolling Binary Testing"/>
+      </a> <br />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href='https://build.ros2.org/job/Hbin_uJ64__ur_description__ubuntu_jammy_amd64__binary/'><img src='https://build.ros2.org/job/Hbin_uJ64__ur_description__ubuntu_jammy_amd64__binary/badge/icon?subject=uJ64_ur_description'></a>
+    </td>
+    <td>
+      <a href='https://build.ros2.org/job/Jbin_uN64__ur_description__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Jbin_uN64__ur_description__ubuntu_noble_amd64__binary/badge/icon?subject=uN64_ur_description'></a>
+    </td>
+    <td>
+      <a href='https://build.ros2.org/job/Rbin_uN64__ur_description__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Rbin_uN64__ur_description__ubuntu_noble_amd64__binary/badge/icon?subject=uN64_ur_description'></a>
+    </td>
+  </tr>
+</table></section>
+<section id="ur-simulation-gz">
+<h3>ur_simulation_gz<a class="headerlink" href="#ur-simulation-gz" title="Link to this heading"></a></h3>
+<table width="100%" class="docutils align-default">
+  <tr>
+    <th>Humble (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/tree/humble">humble</a>)</th>
+    <th>Jazzy (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/tree/ros2">ros2</a>)</th>
+    <th>Rolling (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/tree/ros2">ros2</a>)</th>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/humble-binary-main.yml?query=event%3Aschedule++">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/humble-binary-main.yml/badge.svg?event=schedule"
+             alt="Humble Binary Main"/>
+      </a> <br />
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/humble-binary-testing.yml?query=event%3Aschedule++">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/humble-binary-testing.yml/badge.svg?event=schedule"
+             alt="Humble Binary Testing"/>
+      </a> <br />
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/humble-semi-binary-main.yml?query=event%3Aschedule++">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/humble-semi-binary-main.yml/badge.svg?event=schedule"
+             alt="Humble Semi-Binary Main"/>
+      </a> <br />
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/humble-semi-binary-testing.yml?query=event%3Aschedule++">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/humble-semi-binary-testing.yml/badge.svg?event=schedule"
+             alt="Humble Semi-Binary Testing"/>
+      </a>
+    </td>
+    <td>
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/jazzy-binary-main.yml?query=event%3Aschedule++">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/jazzy-binary-main.yml/badge.svg?event=schedule"
+             alt="Jazzy Binary Main"/>
+      </a> <br />
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/jazzy-binary-testing.yml?query=event%3Aschedule++">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/jazzy-binary-testing.yml/badge.svg?event=schedule"
+             alt="Jazzy Binary Testing"/>
+      </a> <br />
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/jazzy-semi-binary-main.yml?query=event%3Aschedule++">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/jazzy-semi-binary-main.yml/badge.svg?event=schedule"
+             alt="Jazzy Semi-Binary Main"/>
+      </a> <br />
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/jazzy-semi-binary-testing.yml?query=event%3Aschedule++">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/jazzy-semi-binary-testing.yml/badge.svg?event=schedule"
+             alt="Jazzy Semi-Binary Testing"/>
+      </a>
+    </td>
+    <td>
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/rolling-binary-main.yml?query=event%3Aschedule++">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/rolling-binary-main.yml/badge.svg?event=schedule"
+             alt="Rolling Binary Main"/>
+      </a> <br />
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/rolling-binary-testing.yml?query=event%3Aschedule++">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/rolling-binary-testing.yml/badge.svg?event=schedule"
+             alt="Rolling Binary Testing"/>
+      </a> <br />
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/rolling-semi-binary-main.yml?query=event%3Aschedule++">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/rolling-semi-binary-main.yml/badge.svg?event=schedule"
+             alt="Rolling Semi-Binary Main"/>
+      </a> <br />
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/rolling-semi-binary-testing.yml?query=event%3Aschedule++">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/rolling-semi-binary-testing.yml/badge.svg?event=schedule"
+             alt="Rolling Semi-Binary Testing"/>
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href='https://build.ros2.org/job/Hbin_uJ64__ur_simulation_gz__ubuntu_jammy_amd64__binary/'><img src='https://build.ros2.org/job/Hbin_uJ64__ur_simulation_gz__ubuntu_jammy_amd64__binary/badge/icon?subject=uJ64__ur_simulation_gz'></a>
+    </td>
+    <td>
+      <a href='https://build.ros2.org/job/Jbin_uN64__ur_simulation_gz__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Jbin_uN64__ur_simulation_gz__ubuntu_noble_amd64__binary/badge/icon?subject=uN64__ur_simulation_gz'></a>
+    </td>
+    <td>
+      <a href='https://build.ros2.org/job/Rbin_uN64__ur_simulation_gz__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Rbin_uN64__ur_simulation_gz__ubuntu_noble_amd64__binary/badge/icon?subject=uN64__ur_simulation_gz'></a>
+    </td>
+  </tr>
+</table></section>
+</section>
+<section id="ros-1">
+<h2>ROS 1<a class="headerlink" href="#ros-1" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3>ur_robot_driver<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+  <tr>
+    <td>
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/actions/workflows/noetic-binary-main.yml">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/actions/workflows/noetic-binary-main.yml/badge.svg"/>
+      </a> <br />
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/actions/workflows/noetic-binary-testing.yml">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/actions/workflows/noetic-binary-testing.yml/badge.svg"/>
+      </a> <br />
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/actions/workflows/noetic-semi-binary-main.yml">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/actions/workflows/noetic-semi-binary-main.yml/badge.svg"/>
+      </a> <br />
+      <a href="https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/actions/workflows/noetic-semi-binary-testing.yml">
+        <img src="https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/actions/workflows/noetic-semi-binary-testing.yml/badge.svg"/>
+      </a><br />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a
+        href='https://build.ros.org/job/Nbin_uF64__ur_robot_driver__ubuntu_focal_amd64__binary/'><img
+        src='https://build.ros.org/job/Nbin_uF64__ur_robot_driver__ubuntu_focal_amd64__binary/badge/icon?subject=Nbin_uF64_ur_robot_driver'></a>
+    </td>
+  </tr>
+</table></section>
+</section>
+<section id="ur-client-library">
+<h2>ur_client_library<a class="headerlink" href="#ur-client-library" title="Link to this heading"></a></h2>
+<a class="reference external image-reference" href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/actions/workflows/ci.yml"><img alt="Integration Tests" src="https://github.com/UniversalRobots/Universal_Robots_Client_Library/actions/workflows/ci.yml/badge.svg" />
+</a>
+<a class="reference external image-reference" href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/actions/workflows/industrial-ci.yml"><img alt="Industrial CI (all ROS distributions)" src="https://github.com/UniversalRobots/Universal_Robots_Client_Library/actions/workflows/industrial-ci.yml/badge.svg" />
+</a>
+<a class="reference external image-reference" href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/actions/workflows/win-build.yml"><img alt="Windows Build" src="https://github.com/UniversalRobots/Universal_Robots_Client_Library/actions/workflows/win-build.yml/badge.svg" />
+</a>
+<a class="reference external image-reference" href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/actions/workflows/sphinx_build.yml"><img alt="Documentation Build" src="https://github.com/UniversalRobots/Universal_Robots_Client_Library/actions/workflows/sphinx_build.yml/badge.svg" />
+</a>
+</section>
+<section id="explanations">
+<h2>Explanations<a class="headerlink" href="#explanations" title="Link to this heading"></a></h2>
+<p>There are different stages checking current and future compatibility of the packages.</p>
+<ul class="simple">
+<li><p>Binary builds - against released packages (main and testing) in ROS distributions. Shows that
+direct local build is possible and integration tests work against the released state. Released
+upstream packages land in testing directly after being built by the ROS buildfarm, while main
+receives updates on discrete manually triggered events. This is why the binary-main pipeline
+might turn red temporarily while the binary-testing pipelines are green. This means that no
+further action is required from the maintainers, this will sort itself out with the next sync.</p></li>
+<li><p>Semi-binary builds - against released core ROS packages (main and testing), but the immediate
+dependencies are pulled from source. Shows that local build with dependencies is possible and if
+this fails we can expect that after the next package sync we will not be able to build. For
+example, if upstream changes would make the current branch fail and those changes have <strong>not</strong>
+been released, yet, we might adapt to these changes already leaving us also with a failing
+binary-testing build, while the semi-binary builds should turn green.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ur_simulation_gz/ur_simulation_gz/doc/migration/jazzy.html" class="btn btn-neutral float-left" title="ur_simulation_gz" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
