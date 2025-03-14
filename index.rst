@@ -17,3 +17,4 @@ This repositorycontains documentation and ROS 2 packages for Universal Robots.
    ur_simulation_gz <doc/ur_simulation_gz/ur_simulation_gz/doc/index.rst>
    Tutorial examples <doc/ur_tutorials/tutorial_index.rst>
    doc/migration_notes.rst
+   doc/build_status
