@@ -180,7 +180,7 @@ is generated using</p>
 <h2>Workcell macro<a class="headerlink" href="#workcell-macro" title="Link to this heading"></a></h2>
 <p>The workcell macro is defined in the following manner:</p>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 51 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell_macro.urdf.xacro</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 51 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell_macro.xacro</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
 <span class="linenos"> 2</span><span class="nt">&lt;robot</span><span class="w"> </span><span class="na">xmlns:xacro=</span><span class="s">&quot;http://ros.org/wiki/xacro&quot;</span><span class="nt">&gt;</span>
 <span class="linenos"> 3</span><span class="w">  </span><span class="nt">&lt;xacro:include</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;$(find ur_description)/urdf/ur_macro.xacro&quot;</span><span class="nt">/&gt;</span>
@@ -288,7 +288,7 @@ this instance, our workspace comprises a table in front of a wall, featuring a m
 <p>Ensure that your custom workcell includes the parent link, which must be passed to the <strong>ur_robot</strong>
 macro. In this example, we chose to create a link named <strong>robot_mount</strong>.</p>
 <div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-number">Listing 52 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 52 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell_macro.xacro</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="w">    </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;robot_mount&quot;</span><span class="nt">/&gt;</span>
 <span class="linenos">2</span><span class="w">    </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;base_to_robot_mount&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
 <span class="linenos">3</span><span class="w">      </span><span class="nt">&lt;parent</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;table&quot;</span><span class="nt">/&gt;</span>
@@ -300,7 +300,7 @@ macro. In this example, we chose to create a link named <strong>robot_mount</str
 </div>
 <p>After that we are finally able to actually <strong>create the robot arm</strong> by calling the macro.</p>
 <div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-number">Listing 53 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 53 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell_macro.xacro</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w">    </span><span class="nt">&lt;xacro:ur_robot</span>
 <span class="linenos"> 2</span><span class="w">      </span><span class="na">name=</span><span class="s">&quot;${ur_type}&quot;</span>
 <span class="linenos"> 3</span><span class="w">      </span><span class="na">tf_prefix=</span><span class="s">&quot;${ur_type}_&quot;</span>
