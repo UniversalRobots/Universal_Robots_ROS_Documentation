@@ -31,10 +31,6 @@ ur_robot_driver
            <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/humble-semi-binary-main.yml/badge.svg?event=schedule"
                 alt="Humble Semi-Binary Main"/>
          </a> <br />
-         <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/humble-semi-binary-testing.yml?query=event%3Aschedule++">
-           <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/humble-semi-binary-testing.yml/badge.svg?event=schedule"
-                alt="Humble Semi-Binary Testing"/>
-         </a>
        </td>
        <td> <!-- jazzy -->
          <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/jazzy-binary-main.yml?query=branch%3Amain+">
@@ -49,10 +45,6 @@ ur_robot_driver
            <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/jazzy-semi-binary-main.yml/badge.svg?branch=main"
                 alt="Jazzy Semi-Binary Main"/>
          </a> <br />
-         <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/jazzy-semi-binary-testing.yml?query=branch%3Amain+">
-           <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/jazzy-semi-binary-testing.yml/badge.svg?branch=main"
-                alt="Jazzy Semi-Binary Testing"/>
-         </a>
        </td>
        <td> <!-- rolling -->
          <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/rolling-binary-main.yml?query=branch%3Amain+">
@@ -67,10 +59,6 @@ ur_robot_driver
            <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/rolling-semi-binary-main.yml/badge.svg?branch=main"
                 alt="Rolling Semi-Binary Main"/>
          </a> <br />
-         <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/rolling-semi-binary-testing.yml?query=branch%3Amain+">
-           <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/rolling-semi-binary-testing.yml/badge.svg?branch=main"
-                alt="Rolling Semi-Binary Testing"/>
-         </a>
        </td>
      </tr>
      <tr>
@@ -299,7 +287,7 @@ There are different stages checking current and future compatibility of the pack
   might turn red temporarily while the binary-testing pipelines are green. This means that no
   further action is required from the maintainers, this will sort itself out with the next sync.
 
-- Semi-binary builds - against released core ROS packages (main and testing), but the immediate
+- Semi-binary builds - against released core ROS packages, but the immediate
   dependencies are pulled from source. Shows that local build with dependencies is possible and if
   this fails we can expect that after the next package sync we will not be able to build. For
   example, if upstream changes would make the current branch fail and those changes have **not**
