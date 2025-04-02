@@ -222,12 +222,44 @@ the program tree</p>
 <p>If you click on the <em>command</em> tab again, you’ll see the settings entered inside the <em>Installation</em>.
 Check that they are correct, then save the program. Your robot is now ready to be used together with
 this driver.</p>
-</div><div aria-labelledby="tab-1-UG9seVNjb3BlIFg=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-UG9seVNjb3BlIFg=" name="UG9seVNjb3BlIFg=" role="tabpanel" tabindex="0"><div class="admonition warning">
+</div><div aria-labelledby="tab-1-UG9seVNjb3BlIFg=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-UG9seVNjb3BlIFg=" name="UG9seVNjb3BlIFg=" role="tabpanel" tabindex="0"><p>The latest release can be downloaded from <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ExternalControl_URCapX/releases">GitHub (URCapX)</a>.</p>
+<p>To install it you first have to copy it to a USB stick and plug that into the robot’s teach
+pendant.</p>
+<p>On the welcome screen click on the hamburger menu in the top-left corner and select <em>System
+Manager</em> to enter the robot’s setup.  There select <em>URCaps</em> to enter the URCaps installation
+screen. You’ll have to press <em>unlock</em> and enter the admin password to be able to install new
+URCaps.</p>
+<a class="reference external image-reference" href="initial_setup_images/px_01_welcome.png"><img alt="Welcome screen of a PolyScope X robot" src="../../../../_images/px_01_welcome.png" />
+</a>
+<p>There, click the “+URCap” button at the top-right to open the file selector. There you should see
+all urcap files stored on a plugged USB drive.  Select and open
+the <strong>external-control-X.Y.Z.urcapx</strong> file and click <em>Confirm</em>. A popup should ask you to
+confirm the installation.</p>
+<a class="reference external image-reference" href="initial_setup_images/px_05_urcaps_installed.png"><img alt="URCaps screen with installed urcaps" src="../../../../_images/px_05_urcaps_installed.png" />
+</a>
+<p>Upon confirmation, the external-control URCap should be listed as installed.</p>
+<p>After the robot rebooted you should find the <strong>External Control</strong> URCapX on the <em>Application</em>
+Screen. If you open it, you will get to its configuration screen.</p>
+<a class="reference external image-reference" href="initial_setup_images/px_07_installation_excontrol.png"><img alt="Configuration screen of External Control URCapX" src="../../../../_images/px_07_installation_excontrol.png" />
+</a>
+<p>Here you’ll have to setup the IP address of the external PC which will be running the remote
+application. Note that the robot and the external PC have to be in the same network, ideally in a
+direct connection with each other to minimize network disturbances. The custom port should be left
+untouched for now.</p>
+<p>To use the new URCaps, create a new program and insert the <strong>External Control</strong> program node into
+the program tree</p>
+<a class="reference external image-reference" href="initial_setup_images/px_10_prog_structure_urcaps.png"><img alt="Insert the external control node" src="../../../../_images/px_10_prog_structure_urcaps.png" />
+</a>
+<a class="reference external image-reference" href="initial_setup_images/px_11_program_view_excontrol.png"><img alt="Program view of external control" src="../../../../_images/px_11_program_view_excontrol.png" />
+</a>
+<p>If you select the External Control program node, you’ll see a button “Update program”
+appearing next to it. With the external application started, press it to receive the script
+code.</p>
+<div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Support for PolyScope X isn’t fully developed, yet. Please consider using External Control
 with PolyScope X as an open beta.</p>
 </div>
-<p>For details on installing the External Control URCapX, please see <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ExternalControl_URCapX">https://github.com/UniversalRobots/Universal_Robots_ExternalControl_URCapX</a></p>
 </div></div>
 </section>
 </section>
