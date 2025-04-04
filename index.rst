@@ -1,9 +1,18 @@
 .. _documentation_home:
 
-Welcome to the Universal Robots ROS 2 documentation!
-====================================================
+Welcome to the Universal Robots ROS 2 driver documentation!
+===========================================================
 
-This repositorycontains documentation and ROS 2 packages for Universal Robots.
+This documentation covers the ROS 2 packages for Universal Robots robots and the standalone Universal Robots
+Client Library. 
+
+Here comes some introduction to the ROS 2 driver. With images
+
+.. note::
+   There is also builtin ROS 2 support for PolyScope X robots, see the `PolyScope X ROS 2 documentation <https://docs.universal-robots.com/polyscopex-ros2/v10.7/index.html>`_ and / or :ref:`ros2_controller_vs_driver` for details.
+
+Table of Contents
+-----------------
 
 .. toctree::
    :titlesonly:
