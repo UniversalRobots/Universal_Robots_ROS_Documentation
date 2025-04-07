@@ -3,10 +3,19 @@
 Welcome to the Universal Robots ROS 2 driver documentation!
 ===========================================================
 
-This documentation covers the ROS 2 packages for Universal Robots robots and the standalone Universal Robots
-Client Library. 
 
-Here comes some introduction to the ROS 2 driver. With images
+.. image:: _static/images/ros2_driver.jpeg
+   :alt: UR ROS 2 driver
+   :align: center
+   :width: 80%
+   
+
+This documentation covers everything around the ROS 2 driver packages for Universal Robots
+manipulators and the standalone Universal Robots Client Library.
+
+With those packages it is possible to control a Universal Robots arm from an external application
+either directly using a C++ API (see :ref:`ur_client_library`) or using ROS 2 (see :ref:`ur_robot_driver`).
+
 
 .. note::
    There is also builtin ROS 2 support for PolyScope X robots, see the `PolyScope X ROS 2 documentation <https://docs.universal-robots.com/polyscopex-ros2/v10.7/index.html>`_ and / or :ref:`ros2_controller_vs_driver` for details.
@@ -27,3 +36,4 @@ Table of Contents
    Tutorial examples <doc/ur_tutorials/tutorial_index.rst>
    doc/migration_notes.rst
    doc/build_status
+   doc/ros2_controller_vs_driver

@@ -19,7 +19,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = "Universal Robots ROS 2 Documentation"
+project = "Universal Robots ROS 2 Driver Documentation"
 copyright = "2024, Universal Robots A/S"
 author = "Universal Robots A/S"
 
@@ -141,8 +141,8 @@ latex_elements = {
 latex_documents = [
     (
         master_doc,
-        "ur_documentation.tex",
-        "ur\\_documentation Documentation",
+        "ur_ros2_driver_documentation.tex",
+        "UR ROS 2 Driver Documentation",
         "Universal Robots A/S",
         "manual",
     ),
@@ -153,7 +153,7 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [(master_doc, "ur_documentation", "ur_documentation Documentation", [author], 1)]
+man_pages = [(master_doc, "ur_ros2_driverdocumentation", "UR ROS 2 Driver Documentation", [author], 1)]
 
 
 # -- Options for Texinfo output ----------------------------------------------
@@ -164,7 +164,7 @@ man_pages = [(master_doc, "ur_documentation", "ur_documentation Documentation", 
 texinfo_documents = [
     (
         master_doc,
-        "ur_documentation",
+        "ur_ros2_driver_documentation",
         "ur_documentation Documentation",
         author,
         "ur_documentation",
@@ -203,7 +203,7 @@ todo_include_todos = True
 html_context = {
     "display_github": True,
     "github_user": "UniversalRobots",
-    "github_repo": "Universal_Robots_ROS2_Documentation",
+    "github_repo": "Universal_Robots_ROS_Documentation",
     "github_version": repos_file_branch + "/",
     "conf_py_path": "/",
     "source_suffix": source_suffix,
@@ -215,4 +215,4 @@ html_css_files = [
     'css/ur_theme.css',
 ]
 
-github_url = "https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation"
+github_url = "https://github.com/UniversalRobots/Universal_Robots_ROS_Documentation"
