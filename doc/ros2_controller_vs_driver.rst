@@ -31,6 +31,11 @@ ROS 2 on the robot
 Control the robot from an external ROS 2 application
 ----------------------------------------------------
 
+.. image:: ur_tutorials/my_robot_cell/doc/view_workspace.png
+   :alt: Visualizing a robot workspace using ROS 2
+   :align: right
+   :width: 600px
+
 Using the :ref:`ur_robot_driver` which is a ROS 2 driver that offers full `ros2_control
 <https://control.ros.org>`_ compatibility. This allows visualizing the robot's state in RViz and
 control its motions through ROS 2. It works with CB3, e-Series (PolyScope 5) and PolyScope X robots.
