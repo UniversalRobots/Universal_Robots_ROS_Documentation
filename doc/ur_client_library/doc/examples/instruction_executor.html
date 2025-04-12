@@ -70,6 +70,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../real_time.html">Setup for real-time scheduling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../migration_notes.html">Migration notes</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_description/doc/index.html">ur_description</a></li>
@@ -126,7 +127,7 @@ example below will do that automatically, if the connected robot is in <em>remot
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">61</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">headless_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <span class="linenos">62</span><span class="w">  </span><span class="n">g_my_robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">urcl</span><span class="o">::</span><span class="n">ExampleRobotWrapper</span><span class="o">&gt;</span><span class="p">(</span><span class="n">robot_ip</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">headless_mode</span><span class="p">,</span>
 <span class="linenos">63</span><span class="w">                                                           </span><span class="s">&quot;external_control.urp&quot;</span><span class="p">);</span>
-<span class="linenos">64</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">ur_driver_</span><span class="o">-&gt;</span><span class="n">checkCalibration</span><span class="p">(</span><span class="n">CALIBRATION_CHECKSUM</span><span class="p">))</span>
+<span class="linenos">64</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">getUrDriver</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">checkCalibration</span><span class="p">(</span><span class="n">CALIBRATION_CHECKSUM</span><span class="p">))</span>
 <span class="linenos">65</span><span class="w">  </span><span class="p">{</span>
 <span class="linenos">66</span><span class="w">    </span><span class="n">URCL_LOG_ERROR</span><span class="p">(</span><span class="s">&quot;Calibration checksum does not match actual robot.&quot;</span><span class="p">);</span>
 <span class="linenos">67</span><span class="w">    </span><span class="n">URCL_LOG_ERROR</span><span class="p">(</span><span class="s">&quot;Use the ur_calibration tool to extract the correct calibration from the robot and pass that into &quot;</span>
@@ -140,7 +141,7 @@ example below will do that automatically, if the connected robot is in <em>remot
 <span class="linenos">75</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="linenos">76</span><span class="w">  </span><span class="p">}</span>
 <span class="linenos">77</span>
-<span class="linenos">78</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">instruction_executor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">urcl</span><span class="o">::</span><span class="n">InstructionExecutor</span><span class="o">&gt;</span><span class="p">(</span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">ur_driver_</span><span class="p">);</span>
+<span class="linenos">78</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">instruction_executor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">urcl</span><span class="o">::</span><span class="n">InstructionExecutor</span><span class="o">&gt;</span><span class="p">(</span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">getUrDriver</span><span class="p">());</span>
 </pre></div>
 </div>
 </div>

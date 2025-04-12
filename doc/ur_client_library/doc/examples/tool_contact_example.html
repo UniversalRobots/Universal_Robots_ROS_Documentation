@@ -70,6 +70,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../real_time.html">Setup for real-time scheduling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../migration_notes.html">Migration notes</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../ur_description/doc/index.html">ur_description</a></li>
@@ -150,8 +151,8 @@ handle this event:</p>
 <p>This function is registered as a callback to the driver and then tool_contact mode is enabled:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-number">Listing 34 </span><span class="caption-text">examples/tool_contact_example.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">88</span><span class="w">  </span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">ur_driver_</span><span class="o">-&gt;</span><span class="n">registerToolContactResultCallback</span><span class="p">(</span><span class="o">&amp;</span><span class="n">handleToolContactResult</span><span class="p">);</span>
-<span class="linenos">89</span><span class="w">  </span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">ur_driver_</span><span class="o">-&gt;</span><span class="n">startToolContact</span><span class="p">();</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">88</span><span class="w">  </span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">getUrDriver</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">registerToolContactResultCallback</span><span class="p">(</span><span class="o">&amp;</span><span class="n">handleToolContactResult</span><span class="p">);</span>
+<span class="linenos">89</span><span class="w">  </span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">getUrDriver</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">startToolContact</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -167,8 +168,8 @@ negative z direction until the program timeout is hit or a tool contact is detec
 <span class="linenos"> 96</span><span class="w">  </span><span class="p">{</span>
 <span class="linenos"> 97</span><span class="w">    </span><span class="c1">// Setting the RobotReceiveTimeout time is for example purposes only. This will make the example running more</span>
 <span class="linenos"> 98</span><span class="w">    </span><span class="c1">// reliable on non-realtime systems. Use with caution in productive applications.</span>
-<span class="linenos"> 99</span><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">ur_driver_</span><span class="o">-&gt;</span><span class="n">writeJointCommand</span><span class="p">(</span><span class="n">tcp_speed</span><span class="p">,</span><span class="w"> </span><span class="n">comm</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">MODE_SPEEDL</span><span class="p">,</span>
-<span class="linenos">100</span><span class="w">                                                         </span><span class="n">RobotReceiveTimeout</span><span class="o">::</span><span class="n">millisec</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span>
+<span class="linenos"> 99</span><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">getUrDriver</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">writeJointCommand</span><span class="p">(</span><span class="n">tcp_speed</span><span class="p">,</span><span class="w"> </span><span class="n">comm</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">MODE_SPEEDL</span><span class="p">,</span>
+<span class="linenos">100</span><span class="w">                                                            </span><span class="n">RobotReceiveTimeout</span><span class="o">::</span><span class="n">millisec</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span>
 <span class="linenos">101</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">ret</span><span class="p">)</span>
 <span class="linenos">102</span><span class="w">    </span><span class="p">{</span>
 <span class="linenos">103</span><span class="w">      </span><span class="n">URCL_LOG_ERROR</span><span class="p">(</span><span class="s">&quot;Could not send joint command. Is the robot in remote control?&quot;</span><span class="p">);</span>
@@ -182,7 +183,7 @@ negative z direction until the program timeout is hit or a tool contact is detec
 <span class="linenos">111</span><span class="w">    </span><span class="p">}</span>
 <span class="linenos">112</span><span class="w">  </span><span class="p">}</span>
 <span class="linenos">113</span><span class="w">  </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="s">&quot;Timed out before reaching tool contact.&quot;</span><span class="p">);</span>
-<span class="linenos">114</span><span class="w">  </span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">ur_driver_</span><span class="o">-&gt;</span><span class="n">stopControl</span><span class="p">();</span>
+<span class="linenos">114</span><span class="w">  </span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">getUrDriver</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">stopControl</span><span class="p">();</span>
 <span class="linenos">115</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 </pre></div>
 </div>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PolyScope version compatibility &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
+  <title>Migration notes &mdash; Universal Robots ROS 2 Documentation 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -24,8 +24,8 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Library architecture" href="architecture.html" />
-    <link rel="prev" title="Setup URSim with Docker" href="setup/ursim_docker.html" /> 
+    <link rel="next" title="ur_description" href="../../ur_description/doc/index.html" />
+    <link rel="prev" title="Setup for real-time scheduling" href="real_time.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -52,11 +52,11 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">ur_client_library</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="installation.html">Build / installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="setup.html">Setup a robot</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">PolyScope version compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polyscope_compatibility.html">PolyScope version compatibility</a></li>
 <li class="toctree-l2"><a class="reference internal" href="architecture.html">Library architecture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples.html">Usage examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="real_time.html">Setup for real-time scheduling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="migration_notes.html">Migration notes</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Migration notes</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../ur_description/doc/index.html">ur_description</a></li>
@@ -85,9 +85,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">ur_client_library</a></li>
-      <li class="breadcrumb-item active">PolyScope version compatibility</li>
+      <li class="breadcrumb-item active">Migration notes</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_client_library/doc/polyscope_compatibility.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Documentation/blob/main//doc/ur_client_library/doc/migration_notes.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -95,61 +95,40 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="polyscope-version-compatibility">
-<h1>PolyScope version compatibility<a class="headerlink" href="#polyscope-version-compatibility" title="Link to this heading"></a></h1>
-<p>The table below shows breaking changes in the library compared to PolyScope versions. Compatibility
-is listed for CB3 robots (versions 3.x.y) and e-Series robots (versions 5.x.y) respectively.</p>
-<p>It might be possible to use the library in a more recent version than the compatible versions listed
-below, but that might either require some manual modifications or not using a subset of features.
-For that reason the breaking changes are also listed inside the table. Please note that choosing a
-higher library version than recommended happens on your own risk and will not be supported.</p>
-<p>If your PolyScope version is less than the minimum required version for the latest library version,
-we suggest to upgrade your robot’s software. Please refer to the robot’s user manual how to update
-your robot.</p>
-<p>If you don’t want to update your robot you can either use the release version as listed in the
-table below or checkout the latest tag before the breaking changes were introduced.</p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>PolyScope version</p></th>
-<th class="head"><p>Max. release</p></th>
-<th class="head"><p>Latest tag</p></th>
-<th class="head"><p>Breaking changes</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>&lt; 3.12.3 / 5.5.1</p></td>
-<td><p>1.1.0</p></td>
-<td><p><a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/tree/polyscope_compat_break_1">polyscope_compat_break_1</a></p></td>
-<td><p><a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/pull/110">tcp_offset in RTDE interface</a></p></td>
-</tr>
-<tr class="row-odd"><td><p>&lt; 3.14.3 / 5.9.4</p></td>
-<td><p>1.3.1</p></td>
-<td><p><a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/tree/polyscope_compat_break_2">polyscope_compat_break_2</a></p></td>
-<td><p><a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/pull/151">Use of scalar product in urscript</a></p></td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>PolyScope X doesn’t support all features supported by this library for PolyScope 5.
-Currently, the following components are known not to be supported:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Dashboard client – PolyScope X doesn’t have a dashboard server.</p></li>
-<li><p>Using external control on PolyScope X requires another URCapX for making external control
-work. This is currently in the process of being created.
-See <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ExternalControl_URCapX">Universal Robots External Control URCapX</a></p></li>
+  <section id="migration-notes">
+<h1>Migration notes<a class="headerlink" href="#migration-notes" title="Link to this heading"></a></h1>
+<p>This document contains notes on the migration of the ur_client_library between major versions.</p>
+<p>It contains only breaking changes.</p>
+<section id="migrating-from-1-x-x-to-2-x-x">
+<h2>Migrating from 1.x.x to 2.x.x<a class="headerlink" href="#migrating-from-1-x-x-to-2-x-x" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">urcl::ExampleRobotWrapper</span></code> class the <code class="docutils literal notranslate"><span class="pre">ur_driver_</span></code>, <code class="docutils literal notranslate"><span class="pre">dashboard_client</span></code> and
+<code class="docutils literal notranslate"><span class="pre">primary_client</span></code> members are now private. Use <code class="docutils literal notranslate"><span class="pre">getUrDriver()</span></code>, <code class="docutils literal notranslate"><span class="pre">getDashboardClient()</span></code> and
+<code class="docutils literal notranslate"><span class="pre">getPrimaryClient()</span></code> to access them.</p></li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">urcl::comm::ControlModeTypes</span></code> two member functions have been renamed:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_control_mode_realtime</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">isControlModeRealtime</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_control_mode_non_realtime</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">isControlModeNonRealtime</span></code></p></li>
 </ul>
-</div></blockquote>
-</div>
+</li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">urcl::RobotReceiveTimeout</span></code> the <code class="docutils literal notranslate"><span class="pre">timeout_</span></code> member is now private. Use
+<code class="docutils literal notranslate"><span class="pre">getAsMilliseconds()</span></code> to access it.</p></li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">urcl::UrDriverConfiguration</span></code> two members have been renamed:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">rtde_initialization_attempts_</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">rtde_initialization_attempts</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rtde_initialization_timeout_</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">rtde_initialization_timeout</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="setup/ursim_docker.html" class="btn btn-neutral float-left" title="Setup URSim with Docker" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="architecture.html" class="btn btn-neutral float-right" title="Library architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="real_time.html" class="btn btn-neutral float-left" title="Setup for real-time scheduling" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../ur_description/doc/index.html" class="btn btn-neutral float-right" title="ur_description" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
