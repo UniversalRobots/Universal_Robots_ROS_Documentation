@@ -8,6 +8,11 @@ There are different paths to use a Universal Robots arm with ROS 2.
 ROS 2 on the robot
 ------------------
 
+.. image:: /_static/images/ros2_urscript.png
+   :alt: URScript for a subscruber
+   :align: right
+   :width: 400px
+
 1. Starting with PolyScope X v10.7.0 the robots have builtin ROS 2 support that allows some amount
    of interaction with the robot without the need of any ROS 2 driver. In particular, the robot
    publishes a lot of status information and offers services  for example to control the robot's
@@ -34,7 +39,7 @@ Control the robot from an external ROS 2 application
 .. image:: ur_tutorials/my_robot_cell/doc/view_workspace.png
    :alt: Visualizing a robot workspace using ROS 2
    :align: right
-   :width: 600px
+   :width: 400px
 
 Using the :ref:`ur_robot_driver` which is a ROS 2 driver that offers full `ros2_control
 <https://control.ros.org>`_ compatibility. This allows visualizing the robot's state in RViz and
