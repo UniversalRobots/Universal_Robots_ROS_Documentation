@@ -1,7 +1,7 @@
 .. _documentation_home:
 
 Welcome to the Universal Robots ROS 2 driver documentation
-===========================================================
+==========================================================
 
 
 .. image:: _static/images/ros2_driver.jpeg
