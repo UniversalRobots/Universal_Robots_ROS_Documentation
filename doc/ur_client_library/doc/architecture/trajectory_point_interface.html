@@ -140,30 +140,50 @@ representations in 21 datafields. The data fields have the following meaning:</p
 </thead>
 <tbody>
 <tr class="row-even"><td><p>0-5</p></td>
-<td><p>trajectory point positions (floating point)</p></td>
+<td><p>trajectory point positions (Multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>)</p></td>
 </tr>
 <tr class="row-odd"><td><p>6-11</p></td>
-<td><p>trajectory point velocities (floating point)</p></td>
+<td><p>trajectory point velocities (Multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>). For MOVEC, this contains the “via pose”.</p></td>
 </tr>
 <tr class="row-even"><td><p>12-17</p></td>
-<td><p>trajectory point accelerations (floating point)</p></td>
+<td><p>trajectory point accelerations (Multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>).</p>
+<p>For MOVEC:</p>
+<ul class="simple">
+<li><p>12: velocity (Multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>)</p></li>
+<li><p>13: acceleration (Multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>)</p></li>
+<li><p>14: mode (Multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>)</p></li>
+</ul>
+</td>
 </tr>
 <tr class="row-odd"><td><p>18</p></td>
-<td><p>trajectory point type (0: JOINT, 1: CARTESIAN, 2: JOINT_SPLINE)</p></td>
+<td><p>trajectory point type</p>
+<ul class="simple">
+<li><p>0: MOVEJ</p></li>
+<li><p>1: MOVEL</p></li>
+<li><p>2: MOVEP</p></li>
+<li><p>3: MOVEC</p></li>
+<li><p>51: SPLINE)</p></li>
+</ul>
+</td>
 </tr>
 <tr class="row-even"><td><p>19</p></td>
-<td><p>trajectory point time (in seconds, floating point)</p></td>
+<td><p>trajectory point time (in seconds, multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_TIME</span></code>)</p></td>
 </tr>
 <tr class="row-odd"><td><p>20</p></td>
 <td><p>depending on trajectory point type</p>
 <ul class="simple">
-<li><p>JOINT, CARTESIAN: point blend radius (in meters, floating point)</p></li>
-<li><p>JOINT_SPLINE: spline type (1: CUBIC, 2: QUINTIC)</p></li>
+<li><p>MOVEJ, MOVEL, MOVEP and MOVEC: point blend radius (in meters, multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_TIME</span></code>)</p></li>
+<li><p>SPLINE: spline type (1: CUBIC, 2: QUINTIC)</p></li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
+<p>where</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>: 1000000</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MULT_TIME</span></code>: 1000</p></li>
+</ul>
 </section>
 </section>
 
