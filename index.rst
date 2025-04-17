@@ -1,6 +1,6 @@
 .. _documentation_home:
 
-Welcome to the Universal Robots ROS 2 driver documentation!
+Welcome to the Universal Robots ROS 2 driver documentation
 ===========================================================
 
 
@@ -10,8 +10,8 @@ Welcome to the Universal Robots ROS 2 driver documentation!
    :width: 600px
 
 
-This documentation covers everything around the ROS (Robot Operating System) 2 driver packages for Universal Robots
-manipulators and the standalone Universal Robots Client Library (C++).
+This documentation covers everything around the Open-Source ROS (Robot Operating System) 2 driver packages
+for Universal Robots manipulators and the standalone Universal Robots Client Library (C++).
 
 With those packages it is possible to control a Universal Robots arm from an external application
 either directly using a C++ API (see :ref:`ur_client_library`) or using ROS 2 (see :ref:`ur_robot_driver`).

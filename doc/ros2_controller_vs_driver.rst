@@ -41,15 +41,12 @@ Control the robot from an external ROS 2 application
    :align: right
    :width: 400px
 
-Using the :ref:`ur_robot_driver` which is a ROS 2 driver that offers full `ros2_control
-<https://control.ros.org>`_ compatibility. This allows visualizing the robot's state in RViz and
-control its motions through ROS 2. It works with CB3, e-Series (PolyScope 5) and PolyScope X robots.
+To control your robot using ROS 2, you can utilize the :ref:`ur_robot_driver`, an Open-Source ROS 2 driver that is maintained by Universal Robots and offers full compatibility with `ros2_control
+<https://control.ros.org>`_. This driver allows you to visualize the robot's state in RViz and control its motions through ROS 2. It supports CB3, e-Series, and PolyScope X robots.
 
-Use the ROS 2 driver to build your own application on the ROS framework leveraging available
-drivers for other hardware components, sensor integration and ready-to-use software functionalities
-such as collision-aware path-planning.
+By leveraging the ROS 2 driver, you can build your own application on the ROS framework. This includes integrating drivers for other hardware components, incorporating sensors, and utilizing ready-to-use software functionalities such as collision-aware path planning.
 
-The ROS 2 driver uses the :ref:`ur_client_library` to communicate with the robot.
+The ROS 2 driver communicates with the robot using the :ref:`ur_client_library`.
 
 Build your own external application using the C++ library
 ---------------------------------------------------------
