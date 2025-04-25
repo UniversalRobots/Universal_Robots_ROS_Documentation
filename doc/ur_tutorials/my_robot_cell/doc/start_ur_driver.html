@@ -490,6 +490,18 @@ ros2<span class="w"> </span>launch<span class="w"> </span>my_robot_cell_control<
 ros2<span class="w"> </span>launch<span class="w"> </span>my_robot_cell_control<span class="w"> </span>start_robot.launch.py
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We extracted the calibration information from the robot and saved it in the
+<code class="docutils literal notranslate"><span class="pre">my_robot_cell_control</span></code> package. If you have a different robot, you need to extract the
+calibration information from that, and pass that to the launch file. Changing the <code class="docutils literal notranslate"><span class="pre">ur_type</span></code>
+parameter only will lead to a wrong model, as it will still be using the example kinematics from
+a UR20. To use a UR5e, for example, you can do</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>my_robot_cell_control<span class="w"> </span>start_robot.launch.py<span class="w"> </span>ur_type:<span class="o">=</span>ur5e<span class="w"> </span>use_mock_hardware:<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>kinematics_parameters_file:<span class="o">=</span><span class="k">$(</span>ros2<span class="w"> </span>pkg<span class="w"> </span>prefix<span class="w"> </span>ur_description<span class="k">)</span>/share/ur_description/config/ur5e/default_kinematics.yaml
+</pre></div>
+</div>
+</div>
 </section>
 </section>
 
