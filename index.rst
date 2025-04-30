@@ -36,7 +36,7 @@ application. Some key use cases are:
 
 
 .. note::
-   There is also builtin ROS 2 support for PolyScope X robots, see the `PolyScope X ROS 2 documentation <https://docs.universal-robots.com/polyscopex-ros2/v10.7/index.html>`_ and / or :ref:`ros2_controller_vs_driver` for details.
+   There is also builtin ROS 2 support for PolyScope X robots, see the `PolyScope X ROS 2 documentation <https://docs.universal-robots.com/polyscopex-ros2/v10.7/index.html>`_ for details, or :ref:`ros2_controller_vs_driver` for an explanation of the difference from the ROS 2 driver documented here.
 
 Table of Contents
 -----------------
