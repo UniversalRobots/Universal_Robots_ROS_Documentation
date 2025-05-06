@@ -15,6 +15,7 @@ ur_robot_driver
      <tr>
        <th>Humble (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/tree/humble">humble</a>)</th>
        <th>Jazzy (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/tree/main">main</a>)</th>
+       <th>Kilted (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/tree/main">main</a>)</th>
        <th>Rolling (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/tree/main">main</a>)</th>
      </tr>
      <tr>
@@ -44,6 +45,20 @@ ur_robot_driver
          <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/jazzy-semi-binary-main.yml?query=branch%3Amain+">
            <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/jazzy-semi-binary-main.yml/badge.svg?branch=main"
                 alt="Jazzy Semi-Binary Main"/>
+         </a> <br />
+       </td>
+       <td> <!-- kilted -->
+         <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/kilted-binary-main.yml?query=branch%3Amain+">
+           <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/kilted-binary-main.yml/badge.svg?branch=main"
+                alt="Kilted Binary Main"/>
+         </a> <br />
+         <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/kilted-binary-testing.yml?query=branch%3Amain+">
+           <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/kilted-binary-testing.yml/badge.svg?branch=main"
+                alt="Kilted Binary Testing"/>
+         </a> <br />
+         <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/kilted-semi-binary-main.yml?query=branch%3Amain+">
+           <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/actions/workflows/kilted-semi-binary-main.yml/badge.svg?branch=main"
+                alt="Kilted Semi-Binary Main"/>
          </a> <br />
        </td>
        <td> <!-- rolling -->
@@ -76,6 +91,13 @@ ur_robot_driver
          <a href='https://build.ros2.org/job/Jbin_uN64__ur_moveit_config__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Jbin_uN64__ur_moveit_config__ubuntu_noble_amd64__binary/badge/icon?subject=uN64_ur_moveit_config'></a><br/>
          <a href='https://build.ros2.org/job/Jbin_uN64__ur_robot_driver__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Jbin_uN64__ur_robot_driver__ubuntu_noble_amd64__binary/badge/icon?subject=uN64_ur_robot_driver'></a>
        </td>
+       <td> <!-- kilted -->
+         <a href='https://build.ros2.org/job/Kbin_uN64__ur_calibration__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Kbin_uN64__ur_calibration__ubuntu_noble_amd64__binary/badge/icon?subject=uN64_ur_calibration'></a><br/>
+         <a href='https://build.ros2.org/job/Kbin_uN64__ur_controllers__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Kbin_uN64__ur_controllers__ubuntu_noble_amd64__binary/badge/icon?subject=uN64_ur_controllers'></a><br/>
+         <a href='https://build.ros2.org/job/Kbin_uN64__ur_dashboard_msgs__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Kbin_uN64__ur_dashboard_msgs__ubuntu_noble_amd64__binary/badge/icon?subject=uN64_ur_dashboard_msgs'></a><br/>
+         <a href='https://build.ros2.org/job/Kbin_uN64__ur_moveit_config__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Kbin_uN64__ur_moveit_config__ubuntu_noble_amd64__binary/badge/icon?subject=uN64_ur_moveit_config'></a><br/>
+         <a href='https://build.ros2.org/job/Kbin_uN64__ur_robot_driver__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Kbin_uN64__ur_robot_driver__ubuntu_noble_amd64__binary/badge/icon?subject=uN64_ur_robot_driver'></a>
+       </td>
        <td> <!-- rolling -->
          <a href='https://build.ros2.org/job/Rbin_uN64__ur_calibration__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Rbin_uN64__ur_calibration__ubuntu_noble_amd64__binary/badge/icon?subject=uN64_ur_calibration'></a><br/>
          <a href='https://build.ros2.org/job/Rbin_uN64__ur_controllers__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Rbin_uN64__ur_controllers__ubuntu_noble_amd64__binary/badge/icon?subject=uN64_ur_controllers'></a><br/>
@@ -95,6 +117,7 @@ ur_description
      <tr>
        <th>Humble (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/tree/humble">humble</a>)</th>
        <th>Jazzy (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/tree/rolling">rolling</a>)</th>
+       <th>Kilted (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/tree/rolling">rolling</a>)</th>
        <th>Rolling (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/tree/rolling">rolling</a>)</th>
      </tr>
      <tr>
@@ -119,6 +142,16 @@ ur_description
          </a> <br />
        </td>
        <td>
+         <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/actions/workflows/kilted-binary-main.yml?query=event%3Aschedule++">
+           <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/actions/workflows/kilted-binary-main.yml/badge.svg?event=schedule"
+                alt="Kilted Binary Main"/>
+         </a> <br />
+         <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/actions/workflows/kilted-binary-testing.yml?query=event%3Aschedule++">
+           <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/actions/workflows/kilted-binary-testing.yml/badge.svg?event=schedule"
+                alt="Kilted Binary Testing"/>
+         </a> <br />
+       </td>
+       <td>
          <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/actions/workflows/rolling-binary-main.yml?query=event%3Aschedule++">
            <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/actions/workflows/rolling-binary-main.yml/badge.svg?event=schedule"
                 alt="Rolling Binary Main"/>
@@ -137,6 +170,9 @@ ur_description
          <a href='https://build.ros2.org/job/Jbin_uN64__ur_description__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Jbin_uN64__ur_description__ubuntu_noble_amd64__binary/badge/icon?subject=uN64_ur_description'></a>
        </td>
        <td>
+         <a href='https://build.ros2.org/job/Kbin_uN64__ur_description__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Kbin_uN64__ur_description__ubuntu_noble_amd64__binary/badge/icon?subject=uN64_ur_description'></a>
+       </td>
+       <td>
          <a href='https://build.ros2.org/job/Rbin_uN64__ur_description__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Rbin_uN64__ur_description__ubuntu_noble_amd64__binary/badge/icon?subject=uN64_ur_description'></a>
        </td>
      </tr>
@@ -151,6 +187,7 @@ ur_simulation_gz
      <tr>
        <th>Humble (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/tree/humble">humble</a>)</th>
        <th>Jazzy (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/tree/ros2">ros2</a>)</th>
+       <th>Kilted (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/tree/ros2">ros2</a>)</th>
        <th>Rolling (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/tree/ros2">ros2</a>)</th>
      </tr>
      <tr>
@@ -191,6 +228,24 @@ ur_simulation_gz
          </a>
        </td>
        <td>
+         <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/kilted-binary-main.yml?query=event%3Aschedule++">
+           <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/kilted-binary-main.yml/badge.svg?event=schedule"
+                alt="Kilted Binary Main"/>
+         </a> <br />
+         <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/kilted-binary-testing.yml?query=event%3Aschedule++">
+           <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/kilted-binary-testing.yml/badge.svg?event=schedule"
+                alt="Kilted Binary Testing"/>
+         </a> <br />
+         <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/kilted-semi-binary-main.yml?query=event%3Aschedule++">
+           <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/kilted-semi-binary-main.yml/badge.svg?event=schedule"
+                alt="Kilted Semi-Binary Main"/>
+         </a> <br />
+         <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/kilted-semi-binary-testing.yml?query=event%3Aschedule++">
+           <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/kilted-semi-binary-testing.yml/badge.svg?event=schedule"
+                alt="Kilted Semi-Binary Testing"/>
+         </a>
+       </td>
+       <td>
          <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/rolling-binary-main.yml?query=event%3Aschedule++">
            <img src="https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation/actions/workflows/rolling-binary-main.yml/badge.svg?event=schedule"
                 alt="Rolling Binary Main"/>
@@ -215,6 +270,9 @@ ur_simulation_gz
        </td>
        <td>
          <a href='https://build.ros2.org/job/Jbin_uN64__ur_simulation_gz__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Jbin_uN64__ur_simulation_gz__ubuntu_noble_amd64__binary/badge/icon?subject=uN64__ur_simulation_gz'></a>
+       </td>
+       <td>
+         <a href='https://build.ros2.org/job/Kbin_uN64__ur_simulation_gz__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Kbin_uN64__ur_simulation_gz__ubuntu_noble_amd64__binary/badge/icon?subject=uN64__ur_simulation_gz'></a>
        </td>
        <td>
          <a href='https://build.ros2.org/job/Rbin_uN64__ur_simulation_gz__ubuntu_noble_amd64__binary/'><img src='https://build.ros2.org/job/Rbin_uN64__ur_simulation_gz__ubuntu_noble_amd64__binary/badge/icon?subject=uN64__ur_simulation_gz'></a>
