@@ -10,7 +10,7 @@
       <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/ur_theme.css?v=b67a8c70" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/ur_theme.css?v=078fdd0b" />
 
   
     <link rel="shortcut icon" href="../../../../../_static/icon.svg"/>
@@ -240,6 +240,26 @@ this.</p>
 <section id="using-the-dashboard-doesn-t-work">
 <h3>Using the dashboard doesn’t work<a class="headerlink" href="#using-the-dashboard-doesn-t-work" title="Link to this heading"></a></h3>
 <p>On the e-Series the robot has to be in <a class="reference internal" href="../operation_modes.html#operation-modes"><span class="std std-ref">remote control mode</span></a> to accept certain calls on the dashboard server. See <a class="reference internal" href="../dashboard_client.html#dashboard-client-ros2"><span class="std std-ref">Available dashboard commands</span></a> for details.</p>
+</section>
+<section id="when-i-start-the-driver-i-get-a-symbol-lookup-error">
+<h3>When I start the driver, I get a symbol lookup error<a class="headerlink" href="#when-i-start-the-driver-i-get-a-symbol-lookup-error" title="Link to this heading"></a></h3>
+<p>This error can show for example like this:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[ros2_control_node-1] /opt/ros/rolling/lib/controller_manager/ros2_control_node: symbol lookup error: /opt/ros/rolling/lib/libpal_statistics_msgs__rosidl_typesupport_fastrtps_cpp.so: undefined symbol: _ZN8eprosima7fastcdr3Cdr9serializeEj
+[ERROR] [ros2_control_node-1]: process has died [pid 251, exit code 127, cmd &#39;/opt/ros/rolling/lib/controller_manager/ros2_control_node --ros-args --params-file /opt/ros/rolling/share/ur_robot_driver/config/ur5e_update_rate.yaml --params-file /tmp/launch_params_cdtxg1uh&#39;].
+</pre></div>
+</div>
+<p>When an upstream package introduces an ABI break, you may see this error. This can happen in two
+situations:</p>
+<ul class="simple">
+<li><p>You have installed ROS a longer time ago and you have installed the driver package recently.</p></li>
+<li><p>You have compiled the driver from source and you have updated your system, so the upstream
+libraries are there in a newer (ABI incompatible) version.</p></li>
+</ul>
+<p>When this happens, it is best to update your complete system using</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>dist-upgrade
+</pre></div>
+</div>
+<p>and then recompile your workspace if you have built things from source.</p>
 </section>
 </section>
 </section>
