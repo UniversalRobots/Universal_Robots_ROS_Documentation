@@ -116,6 +116,21 @@
 </pre></div>
 </div>
 <p>The robot should move, after a few seconds.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default, the robot’s pose is checked for being close to a predefined configuration in order
+to make sure that the robot doesn’t perform any large, unexpected motions. This configuration
+is specified in the <code class="docutils literal notranslate"><span class="pre">config/test_goal_publishers.yaml</span></code> config file of the
+<code class="docutils literal notranslate"><span class="pre">ur_robot_driver</span></code> package. The joint values are</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">shoulder_pan_joint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="nt">shoulder_lift_joint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-1.57</span>
+<span class="nt">elbow_joint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="nt">wrist_1_joint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-1.57</span>
+<span class="nt">wrist_2_joint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="nt">wrist_3_joint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</pre></div>
+</div>
+</div>
 </li>
 <li><p>To test another controller, simply define it using <code class="docutils literal notranslate"><span class="pre">initial_joint_controller</span></code> argument, for example when using mock hardware:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>launch<span class="w"> </span>ur_robot_driver<span class="w"> </span>ur_control.launch.py<span class="w"> </span>ur_type:<span class="o">=</span>ur5e<span class="w"> </span><span class="se">\</span>
