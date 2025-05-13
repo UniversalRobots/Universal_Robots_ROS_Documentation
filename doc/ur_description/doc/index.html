@@ -24,7 +24,7 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="ur_robot_driver" href="../../ur_robot_driver/ur_robot_driver/doc/index.html" />
+    <link rel="next" title="Robot Frames" href="robot_frames.html" />
     <link rel="prev" title="C++ API Reference" href="../../ur_client_library/doc/api_reference.html" /> 
 </head>
 
@@ -50,7 +50,10 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../ur_client_library/doc/index.html">ur_client_library</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">ur_description</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ur_description</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="robot_frames.html">Robot Frames</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_calibration/doc/index.html">ur_calibration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_controllers/doc/index.html">ur_controllers</a></li>
@@ -91,8 +94,24 @@
 <span id="id1"></span><h1>ur_description<a class="headerlink" href="#ur-description" title="Link to this heading"></a></h1>
 <p>This package contains the kinematic and visual description of Universal Robots manipulators for ROS
 2.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="robot_frames.html">Robot Frames</a></li>
+</ul>
+</div>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#structure-of-the-repository" id="id2">Structure of the repository</a></p>
+<ul>
+<li><p><a class="reference internal" href="#ros2-control-integration" id="id3">ros2_control integration</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#creating-your-own-description-including-this-description" id="id4">Creating your own description including this description</a></p></li>
+</ul>
+</nav>
 <section id="structure-of-the-repository">
-<h2>Structure of the repository<a class="headerlink" href="#structure-of-the-repository" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Structure of the repository</a><a class="headerlink" href="#structure-of-the-repository" title="Link to this heading"></a></h2>
 <p>As the kinematics of all models is roughly the same and varies only in the meshes, the DH
 parameters and the physical parameters, the description uses xacro macros in order to make it reuse
 as much as possible. This way it is less likely that errors are introduced in one of the models.</p>
@@ -135,7 +154,7 @@ inside <code class="docutils literal notranslate"><span class="pre">inc/ur_commo
 <p>The launchfile <code class="docutils literal notranslate"><span class="pre">launch/view_ur.launch.py</span></code> abstracts these four parameters to one <code class="docutils literal notranslate"><span class="pre">ur_type</span></code> argument
 which will basically replace the <code class="docutils literal notranslate"><span class="pre">urXX</span></code> part of the paths as shown in the picture above.</p>
 <section id="ros2-control-integration">
-<h3>ros2_control integration<a class="headerlink" href="#ros2-control-integration" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">ros2_control integration</a><a class="headerlink" href="#ros2-control-integration" title="Link to this heading"></a></h3>
 <p><a class="reference external" href="https://control.ros.org">ros2_control</a> uses the robot_description in order to describe the
 robot’s control structure. Since this will vary for the respective control method (Driver for real
 robot, Gazebo simulation, mock_hardware simulation, etc.) this is kept inside the respective control repository. This
@@ -152,7 +171,7 @@ description and the control description.</p></li>
 </section>
 </section>
 <section id="creating-your-own-description-including-this-description">
-<h2>Creating your own description including this description<a class="headerlink" href="#creating-your-own-description-including-this-description" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Creating your own description including this description</a><a class="headerlink" href="#creating-your-own-description-including-this-description" title="Link to this heading"></a></h2>
 <p>In real-world applications you will most probably have a more complex description consisting of more objects than just the robot. It is recommended to create a separate ROS package containing this particular description. Inside this description you could also store your robot-specific kinematics parameters file.</p>
 <p>See the <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Tutorials/tree/main/my_robot_cell/my_robot_cell_description">custom workcell example</a> as an example for integrating this description in your own scene description.</p>
 </section>
@@ -163,7 +182,7 @@ description and the control description.</p></li>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../../ur_client_library/doc/api_reference.html" class="btn btn-neutral float-left" title="C++ API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../ur_robot_driver/ur_robot_driver/doc/index.html" class="btn btn-neutral float-right" title="ur_robot_driver" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="robot_frames.html" class="btn btn-neutral float-right" title="Robot Frames" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
