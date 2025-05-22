@@ -117,11 +117,6 @@ robot environment.</p>
 <dt><code class="docutils literal notranslate"><span class="pre">ur_description</span></code> (<a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description">separate repository</a>)</dt><dd><p>URDF description for UR manipulators</p>
 </dd>
 </dl>
-<dl class="field-list simple">
-<dt class="field-odd">github_url<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/blob/main/ur_robot_driver/doc/features.rst">https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/blob/main/ur_robot_driver/doc/features.rst</a></p>
-</dd>
-</dl>
 <section id="feature-list-and-roadmap">
 <h2>Feature list and roadmap<a class="headerlink" href="#feature-list-and-roadmap" title="Link to this heading"></a></h2>
 <table class="docutils align-default">
@@ -135,10 +130,10 @@ robot environment.</p>
 <td><p>yes</p></td>
 </tr>
 <tr class="row-odd"><td><p>scaled joint-position-based control</p></td>
-<td><p>yes</p></td>
+<td><p>yes (<a class="reference internal" href="../../ur_controllers/doc/index.html#scaled-jtc"><span class="std std-ref">ur_controlers/ScaledJointTrajectoryController</span></a>)</p></td>
 </tr>
 <tr class="row-even"><td><p>joint-velocity-based control</p></td>
-<td><p>yes</p></td>
+<td><p>yes<span class="raw-html-m2r"><sup>1</sup></span></p></td>
 </tr>
 <tr class="row-odd"><td><p>Cartesian position-based control</p></td>
 <td><p>no</p></td>
@@ -147,7 +142,7 @@ robot environment.</p>
 <td><p>no</p></td>
 </tr>
 <tr class="row-odd"><td><p>Trajectory forwarding for execution on robot</p></td>
-<td><p>yes</p></td>
+<td><p>yes (<a class="reference internal" href="../../ur_controllers/doc/index.html#passthrough-trajectory-controller"><span class="std std-ref">ur_controllers/PassthroughTrajectoryController</span></a>)</p></td>
 </tr>
 <tr class="row-even"><td><p>reporting of tcp wrench</p></td>
 <td><p>yes</p></td>
@@ -165,10 +160,10 @@ robot environment.</p>
 <td><p>yes</p></td>
 </tr>
 <tr class="row-odd"><td><p>get and set IO states</p></td>
-<td><p>yes</p></td>
+<td><p>yes (<a class="reference internal" href="../../ur_controllers/doc/index.html#io-and-status-controller"><span class="std std-ref">ur_controllers/GPIOController</span></a>)</p></td>
 </tr>
 <tr class="row-even"><td><p>use <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ToolComm_Forwarder_URCap">tool communication forwarder</a> on e-series</p></td>
-<td><p>yes</p></td>
+<td><p>yes (<a class="reference internal" href="setup_tool_communication.html#setup-tool-communication"><span class="std std-ref">Setting up the tool communication on an e-Series robot</span></a>)</p></td>
 </tr>
 <tr class="row-odd"><td><p>use the driver without a teach pendant necessary</p></td>
 <td><p>yes</p></td>
@@ -183,19 +178,29 @@ robot environment.</p>
 <td><p>yes</p></td>
 </tr>
 <tr class="row-odd"><td><p>headless mode</p></td>
-<td><p>yes</p></td>
+<td><p>yes (<a class="reference internal" href="operation_modes.html#headless-mode"><span class="std std-ref">Headless mode</span></a>)</p></td>
 </tr>
 <tr class="row-even"><td><p>extract calibration from robot</p></td>
-<td><p>yes</p></td>
+<td><p>yes (<a class="reference internal" href="../../ur_calibration/doc/index.html#ur-calibration"><span class="std std-ref">ur_calibration</span></a>)</p></td>
 </tr>
 <tr class="row-odd"><td><p>send custom script commands to robot</p></td>
-<td><p>yes</p></td>
+<td><p>yes (<a class="reference internal" href="../../ur_controllers/doc/index.html#io-and-status-controller"><span class="std std-ref">ur_controllers/GPIOController</span></a>)</p></td>
 </tr>
 <tr class="row-even"><td><p>Reconnect on a disconnected robot</p></td>
 <td><p>yes</p></td>
 </tr>
+<tr class="row-odd"><td><p>Freedrive Mode</p></td>
+<td><p>yes (<a class="reference internal" href="../../ur_controllers/doc/index.html#freedrive-mode-controller"><span class="std std-ref">ur_controllers/FreedriveModeController</span></a>)</p></td>
+</tr>
+<tr class="row-even"><td><p>Tool Contact mode</p></td>
+<td><p>yes (<a class="reference internal" href="../../ur_controllers/doc/index.html#tool-contact-controller"><span class="std std-ref">ur_controllers/ToolContactController</span></a>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Force Mode</p></td>
+<td><p>yes (<a class="reference internal" href="../../ur_controllers/doc/index.html#force-mode-controller"><span class="std std-ref">ur_controllers/ForceModeController</span></a>)</p></td>
+</tr>
 </tbody>
 </table>
+<p><span class="raw-html-m2r"><sup>1</sup></span> Velocity-based joint control is implemented in the driver, the velocity-based joint trajectory controller would need tweaking of the gain parameters for each model.</p>
 </section>
 </section>
 
