@@ -127,7 +127,7 @@ and can do whatever its purpose is.</p>
 <h2>Producer setup<a class="headerlink" href="#producer-setup" title="Link to this heading"></a></h2>
 <p>To setup the producer, we need to create a stream, a parser and create a producer with those:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 20 </span><span class="caption-text">examples/primary_pipeline.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 22 </span><span class="caption-text">examples/primary_pipeline.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">58</span><span class="w">  </span><span class="c1">// First of all, we need a stream that connects to the robot&#39;s primary interface</span>
 <span class="linenos">59</span><span class="w">  </span><span class="n">comm</span><span class="o">::</span><span class="n">URStream</span><span class="o">&lt;</span><span class="n">primary_interface</span><span class="o">::</span><span class="n">PrimaryPackage</span><span class="o">&gt;</span><span class="w"> </span><span class="n">primary_stream</span><span class="p">(</span><span class="n">robot_ip</span><span class="p">,</span><span class="w"> </span><span class="n">urcl</span><span class="o">::</span><span class="n">primary_interface</span><span class="o">::</span><span class="n">UR_PRIMARY_PORT</span><span class="p">);</span>
 <span class="linenos">60</span>
@@ -149,7 +149,7 @@ and can do whatever its purpose is.</p>
 case <code class="docutils literal notranslate"><span class="pre">urcl::primary_interface::PrimaryPackage</span></code>. Here, we use a <code class="docutils literal notranslate"><span class="pre">ShellExecutor</span></code> that will try to
 print each package’s content to the shell output:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 21 </span><span class="caption-text">examples/primary_pipeline.cpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 23 </span><span class="caption-text">examples/primary_pipeline.cpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">70</span><span class="w">  </span><span class="c1">// The shell consumer will print the package contents to the shell</span>
 <span class="linenos">71</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">consumer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">comm</span><span class="o">::</span><span class="n">ShellConsumer</span><span class="o">&lt;</span><span class="n">primary_interface</span><span class="o">::</span><span class="n">PrimaryPackage</span><span class="o">&gt;&gt;</span><span class="p">();</span>
 </pre></div>
@@ -160,7 +160,7 @@ print each package’s content to the shell output:</p>
 <h2>Assemble the pipeline<a class="headerlink" href="#assemble-the-pipeline" title="Link to this heading"></a></h2>
 <p>Finally, we need to assemble the pipeline by connecting the producer to the consumer:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 22 </span><span class="caption-text">examples/primary_pipeline.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 24 </span><span class="caption-text">examples/primary_pipeline.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">72</span><span class="w">  </span><span class="c1">// The notifer will be called at some points during connection setup / loss. This isn&#39;t fully</span>
 <span class="linenos">73</span><span class="w">  </span><span class="c1">// implemented atm.</span>
 <span class="linenos">74</span><span class="w">  </span><span class="n">comm</span><span class="o">::</span><span class="n">INotifier</span><span class="w"> </span><span class="n">notifier</span><span class="p">;</span>
@@ -178,7 +178,7 @@ notifier to it’s constructor.</p>
 <p>From this point on, the producer will read the data coming on from the stream and that data will be
 processed by the consumer. We keep the example program alive for a while to see some data:</p>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 23 </span><span class="caption-text">examples/primary_pipeline.cpp</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 25 </span><span class="caption-text">examples/primary_pipeline.cpp</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">83</span><span class="w">  </span><span class="k">do</span>
 <span class="linenos">84</span><span class="w">  </span><span class="p">{</span>
 <span class="linenos">85</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="n">second_to_run</span><span class="p">));</span>

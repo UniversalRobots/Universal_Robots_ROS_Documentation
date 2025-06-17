@@ -128,7 +128,7 @@ PolyScope X.</p>
 in <em>remote control mode</em>.</p>
 </div>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 4 </span><span class="caption-text">examples/dashboard_example.cpp</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 6 </span><span class="caption-text">examples/dashboard_example.cpp</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">75</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">my_dashboard</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">DashboardClient</span><span class="o">&gt;</span><span class="p">(</span><span class="n">robot_ip</span><span class="p">);</span>
 <span class="linenos">76</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">my_dashboard</span><span class="o">-&gt;</span><span class="n">connect</span><span class="p">())</span>
 <span class="linenos">77</span><span class="w">  </span><span class="p">{</span>
@@ -157,7 +157,7 @@ the answer.</p>
 <p>Some commands support getting the response from the robot. For example, the
 <code class="docutils literal notranslate"><span class="pre">commandPolyScopeVersion()</span></code> function:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 5 </span><span class="caption-text">examples/dashboard_example.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 7 </span><span class="caption-text">examples/dashboard_example.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">88</span><span class="w">  </span><span class="c1">// Get the PolyScope version</span>
 <span class="linenos">89</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">version</span><span class="p">;</span>
 <span class="linenos">90</span><span class="w">  </span><span class="n">my_dashboard</span><span class="o">-&gt;</span><span class="n">commandPolyscopeVersion</span><span class="p">(</span><span class="n">version</span><span class="p">);</span>
@@ -168,7 +168,7 @@ the answer.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">DashboardClient</span></code> can easily be used to cycle through the robot’s states, for example for
 initialization:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 6 </span><span class="caption-text">examples/dashboard_example.cpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 8 </span><span class="caption-text">examples/dashboard_example.cpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 95</span><span class="w">  </span><span class="c1">// Power it on</span>
 <span class="linenos"> 96</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">my_dashboard</span><span class="o">-&gt;</span><span class="n">commandPowerOn</span><span class="p">())</span>
 <span class="linenos"> 97</span><span class="w">  </span><span class="p">{</span>
@@ -195,7 +195,7 @@ The example contains more commands that follow the same scheme.</p>
 <p>If you want to send a query / command to the dashboard server and only want to receive the
 response, you can use the <code class="docutils literal notranslate"><span class="pre">sendAndReceive()</span></code> function:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 7 </span><span class="caption-text">examples/dashboard_example.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 9 </span><span class="caption-text">examples/dashboard_example.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">161</span><span class="w">  </span><span class="c1">// Make a raw request and save the response</span>
 <span class="linenos">162</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">program_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_dashboard</span><span class="o">-&gt;</span><span class="n">sendAndReceive</span><span class="p">(</span><span class="s">&quot;programState&quot;</span><span class="p">);</span>
 <span class="linenos">163</span><span class="w">  </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="s">&quot;Program state: %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">program_state</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
@@ -204,7 +204,7 @@ response, you can use the <code class="docutils literal notranslate"><span class
 </div>
 <p>For checking the response against an expected regular expression use <code class="docutils literal notranslate"><span class="pre">sendRequest()</span></code>:</p>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 8 </span><span class="caption-text">examples/dashboard_example.cpp</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 10 </span><span class="caption-text">examples/dashboard_example.cpp</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">165</span><span class="w">  </span><span class="c1">// The response can be checked with a regular expression</span>
 <span class="linenos">166</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_dashboard</span><span class="o">-&gt;</span><span class="n">sendRequest</span><span class="p">(</span><span class="s">&quot;power off&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Powering off&quot;</span><span class="p">);</span>
 <span class="linenos">167</span><span class="w">  </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="s">&quot;Power off command success: %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">success</span><span class="p">);</span>

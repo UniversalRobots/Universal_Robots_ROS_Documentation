@@ -127,7 +127,7 @@ in <em>remote control mode</em>.</p>
 <p>At first, we create a <code class="docutils literal notranslate"><span class="pre">ExampleRobotWrapper</span></code> object in order to initialize communication with the
 robot.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 13 </span><span class="caption-text">examples/freedrive_example.cpp</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 15 </span><span class="caption-text">examples/freedrive_example.cpp</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">83</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">headless_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <span class="linenos">84</span>
 <span class="linenos">85</span><span class="w">  </span><span class="n">g_my_robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">ExampleRobotWrapper</span><span class="o">&gt;</span><span class="p">(</span><span class="n">robot_ip</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">headless_mode</span><span class="p">,</span>
@@ -145,7 +145,7 @@ robot.</p>
 <h2>Start freedrive mode<a class="headerlink" href="#start-freedrive-mode" title="Link to this heading"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">UrDriver</span></code> provides a method to start freedrive mode directly:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 14 </span><span class="caption-text">examples/freedrive_example.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 16 </span><span class="caption-text">examples/freedrive_example.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">94</span><span class="w">  </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="s">&quot;Starting freedrive mode&quot;</span><span class="p">);</span>
 <span class="linenos">95</span><span class="w">  </span><span class="n">sendFreedriveMessageOrDie</span><span class="p">(</span><span class="n">control</span><span class="o">::</span><span class="n">FreedriveControlMessage</span><span class="o">::</span><span class="n">FREEDRIVE_START</span><span class="p">);</span>
 </pre></div>
@@ -159,7 +159,7 @@ message is received by the robot anymore.</p>
 <p>Therefore, we have to make sure to send regular keepalive messages to the robot. The following
 section will keep freedrive mode active for a period of time defined in <code class="docutils literal notranslate"><span class="pre">seconds_to_run</span></code>.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 15 </span><span class="caption-text">examples/freedrive_example.cpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 17 </span><span class="caption-text">examples/freedrive_example.cpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 97</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">duration</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">time_done</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 <span class="linenos"> 98</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">duration</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">timeout</span><span class="p">(</span><span class="n">second_to_run</span><span class="p">);</span>
 <span class="linenos"> 99</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">stopwatch_last</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">steady_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
@@ -184,7 +184,7 @@ section will keep freedrive mode active for a period of time defined in <code cl
 <h2>Stop freedrive Mode<a class="headerlink" href="#stop-freedrive-mode" title="Link to this heading"></a></h2>
 <p>To stop freedrive mode either stop sending keepalive signals or request deactivating it explicitly:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 16 </span><span class="caption-text">examples/freedrive_example.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 18 </span><span class="caption-text">examples/freedrive_example.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">113</span><span class="w">  </span><span class="n">sendFreedriveMessageOrDie</span><span class="p">(</span><span class="n">control</span><span class="o">::</span><span class="n">FreedriveControlMessage</span><span class="o">::</span><span class="n">FREEDRIVE_STOP</span><span class="p">);</span>
 </pre></div>
 </div>
