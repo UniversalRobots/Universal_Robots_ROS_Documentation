@@ -10,6 +10,7 @@
       <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/tabs.css?v=a5c4661c" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/css/ur_theme.css?v=078fdd0b" />
 
   
@@ -21,6 +22,7 @@
       <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../../../../../_static/copybutton.js?v=6dbb43f8"></script>
+      <script src="../../../../../_static/tabs.js?v=3030b3cb"></script>
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
@@ -112,24 +114,55 @@
 <p>Apart from being used with a real robot, the ROS driver can be used with ros2_control’s mock hardware or the URSim simulator (which is equivalent from the driver’s perspective).</p>
 <p>Additionally, the robot can be simulated using
 <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Gazebo_Simulation">Gazebo Classic</a> or
-<a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Ignition_Simulation">GZ Sim</a> but that’s
+<span class="xref std std-ref">GZ Sim</span> but that’s
 outside of this driver’s scope.</p>
 <section id="usage-with-official-ur-simulator">
 <span id="id1"></span><h2>Usage with official UR simulator<a class="headerlink" href="#usage-with-official-ur-simulator" title="Link to this heading"></a></h2>
-<p>The easiest way to use URSim is the <a class="reference external" href="https://hub.docker.com/r/universalrobots/ursim_e-series">Docker
-image</a> provided by Universal Robots (See
-<a class="reference external" href="https://hub.docker.com/r/universalrobots/ursim_cb3">this link</a> for a CB3-series image).</p>
-<p>To start it, we’ve prepared a script:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>run<span class="w"> </span>ur_client_library<span class="w"> </span>start_ursim.sh<span class="w"> </span>-m<span class="w"> </span>&lt;ur_type&gt;
+<p>The easiest way to use URSim is the Docker
+image provided by Universal Robots. There is an image for each software generation:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://hub.docker.com/r/universalrobots/ursim_e-series">PolyScope 5</a></p></li>
+<li><p><a class="reference external" href="https://hub.docker.com/r/universalrobots/ursim_polyscopex">PolyScope X</a></p></li>
+<li><p><a class="reference external" href="https://hub.docker.com/r/universalrobots/ursim_cb3">CB3</a></p></li>
+</ul>
+<p>We have prepared a script to unify the startup of the simulator independent of the software
+platform version:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>run<span class="w"> </span>ur_client_library<span class="w"> </span>start_ursim.sh<span class="w"> </span>-m<span class="w"> </span>&lt;ur_type&gt;<span class="w"> </span>-v<span class="w"> </span>&lt;ursim_version&gt;
 </pre></div>
 </div>
+<p>If you skip the <code class="docutils literal notranslate"><span class="pre">-v</span></code> option, the script will use the latest version of the PolyScope 5 URSim
+image. If you skip the <code class="docutils literal notranslate"><span class="pre">-m</span></code> option, the robot model will default to a UR5(e) robot.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>run<span class="w"> </span>ur_client_library<span class="w"> </span>start_ursim.sh<span class="w"> </span>-v<span class="w"> </span><span class="m">10</span>.8.0<span class="w"> </span>-m<span class="w"> </span>ur20
+<span class="go">ROBOT_MODEL: ur20</span>
+<span class="go">ROBOT_SERIES: polyscopex</span>
+<span class="go">URSIM_VERSION: 10.8.0</span>
+<span class="go">5b140a83f8600c7ada0b7d75bc7a5808667adbeec77387e8c73b093f10fd2379</span>
+<span class="go">Starting URSim. Waiting for UrService to be up...................................</span>
+<span class="go">UrService is up</span>
+<span class="go">Installing URCapX /home/feex/.ursim/polyscopex/urcaps/external-control-0.1.0.urcapx</span>
+
+
+<span class="go">To access PolyScopeX, open the following URL in a web browser.</span>
+
+
+<span class="go">        http://192.168.56.101</span>
+
+<span class="go">To exit, press CTRL+C</span>
+</pre></div>
+</div>
+<p>Accessing the URSim GUI is done using a web browser. The script will print the URL to access the
+GUI. Depending on the PolyScope version, this is different.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-UG9seVNjb3BlIDUgLyBDQjM=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-UG9seVNjb3BlIDUgLyBDQjM=" name="UG9seVNjb3BlIDUgLyBDQjM=" role="tab" tabindex="0">PolyScope 5 / CB3</button><button aria-controls="panel-0-UG9seVNjb3BlIFg=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-UG9seVNjb3BlIFg=" name="UG9seVNjb3BlIFg=" role="tab" tabindex="-1">PolyScope X</button></div><div aria-labelledby="tab-0-UG9seVNjb3BlIDUgLyBDQjM=" class="sphinx-tabs-panel group-tab" id="panel-0-UG9seVNjb3BlIDUgLyBDQjM=" name="UG9seVNjb3BlIDUgLyBDQjM=" role="tabpanel" tabindex="0"><p>Open <a class="reference external" href="http://192.168.56.101:6080/vnc.html">http://192.168.56.101:6080/vnc.html</a> in a web browser.</p>
+</div><div aria-labelledby="tab-0-UG9seVNjb3BlIFg=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-UG9seVNjb3BlIFg=" name="UG9seVNjb3BlIFg=" role="tabpanel" tabindex="0"><p>Open <a class="reference external" href="http://192.168.56.101">http://192.168.56.101</a> in a web browser.</p>
+</div></div>
 <p>With this, we can spin up a driver using</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>ur_robot_driver<span class="w"> </span>ur_control.launch.py<span class="w"> </span>ur_type:<span class="o">=</span>&lt;ur_type&gt;<span class="w"> </span>robot_ip:<span class="o">=</span><span class="m">192</span>.168.56.101<span class="w"> </span>launch_rviz:<span class="o">=</span><span class="nb">true</span>
 </pre></div>
 </div>
-<p>You can view the polyscope GUI by opening <a class="reference external" href="http://192.168.56.101:6080/vnc.html">http://192.168.56.101:6080/vnc.html</a>.</p>
 <p>When we now move the robot in Polyscope, the robot’s RViz visualization should move accordingly.</p>
-<p>For details on the Docker image, please see the more detailed guide <a class="reference internal" href="../../../../ur_client_library/doc/setup/ursim_docker.html#ursim-docker"><span class="std std-ref">here</span></a>.</p>
+<p>For details on the (PolyScopr 5 and CB3) Docker image, please see the more detailed guide <a class="reference internal" href="../../../../ur_client_library/doc/setup/ursim_docker.html#ursim-docker"><span class="std std-ref">here</span></a>.</p>
 </section>
 <section id="mock-hardware">
 <h2>Mock hardware<a class="headerlink" href="#mock-hardware" title="Link to this heading"></a></h2>
