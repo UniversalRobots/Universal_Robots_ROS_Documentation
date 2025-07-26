@@ -140,6 +140,27 @@ other launchfiles or by using <code class="docutils literal notranslate"><span c
 </pre></div>
 </div>
 </section>
+<section id="removal-of-ros2-control-node">
+<h2>Removal of ros2_control_node<a class="headerlink" href="#removal-of-ros2-control-node" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">ros2_control_node</span></code> has been removed from the driver in <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/pull/939">#939</a>. Instead, the
+<code class="docutils literal notranslate"><span class="pre">ur_control.launch.py</span></code> launchfile now uses the <code class="docutils literal notranslate"><span class="pre">controller_manager</span></code>’s <code class="docutils literal notranslate"><span class="pre">ros2_control_node</span></code>
+directly. This change is only relevant if you wrote your own launchfile starting the
+<code class="docutils literal notranslate"><span class="pre">ur_robot_driver</span></code>’s <code class="docutils literal notranslate"><span class="pre">ros2_control_node</span></code>. In that case, you should adapt your launchfile to use
+the <code class="docutils literal notranslate"><span class="pre">controller_manager</span></code>’s <code class="docutils literal notranslate"><span class="pre">ros2_control_node</span></code> instead. Remember to also remove the
+<code class="docutils literal notranslate"><span class="pre">robot_description</span></code> parameter as explained above.</p>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span>ur_control_node = Node(
+<span class="gd">-   package=&quot;ur_robot_driver&quot;,</span>
+<span class="gd">-   executable=&quot;ur_ros2_control_node&quot;,</span>
+<span class="gi">+   package=&quot;controller_manager&quot;,</span>
+<span class="gi">+   executable=&quot;ros2_control_node&quot;,</span>
+<span class="w"> </span>   parameters=[
+<span class="gd">-       robot_description,</span>
+<span class="w"> </span>       update_rate_config_file,
+<span class="w"> </span>       ParameterFile(initial_joint_controllers, allow_substs=True),
+<span class="w"> </span>   ],
+</pre></div>
+</div>
+</section>
 </section>
 
 
