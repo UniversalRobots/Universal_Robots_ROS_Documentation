@@ -94,9 +94,42 @@
              
   <section id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
-<p>Skip any of below steps is not applicable.</p>
+<p>You can install the Universal Robots ROS2 GZ Simulation package in two ways:</p>
+<ol class="arabic simple">
+<li><p><strong>From binary packages</strong>: This is the recommended way for most users, as it is quick and easy.</p></li>
+<li><p><strong>From source</strong>: This is useful if you want to modify the code or if you require to have a
+version that is newer than the latest binary package available.</p></li>
+</ol>
+<section id="installation-from-binary-packages">
+<h2>Installation from binary packages<a class="headerlink" href="#installation-from-binary-packages" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://docs.ros.org/en/rolling/Installation/Ubuntu-Install-Debians.html">Install ROS2</a></p></li>
+<li><p>Install the package using</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ros-<span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span>-ur-simulation-gz
+</pre></div>
+</div>
+<p>That’s it! You can now use the Universal Robots ROS2 GZ Simulation package in your ROS 2
+environment. See the <a class="reference internal" href="usage.html#ur-simulation-gz-usage"><span class="std std-ref">Usage</span></a> section for how to use it.</p>
+</section>
+<section id="installation-from-source">
+<h2>Installation from source<a class="headerlink" href="#installation-from-source" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This section is only required if you want to build the package from source. Please do that
+only, if that’s required for you. Reasons why you would need to build it from source are:</p>
+<ul class="simple">
+<li><p>You built one of multiple of this package’s dependencies from source and want to use it with
+this package.</p></li>
+<li><p>You want to develop this package or contribute to it. If you only want to modify the launch
+files to fit your application, a better approeach would be to create your own package with
+your own launch files that include the ones from this package.</p></li>
+</ul>
+<p>To rather install the binary packages, please refer to the <a class="reference internal" href="#installation-from-binary-packages">Installation from binary
+packages</a> section above.</p>
+</div>
 <section id="setup-ros2-workspace">
-<h2>Setup ROS2 Workspace<a class="headerlink" href="#setup-ros2-workspace" title="Link to this heading"></a></h2>
+<h3>Setup ROS2 Workspace<a class="headerlink" href="#setup-ros2-workspace" title="Link to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p>Create a colcon workspace:</p></li>
 </ol>
@@ -118,13 +151,12 @@
 </ol>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$COLCON_WS</span>
 <span class="gp">$ </span>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>ros2<span class="w"> </span>https://github.com/UniversalRobots/Universal_Robots_ROS2_GZ_Simulation.git<span class="w"> </span>src/ur_simulation_gz
-<span class="gp">$ </span>vcs<span class="w"> </span>import<span class="w"> </span>--input<span class="w"> </span>src/ur_simulation_gz/ur_simulation_gz-not-released.rolling.repos<span class="w"> </span>src<span class="w"> </span><span class="c1"># only required for rolling</span>
 <span class="gp">$ </span>rosdep<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rosdep<span class="w"> </span>install<span class="w"> </span>--ignore-src<span class="w"> </span>--from-paths<span class="w"> </span>src<span class="w"> </span>-y
 </pre></div>
 </div>
 </section>
 <section id="configure-and-build-workspace">
-<h2>Configure and build Workspace<a class="headerlink" href="#configure-and-build-workspace" title="Link to this heading"></a></h2>
+<h3>Configure and build Workspace<a class="headerlink" href="#configure-and-build-workspace" title="Link to this heading"></a></h3>
 <p>To configure and build the workspace execute following commands:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">source</span><span class="w"> </span>/opt/ros/rolling/setup.bash<span class="w"> </span><span class="c1"># necessary after installing gz-sim-vendor</span>
 <span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$COLCON_WS</span>
@@ -135,6 +167,7 @@
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">source</span><span class="w"> </span><span class="nv">$COLCON_WS</span>/install/setup.bash
 </pre></div>
 </div>
+</section>
 </section>
 </section>
 
