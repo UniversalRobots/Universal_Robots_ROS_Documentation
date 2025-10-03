@@ -134,11 +134,21 @@ can be found on <a class="reference external" href="https://github.com/Universal
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="polyscope_compatibility.html">PolyScope version compatibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polyscope_compatibility.html">PolyScope version compatibility</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="polyscope_compatibility.html#version-breaking-changes">Version-breaking changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polyscope_compatibility.html#features-requiring-a-specific-polyscope-version">Features requiring a specific PolyScope version</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="polyscope_compatibility.html#torque-control-from-version-2-4-0">Torque control (From version 2.4.0)</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="architecture.html">Library architecture</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="architecture/dashboard_client.html">DashboardClient</a></li>
 <li class="toctree-l2"><a class="reference internal" href="architecture/reverse_interface.html">ReverseInterface</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="architecture/reverse_interface.html#communication-protocol">Communication protocol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture/reverse_interface.html#communication-protocol">Communication protocol</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="architecture/reverse_interface.html#direct-torque-control-mode">Direct torque control mode</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="architecture/rtde_client.html">RTDEClient</a><ul>
@@ -213,9 +223,18 @@ can be found on <a class="reference external" href="https://github.com/Universal
 <li class="toctree-l3"><a class="reference internal" href="examples/rtde_client.html#writing-data-to-the-rtde-client">Writing Data to the RTDE client</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="examples/script_command_interface.html">Script command interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/script_command_interface.html#sending-script-commands">Sending script commands</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="examples/script_sender.html">Script Sender example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples/spline_example.html">Spline Interpolation example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples/tool_contact_example.html">Tool Contact example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/direct_torque_control.html">Torque control example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/direct_torque_control.html#initialization">Initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/direct_torque_control.html#robot-control-loop">Robot control loop</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="examples/trajectory_point_interface.html">Trajectory Joint Interface example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="examples/trajectory_point_interface.html#initialization">Initialization</a></li>
 <li class="toctree-l3"><a class="reference internal" href="examples/trajectory_point_interface.html#movej-trajectory">MoveJ Trajectory</a></li>

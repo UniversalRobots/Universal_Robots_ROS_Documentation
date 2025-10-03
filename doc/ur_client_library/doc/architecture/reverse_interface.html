@@ -133,8 +133,8 @@ control PC and sending it to the robot upon request.</p>
 representations 8 datafields frequently. The timeout with which new data is expected can vary depending
 on the current control mode and is set as part of the message. The data fields have the following
 meaning:</p>
-<table class="docutils align-default" id="id1">
-<caption><span class="caption-number">Table 1 </span><span class="caption-text">reverse_socket message format</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">reverse_socket message format</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>index</p></th>
 <th class="head"><p>meaning</p></th>
@@ -163,6 +163,7 @@ meaning:</p>
 <li><p>field 1: Freedrive mode (1: FREEDRIVE_MODE_START, -1: FREEDRIVE_MODE_STOP)</p></li>
 </ul>
 </li>
+<li><p>target joint torques (TORQUE, see <a class="reference internal" href="#direct-torque-control-mode"><span class="std std-ref">Direct torque control mode</span></a>).</p></li>
 </ul>
 </div></blockquote>
 </td>
@@ -183,6 +184,7 @@ meaning:</p>
 <li><p>7: TOOL_IN_CONTACT – status - not meant to be sent.
 In tool contact mode this will
 encode whether tool contact has been established or not.</p></li>
+<li><p>8: TORQUE – <a class="reference internal" href="#direct-torque-control-mode"><span class="std std-ref">Direct torque control mode</span></a> (since PolyScope 5.23.0 / 10.10.0)</p></li>
 </ul>
 </div></blockquote>
 </td>
@@ -199,7 +201,23 @@ accessing the result array of the URScript function.</p>
 <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code> constant to get the actual floating point value. This constant is defined in
 <code class="docutils literal notranslate"><span class="pre">ReverseInterface</span></code> class.</p>
 </div>
-<p>Depending on the control mode one can use the <code class="docutils literal notranslate"><span class="pre">write()</span></code> (SERVOJ, SPEEDJ, SPEEDL, POSE), <code class="docutils literal notranslate"><span class="pre">writeTrajectoryControlMessage()</span></code> (FORWARD) or <code class="docutils literal notranslate"><span class="pre">writeFreedriveControlMessage()</span></code> (FREEDRIVE) function to write a message to the “reverse_socket”.</p>
+<p>Depending on the control mode one can use the <code class="docutils literal notranslate"><span class="pre">write()</span></code> (SERVOJ, SPEEDJ, SPEEDL, POSE, TORQUE), <code class="docutils literal notranslate"><span class="pre">writeTrajectoryControlMessage()</span></code> (FORWARD) or <code class="docutils literal notranslate"><span class="pre">writeFreedriveControlMessage()</span></code> (FREEDRIVE) function to write a message to the “reverse_socket”.</p>
+<section id="direct-torque-control-mode">
+<span id="id1"></span><h3>Direct torque control mode<a class="headerlink" href="#direct-torque-control-mode" title="Link to this heading"></a></h3>
+<p>Direct torque control mode is available since PolyScope version 5.23.0 / 10.10.0. It allows to command
+joint torques directly to the robot.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Target torques are given <strong>after</strong> gravity compensation. A vector of zeros will hold the current position
+given that the payload is known to the controller.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Direct torque control is a very low-level command interface. Commanding high torques in
+free space can make the robot move very fast and hereby trigger a fault due to joint velocities
+or the TCP speed violating the safety settings. Keep that in mind when using this mode.</p>
+</div>
+</section>
 </section>
 </section>
 

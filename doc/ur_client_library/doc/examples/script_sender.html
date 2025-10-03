@@ -25,7 +25,7 @@
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="Spline Interpolation example" href="spline_example.html" />
-    <link rel="prev" title="RTDE Client example" href="rtde_client.html" /> 
+    <link rel="prev" title="Script command interface" href="script_command_interface.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -62,9 +62,11 @@
 <li class="toctree-l3"><a class="reference internal" href="primary_pipeline.html">Primary Pipeline example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="primary_pipeline_calibration.html">Primary Pipeline Calibration example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="rtde_client.html">RTDE Client example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="script_command_interface.html">Script command interface</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Script Sender example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spline_example.html">Spline Interpolation example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tool_contact_example.html">Tool Contact example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="direct_torque_control.html">Torque control example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="trajectory_point_interface.html">Trajectory Joint Interface example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ur_driver.html">Example driver</a></li>
 </ul>
@@ -118,7 +120,7 @@
 <p>The following example creates a <code class="docutils literal notranslate"><span class="pre">ScriptSender</span></code> listening on port <code class="docutils literal notranslate"><span class="pre">12345</span></code> and sends the script
 <code class="docutils literal notranslate"><span class="pre">textmsg(&quot;Hello,</span> <span class="pre">World!&quot;)</span></code> when requested. A fully compilable example can be found in <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/blob/master/examples/script_sender.cpp">script_sender.cpp</a></p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 33 </span><span class="caption-text">examples/script_sender.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 37 </span><span class="caption-text">examples/script_sender.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">33</span><span class="k">constexpr</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">PORT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12345</span><span class="p">;</span>
 <span class="linenos">34</span>
 <span class="linenos">35</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span>
@@ -162,7 +164,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="rtde_client.html" class="btn btn-neutral float-left" title="RTDE Client example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="script_command_interface.html" class="btn btn-neutral float-left" title="Script command interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="spline_example.html" class="btn btn-neutral float-right" title="Spline Interpolation example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

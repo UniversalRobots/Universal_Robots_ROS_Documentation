@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="Trajectory Joint Interface example" href="trajectory_point_interface.html" />
+    <link rel="next" title="Torque control example" href="direct_torque_control.html" />
     <link rel="prev" title="Spline Interpolation example" href="spline_example.html" /> 
 </head>
 
@@ -62,9 +62,11 @@
 <li class="toctree-l3"><a class="reference internal" href="primary_pipeline.html">Primary Pipeline example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="primary_pipeline_calibration.html">Primary Pipeline Calibration example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="rtde_client.html">RTDE Client example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="script_command_interface.html">Script command interface</a></li>
 <li class="toctree-l3"><a class="reference internal" href="script_sender.html">Script Sender example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spline_example.html">Spline Interpolation example</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Tool Contact example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="direct_torque_control.html">Torque control example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="trajectory_point_interface.html">Trajectory Joint Interface example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ur_driver.html">Example driver</a></li>
 </ul>
@@ -122,7 +124,7 @@ tool contact mode to detect collisions and stop the robot.</p>
 something or the program’s timeout is hit.</p>
 <p>At first, we create a initialize a driver as usual:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 34 </span><span class="caption-text">examples/tool_contact_example.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 38 </span><span class="caption-text">examples/tool_contact_example.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">80</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">headless_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <span class="linenos">81</span><span class="w">  </span><span class="n">g_my_robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">ExampleRobotWrapper</span><span class="o">&gt;</span><span class="p">(</span><span class="n">robot_ip</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">headless_mode</span><span class="p">,</span>
 <span class="linenos">82</span><span class="w">                                                     </span><span class="s">&quot;external_control.urp&quot;</span><span class="p">);</span>
@@ -139,7 +141,7 @@ before proceeding.</p>
 <p>When a tool contact is detected, a callback will be triggered. For that we define a function to
 handle this event:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 35 </span><span class="caption-text">examples/tool_contact_example.cpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 39 </span><span class="caption-text">examples/tool_contact_example.cpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">55</span><span class="kt">void</span><span class="w"> </span><span class="nf">handleToolContactResult</span><span class="p">(</span><span class="n">control</span><span class="o">::</span><span class="n">ToolContactResult</span><span class="w"> </span><span class="n">result</span><span class="p">)</span>
 <span class="linenos">56</span><span class="p">{</span>
 <span class="linenos">57</span><span class="w">  </span><span class="c1">// Print the text in green so we see it better</span>
@@ -152,7 +154,7 @@ handle this event:</p>
 </div>
 <p>This function is registered as a callback to the driver and then tool_contact mode is enabled:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 36 </span><span class="caption-text">examples/tool_contact_example.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 40 </span><span class="caption-text">examples/tool_contact_example.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">88</span><span class="w">  </span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">getUrDriver</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">registerToolContactResultCallback</span><span class="p">(</span><span class="o">&amp;</span><span class="n">handleToolContactResult</span><span class="p">);</span>
 <span class="linenos">89</span><span class="w">  </span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">getUrDriver</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">startToolContact</span><span class="p">();</span>
 </pre></div>
@@ -161,7 +163,7 @@ handle this event:</p>
 <p>Once everything is initialized, we can start a control loop commanding the robot to move in the
 negative z direction until the program timeout is hit or a tool contact is detected:</p>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 37 </span><span class="caption-text">examples/tool_contact_example.cpp</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 41 </span><span class="caption-text">examples/tool_contact_example.cpp</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 91</span><span class="w">  </span><span class="c1">// This will move the robot downward in the z direction of the base until a tool contact is detected or seconds_to_run</span>
 <span class="linenos"> 92</span><span class="w">  </span><span class="c1">// is reached</span>
 <span class="linenos"> 93</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">vector6d_t</span><span class="w"> </span><span class="n">tcp_speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.02</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">};</span>
@@ -197,7 +199,7 @@ negative z direction until the program timeout is hit or a tool contact is detec
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="spline_example.html" class="btn btn-neutral float-left" title="Spline Interpolation example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="trajectory_point_interface.html" class="btn btn-neutral float-right" title="Trajectory Joint Interface example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="direct_torque_control.html" class="btn btn-neutral float-right" title="Torque control example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

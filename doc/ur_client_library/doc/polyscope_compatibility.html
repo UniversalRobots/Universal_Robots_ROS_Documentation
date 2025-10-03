@@ -100,6 +100,8 @@
              
   <section id="polyscope-version-compatibility">
 <h1>PolyScope version compatibility<a class="headerlink" href="#polyscope-version-compatibility" title="Link to this heading"></a></h1>
+<section id="version-breaking-changes">
+<h2>Version-breaking changes<a class="headerlink" href="#version-breaking-changes" title="Link to this heading"></a></h2>
 <p>The table below shows breaking changes in the library compared to PolyScope versions. Compatibility
 is listed for CB3 robots (versions 3.x.y) and e-Series robots (versions 5.x.y) respectively.</p>
 <p>It might be possible to use the library in a more recent version than the compatible versions listed
@@ -145,6 +147,19 @@ See <a class="reference external" href="https://github.com/UniversalRobots/Unive
 </ul>
 </div></blockquote>
 </div>
+</section>
+<section id="features-requiring-a-specific-polyscope-version">
+<h2>Features requiring a specific PolyScope version<a class="headerlink" href="#features-requiring-a-specific-polyscope-version" title="Link to this heading"></a></h2>
+<p>Features in this section have been added in a backwards-compatible way. It is still possible to use
+this library with an older compatible version, but trying to use one of the features below might
+lead to a runtime exception.</p>
+<section id="torque-control-from-version-2-4-0">
+<h3>Torque control (From version 2.4.0)<a class="headerlink" href="#torque-control-from-version-2-4-0" title="Link to this heading"></a></h3>
+<p>The direct torque control mode is only available on PolyScope 5.23.0 / 10.10.0 and later. This
+includes the <code class="docutils literal notranslate"><span class="pre">TORQUE</span></code> control mode in the <code class="docutils literal notranslate"><span class="pre">ReverseInterface</span></code> as well as the
+<code class="docutils literal notranslate"><span class="pre">setFrictionCompensation()</span></code> function in the <code class="docutils literal notranslate"><span class="pre">ScriptCommandInterface</span></code>.</p>
+</section>
+</section>
 </section>
 
 

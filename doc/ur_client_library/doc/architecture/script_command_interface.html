@@ -125,6 +125,7 @@ example</a> for more information.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">startToolContact()</span></code> / <code class="docutils literal notranslate"><span class="pre">endToolContact()</span></code>: Start and end a tool contact mode. See the <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/blob/master/examples/tool_contact_example.cpp">tool
 contact example</a>
 for more information.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setFrictionCompensation()</span></code>: Set friction compensation for torque command.</p></li>
 </ul>
 <section id="communication-protocol">
 <h2>Communication protocol<a class="headerlink" href="#communication-protocol" title="Link to this heading"></a></h2>
@@ -152,6 +153,7 @@ for more information.</p></li>
 <li><p>4: endForceMode</p></li>
 <li><p>5: startToolContact</p></li>
 <li><p>6: endToolContact</p></li>
+<li><p>7: setFrictionCompensation</p></li>
 </ul>
 </dd>
 </dl>
@@ -271,6 +273,19 @@ for more information.</p></li>
 <tbody>
 <tr class="row-even"><td><p>1</p></td>
 <td><p>No specific meaning / values ignored</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="id10">
+<caption><span class="caption-number">Table 10 </span><span class="caption-text">With setFrictionCompensation command</span><a class="headerlink" href="#id10" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>index</p></th>
+<th class="head"><p>meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>friction_compensation_enabled enable/disable friction compensation for torque command.</p></td>
 </tr>
 </tbody>
 </table>
