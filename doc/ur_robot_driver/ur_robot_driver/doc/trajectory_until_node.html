@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Controller stopper &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
+  <title>Trajectory until node &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
@@ -24,8 +24,8 @@
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="Trajectory until node" href="trajectory_until_node.html" />
-    <link rel="prev" title="Robot state helper" href="robot_state_helper.html" /> 
+    <link rel="next" title="ur_calibration" href="../../ur_calibration/doc/index.html" />
+    <link rel="prev" title="Controller stopper" href="controller_stopper.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -60,8 +60,8 @@
 <li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html">UR Hardware interface parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dashboard_client.html">Dashboard client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="robot_state_helper.html">Robot state helper</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Controller stopper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="trajectory_until_node.html">Trajectory until node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller_stopper.html">Controller stopper</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Trajectory until node</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../ur_calibration/doc/index.html">ur_calibration</a></li>
@@ -89,10 +89,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">ur_robot_driver</a></li>
-      <li class="breadcrumb-item active">Controller stopper</li>
+      <li class="breadcrumb-item active">Trajectory until node</li>
       <li class="wy-breadcrumbs-aside">
-              <!-- User defined GitHub URL -->
-              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/blob/main/ur_robot_driver/doc/controller_stopper.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS_Documentation/blob/main//doc/ur_robot_driver/ur_robot_driver/doc/trajectory_until_node.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -100,28 +99,25 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="controller-stopper">
-<span id="id1"></span><h1>Controller stopper<a class="headerlink" href="#controller-stopper" title="Link to this heading"></a></h1>
-<p>As explained in the section <a class="reference internal" href="usage/startup.html#robot-startup-program"><span class="std std-ref">Finish startup on the robot</span></a>, the robot needs to run a program in order
-to receive motion commands from the ROS driver. When the program is not running, commands sent to
-the robot will have no effect.</p>
-<p>To make that transparent, the <code class="docutils literal notranslate"><span class="pre">controller_stopper</span></code> node mirrors that state in the ROS
-controller’s state. It listens to the <code class="docutils literal notranslate"><span class="pre">/io_and_status_controller/robot_program_running</span></code> topic and
-deactivates all motion controllers  (or any controller not explicitly marked as “consistent”, see
-below)when the program is not running.</p>
-<p>Once the program is running again, any previously active motion controller will be activated again.</p>
-<p>This way, when sending commands to an inactive controller the caller should be transparently
-informed, that the controller cannot accept commands at the moment.</p>
-<p>In the same way, any running action on the ROS controller will be aborted, as the controller gets
-deactivated by the controller_stopper.</p>
-<section id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">~consistent_controllers</span></code> (list of strings, default: <code class="docutils literal notranslate"><span class="pre">[]</span></code>)</p>
-<p>A list of controller names that should not be stopped when the program is not running. Any
-controller that doesn’t require the robot program to be running should be in that list.</p>
-</li>
+  <section id="trajectory-until-node">
+<span id="id1"></span><h1>Trajectory until node<a class="headerlink" href="#trajectory-until-node" title="Link to this heading"></a></h1>
+<p>The trajectory until node allows a user to execute a trajectory with an “until” condition enabled (currently only tool contact is available) without having to call 2 actions at the same time. This means that the trajectory will execute until either the trajectory is finished or the “until” condition has been triggered. Both scenarios will result in the trajectory being reported as successful.</p>
+<section id="action-interface-usage">
+<h2>Action interface / usage<a class="headerlink" href="#action-interface-usage" title="Link to this heading"></a></h2>
+<p>The node provides an action to execute a trajectory with tool contact enabled. For the node to accept action goals, both the motion controller and the tool contact controller need to be in <code class="docutils literal notranslate"><span class="pre">active</span></code> state.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/trajectory_until_node/execute</span> <span class="pre">[ur_msgs/action/TrajectoryUntil]</span></code></p></li>
 </ul>
+<p>The action contains all the same fields as the ordinary <a class="reference external" href="http://docs.ros.org/en/noetic/api/control_msgs/html/action/FollowJointTrajectory.html">FollowJointTrajectory</a> action, but has two additional fields.
+One in the goal section called <code class="docutils literal notranslate"><span class="pre">until_type</span></code>, which is used to choose between different conditions that can stop the trajectory. Currently only tool contact is available.
+The result section contains the other new field called <code class="docutils literal notranslate"><span class="pre">until_condition_result</span></code>, which reports whether the chosen condition was triggered or not.</p>
+</section>
+<section id="implementation-details">
+<h2>Implementation details<a class="headerlink" href="#implementation-details" title="Link to this heading"></a></h2>
+<p>Upon instantiation of the node, the internal trajectory action client will connect to an action named <code class="docutils literal notranslate"><span class="pre">motion_controller/follow_joint_trajectory</span></code>.
+This action does not exist, but upon launch of the driver, the node is remapped to connect to the <code class="docutils literal notranslate"><span class="pre">initial_joint_controller</span></code>, default is <code class="docutils literal notranslate"><span class="pre">scaled_joint_trajectory_controller</span></code>.
+If you wish to use the node with another motion controller use the launch argument <code class="docutils literal notranslate"><span class="pre">initial_joint_controller:=&lt;your_motion_controller&gt;</span></code> when launching the driver.
+The node is only compatible with motion controllers that use the FollowJointTrajectory action interface.</p>
 </section>
 </section>
 
@@ -129,8 +125,8 @@ controller that doesn’t require the robot program to be running should be in t
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="robot_state_helper.html" class="btn btn-neutral float-left" title="Robot state helper" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="trajectory_until_node.html" class="btn btn-neutral float-right" title="Trajectory until node" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="controller_stopper.html" class="btn btn-neutral float-left" title="Controller stopper" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../ur_calibration/doc/index.html" class="btn btn-neutral float-right" title="ur_calibration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
