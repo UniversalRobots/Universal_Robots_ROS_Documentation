@@ -17,14 +17,14 @@ ROS 2 on the robot
    of interaction with the robot without the need of any ROS 2 driver. In particular, the robot
    publishes a lot of status information and offers services to control e.g. the robot's
    I/O ports. See the `Topics and Services overview
-   <https://docs.universal-robots.com/polyscopex-ros2/v10.7/Appendix/Appendix%202.html>`_ for more
+   <https://docs.universal-robots.com/polyscopex-ros2/v10.11/Appendix/Appendix%202.html>`_ for more
    information.
 
 
 2. Starting with PolyScope X v10.7.0 there is basic URScript support for ROS 2. This allows
    publishing and subscribing to ROS 2 topics directly in URScript as well as calling ROS 2
    services and actions from URScript. See `Basic Usage in URScript
-   <https://docs.universal-robots.com/polyscopex-ros2/v10.7/Basic%20Usage%20in%20URScript.html>`_
+   <https://docs.universal-robots.com/polyscopex-ros2/v10.11/Basic%20Usage%20in%20URScript.html>`_
    for details on that.
 
 .. note::
