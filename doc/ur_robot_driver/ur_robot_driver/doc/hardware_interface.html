@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Robot state helper &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
+  <title>UR Hardware interface &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
@@ -24,8 +24,8 @@
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="Controller stopper" href="controller_stopper.html" />
-    <link rel="prev" title="Dashboard client" href="dashboard_client.html" /> 
+    <link rel="next" title="UR Hardware interface parameters" href="hardware_interface_parameters.html" />
+    <link rel="prev" title="Setting up the tool communication on an e-Series robot" href="setup_tool_communication.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -57,10 +57,10 @@
 <li class="toctree-l2"><a class="reference internal" href="usage/toc.html">Usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="operation_modes.html">Operation modes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="setup_tool_communication.html">Setting up the tool communication on an e-Series robot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hardware_interface.html">UR Hardware interface</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">UR Hardware interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html">UR Hardware interface parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dashboard_client.html">Dashboard client</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Robot state helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="robot_state_helper.html">Robot state helper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="controller_stopper.html">Controller stopper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="trajectory_until_node.html">Trajectory until node</a></li>
 </ul>
@@ -90,10 +90,10 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">ur_robot_driver</a></li>
-      <li class="breadcrumb-item active">Robot state helper</li>
+      <li class="breadcrumb-item active">UR Hardware interface</li>
       <li class="wy-breadcrumbs-aside">
               <!-- User defined GitHub URL -->
-              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/blob/main/ur_robot_driver/doc/robot_state_helper.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/blob/main/ur_robot_driver/doc/hardware_interface.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -101,70 +101,59 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="robot-state-helper">
-<span id="id1"></span><h1>Robot state helper<a class="headerlink" href="#robot-state-helper" title="Link to this heading"></a></h1>
-<p>After switching on the robot, it has to be manually started, the brakes have to be released and a
-program has to be started in order to make the robot ready to use. This is usually done using the
-robot’s teach pendant.</p>
-<p>Whenever the robot encounters an error, manual intervention is required to resolve the issue. For
-example, if the robot goes into a protective stop, the error has to be acknowledged and the robot
-program has to be unpaused.</p>
-<p>When the robot is in <a class="reference internal" href="operation_modes.html#operation-modes"><span class="std std-ref">remote_control_mode</span></a>, most interaction with the robot can be done
-without using the teach pendant, many of that through the <a class="reference internal" href="dashboard_client.html#dashboard-client-ros2"><span class="std std-ref">dashboard client</span></a>.</p>
-<p>The ROS driver provides a helper node that can be used to automate some of these tasks. The
-<code class="docutils literal notranslate"><span class="pre">robot_state_helper</span></code> node can be used to start the robot, release the brakes, and (re-)start the
-program through an action call. It is started by default and provides a
-<a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/blob/main/ur_dashboard_msgs/action/SetMode.action">dashboard_msgs/action/SetMode</a> action.</p>
-<p>For example, to make the robot ready to be used by the ROS driver, call</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>action<span class="w"> </span>send_goal<span class="w"> </span>/ur_robot_state_helper/set_mode<span class="w"> </span>ur_dashboard_msgs/action/SetMode<span class="w"> </span><span class="s2">&quot;{ target_robot_mode: 7, stop_program: true, play_program: true}&quot;</span>
-</pre></div>
-</div>
-<p>The <code class="docutils literal notranslate"><span class="pre">target_robot_mode</span></code> can be one of the following:</p>
-<table class="docutils align-default" id="id2">
-<caption><span class="caption-number">Table 12 </span><span class="caption-text">target_robot_mode</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
-<thead>
-<tr class="row-odd"><th class="head"><p>index</p></th>
-<th class="head"><p>meaning</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>3</p></td>
-<td><p>POWER_OFF – Robot is powered off</p></td>
-</tr>
-<tr class="row-odd"><td><p>5</p></td>
-<td><p>IDLE – Robot is powered on, but brakes are engaged</p></td>
-</tr>
-<tr class="row-even"><td><p>7</p></td>
-<td><p>RUNNING – Robot is powered on, brakes are released, ready to run a program</p></td>
-</tr>
-</tbody>
-</table>
+  <section id="ur-hardware-interface">
+<h1>UR Hardware interface<a class="headerlink" href="#ur-hardware-interface" title="Link to this heading"></a></h1>
+<p>The UR hardware interface is the core piece of the ROS driver. It is responsible for communicating
+with the robot controller, sending commands and receiving status updates.</p>
+<p>The hardware interface is implemented using the <code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> framework, which allows for modular
+and flexible control of the robot.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>When the ROBOT_STATE is in <code class="docutils literal notranslate"><span class="pre">RUNNING</span></code>, that is equivalent to the robot showing the green dot in
-the lower left corner of the teach pendant (On PolyScope 5). The program state is independent of
-that and shows with the text next to that button.</p>
+<p>The hardware interface itself doesn’t define how the robot’s motion can be controlled through
+ROS. For that, a <strong>controller</strong> is needed. There are many controllers to choose from, such as
+the <code class="docutils literal notranslate"><span class="pre">JointTrajectoryController</span></code> or the <code class="docutils literal notranslate"><span class="pre">ForceModeController</span></code>. See <a class="reference external" href="https://control.ros.org/rolling/doc/ros2_controllers/doc/controllers_index.html#controllers-for-manipulators-and-other-robots">ros2_controllers</a>
+for “standard” controllers and <a class="reference internal" href="usage/controllers.html#ur-controllers"><span class="std std-ref">Controllers</span></a> for more information on UR-specific
+controllers</p>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">stop_program</span></code> flag is used to stop the currently running program before changing the robot
-state. In combination with the <a class="reference internal" href="controller_stopper.html#controller-stopper"><span class="std std-ref">Controller stopper</span></a>, this will deactivate any motion
-controller and therefore stop any ROS action being active on those controllers.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>A robot’s protective stop or emergency stop is only pausing the running program. If the program
-is resumed after the P-Stop or EM-Stop is released, the robot will continue executing what it
-has been doing. Therefore, it is advised to stop and re-start the program when recovering from a
-fault.</p>
-</div>
-<p>The <code class="docutils literal notranslate"><span class="pre">play_program</span></code> flag is used to start the program after the robot state has been set. This has
-the same effects as explained in <a class="reference internal" href="usage/startup.html#continuation-after-interruptions"><span class="std std-ref">Continuation after interruptions</span></a>.</p>
+<section id="supported-control-modes">
+<h2>Supported control modes<a class="headerlink" href="#supported-control-modes" title="Link to this heading"></a></h2>
+<p>The UR hardware interface supports the following control modes:</p>
+<ul class="simple">
+<li><p><strong>Position control</strong>: The robot’s joints are controlled by specifying target positions.</p></li>
+<li><p><strong>Velocity control</strong>: The robot’s joints are controlled by specifying target velocities.</p></li>
+<li><p><strong>Effort control</strong>: The robot’s joints are controlled by specifying target efforts (torques).
+(Only available when running PolyScope &gt;= 5.23.0 / 10.10.0)</p></li>
+<li><p><strong>Force control</strong>: The robot’s end-effector is controlled by specifying target forces
+in Cartesian space.</p></li>
+<li><p><strong>Freedrive mode</strong>: The robot can be moved freely by the user without any active control.</p></li>
+<li><p><strong>Passthrough Trajectory control</strong>: Complete trajectory points are forwarded to the robot for
+interpolation and execution.</p></li>
+<li><p><strong>Tool contact mode</strong>: The robot stops when the tool comes into contact with an object, allowing for
+safe interaction with the environment.</p></li>
+<li><p><strong>Speed scaling</strong>: Speed scaling on the robot can be read and written through the hardware
+interface.</p></li>
+<li><p><strong>GPIO</strong>: Digital and analog I/O pins can be read and written through the hardware interface.</p></li>
+<li><p><strong>Payload</strong>: Payload configuration can be changed during runtime through the hardware interface.</p></li>
+<li><p><strong>Force torque sensor</strong>: Force torque sensor data can be read through the hardware interface.
+Zeroing the sensor is also supported.</p></li>
+</ul>
+</section>
+<section id="interacting-with-the-hardware-interface">
+<h2>Interacting with the hardware interface<a class="headerlink" href="#interacting-with-the-hardware-interface" title="Link to this heading"></a></h2>
+<p>As stated above, motion control is done through controllers. However, the ros2_control framework
+provides a set of services to interact with the hardware interface directly. These services can be
+comfortably used through the <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">control</span></code> <a class="reference external" href="https://control.ros.org/rolling/doc/ros2_control/ros2controlcli/doc/userdoc.html">command line tool</a>.</p>
+<p>E.g. <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">control</span> <span class="pre">list_hardware_components</span></code> will list all hardware components, including the UR
+hardware interface with its interfaces as listed above.</p>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="dashboard_client.html" class="btn btn-neutral float-left" title="Dashboard client" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="controller_stopper.html" class="btn btn-neutral float-right" title="Controller stopper" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="setup_tool_communication.html" class="btn btn-neutral float-left" title="Setting up the tool communication on an e-Series robot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hardware_interface_parameters.html" class="btn btn-neutral float-right" title="UR Hardware interface parameters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
