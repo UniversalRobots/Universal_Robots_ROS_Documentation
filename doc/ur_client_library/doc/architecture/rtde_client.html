@@ -115,7 +115,7 @@
 <p>The Real Time Data Exchange Client, <code class="docutils literal notranslate"><span class="pre">RTDEClient</span></code>, class serves as a standalone
 <a class="reference external" href="https://www.universal-robots.com/articles/ur-articles/real-time-data-exchange-rtde-guide/">RTDE</a>
 client. To use the RTDE-Client, you’ll have to initialize and start it separately:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">RTDEClient</span><span class="w"> </span><span class="nf">my_client</span><span class="p">(</span><span class="n">ROBOT_IP</span><span class="p">,</span><span class="w"> </span><span class="n">notifier</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_RECIPE</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">RTDEClient</span><span class="w"> </span><span class="nf">my_client</span><span class="p">(</span><span class="n">ROBOT_IP</span><span class="p">,</span><span class="w"> </span><span class="n">notifier</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT_RECIPE_FILE</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_RECIPE_FILE</span><span class="p">);</span>
 <span class="n">my_client</span><span class="p">.</span><span class="n">init</span><span class="p">();</span>
 <span class="n">my_client</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
 <span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
@@ -132,6 +132,19 @@ client. To use the RTDE-Client, you’ll have to initialize and start it separat
 outputs. Please refer to the <a class="reference external" href="https://www.universal-robots.com/articles/ur-articles/real-time-data-exchange-rtde-guide/">RTDE
 guide</a>
 on which elements are available.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The recipes can be either passed as a filename or as a list of strings directly. E.g. the
+following will work</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">RTDEClient</span><span class="w"> </span><span class="n">my_client</span><span class="p">(</span>
+<span class="w">  </span><span class="n">ROBOT_IP</span><span class="p">,</span>
+<span class="w">  </span><span class="n">notifier</span><span class="p">,</span>
+<span class="w">  </span><span class="p">{</span><span class="s">&quot;timestamp&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;actual_q&quot;</span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="s">&quot;speed_slider_mask&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;speed_slider_fraction&quot;</span><span class="p">}</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
 <p>Inside the <code class="docutils literal notranslate"><span class="pre">RTDEclient</span></code> data is received in a separate thread, parsed by the <code class="docutils literal notranslate"><span class="pre">RTDEParser</span></code> and
 added to a pipeline queue.</p>
 <p>Right after calling <code class="docutils literal notranslate"><span class="pre">my_client.start()</span></code>, it should be made sure to read the buffer from the
@@ -158,12 +171,39 @@ recipes and utilizing the robot model’s maximum frequency. If you would like t
 frequency, please use the <code class="docutils literal notranslate"><span class="pre">resetRTDEClient()</span></code> method after the <code class="docutils literal notranslate"><span class="pre">UrDriver</span></code> object has been
 created.</p>
 </div>
+<section id="read-only-rtdeclient">
+<h2>Read-Only RTDEClient<a class="headerlink" href="#read-only-rtdeclient" title="Link to this heading"></a></h2>
+<p>While RTDE allows multiple clients to connect to the same robot, only one client is allowed to
+write data to the robot. To create a read-only RTDE client, the <code class="docutils literal notranslate"><span class="pre">RTDEClient</span></code> can be created with
+an empty input recipe, like this:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">RTDEClient</span><span class="w"> </span><span class="nf">my_client</span><span class="p">(</span><span class="n">ROBOT_IP</span><span class="p">,</span><span class="w"> </span><span class="n">notifier</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="p">{});</span>
+<span class="c1">// Alternatively, pass an empty filename when using recipe files</span>
+<span class="c1">// rtde_interface::RTDEClient my_client(ROBOT_IP, notifier, OUTPUT_RECIPE_FILE, &quot;&quot;);</span>
+<span class="n">my_client</span><span class="p">.</span><span class="n">init</span><span class="p">();</span>
+<span class="n">my_client</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">DataPackage</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data_pkg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_client</span><span class="p">.</span><span class="n">getDataPackage</span><span class="p">(</span><span class="n">READ_TIMEOUT</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">data_pkg</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">data_pkg</span><span class="o">-&gt;</span><span class="n">toString</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 <section id="rtdewriter">
 <h2>RTDEWriter<a class="headerlink" href="#rtdewriter" title="Link to this heading"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">RTDEWriter</span></code> class provides an interface to write data to the RTDE interface. Data fields that
 should be written have to be defined inside the <code class="docutils literal notranslate"><span class="pre">INPUT_RECIPE</span></code> as noted above.</p>
 <p>The class offers specific methods for every RTDE input possible to write.</p>
 <p>Data is sent asynchronously to the RTDE interface.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">RTDEWriter</span></code> will return <code class="docutils literal notranslate"><span class="pre">false</span></code> on any writing attempts for fields that have not been
+setup in the <code class="docutils literal notranslate"><span class="pre">INPUT_RECIPE</span></code>. When no input recipe was provided, all write operations will
+return <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+</div>
 </section>
 </section>
 
