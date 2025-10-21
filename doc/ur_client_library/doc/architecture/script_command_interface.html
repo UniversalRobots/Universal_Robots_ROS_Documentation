@@ -126,6 +126,7 @@ example</a> for more information.</p></li>
 contact example</a>
 for more information.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">setFrictionCompensation()</span></code>: Set friction compensation for torque command.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ftRtdeInputEnable()</span></code>: Enable/disable FT RTDE input processing.</p></li>
 </ul>
 <section id="communication-protocol">
 <h2>Communication protocol<a class="headerlink" href="#communication-protocol" title="Link to this heading"></a></h2>
@@ -154,6 +155,7 @@ for more information.</p></li>
 <li><p>5: startToolContact</p></li>
 <li><p>6: endToolContact</p></li>
 <li><p>7: setFrictionCompensation</p></li>
+<li><p>8: ftRtdeInputEnable</p></li>
 </ul>
 </dd>
 </dl>
@@ -289,12 +291,36 @@ for more information.</p></li>
 </tr>
 </tbody>
 </table>
+<table class="docutils align-default" id="id11">
+<caption><span class="caption-number">Table 11 </span><span class="caption-text">With ftRtdeInputEnable command. See script manual for details.</span><a class="headerlink" href="#id11" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>index</p></th>
+<th class="head"><p>meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>ft_rtde_input_enabled enable/disable FT RTDE input processing.</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>sensor_mass in kg (floating point)</p></td>
+</tr>
+<tr class="row-even"><td><p>3-5</p></td>
+<td><p>sensor_mesurement_offset in m, displacement from the tool flange (3d floating point)</p></td>
+</tr>
+<tr class="row-odd"><td><p>6-9</p></td>
+<td><p>sensor_cog in m, displacement from the tool flange (3d floating point)</p></td>
+</tr>
+</tbody>
+</table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In URScript the <code class="docutils literal notranslate"><span class="pre">socket_read_binary_integer()</span></code> function is used to read the data from the
 script command socket. The first index in that function’s return value is the number of integers read,
-so the actual data starts at index 1. The indices in the table above are shifted by one when
-accessing the result array of the URScript function.</p>
+so the actual data starts at index 1. The first data entry is always the command type, hence the
+indices in the table above are shifted by one when accessing the result array of the URScript
+function. E.g. reading the boolean value for friction compensation in the
+<code class="docutils literal notranslate"><span class="pre">setFrictionCompensation</span></code> command would be done by accessing index 2 of the result array.</p>
 <p>All floating point data is encoded into an integer representation and has to be divided by the
 <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code> constant to get the actual floating point value. This constant is defined in
 <code class="docutils literal notranslate"><span class="pre">ReverseInterface</span></code> class.</p>

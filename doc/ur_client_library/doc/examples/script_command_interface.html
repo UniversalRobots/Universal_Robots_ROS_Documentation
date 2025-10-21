@@ -25,7 +25,7 @@
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="Script Sender example" href="script_sender.html" />
-    <link rel="prev" title="RTDE Client example" href="rtde_client.html" /> 
+    <link rel="prev" title="External FTS example" href="external_fts_through_rtde.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -62,6 +62,7 @@
 <li class="toctree-l3"><a class="reference internal" href="primary_pipeline.html">Primary Pipeline example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="primary_pipeline_calibration.html">Primary Pipeline Calibration example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="rtde_client.html">RTDE Client example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="external_fts_through_rtde.html">External FTS example</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Script command interface</a></li>
 <li class="toctree-l3"><a class="reference internal" href="script_sender.html">Script Sender example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spline_example.html">Spline Interpolation example</a></li>
@@ -127,7 +128,7 @@ that connects to the <code class="docutils literal notranslate"><span class="pre
 <p>At first, we create a <code class="docutils literal notranslate"><span class="pre">ExampleRobotWrapper</span></code> object in order to initialize communication with the
 robot.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 33 </span><span class="caption-text">examples/script_command_interface.cpp</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 38 </span><span class="caption-text">examples/script_command_interface.cpp</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">106</span><span class="w">  </span><span class="n">g_my_robot</span><span class="w"> </span><span class="o">=</span>
 <span class="linenos">107</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">ExampleRobotWrapper</span><span class="o">&gt;</span><span class="p">(</span><span class="n">robot_ip</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">g_HEADLESS</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;external_control.urp&quot;</span><span class="p">);</span>
 <span class="linenos">108</span>
@@ -149,7 +150,7 @@ robot.</p>
 script, we’ll wrap the calls alongside a full <code class="docutils literal notranslate"><span class="pre">ExampleRobotWrapper</span></code>. Hence, we’ll have to send
 keepalive signals regularly to keep the script running:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 34 </span><span class="caption-text">examples/script_command_interface.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 39 </span><span class="caption-text">examples/script_command_interface.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">122</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">duration</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">time_done</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 <span class="linenos">123</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">duration</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">timeout</span><span class="p">(</span><span class="n">second_to_run</span><span class="p">);</span>
 <span class="linenos">124</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">stopwatch_last</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">steady_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
@@ -179,7 +180,7 @@ we will use that interface in this example. To send a script command, we can e.g
 <p>In the example, we have wrapped the calls into a lambda function that will wait a specific timeout,
 print a log output what command will be sent and then call the respective command:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 35 </span><span class="caption-text">examples/script_command_interface.cpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 40 </span><span class="caption-text">examples/script_command_interface.cpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">67</span><span class="w">    </span><span class="n">run_cmd</span><span class="p">(</span><span class="s">&quot;Setting tool voltage to 24V&quot;</span><span class="p">,</span>
 <span class="linenos">68</span><span class="w">            </span><span class="p">[]()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">getUrDriver</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">setToolVoltage</span><span class="p">(</span><span class="n">urcl</span><span class="o">::</span><span class="n">ToolVoltage</span><span class="o">::</span><span class="n">_24V</span><span class="p">);</span><span class="w"> </span><span class="p">});</span>
 <span class="linenos">69</span><span class="w">    </span><span class="n">run_cmd</span><span class="p">(</span><span class="s">&quot;Enabling tool contact mode&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[]()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">getUrDriver</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">startToolContact</span><span class="p">();</span><span class="w"> </span><span class="p">});</span>
@@ -196,7 +197,7 @@ print a log output what command will be sent and then call the respective comman
 </div>
 <p>The lambda itself looks like this:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 36 </span><span class="caption-text">examples/script_command_interface.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 41 </span><span class="caption-text">examples/script_command_interface.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">51</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">run_cmd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[](</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">log_output</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span><span class="n">func</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos">52</span><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="w"> </span><span class="nf">timeout</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
 <span class="linenos">53</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">g_running</span><span class="p">)</span>
@@ -221,7 +222,7 @@ print a log output what command will be sent and then call the respective comman
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="rtde_client.html" class="btn btn-neutral float-left" title="RTDE Client example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="external_fts_through_rtde.html" class="btn btn-neutral float-left" title="External FTS example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="script_sender.html" class="btn btn-neutral float-right" title="Script Sender example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
