@@ -120,7 +120,7 @@
 <span id="trajecotry-joint-interface-example"></span><h1>Trajectory Joint Interface example<a class="headerlink" href="#trajectory-joint-interface-example" title="Link to this heading"></a></h1>
 <p>At first, we create a <code class="docutils literal notranslate"><span class="pre">UrDriver</span></code> object as usual:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 51 </span><span class="caption-text">examples/trajectory_point_interface.cpp</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 52 </span><span class="caption-text">examples/trajectory_point_interface.cpp</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">66</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">headless_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <span class="linenos">67</span><span class="w">  </span><span class="n">g_my_robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">urcl</span><span class="o">::</span><span class="n">ExampleRobotWrapper</span><span class="o">&gt;</span><span class="p">(</span><span class="n">robot_ip</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">headless_mode</span><span class="p">,</span>
 <span class="linenos">68</span><span class="w">                                                           </span><span class="s">&quot;external_control.urp&quot;</span><span class="p">);</span>
@@ -141,7 +141,7 @@ finished trajectory. A trajectory is considered finished when the robot is no lo
 independent of whether it successfully reached its final point. The trajectory result will reflect
 whether it was executed successfully, was canceled upon request or failed for some reason.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 52 </span><span class="caption-text">examples/trajectory_point_interface.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 53 </span><span class="caption-text">examples/trajectory_point_interface.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">50</span><span class="kt">void</span><span class="w"> </span><span class="nf">trajDoneCallback</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">urcl</span><span class="o">::</span><span class="n">control</span><span class="o">::</span><span class="n">TrajectoryResult</span><span class="o">&amp;</span><span class="w"> </span><span class="n">result</span><span class="p">)</span>
 <span class="linenos">51</span><span class="p">{</span>
 <span class="linenos">52</span><span class="w">  </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="s">&quot;Trajectory done with result %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">urcl</span><span class="o">::</span><span class="n">control</span><span class="o">::</span><span class="n">trajectoryResultToString</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="n">c_str</span><span class="p">());</span>
@@ -152,7 +152,7 @@ whether it was executed successfully, was canceled upon request or failed for so
 </div>
 <p>That callback can be registered at the <code class="docutils literal notranslate"><span class="pre">UrDriver</span></code> object:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 53 </span><span class="caption-text">examples/trajectory_point_interface.cpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 54 </span><span class="caption-text">examples/trajectory_point_interface.cpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">76</span><span class="w">  </span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">getUrDriver</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">registerTrajectoryDoneCallback</span><span class="p">(</span><span class="o">&amp;</span><span class="n">trajDoneCallback</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -164,7 +164,7 @@ whether it was executed successfully, was canceled upon request or failed for so
 parameters. The following example shows execution of a 2-point trajectory using URScript’s
 <code class="docutils literal notranslate"><span class="pre">movej</span></code> function:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 54 </span><span class="caption-text">examples/trajectory_point_interface.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 55 </span><span class="caption-text">examples/trajectory_point_interface.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 80</span><span class="w">  </span><span class="p">{</span>
 <span class="linenos"> 81</span><span class="w">    </span><span class="n">g_trajectory_done</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="linenos"> 82</span><span class="w">    </span><span class="c1">// Trajectory definition</span>
@@ -214,7 +214,7 @@ call.</p>
 <h2>MoveL Trajectory<a class="headerlink" href="#movel-trajectory" title="Link to this heading"></a></h2>
 <p>Similar to the <code class="docutils literal notranslate"><span class="pre">movej</span></code>-based trajectory, execution can be done interpolating in joint space:</p>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 55 </span><span class="caption-text">examples/trajectory_point_interface.cpp</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 56 </span><span class="caption-text">examples/trajectory_point_interface.cpp</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">116</span><span class="w">  </span><span class="p">{</span>
 <span class="linenos">117</span><span class="w">    </span><span class="n">g_trajectory_done</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="linenos">118</span><span class="w">    </span><span class="c1">// Trajectory definition</span>
@@ -258,7 +258,7 @@ call.</p>
 <p>Similar to the <a class="reference internal" href="spline_example.html#spline-example"><span class="std std-ref">Spline Interpolation example</span></a>, the trajectory point interface can be used to execute motions
 using the spline interpolation:</p>
 <div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-number">Listing 56 </span><span class="caption-text">examples/trajectory_point_interface.cpp</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 57 </span><span class="caption-text">examples/trajectory_point_interface.cpp</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">154</span><span class="w">  </span><span class="p">{</span>
 <span class="linenos">155</span><span class="w">    </span><span class="n">g_trajectory_done</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="linenos">156</span><span class="w">    </span><span class="c1">// Trajectory definition</span>

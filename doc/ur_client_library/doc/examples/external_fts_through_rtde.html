@@ -146,7 +146,7 @@ force/torque component by 10 (N or Nm).</p></li>
 <h2>Robot initialization<a class="headerlink" href="#robot-initialization" title="Link to this heading"></a></h2>
 <p>The robot initialization is handed off to the <code class="docutils literal notranslate"><span class="pre">ExampleRobotWrapper</span></code> class:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 33 </span><span class="caption-text">external_fts_through_rtde/external_fts_through_rtde.cpp</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 34 </span><span class="caption-text">external_fts_through_rtde/external_fts_through_rtde.cpp</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">274</span><span class="w">  </span><span class="n">g_my_robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">urcl</span><span class="o">::</span><span class="n">ExampleRobotWrapper</span><span class="o">&gt;</span><span class="p">(</span><span class="n">robot_ip</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
 <span class="linenos">275</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">isHealthy</span><span class="p">())</span>
 <span class="linenos">276</span><span class="w">  </span><span class="p">{</span>
@@ -160,7 +160,7 @@ force/torque component by 10 (N or Nm).</p></li>
 <code class="docutils literal notranslate"><span class="pre">ft_rtde_input_enable</span></code> function. This is done by sending a script to the robot through the
 <code class="docutils literal notranslate"><span class="pre">ftRtdeInputEnable()</span></code> method of the <code class="docutils literal notranslate"><span class="pre">UrDriver</span></code> class.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 34 </span><span class="caption-text">external_fts_through_rtde/external_fts_through_rtde.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 35 </span><span class="caption-text">external_fts_through_rtde/external_fts_through_rtde.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">281</span><span class="w">  </span><span class="c1">// Enable using the force-torque input through RTDE in the robot controller</span>
 <span class="linenos">282</span><span class="w">  </span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">getUrDriver</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">ftRtdeInputEnable</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
 </pre></div>
@@ -175,7 +175,7 @@ keyboard input commands.</p>
 the terminal without waiting for a newline character. This has to be done differently on Windows
 and Linux (and other unix-like systems), therefore the code is split using preprocessor directives.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 35 </span><span class="caption-text">external_fts_through_rtde/external_fts_through_rtde.cpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 36 </span><span class="caption-text">external_fts_through_rtde/external_fts_through_rtde.cpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">38</span><span class="c1">// Platform-specific implementation of getChar()</span>
 <span class="linenos">39</span><span class="cp">#if defined(_WIN32) || defined(_WIN64)</span>
 <span class="linenos">40</span><span class="cp">#</span><span class="w">  </span><span class="cp">include</span><span class="w"> </span><span class="cpf">&lt;conio.h&gt;</span>
@@ -241,14 +241,14 @@ and Linux (and other unix-like systems), therefore the code is split using prepr
 <h2>Setting the external force-torque values<a class="headerlink" href="#setting-the-external-force-torque-values" title="Link to this heading"></a></h2>
 <p>The result from the tui function is synchonized to the RTDE communication thread using a buffer <code class="docutils literal notranslate"><span class="pre">g_FT_VEC</span></code> and a mutex.</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 36 </span><span class="caption-text">external_fts_through_rtde/external_fts_through_rtde.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 37 </span><span class="caption-text">external_fts_through_rtde/external_fts_through_rtde.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">200</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">scoped_lock</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lock</span><span class="p">(</span><span class="n">g_FT_VEC_MUTEX</span><span class="p">);</span>
 <span class="linenos">201</span><span class="w">      </span><span class="n">g_FT_VEC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_ft_vec</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 37 </span><span class="caption-text">external_fts_through_rtde/external_fts_through_rtde.cpp</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 38 </span><span class="caption-text">external_fts_through_rtde/external_fts_through_rtde.cpp</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">237</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">g_FT_VEC_MUTEX</span><span class="p">.</span><span class="n">try_lock</span><span class="p">())</span>
 <span class="linenos">238</span><span class="w">    </span><span class="p">{</span>
 <span class="linenos">239</span><span class="w">      </span><span class="n">local_ft_vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_FT_VEC</span><span class="p">;</span>
