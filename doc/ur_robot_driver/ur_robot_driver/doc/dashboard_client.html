@@ -194,6 +194,11 @@
 <h3>restart_safety (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#restart-safety-std-srvs-trigger" title="Link to this heading"></a></h3>
 <p>Used when robot gets a safety fault or violation to restart the safety. After safety has been rebooted the robot will be in Power Off. NOTE: You should always ensure it is okay to restart the system. It is highly recommended to check the error log before using this command (either via PolyScope or e.g. ssh connection).</p>
 </section>
+<section id="resume-std-srvs-trigger">
+<h3>resume (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#resume-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>Resume a paused program on a PolyScope X robot. This service is only available on a PolyScope X
+robot.</p>
+</section>
 <section id="shutdown-std-srvs-trigger">
 <h3>shutdown (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#shutdown-std-srvs-trigger" title="Link to this heading"></a></h3>
 <p>Shutdown the robot controller</p>
