@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Setting up the tool communication on an e-Series robot &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
+  <title>Setting up the tool communication on an e-Series / UR Series robot &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
@@ -56,7 +56,7 @@
 <li class="toctree-l2"><a class="reference internal" href="installation/toc.html">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="usage/toc.html">Usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="operation_modes.html">Operation modes</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Setting up the tool communication on an e-Series robot</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Setting up the tool communication on an e-Series / UR Series robot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware_interface.html">UR Hardware interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html">UR Hardware interface parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dashboard_client.html">Dashboard client</a></li>
@@ -91,7 +91,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">ur_robot_driver</a></li>
-      <li class="breadcrumb-item active">Setting up the tool communication on an e-Series robot</li>
+      <li class="breadcrumb-item active">Setting up the tool communication on an e-Series / UR Series robot</li>
       <li class="wy-breadcrumbs-aside">
               <!-- User defined GitHub URL -->
               <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/blob/main/ur_robot_driver/doc/setup_tool_communication.rst" class="fa fa-github"> Edit on GitHub</a>
@@ -102,8 +102,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="setting-up-the-tool-communication-on-an-e-series-robot">
-<span id="setup-tool-communication"></span><h1>Setting up the tool communication on an e-Series robot<a class="headerlink" href="#setting-up-the-tool-communication-on-an-e-series-robot" title="Link to this heading"></a></h1>
+  <section id="setting-up-the-tool-communication-on-an-e-series-ur-series-robot">
+<span id="setup-tool-communication"></span><h1>Setting up the tool communication on an e-Series / UR Series robot<a class="headerlink" href="#setting-up-the-tool-communication-on-an-e-series-ur-series-robot" title="Link to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Currently, there seems to be issues with having the tool communication setup from this guide and
@@ -113,7 +113,7 @@ Grippers” URCap then currently please refrain from installing the rs485 URCap.
 <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ToolComm_Forwarder_URCap/issues/9">this issue</a>
 for details and the current state.</p>
 </div>
-<p>The Universal Robots e-Series provides an rs485 based interface at the tool flange that can be used
+<p>From the e-Series on, Universal Robots provide an rs485 based interface at the tool flange that can be used
 to attach an rs485-based device to the robot’s tcp without the need to wire a separate cable along
 the robot.</p>
 <p>This driver enables forwarding this tool communication interface to an external machine for example
@@ -122,8 +122,11 @@ to start a device’s ROS driver on a remote PC.</p>
 launch files to utilize the robot’s tool communication.</p>
 <section id="robot-setup">
 <h2>Robot setup<a class="headerlink" href="#robot-setup" title="Link to this heading"></a></h2>
-<p>For setting up the robot, please install the <strong>rs485-1.0.urcap</strong> found in the <strong>resources</strong> folder.
+<p>For <strong>PolyScope 5</strong>, please install the <strong>rs485-1.0.urcap</strong> found in the <strong>resources</strong> folder.
 Installing a URCap is explained in the <a class="reference internal" href="../../../ur_client_library/doc/setup/robot_setup.html#install-urcap"><span class="std std-ref">setup guide</span></a> for the <strong>external-control</strong> URCap.</p>
+<p>For <strong>PolyScope X</strong>, you can download the latest tool-comm-forwarder URCapX from its <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ToolComm_Forwarder_URCapX/releases">release
+page</a>.
+After installation, please make sure to activate tool forwarding in the URCap’s application screen.</p>
 <p>After installing the URCap the robot will expose its tool communication device to the network.</p>
 </section>
 <section id="setup-the-ros-side">
