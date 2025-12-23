@@ -127,6 +127,7 @@ contact example</a>
 for more information.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">setFrictionCompensation()</span></code>: Set friction compensation for torque command.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ftRtdeInputEnable()</span></code>: Enable/disable FT RTDE input processing.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setGravity()</span></code>: Set the gravity vector for the robot.</p></li>
 </ul>
 <section id="communication-protocol">
 <h2>Communication protocol<a class="headerlink" href="#communication-protocol" title="Link to this heading"></a></h2>
@@ -156,6 +157,7 @@ for more information.</p></li>
 <li><p>6: endToolContact</p></li>
 <li><p>7: setFrictionCompensation</p></li>
 <li><p>8: ftRtdeInputEnable</p></li>
+<li><p>9: setGravity</p></li>
 </ul>
 </dd>
 </dl>
@@ -310,6 +312,19 @@ for more information.</p></li>
 </tr>
 <tr class="row-odd"><td><p>6-9</p></td>
 <td><p>sensor_cog in m, displacement from the tool flange (3d floating point)</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="id12">
+<caption><span class="caption-number">Table 12 </span><span class="caption-text">With setGravity command</span><a class="headerlink" href="#id12" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>index</p></th>
+<th class="head"><p>meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1-3</p></td>
+<td><p>The gravity vector (towards the Earth’s center), represented in robot’s base frame (floating point)</p></td>
 </tr>
 </tbody>
 </table>
