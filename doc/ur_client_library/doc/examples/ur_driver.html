@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Example driver &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/ur_theme.css?v=078fdd0b" />
 
@@ -160,20 +160,20 @@ positive limit and then back to 0.</p>
 <span class="linenos"> 87</span><span class="w">  </span><span class="c1">// otherwise we will get pipeline overflows. Therefor, do this directly before starting your main</span>
 <span class="linenos"> 88</span><span class="w">  </span><span class="c1">// loop.</span>
 <span class="linenos"> 89</span><span class="w">  </span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">getUrDriver</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">startRTDECommunication</span><span class="p">();</span>
-<span class="linenos"> 90</span><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">passed_positive_part</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">passed_negative_part</span><span class="p">))</span>
-<span class="linenos"> 91</span><span class="w">  </span><span class="p">{</span>
-<span class="linenos"> 92</span><span class="w">    </span><span class="c1">// Read latest RTDE package. This will block for a hard-coded timeout (see UrDriver), so the</span>
-<span class="linenos"> 93</span><span class="w">    </span><span class="c1">// robot will effectively be in charge of setting the frequency of this loop.</span>
-<span class="linenos"> 94</span><span class="w">    </span><span class="c1">// In a real-world application this thread should be scheduled with real-time priority in order</span>
-<span class="linenos"> 95</span><span class="w">    </span><span class="c1">// to ensure that this is called in time.</span>
-<span class="linenos"> 96</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">DataPackage</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data_pkg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">getUrDriver</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getDataPackage</span><span class="p">();</span>
-<span class="linenos"> 97</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">data_pkg</span><span class="p">)</span>
+<span class="linenos"> 90</span><span class="w">  </span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">DataPackage</span><span class="w"> </span><span class="nf">data_pkg</span><span class="p">(</span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">getUrDriver</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getRTDEOutputRecipe</span><span class="p">());</span>
+<span class="linenos"> 91</span><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">passed_positive_part</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">passed_negative_part</span><span class="p">))</span>
+<span class="linenos"> 92</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos"> 93</span><span class="w">    </span><span class="c1">// Read latest RTDE package. This will block for a hard-coded timeout (see UrDriver), so the</span>
+<span class="linenos"> 94</span><span class="w">    </span><span class="c1">// robot will effectively be in charge of setting the frequency of this loop.</span>
+<span class="linenos"> 95</span><span class="w">    </span><span class="c1">// In a real-world application this thread should be scheduled with real-time priority in order</span>
+<span class="linenos"> 96</span><span class="w">    </span><span class="c1">// to ensure that this is called in time.</span>
+<span class="linenos"> 97</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">getUrDriver</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getDataPackage</span><span class="p">(</span><span class="n">data_pkg</span><span class="p">))</span>
 <span class="linenos"> 98</span><span class="w">    </span><span class="p">{</span>
 <span class="linenos"> 99</span><span class="w">      </span><span class="n">URCL_LOG_WARN</span><span class="p">(</span><span class="s">&quot;Could not get fresh data package from robot&quot;</span><span class="p">);</span>
 <span class="linenos">100</span><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="linenos">101</span><span class="w">    </span><span class="p">}</span>
 <span class="linenos">102</span><span class="w">    </span><span class="c1">// Read current joint positions from robot data</span>
-<span class="linenos">103</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">data_pkg</span><span class="o">-&gt;</span><span class="n">getData</span><span class="p">(</span><span class="s">&quot;actual_q&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">g_joint_positions</span><span class="p">))</span>
+<span class="linenos">103</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">data_pkg</span><span class="p">.</span><span class="n">getData</span><span class="p">(</span><span class="s">&quot;actual_q&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">g_joint_positions</span><span class="p">))</span>
 <span class="linenos">104</span><span class="w">    </span><span class="p">{</span>
 <span class="linenos">105</span><span class="w">      </span><span class="c1">// This throwing should never happen unless misconfigured</span>
 <span class="linenos">106</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">error_msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Did not find &#39;actual_q&#39; in data sent from robot. This should not happen!&quot;</span><span class="p">;</span>

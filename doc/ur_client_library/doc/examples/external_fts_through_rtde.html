@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>External FTS example &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/ur_theme.css?v=078fdd0b" />
 
@@ -147,12 +147,12 @@ force/torque component by 10 (N or Nm).</p></li>
 <p>The robot initialization is handed off to the <code class="docutils literal notranslate"><span class="pre">ExampleRobotWrapper</span></code> class:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-number">Listing 34 </span><span class="caption-text">external_fts_through_rtde/external_fts_through_rtde.cpp</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">274</span><span class="w">  </span><span class="n">g_my_robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">urcl</span><span class="o">::</span><span class="n">ExampleRobotWrapper</span><span class="o">&gt;</span><span class="p">(</span><span class="n">robot_ip</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
-<span class="linenos">275</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">isHealthy</span><span class="p">())</span>
-<span class="linenos">276</span><span class="w">  </span><span class="p">{</span>
-<span class="linenos">277</span><span class="w">    </span><span class="n">URCL_LOG_ERROR</span><span class="p">(</span><span class="s">&quot;Something in the robot initialization went wrong. Exiting. Please check the output above.&quot;</span><span class="p">);</span>
-<span class="linenos">278</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="linenos">279</span><span class="w">  </span><span class="p">}</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">275</span><span class="w">  </span><span class="n">g_my_robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">urcl</span><span class="o">::</span><span class="n">ExampleRobotWrapper</span><span class="o">&gt;</span><span class="p">(</span><span class="n">robot_ip</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
+<span class="linenos">276</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">isHealthy</span><span class="p">())</span>
+<span class="linenos">277</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos">278</span><span class="w">    </span><span class="n">URCL_LOG_ERROR</span><span class="p">(</span><span class="s">&quot;Something in the robot initialization went wrong. Exiting. Please check the output above.&quot;</span><span class="p">);</span>
+<span class="linenos">279</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">280</span><span class="w">  </span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -161,8 +161,8 @@ force/torque component by 10 (N or Nm).</p></li>
 <code class="docutils literal notranslate"><span class="pre">ftRtdeInputEnable()</span></code> method of the <code class="docutils literal notranslate"><span class="pre">UrDriver</span></code> class.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-number">Listing 35 </span><span class="caption-text">external_fts_through_rtde/external_fts_through_rtde.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">281</span><span class="w">  </span><span class="c1">// Enable using the force-torque input through RTDE in the robot controller</span>
-<span class="linenos">282</span><span class="w">  </span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">getUrDriver</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">ftRtdeInputEnable</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">282</span><span class="w">  </span><span class="c1">// Enable using the force-torque input through RTDE in the robot controller</span>
+<span class="linenos">283</span><span class="w">  </span><span class="n">g_my_robot</span><span class="o">-&gt;</span><span class="n">getUrDriver</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">ftRtdeInputEnable</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -249,11 +249,11 @@ and Linux (and other unix-like systems), therefore the code is split using prepr
 </div>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-number">Listing 38 </span><span class="caption-text">external_fts_through_rtde/external_fts_through_rtde.cpp</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">237</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">g_FT_VEC_MUTEX</span><span class="p">.</span><span class="n">try_lock</span><span class="p">())</span>
-<span class="linenos">238</span><span class="w">    </span><span class="p">{</span>
-<span class="linenos">239</span><span class="w">      </span><span class="n">local_ft_vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_FT_VEC</span><span class="p">;</span>
-<span class="linenos">240</span><span class="w">      </span><span class="n">g_FT_VEC_MUTEX</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span>
-<span class="linenos">241</span><span class="w">    </span><span class="p">}</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">238</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">g_FT_VEC_MUTEX</span><span class="p">.</span><span class="n">try_lock</span><span class="p">())</span>
+<span class="linenos">239</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">240</span><span class="w">      </span><span class="n">local_ft_vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_FT_VEC</span><span class="p">;</span>
+<span class="linenos">241</span><span class="w">      </span><span class="n">g_FT_VEC_MUTEX</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span>
+<span class="linenos">242</span><span class="w">    </span><span class="p">}</span>
 </pre></div>
 </div>
 </div>

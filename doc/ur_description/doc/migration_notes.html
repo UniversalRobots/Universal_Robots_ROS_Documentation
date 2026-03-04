@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Migration notes &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/ur_theme.css?v=078fdd0b" />
 
@@ -132,6 +132,15 @@ now moved to the <code class="docutils literal notranslate"><span class="pre">vi
 <p>The <code class="docutils literal notranslate"><span class="pre">visual_parameters.yaml</span></code> files now contain the mesh offsets for all 6 dimensions. The URDF
 expects this structure of the config files. So, the URDF won’t accept any old visual parameter
 config files. They will have to be updated to contain the full <code class="docutils literal notranslate"><span class="pre">mesh_offset</span></code> entries.</p>
+</section>
+</section>
+<section id="kilted-lyrical">
+<h2>Kilted -&gt; Lyrical<a class="headerlink" href="#kilted-lyrical" title="Link to this heading"></a></h2>
+<section id="xml-launch-files">
+<h3>XML launch files<a class="headerlink" href="#xml-launch-files" title="Link to this heading"></a></h3>
+<p>In Lyrical, we introduced Python launch files to this package. The Python launch files will coexist
+for now, but might get removed in a future release. All launch file arguments are the same for both
+XML and Python launch files, so you can easily switch between them.</p>
 </section>
 </section>
 </section>

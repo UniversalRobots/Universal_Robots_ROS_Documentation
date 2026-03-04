@@ -1,0 +1,449 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assembling the URDF &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/ur_theme.css?v=078fdd0b" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/icon.svg"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Start the ur_robot_driver" href="start_ur_driver.html" />
+    <link rel="prev" title="Dual robot arm cell" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Driver Documentation
+              <img src="../../../../_static/ur_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_client_library/doc/index.html">ur_client_library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../tutorial_index.html">Tutorial examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../my_robot_cell/doc/index.html">Custom workcell</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Dual robot arm cell</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Assembling the URDF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="start_ur_driver.html">Start the ur_robot_driver</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../migration_notes.html">Migration Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../build_status.html">Build status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ros2_controller_vs_driver.html">ROS 2 integration paths</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Universal Robots ROS 2 Driver Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../tutorial_index.html">Universal Robots ROS tutorials</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Dual robot arm cell</a></li>
+      <li class="breadcrumb-item active">Assembling the URDF</li>
+      <li class="wy-breadcrumbs-aside">
+              <!-- User defined GitHub URL -->
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Tutorials/blob/main/my_dual_robot_cell/doc/assemble_urdf.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="assembling-the-urdf">
+<h1>Assembling the URDF<a class="headerlink" href="#assembling-the-urdf" title="Link to this heading"></a></h1>
+<p>The <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description">ur_description</a> package provides <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/blob/rolling/urdf/ur_macro.xacro">macro files</a> to generate an instance of a Universal Robots arm.
+We’ll use this to create a custom workcell with two robots in it, both a UR3e (called Alice) and a UR5e (called Bob). In this section we will only go into
+detail about the URDF / xacro files, not the complete package structure. Please see the
+<a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Tutorials/blob/main/my_dual_robot_cell/my_dual_robot_cell_description">description package source code</a> for all other files assembling the description package.</p>
+<section id="workcell-description">
+<h2>Workcell description<a class="headerlink" href="#workcell-description" title="Link to this heading"></a></h2>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 77 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="linenos"> 2</span><span class="nt">&lt;robot</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;my_dual_robot_cell&quot;</span><span class="w"> </span><span class="na">xmlns:xacro=</span><span class="s">&quot;http://ros.org/wiki/xacro&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="w">  </span><span class="nt">&lt;xacro:include</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;$(find my_dual_robot_cell_description)/urdf/my_dual_robot_cell_macro.xacro&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;alice_ur_type&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;ur3e&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;alice_joint_limits_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg alice_ur_type)/joint_limits.yaml&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;alice_kinematics_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg alice_ur_type)/default_kinematics.yaml&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;alice_physical_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg alice_ur_type)/physical_parameters.yaml&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">10</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;alice_visual_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg alice_ur_type)/visual_parameters.yaml&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;bob_ur_type&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;ur5e&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">13</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;bob_joint_limits_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg bob_ur_type)/joint_limits.yaml&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">14</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;bob_kinematics_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg bob_ur_type)/default_kinematics.yaml&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">15</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;bob_physical_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg bob_ur_type)/physical_parameters.yaml&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">16</span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;bob_visual_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg bob_ur_type)/visual_parameters.yaml&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="w">  </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;world&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">19</span><span class="w">  </span><span class="cm">&lt;!--This will create the scene where the robots are located in--&gt;</span>
+<span class="linenos">20</span><span class="w">  </span><span class="nt">&lt;xacro:my_dual_robot_cell</span>
+<span class="linenos">21</span><span class="w">    </span><span class="na">parent=</span><span class="s">&quot;world&quot;</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="w">    </span><span class="na">alice_ur_type=</span><span class="s">&quot;$(arg alice_ur_type)&quot;</span>
+<span class="linenos">24</span><span class="w">    </span><span class="na">alice_joint_limits_parameters_file=</span><span class="s">&quot;$(arg alice_joint_limits_parameters_file)&quot;</span>
+<span class="linenos">25</span><span class="w">    </span><span class="na">alice_kinematics_parameters_file=</span><span class="s">&quot;$(arg alice_kinematics_parameters_file)&quot;</span>
+<span class="linenos">26</span><span class="w">    </span><span class="na">alice_physical_parameters_file=</span><span class="s">&quot;$(arg alice_physical_parameters_file)&quot;</span>
+<span class="linenos">27</span><span class="w">    </span><span class="na">alice_visual_parameters_file=</span><span class="s">&quot;$(arg alice_visual_parameters_file)&quot;</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span><span class="w">    </span><span class="na">bob_ur_type=</span><span class="s">&quot;$(arg bob_ur_type)&quot;</span>
+<span class="linenos">30</span><span class="w">    </span><span class="na">bob_joint_limits_parameters_file=</span><span class="s">&quot;$(arg bob_joint_limits_parameters_file)&quot;</span>
+<span class="linenos">31</span><span class="w">    </span><span class="na">bob_kinematics_parameters_file=</span><span class="s">&quot;$(arg bob_kinematics_parameters_file)&quot;</span>
+<span class="linenos">32</span><span class="w">    </span><span class="na">bob_physical_parameters_file=</span><span class="s">&quot;$(arg bob_physical_parameters_file)&quot;</span>
+<span class="linenos">33</span><span class="w">    </span><span class="na">bob_visual_parameters_file=</span><span class="s">&quot;$(arg bob_visual_parameters_file)&quot;</span>
+<span class="linenos">34</span><span class="w">    </span><span class="nt">&gt;</span>
+<span class="linenos">35</span><span class="w">      </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0 0 1&quot;</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">36</span><span class="w">  </span><span class="nt">&lt;/xacro:my_dual_robot_cell&gt;</span>
+<span class="linenos">37</span>
+<span class="linenos">38</span><span class="nt">&lt;/robot&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s break it down:</p>
+<p>First, we’ll have to <strong>include</strong> the macro to generate our custom workcell:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 78 </span><span class="caption-text">my_dual_robot_cell_description/urdf/my_dual_robot_cell.urdf.xacro</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;xacro:include</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;$(find my_dual_robot_cell_description)/urdf/my_dual_robot_cell_macro.xacro&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>This line only loads the macro for generating the robot workcell.</p>
+<p>We will need to provide some parameters to our workcell in order to parametrize the arms. Therefore,
+we need to declare certain arguments that must be passed to the macro.</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 79 </span><span class="caption-text">my_dual_robot_cell_description/urdf/my_dual_robot_cell.urdf.xacro</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;alice_ur_type&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;ur3e&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;alice_joint_limits_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg alice_ur_type)/joint_limits.yaml&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;alice_kinematics_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg alice_ur_type)/default_kinematics.yaml&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;alice_physical_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg alice_ur_type)/physical_parameters.yaml&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;alice_visual_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg alice_ur_type)/visual_parameters.yaml&quot;</span><span class="nt">/&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;bob_ur_type&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;ur5e&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;bob_joint_limits_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg bob_ur_type)/joint_limits.yaml&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;bob_kinematics_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg bob_ur_type)/default_kinematics.yaml&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;bob_physical_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg bob_ur_type)/physical_parameters.yaml&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;bob_visual_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg bob_ur_type)/visual_parameters.yaml&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>The workspace macro contains all items within the workcell including the robot arm. If you are not
+experienced in writing URDFs, you may want to refer to this  <a class="reference external" href="https://docs.ros.org/en/rolling/Tutorials/Intermediate/URDF/URDF-Main.html">tutorial</a>. The macro’s content
+is generated using</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 80 </span><span class="caption-text">my_dual_robot_cell_description/urdf/my_dual_robot_cell.urdf.xacro</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;world&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="cm">&lt;!--This will create the scene where the robots are located in--&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:my_dual_robot_cell</span>
+<span class="w">    </span><span class="na">parent=</span><span class="s">&quot;world&quot;</span>
+
+<span class="w">    </span><span class="na">alice_ur_type=</span><span class="s">&quot;$(arg alice_ur_type)&quot;</span>
+<span class="w">    </span><span class="na">alice_joint_limits_parameters_file=</span><span class="s">&quot;$(arg alice_joint_limits_parameters_file)&quot;</span>
+<span class="w">    </span><span class="na">alice_kinematics_parameters_file=</span><span class="s">&quot;$(arg alice_kinematics_parameters_file)&quot;</span>
+<span class="w">    </span><span class="na">alice_physical_parameters_file=</span><span class="s">&quot;$(arg alice_physical_parameters_file)&quot;</span>
+<span class="w">    </span><span class="na">alice_visual_parameters_file=</span><span class="s">&quot;$(arg alice_visual_parameters_file)&quot;</span>
+
+<span class="w">    </span><span class="na">bob_ur_type=</span><span class="s">&quot;$(arg bob_ur_type)&quot;</span>
+<span class="w">    </span><span class="na">bob_joint_limits_parameters_file=</span><span class="s">&quot;$(arg bob_joint_limits_parameters_file)&quot;</span>
+<span class="w">    </span><span class="na">bob_kinematics_parameters_file=</span><span class="s">&quot;$(arg bob_kinematics_parameters_file)&quot;</span>
+<span class="w">    </span><span class="na">bob_physical_parameters_file=</span><span class="s">&quot;$(arg bob_physical_parameters_file)&quot;</span>
+<span class="w">    </span><span class="na">bob_visual_parameters_file=</span><span class="s">&quot;$(arg bob_visual_parameters_file)&quot;</span>
+<span class="w">    </span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0 0 1&quot;</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/xacro:my_dual_robot_cell&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>Here, a <code class="docutils literal notranslate"><span class="pre">world</span></code> link is created, and the robot workcell is created relative to the <code class="docutils literal notranslate"><span class="pre">world</span></code> link.</p>
+</section>
+<section id="workcell-macro">
+<h2>Workcell macro<a class="headerlink" href="#workcell-macro" title="Link to this heading"></a></h2>
+<p>The workcell macro is defined in the following manner:</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Listing 81 </span><span class="caption-text">my_dual_robot_cell_description/urdf/my_dual_robot_cell_macro.xacro</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="linenos">  2</span><span class="nt">&lt;robot</span><span class="w"> </span><span class="na">xmlns:xacro=</span><span class="s">&quot;http://ros.org/wiki/xacro&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">  3</span><span class="w">  </span><span class="nt">&lt;xacro:include</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;$(find ur_description)/urdf/ur_macro.xacro&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">  4</span>
+<span class="linenos">  5</span><span class="w">  </span><span class="nt">&lt;xacro:macro</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;my_dual_robot_cell&quot;</span><span class="w"> </span><span class="na">params=</span><span class="s">&quot;</span>
+<span class="linenos">  6</span><span class="s">    parent</span>
+<span class="linenos">  7</span><span class="s">    *origin</span>
+<span class="linenos">  8</span>
+<span class="linenos">  9</span><span class="s">    alice_ur_type</span>
+<span class="linenos"> 10</span><span class="s">    alice_joint_limits_parameters_file</span>
+<span class="linenos"> 11</span><span class="s">    alice_kinematics_parameters_file</span>
+<span class="linenos"> 12</span><span class="s">    alice_physical_parameters_file</span>
+<span class="linenos"> 13</span><span class="s">    alice_visual_parameters_file</span>
+<span class="linenos"> 14</span>
+<span class="linenos"> 15</span><span class="s">    bob_ur_type</span>
+<span class="linenos"> 16</span><span class="s">    bob_joint_limits_parameters_file</span>
+<span class="linenos"> 17</span><span class="s">    bob_kinematics_parameters_file</span>
+<span class="linenos"> 18</span><span class="s">    bob_physical_parameters_file</span>
+<span class="linenos"> 19</span><span class="s">    bob_visual_parameters_file</span>
+<span class="linenos"> 20</span><span class="s">    &quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 21</span>
+<span class="linenos"> 22</span><span class="w">    </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;table_base_joint&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 23</span><span class="w">      </span><span class="nt">&lt;xacro:insert_block</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;origin&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos"> 24</span><span class="w">      </span><span class="nt">&lt;parent</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;${parent}&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos"> 25</span><span class="w">      </span><span class="nt">&lt;child</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;table&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos"> 26</span><span class="w">    </span><span class="nt">&lt;/joint&gt;</span>
+<span class="linenos"> 27</span>
+<span class="linenos"> 28</span><span class="w">    </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;table&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 29</span><span class="w">      </span><span class="nt">&lt;visual&gt;</span>
+<span class="linenos"> 30</span><span class="w">        </span><span class="nt">&lt;geometry&gt;</span>
+<span class="linenos"> 31</span><span class="w">          </span><span class="nt">&lt;mesh</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;package://my_robot_cell_description/meshes/fzi_table.dae&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 32</span><span class="w">        </span><span class="nt">&lt;/geometry&gt;</span>
+<span class="linenos"> 33</span><span class="w">        </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0.75 0.5 -1&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 34</span><span class="w">      </span><span class="nt">&lt;/visual&gt;</span>
+<span class="linenos"> 35</span><span class="w">      </span><span class="nt">&lt;collision&gt;</span>
+<span class="linenos"> 36</span><span class="w">        </span><span class="nt">&lt;geometry&gt;</span>
+<span class="linenos"> 37</span><span class="w">          </span><span class="nt">&lt;mesh</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;package://my_robot_cell_description/meshes/fzi_table.dae&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 38</span><span class="w">        </span><span class="nt">&lt;/geometry&gt;</span>
+<span class="linenos"> 39</span><span class="w">        </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0.75 0.5 -1&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 40</span><span class="w">      </span><span class="nt">&lt;/collision&gt;</span>
+<span class="linenos"> 41</span><span class="w">    </span><span class="nt">&lt;/link&gt;</span>
+<span class="linenos"> 42</span>
+<span class="linenos"> 43</span><span class="w">    </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;monitor&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 44</span><span class="w">      </span><span class="nt">&lt;visual&gt;</span>
+<span class="linenos"> 45</span><span class="w">        </span><span class="nt">&lt;geometry&gt;</span>
+<span class="linenos"> 46</span><span class="w">          </span><span class="nt">&lt;mesh</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;package://my_robot_cell_description/meshes/171005_Motek_Monitor_L.dae&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 47</span><span class="w">        </span><span class="nt">&lt;/geometry&gt;</span>
+<span class="linenos"> 48</span><span class="w">      </span><span class="nt">&lt;/visual&gt;</span>
+<span class="linenos"> 49</span><span class="w">      </span><span class="nt">&lt;collision&gt;</span>
+<span class="linenos"> 50</span><span class="w">        </span><span class="nt">&lt;geometry&gt;</span>
+<span class="linenos"> 51</span><span class="w">          </span><span class="nt">&lt;mesh</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;package://my_robot_cell_description/meshes/171005_Motek_Monitor_L.dae&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 52</span><span class="w">        </span><span class="nt">&lt;/geometry&gt;</span>
+<span class="linenos"> 53</span><span class="w">      </span><span class="nt">&lt;/collision&gt;</span>
+<span class="linenos"> 54</span><span class="w">    </span><span class="nt">&lt;/link&gt;</span>
+<span class="linenos"> 55</span><span class="w">    </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;base_to_monitor&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 56</span><span class="w">      </span><span class="nt">&lt;parent</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;table&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 57</span><span class="w">      </span><span class="nt">&lt;child</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;monitor&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 58</span><span class="w">      </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0.2 0.6 0&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 59</span><span class="w">    </span><span class="nt">&lt;/joint&gt;</span>
+<span class="linenos"> 60</span>
+<span class="linenos"> 61</span><span class="w">    </span><span class="nt">&lt;material</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;white&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 62</span><span class="w">      </span><span class="nt">&lt;color</span><span class="w"> </span><span class="na">rgba=</span><span class="s">&quot;1 1 1 1&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 63</span><span class="w">    </span><span class="nt">&lt;/material&gt;</span>
+<span class="linenos"> 64</span>
+<span class="linenos"> 65</span><span class="w">    </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;wall&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 66</span><span class="w">      </span><span class="nt">&lt;visual&gt;</span>
+<span class="linenos"> 67</span><span class="w">        </span><span class="nt">&lt;geometry&gt;</span>
+<span class="linenos"> 68</span><span class="w">          </span><span class="nt">&lt;mesh</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;package://my_robot_cell_description/meshes/wall.dae&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 69</span><span class="w">        </span><span class="nt">&lt;/geometry&gt;</span>
+<span class="linenos"> 70</span><span class="w">      </span><span class="nt">&lt;/visual&gt;</span>
+<span class="linenos"> 71</span><span class="w">      </span><span class="nt">&lt;collision&gt;</span>
+<span class="linenos"> 72</span><span class="w">        </span><span class="nt">&lt;geometry&gt;</span>
+<span class="linenos"> 73</span><span class="w">          </span><span class="nt">&lt;box</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;4.44 0.1 2.5&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 74</span><span class="w">        </span><span class="nt">&lt;/geometry&gt;</span>
+<span class="linenos"> 75</span><span class="w">      </span><span class="nt">&lt;/collision&gt;</span>
+<span class="linenos"> 76</span><span class="w">    </span><span class="nt">&lt;/link&gt;</span>
+<span class="linenos"> 77</span><span class="w">    </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;base_to_wall&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 78</span><span class="w">      </span><span class="nt">&lt;parent</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;table&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 79</span><span class="w">      </span><span class="nt">&lt;child</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;wall&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 80</span><span class="w">      </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;1.25 1.5 0.5&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 81</span><span class="w">    </span><span class="nt">&lt;/joint&gt;</span>
+<span class="linenos"> 82</span>
+<span class="linenos"> 83</span>
+<span class="linenos"> 84</span><span class="w">    </span><span class="cm">&lt;!--Creates the mounts to attach the robots to the table--&gt;</span>
+<span class="linenos"> 85</span><span class="w">    </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;alice_robot_mount&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 86</span><span class="w">    </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;base_to_alice_robot_mount&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 87</span><span class="w">      </span><span class="nt">&lt;parent</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;table&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 88</span><span class="w">      </span><span class="nt">&lt;child</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;alice_robot_mount&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 89</span><span class="w">      </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0.2 0.3 0&quot;</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 ${pi}&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos"> 90</span><span class="w">    </span><span class="nt">&lt;/joint&gt;</span>
+<span class="linenos"> 91</span>
+<span class="linenos"> 92</span><span class="w">    </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;bob_robot_mount&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 93</span><span class="w">    </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;base_to_bob_robot_mount&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 94</span><span class="w">      </span><span class="nt">&lt;parent</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;table&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 95</span><span class="w">      </span><span class="nt">&lt;child</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;bob_robot_mount&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 96</span><span class="w">      </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;1.2 0.3 0&quot;</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 ${pi}&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos"> 97</span><span class="w">    </span><span class="nt">&lt;/joint&gt;</span>
+<span class="linenos"> 98</span>
+<span class="linenos"> 99</span><span class="w">    </span><span class="cm">&lt;!--Creates the 1st Robot--&gt;</span>
+<span class="linenos">100</span><span class="w">    </span><span class="nt">&lt;xacro:ur_robot</span>
+<span class="linenos">101</span><span class="w">      </span><span class="na">name=</span><span class="s">&quot;alice&quot;</span>
+<span class="linenos">102</span><span class="w">      </span><span class="na">tf_prefix=</span><span class="s">&quot;alice_&quot;</span>
+<span class="linenos">103</span><span class="w">      </span><span class="na">parent=</span><span class="s">&quot;alice_robot_mount&quot;</span>
+<span class="linenos">104</span><span class="w">      </span><span class="na">joint_limits_parameters_file=</span><span class="s">&quot;${alice_joint_limits_parameters_file}&quot;</span>
+<span class="linenos">105</span><span class="w">      </span><span class="na">kinematics_parameters_file=</span><span class="s">&quot;${alice_kinematics_parameters_file}&quot;</span>
+<span class="linenos">106</span><span class="w">      </span><span class="na">physical_parameters_file=</span><span class="s">&quot;${alice_physical_parameters_file}&quot;</span>
+<span class="linenos">107</span><span class="w">      </span><span class="na">visual_parameters_file=</span><span class="s">&quot;${alice_visual_parameters_file}&quot;</span>
+<span class="linenos">108</span><span class="w">    </span><span class="nt">&gt;</span>
+<span class="linenos">109</span><span class="w">      </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0 0 0&quot;</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">110</span><span class="w">    </span><span class="nt">&lt;/xacro:ur_robot&gt;</span>
+<span class="linenos">111</span>
+<span class="linenos">112</span><span class="w">    </span><span class="cm">&lt;!--Creates the 2nd Robot--&gt;</span>
+<span class="linenos">113</span><span class="w">    </span><span class="nt">&lt;xacro:ur_robot</span>
+<span class="linenos">114</span><span class="w">      </span><span class="na">name=</span><span class="s">&quot;bob&quot;</span>
+<span class="linenos">115</span><span class="w">      </span><span class="na">tf_prefix=</span><span class="s">&quot;bob_&quot;</span>
+<span class="linenos">116</span><span class="w">      </span><span class="na">parent=</span><span class="s">&quot;bob_robot_mount&quot;</span>
+<span class="linenos">117</span><span class="w">      </span><span class="na">joint_limits_parameters_file=</span><span class="s">&quot;${bob_joint_limits_parameters_file}&quot;</span>
+<span class="linenos">118</span><span class="w">      </span><span class="na">kinematics_parameters_file=</span><span class="s">&quot;${bob_kinematics_parameters_file}&quot;</span>
+<span class="linenos">119</span><span class="w">      </span><span class="na">physical_parameters_file=</span><span class="s">&quot;${bob_physical_parameters_file}&quot;</span>
+<span class="linenos">120</span><span class="w">      </span><span class="na">visual_parameters_file=</span><span class="s">&quot;${bob_visual_parameters_file}&quot;</span>
+<span class="linenos">121</span><span class="w">    </span><span class="nt">&gt;</span>
+<span class="linenos">122</span><span class="w">      </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0 0 0&quot;</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">123</span><span class="w">    </span><span class="nt">&lt;/xacro:ur_robot&gt;</span>
+<span class="linenos">124</span>
+<span class="linenos">125</span><span class="w">  </span><span class="nt">&lt;/xacro:macro&gt;</span>
+<span class="linenos">126</span>
+<span class="linenos">127</span><span class="nt">&lt;/robot&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>This macro provides an example of what a custom workcell could resemble. Your workspace will likely
+vary from this one. Please feel free to modify this portion of the URDF to match your own setup. In
+this instance, our workspace comprises a table in front of a wall, featuring a monitor, and the
+two robot arms mounted on top.</p>
+<p>Ensure that your custom workcell includes the parent link, which must be passed to the <strong>ur_robot</strong>
+macro. In this example, we chose to create two links, one named <strong>alice_robot_mount</strong> and one named <strong>bob_robot_mount</strong>.</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-number">Listing 82 </span><span class="caption-text">my_dual_robot_cell_description/urdf/my_dual_robot_cell_macro.xacro</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w">    </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;alice_robot_mount&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 2</span><span class="w">    </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;base_to_alice_robot_mount&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 3</span><span class="w">      </span><span class="nt">&lt;parent</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;table&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 4</span><span class="w">      </span><span class="nt">&lt;child</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;alice_robot_mount&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 5</span><span class="w">      </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0.2 0.3 0&quot;</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 ${pi}&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos"> 6</span><span class="w">    </span><span class="nt">&lt;/joint&gt;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;bob_robot_mount&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;base_to_bob_robot_mount&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">10</span><span class="w">      </span><span class="nt">&lt;parent</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;table&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">11</span><span class="w">      </span><span class="nt">&lt;child</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;bob_robot_mount&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">12</span><span class="w">      </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;1.2 0.3 0&quot;</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 ${pi}&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">13</span><span class="w">    </span><span class="nt">&lt;/joint&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>After that we are finally able to actually <strong>create the robot arms</strong> by calling the macro.</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-number">Listing 83 </span><span class="caption-text">my_dual_robot_cell_description/urdf/my_dual_robot_cell_macro.xacro</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w">    </span><span class="cm">&lt;!--Creates the 1st Robot--&gt;</span>
+<span class="linenos"> 2</span><span class="w">    </span><span class="nt">&lt;xacro:ur_robot</span>
+<span class="linenos"> 3</span><span class="w">      </span><span class="na">name=</span><span class="s">&quot;alice&quot;</span>
+<span class="linenos"> 4</span><span class="w">      </span><span class="na">tf_prefix=</span><span class="s">&quot;alice_&quot;</span>
+<span class="linenos"> 5</span><span class="w">      </span><span class="na">parent=</span><span class="s">&quot;alice_robot_mount&quot;</span>
+<span class="linenos"> 6</span><span class="w">      </span><span class="na">joint_limits_parameters_file=</span><span class="s">&quot;${alice_joint_limits_parameters_file}&quot;</span>
+<span class="linenos"> 7</span><span class="w">      </span><span class="na">kinematics_parameters_file=</span><span class="s">&quot;${alice_kinematics_parameters_file}&quot;</span>
+<span class="linenos"> 8</span><span class="w">      </span><span class="na">physical_parameters_file=</span><span class="s">&quot;${alice_physical_parameters_file}&quot;</span>
+<span class="linenos"> 9</span><span class="w">      </span><span class="na">visual_parameters_file=</span><span class="s">&quot;${alice_visual_parameters_file}&quot;</span>
+<span class="linenos">10</span><span class="w">    </span><span class="nt">&gt;</span>
+<span class="linenos">11</span><span class="w">      </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0 0 0&quot;</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">12</span><span class="w">    </span><span class="nt">&lt;/xacro:ur_robot&gt;</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="w">    </span><span class="cm">&lt;!--Creates the 2nd Robot--&gt;</span>
+<span class="linenos">15</span><span class="w">    </span><span class="nt">&lt;xacro:ur_robot</span>
+<span class="linenos">16</span><span class="w">      </span><span class="na">name=</span><span class="s">&quot;bob&quot;</span>
+<span class="linenos">17</span><span class="w">      </span><span class="na">tf_prefix=</span><span class="s">&quot;bob_&quot;</span>
+<span class="linenos">18</span><span class="w">      </span><span class="na">parent=</span><span class="s">&quot;bob_robot_mount&quot;</span>
+<span class="linenos">19</span><span class="w">      </span><span class="na">joint_limits_parameters_file=</span><span class="s">&quot;${bob_joint_limits_parameters_file}&quot;</span>
+<span class="linenos">20</span><span class="w">      </span><span class="na">kinematics_parameters_file=</span><span class="s">&quot;${bob_kinematics_parameters_file}&quot;</span>
+<span class="linenos">21</span><span class="w">      </span><span class="na">physical_parameters_file=</span><span class="s">&quot;${bob_physical_parameters_file}&quot;</span>
+<span class="linenos">22</span><span class="w">      </span><span class="na">visual_parameters_file=</span><span class="s">&quot;${bob_visual_parameters_file}&quot;</span>
+<span class="linenos">23</span><span class="w">    </span><span class="nt">&gt;</span>
+<span class="linenos">24</span><span class="w">      </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0 0 0&quot;</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">25</span><span class="w">    </span><span class="nt">&lt;/xacro:ur_robot&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>Note that the <strong>origin</strong> argument is transmitted in a different manner than the other arguments.</p>
+<p>Before we can test our code, it’s essential to build and source our Colcon workspace:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#cd to your colcon workspace root</span>
+<span class="nb">cd</span><span class="w"> </span>~/colcon_ws
+
+<span class="c1">#source and build your workspace</span>
+colcon<span class="w"> </span>build
+<span class="nb">source</span><span class="w"> </span>install/setup.bash
+</pre></div>
+</div>
+<p>We can view our custom workspace by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#launch rviz</span>
+ros2<span class="w"> </span>launch<span class="w"> </span>my_dual_robot_cell_description<span class="w"> </span>view_robot.launch.py
+</pre></div>
+</div>
+<p>Use the sliders of the <code class="docutils literal notranslate"><span class="pre">joint_state_puplisher_gui</span></code> to move the virtual robots around.
+It should look something like this:</p>
+<img alt="RViz window showing the custom workspace" src="../../../../_images/rviz.png" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Dual robot arm cell" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="start_ur_driver.html" class="btn btn-neutral float-right" title="Start the ur_robot_driver" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

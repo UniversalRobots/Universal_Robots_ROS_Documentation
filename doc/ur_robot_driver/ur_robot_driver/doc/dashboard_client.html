@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard client &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/ur_theme.css?v=078fdd0b" />
 
@@ -130,9 +130,20 @@
 <h3>connect (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#connect-std-srvs-trigger" title="Link to this heading"></a></h3>
 <p>Service to reconnect to the dashboard server</p>
 </section>
+<section id="download-program-ur-dashboard-msgs-downloadprogram">
+<h3>download_program (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/DownloadProgram.html">ur_dashboard_msgs/DownloadProgram</a>)<a class="headerlink" href="#download-program-ur-dashboard-msgs-downloadprogram" title="Link to this heading"></a></h3>
+<p><strong>PolyScope X only</strong>: Download a program with the given name from the robot and save it as
+<code class="docutils literal notranslate"><span class="pre">*.urpx</span></code> file locally. This service is only available on a PolyScope X robot with version &gt;=
+10.12.0.</p>
+</section>
 <section id="get-loaded-program-ur-dashboard-msgs-getloadedprogram">
 <h3>get_loaded_program (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetLoadedProgram.html">ur_dashboard_msgs/GetLoadedProgram</a>)<a class="headerlink" href="#get-loaded-program-ur-dashboard-msgs-getloadedprogram" title="Link to this heading"></a></h3>
-<p>Load a robot installation from a file</p>
+<p>Get the name of the currently loaded program.</p>
+</section>
+<section id="get-programs-ur-dashboard-msgs-getprograms">
+<h3>get_programs (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetPrograms.html">ur_dashboard_msgs/GetPrograms</a>)<a class="headerlink" href="#get-programs-ur-dashboard-msgs-getprograms" title="Link to this heading"></a></h3>
+<p><strong>PolyScope X only</strong>: Get a list of all programs on the robot. This service is only available on a
+PolyScope X robot with version &gt;= 10.12.0.</p>
 </section>
 <section id="get-robot-mode-ur-dashboard-msgs-getrobotmode">
 <h3>get_robot_mode (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetRobotMode.html">ur_dashboard_msgs/GetRobotMode</a>)<a class="headerlink" href="#get-robot-mode-ur-dashboard-msgs-getrobotmode" title="Link to this heading"></a></h3>
@@ -142,13 +153,20 @@
 <h3>get_safety_mode (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetSafetyMode.html">ur_dashboard_msgs/GetSafetyMode</a>)<a class="headerlink" href="#get-safety-mode-ur-dashboard-msgs-getsafetymode" title="Link to this heading"></a></h3>
 <p>Service to query the current safety mode</p>
 </section>
+<section id="is-in-remote-control-ur-dashboard-msgs-isinremotecontrol">
+<h3>is_in_remote_control (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/IsInRemoteControl.html">ur_dashboard_msgs/IsInRemoteControl</a>)<a class="headerlink" href="#is-in-remote-control-ur-dashboard-msgs-isinremotecontrol" title="Link to this heading"></a></h3>
+<p>Service to query whether the robot is in remote control</p>
+</section>
 <section id="load-installation-ur-dashboard-msgs-load">
 <h3>load_installation (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/Load.html">ur_dashboard_msgs/Load</a>)<a class="headerlink" href="#load-installation-ur-dashboard-msgs-load" title="Link to this heading"></a></h3>
 <p>Load a robot installation from a file</p>
 </section>
 <section id="load-program-ur-dashboard-msgs-load">
 <h3>load_program (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/Load.html">ur_dashboard_msgs/Load</a>)<a class="headerlink" href="#load-program-ur-dashboard-msgs-load" title="Link to this heading"></a></h3>
-<p>Load a robot program from a file</p>
+<p>Load a robot program from a file on the robot. On PolyScope 5, this can be either file in the
+robot’s programs folder or an absolute path to a file. The filename has to include the <code class="docutils literal notranslate"><span class="pre">.urp</span></code>
+ending. On PolyScope X, this has to be the program’s name as shown in the Programs overview on the
+robot, without a <code class="docutils literal notranslate"><span class="pre">.urpx</span></code> suffix.</p>
 </section>
 <section id="pause-std-srvs-trigger">
 <h3>pause (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#pause-std-srvs-trigger" title="Link to this heading"></a></h3>
@@ -196,8 +214,8 @@
 </section>
 <section id="resume-std-srvs-trigger">
 <h3>resume (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#resume-std-srvs-trigger" title="Link to this heading"></a></h3>
-<p>Resume a paused program on a PolyScope X robot. This service is only available on a PolyScope X
-robot.</p>
+<p><strong>PolyScope X only</strong>: Resume a paused program on a PolyScope X robot. This service is only available on a PolyScope X
+robot with version &gt;= 10.11.0.</p>
 </section>
 <section id="shutdown-std-srvs-trigger">
 <h3>shutdown (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#shutdown-std-srvs-trigger" title="Link to this heading"></a></h3>
@@ -211,9 +229,17 @@ robot.</p>
 <h3>unlock_protective_stop (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#unlock-protective-stop-std-srvs-trigger" title="Link to this heading"></a></h3>
 <p>Dismiss a protective stop to continue robot movements. NOTE: It is the responsibility of the user to ensure the cause of the protective stop is resolved before calling this service.</p>
 </section>
-<section id="is-in-remote-control-ur-dashboard-msgs-isinremotecontrol">
-<h3>is_in_remote_control (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/IsInRemoteControl.html">ur_dashboard_msgs/IsInRemoteControl</a>)<a class="headerlink" href="#is-in-remote-control-ur-dashboard-msgs-isinremotecontrol" title="Link to this heading"></a></h3>
-<p>Service to query whether the robot is in remote control</p>
+<section id="update-program-ur-dashboard-msgs-updateprogram">
+<h3>update_program (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/UpdateProgram.html">ur_dashboard_msgs/UpdateProgram</a>)<a class="headerlink" href="#update-program-ur-dashboard-msgs-updateprogram" title="Link to this heading"></a></h3>
+<p><strong>PolyScope X only</strong>: Update a program on the robot. If the program does not exist or the program
+is currently loaded, this service call will fail. This service is only available on a PolyScope X
+robot with version &gt;= 10.12.0.</p>
+</section>
+<section id="upload-program-ur-dashboard-msgs-uploadprogram">
+<h3>upload_program (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/UploadProgram.html">ur_dashboard_msgs/UploadProgram</a>)<a class="headerlink" href="#upload-program-ur-dashboard-msgs-uploadprogram" title="Link to this heading"></a></h3>
+<p><strong>PolyScope X only</strong>: Upload a program to the robot. If a program with the same name already
+exists, this service call will fail. This service is only available on a PolyScope X robot with
+version &gt;= 10.12.0.</p>
 </section>
 </section>
 <section id="parameters">

@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ur_controllers &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/ur_theme.css?v=078fdd0b" />
 
@@ -123,6 +123,12 @@ down by the controller).</p>
 </section>
 <section id="ur-controlers-scaledjointtrajectorycontroller">
 <span id="scaled-jtc"></span><h3>ur_controlers/ScaledJointTrajectoryController<a class="headerlink" href="#ur-controlers-scaledjointtrajectorycontroller" title="Link to this heading"></a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The upstream joint_trajectory_controller has been updated to support the scaling feature
+explained below. Hence, we have decided to deprecate the scaled joint trajectory controller.
+It will get removed in ROS Lyrical Luth.</p>
+</div>
 <p>These controllers work similar to the well-known
 <a class="reference external" href="https://control.ros.org/master/doc/ros2_controllers/joint_trajectory_controller/doc/userdoc.html">joint_trajectory_controller</a>.</p>
 <p>However, they are extended to handle the robot’s execution speed specifically. Because the default
