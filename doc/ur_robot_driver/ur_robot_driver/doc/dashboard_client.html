@@ -241,6 +241,47 @@ robot with version &gt;= 10.12.0.</p>
 exists, this service call will fail. This service is only available on a PolyScope X robot with
 version &gt;= 10.12.0.</p>
 </section>
+<section id="get-polyscope-version-ur-dashboard-msgs-getpolyscopeversion">
+<h3>get_polyscope_version (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetPolyScopeVersion.html">ur_dashboard_msgs/GetPolyScopeVersion</a>)<a class="headerlink" href="#get-polyscope-version-ur-dashboard-msgs-getpolyscopeversion" title="Link to this heading"></a></h3>
+<p><strong>CB3 | PolyScope 5</strong> Get polyScope version of robot</p>
+</section>
+<section id="get-serial-number-ur-dashboard-msgs-getserialnumber">
+<h3>get_serial_number (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetSerialNumber.html">ur_dashboard_msgs/GetSerialNumber</a>)<a class="headerlink" href="#get-serial-number-ur-dashboard-msgs-getserialnumber" title="Link to this heading"></a></h3>
+<p><strong>CB3 | PolyScope 5</strong> Get serial number of robot</p>
+</section>
+<section id="get-user-role-ur-dashboard-msgs-getuserrole">
+<h3>get_user_role (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetUserRole.html">ur_dashboard_msgs/GetUserRole</a>)<a class="headerlink" href="#get-user-role-ur-dashboard-msgs-getuserrole" title="Link to this heading"></a></h3>
+<p><strong>CB3 only</strong> Get current user role</p>
+</section>
+<section id="set-user-role-ur-dashboard-msgs-setuserrole">
+<h3>set_user_role (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/SetUserRole.html">ur_dashboard_msgs/SetUserRole</a>)<a class="headerlink" href="#set-user-role-ur-dashboard-msgs-setuserrole" title="Link to this heading"></a></h3>
+<p><strong>CB3 only</strong> Set user role on the robot</p>
+</section>
+<section id="get-operational-mode-ur-dashboard-msgs-getoperationalmode">
+<h3>get_operational_mode (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetOperationalMode.html">ur_dashboard_msgs/GetOperationalMode</a>)<a class="headerlink" href="#get-operational-mode-ur-dashboard-msgs-getoperationalmode" title="Link to this heading"></a></h3>
+<p><strong>PolyScope 5 | PolyScope X 10.12.0 onwards</strong> Get current operational mode of the robot</p>
+</section>
+<section id="set-operational-mode-ur-dashboard-msgs-setoperationalmode">
+<h3>set_operational_mode (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/SetOperationalMode.html">ur_dashboard_msgs/SetOperationalMode</a>)<a class="headerlink" href="#set-operational-mode-ur-dashboard-msgs-setoperationalmode" title="Link to this heading"></a></h3>
+<p><strong>PolyScope 5 only</strong> Set operational mode of the robot. When this has been called, the teach pendant can not be used to change the operational mode until clear_operational_mode has been called.</p>
+</section>
+<section id="get-robot-model-ur-dashboard-msgs-getrobotmodel">
+<h3>get_robot_model (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetRobotModel.html">ur_dashboard_msgs/GetRobotModel</a>)<a class="headerlink" href="#get-robot-model-ur-dashboard-msgs-getrobotmodel" title="Link to this heading"></a></h3>
+<p><strong>CB3 | PolyScope 5</strong> Get the robot model, in the format URx. It should be noted this call does not differentiate between e-series and CB3, so UR5 and UR5e will both report as UR5</p>
+</section>
+<section id="get-safety-status-ur-dashboard-msgs-getsafetystatus">
+<h3>get_safety_status (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetSafetyStatus.html">ur_dashboard_msgs/GetSafetyStatus</a>)<a class="headerlink" href="#get-safety-status-ur-dashboard-msgs-getsafetystatus" title="Link to this heading"></a></h3>
+<p><strong>PolyScope 5 only</strong> Get current safety status of the robot system, this is more detailed than get_safety_mode and should be preferred when possible</p>
+</section>
+<section id="generate-flight-report-ur-dashboard-msgs-generateflightreport">
+<h3>generate_flight_report (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GenerateFlightReport.html">ur_dashboard_msgs/GenerateFlightReport</a>)<a class="headerlink" href="#generate-flight-report-ur-dashboard-msgs-generateflightreport" title="Link to this heading"></a></h3>
+<p><strong>CB3 | PolyScope 5</strong> Generate flight report of the chosen type, defaults to SYSTEM. It is required to wait at least 30 seconds between triggering software or controller reports.</p>
+</section>
+<section id="generate-support-file-ur-dashboard-msgs-generatesupportfile">
+<h3>generate_support_file (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GenerateSupportFile.html">ur_dashboard_msgs/GenerateSupportFile</a>)<a class="headerlink" href="#generate-support-file-ur-dashboard-msgs-generatesupportfile" title="Link to this heading"></a></h3>
+<p><strong>CB3 | PolyScope 5</strong> Generate a support file a the specified location. Location is relative to the programs folder, if saving to a subfolder it must exist prior to the service call.
+Defaults to saving to the programs folder</p>
+</section>
 </section>
 <section id="parameters">
 <h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
