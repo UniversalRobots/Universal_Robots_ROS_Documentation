@@ -15,7 +15,7 @@ ur_robot_driver
      <tr>
        <th>Humble (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/tree/humble">humble</a>)</th>
        <th>Jazzy (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/tree/jazzy">jazzy</a>)</th>
-       <th>Kilted (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/tree/main">main</a>)</th>
+       <th>Kilted (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/tree/kilted">kilted</a>)</th>
        <th>Rolling (branch <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/tree/main">main</a>)</th>
      </tr>
      <tr>
