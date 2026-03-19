@@ -187,7 +187,7 @@ and Linux (and other unix-like systems), therefore the code is split using prepr
 <span class="linenos">46</span><span class="w">  </span><span class="p">{</span>
 <span class="linenos">47</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">_kbhit</span><span class="p">())</span>
 <span class="linenos">48</span><span class="w">    </span><span class="p">{</span>
-<span class="linenos">49</span><span class="w">      </span><span class="n">ch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_getch</span><span class="p">();</span>
+<span class="linenos">49</span><span class="w">      </span><span class="n">ch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_getch</span><span class="p">());</span>
 <span class="linenos">50</span><span class="w">    </span><span class="p">}</span>
 <span class="linenos">51</span><span class="w">  </span><span class="p">}</span>
 <span class="linenos">52</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">ch</span><span class="p">;</span>
