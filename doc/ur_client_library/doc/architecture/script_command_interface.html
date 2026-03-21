@@ -128,6 +128,8 @@ for more information.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">setFrictionCompensation()</span></code>: Set friction compensation for torque command.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ftRtdeInputEnable()</span></code>: Enable/disable FT RTDE input processing.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">setGravity()</span></code>: Set the gravity vector for the robot.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setTcpOffset()</span></code>: Set the TCP offset of the robot.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setFrictionScales()</span></code>: Set viscous and Coulomb friction scale factors for direct torque control.</p></li>
 </ul>
 <section id="communication-protocol">
 <h2>Communication protocol<a class="headerlink" href="#communication-protocol" title="Link to this heading"></a></h2>
@@ -158,6 +160,8 @@ for more information.</p></li>
 <li><p>7: setFrictionCompensation</p></li>
 <li><p>8: ftRtdeInputEnable</p></li>
 <li><p>9: setGravity</p></li>
+<li><p>10: setTcpOffset</p></li>
+<li><p>11: setFrictionScales</p></li>
 </ul>
 </dd>
 </dl>
@@ -281,7 +285,7 @@ for more information.</p></li>
 </tbody>
 </table>
 <table class="docutils align-default" id="id10">
-<caption><span class="caption-number">Table 10 </span><span class="caption-text">With setFrictionCompensation command</span><a class="headerlink" href="#id10" title="Link to this table"></a></caption>
+<caption><span class="caption-number">Table 10 </span><span class="caption-text">With setFrictionCompensation command (Deprecated, use setFrictionScales instead)</span><a class="headerlink" href="#id10" title="Link to this table"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>index</p></th>
 <th class="head"><p>meaning</p></th>
@@ -325,6 +329,35 @@ for more information.</p></li>
 <tbody>
 <tr class="row-even"><td><p>1-3</p></td>
 <td><p>The gravity vector (towards the Earth’s center), represented in robot’s base frame (floating point)</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="id13">
+<caption><span class="caption-number">Table 13 </span><span class="caption-text">With setTcpOffset command</span><a class="headerlink" href="#id13" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>index</p></th>
+<th class="head"><p>meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1-6</p></td>
+<td><p>TCP offset as [x, y, z, rx, ry, rz] given in the flange coordinate system in SI units (meters and radians, floating point)</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="id14">
+<caption><span class="caption-number">Table 14 </span><span class="caption-text">With setFrictionScales command</span><a class="headerlink" href="#id14" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>index</p></th>
+<th class="head"><p>meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1-6</p></td>
+<td><p>Viscous friction scale factors. One number per joint, range [0-1]. 0 means no compensation for that joint. 1 means full compensation. Default is [0.9, 0.9, 0.8, 0.9, 0.9, 0.9]. (floating point)</p></td>
+</tr>
+<tr class="row-odd"><td><p>7-12</p></td>
+<td><p>Coulomb friction scale factors. One number per joint, range [0-1]. 0 means no compensation for that joint. 1 means full compensation. Default is [0.8, 0.8, 0.7, 0.8, 0.8, 0.8]. (floating point)</p></td>
 </tr>
 </tbody>
 </table>
