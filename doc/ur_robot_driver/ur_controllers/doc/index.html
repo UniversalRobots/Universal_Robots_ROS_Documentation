@@ -88,7 +88,7 @@
            <div itemprop="articleBody">
              
   <section id="ur-controllers">
-<h1>ur_controllers<a class="headerlink" href="#ur-controllers" title="Link to this heading"></a></h1>
+<span id="id1"></span><h1>ur_controllers<a class="headerlink" href="#ur-controllers" title="Link to this heading"></a></h1>
 <p>This package contains controllers and hardware interface for <code class="docutils literal notranslate"><span class="pre">ros2_controllers</span></code> that are special to the UR
 robot family. Currently this contains:</p>
 <ul class="simple">
@@ -349,8 +349,8 @@ dimension will overwrite the motion commands in that dimension. E.g. when specif
 force in the base frame’s <code class="docutils literal notranslate"><span class="pre">z</span></code> direction, any motion resulting from the move command in the
 base frame’s <code class="docutils literal notranslate"><span class="pre">z</span></code> axis will not be executed.</p>
 </div>
-<section id="id2">
-<h4>Parameters<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
+<section id="id3">
+<h4>Parameters<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>Parameter name</p></td>
@@ -425,8 +425,8 @@ A value larger than 1 can make force mode unstable, e.g. in case of collisions o
 <p>This controller allows setting per-joint viscous and Coulomb friction scale factors for direct
 torque control. The friction model scales control how much internal friction compensation the robot
 applies during direct torque control mode.</p>
-<section id="id3">
-<h4>Parameters<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<section id="id4">
+<h4>Parameters<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>Parameter name</p></td>
@@ -448,8 +448,8 @@ successful</p></td>
 </tbody>
 </table>
 </section>
-<section id="id4">
-<h4>Service interface / usage<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
+<section id="id5">
+<h4>Service interface / usage<a class="headerlink" href="#id5" title="Link to this heading"></a></h4>
 <p>The controller provides a service for setting friction scale factors. To use this service, the
 controller has to be in <code class="docutils literal notranslate"><span class="pre">active</span></code> state.</p>
 <ul class="simple">
@@ -463,8 +463,8 @@ range [0-1] where 0 means no compensation and 1 means full compensation.</p></li
 <span id="freedrive-mode-controller"></span><h3>ur_controllers/FreedriveModeController<a class="headerlink" href="#ur-controllers-freedrivemodecontroller" title="Link to this heading"></a></h3>
 <p>This controller activates the robot’s <em>Freedrive Mode</em>, allowing to manually move the robot’ joints.
 This controller can’t be combined with any other motion controller.</p>
-<section id="id5">
-<h4>Parameters<a class="headerlink" href="#id5" title="Link to this heading"></a></h4>
+<section id="id6">
+<h4>Parameters<a class="headerlink" href="#id6" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>Parameter name</p></td>
@@ -512,8 +512,8 @@ motion, and retract to where it first sensed the contact.</p>
 <p>The controller is not a direct representation of the URScript function <a class="reference external" href="https://www.universal-robots.com/manuals/EN/HTML/SW5_21/Content/prod-scriptmanual/all_scripts/tool_contact%28direction%29.htm?Highlight=tool_contact">tool_contact(direction)</a>,
 as it does not allow for choosing the direction. The direction of tool contact will always be the
 current TCP direction of movement.</p>
-<section id="id6">
-<h4>Parameters<a class="headerlink" href="#id6" title="Link to this heading"></a></h4>
+<section id="id7">
+<h4>Parameters<a class="headerlink" href="#id7" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>Parameter name</p></td>
@@ -534,8 +534,8 @@ current TCP direction of movement.</p>
 </tbody>
 </table>
 </section>
-<section id="id7">
-<h4>Action interface / usage<a class="headerlink" href="#id7" title="Link to this heading"></a></h4>
+<section id="id8">
+<h4>Action interface / usage<a class="headerlink" href="#id8" title="Link to this heading"></a></h4>
 <p>The controller provides one action for enabling tool contact. For the controller to accept action goals it needs to be in <code class="docutils literal notranslate"><span class="pre">active</span></code> state.</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">~/detect_tool_contact</span> <span class="pre">[ur_msgs/action/ToolContact]</span></code></p>
@@ -547,6 +547,37 @@ The action provides no feedback.</p>
 </pre></div>
 </div>
 </li>
+</ul>
+</section>
+</section>
+<section id="ur-controllers-urconfigurationcontroller">
+<span id="ur-configuration-controller"></span><h3>ur_controllers/URConfigurationController<a class="headerlink" href="#ur-controllers-urconfigurationcontroller" title="Link to this heading"></a></h3>
+<p>This controller provides access to UR-specific robot configuration data. Currently, it provides a
+service to query the robot’s software version.</p>
+<section id="id9">
+<h4>Parameters<a class="headerlink" href="#id9" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Parameter name</p></td>
+<td><p>Type</p></td>
+<td><p>Default value</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tf_prefix</span></code></p></td>
+<td><p>string</p></td>
+<td><p>&lt;empty&gt;</p></td>
+<td><p>Urdf prefix of the corresponding arm</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id10">
+<h4>Service interface / usage<a class="headerlink" href="#id10" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">~/get_software_version</span> <span class="pre">[ur_msgs/srv/GetRobotSoftwareVersion]</span></code>: Get the robot’s software
+version. The response contains the major, minor and patch version of the robot’s software, as
+well as the build number if available. For example, for a robot running PolyScope 5.12.1 the
+response would be major version 5, minor version 12 and patch version 1.</p></li>
 </ul>
 </section>
 </section>

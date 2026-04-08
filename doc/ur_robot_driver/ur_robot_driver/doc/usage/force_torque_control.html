@@ -1,0 +1,318 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Force and Torque Control &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/ur_theme.css?v=078fdd0b" />
+
+  
+    <link rel="shortcut icon" href="../../../../../_static/icon.svg"/>
+      <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Utility Controllers" href="utility_controllers.html" />
+    <link rel="prev" title="Position and Velocity Control" href="position_velocity_control.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Driver Documentation
+              <img src="../../../../../_static/ur_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_client_library/doc/index.html">ur_client_library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">ur_robot_driver</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/toc.html">Installation</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="toc.html">Usage</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="startup.html">Startup the driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="move.html">Move the robot</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="controllers.html">Controllers</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="position_velocity_control.html">Position and Velocity Control</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Force and Torque Control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="utility_controllers.html">Utility Controllers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html">Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="script_code.html">Sending URScript code to the robot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../operation_modes.html">Operation modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup_tool_communication.html">Setting up the tool communication on an e-Series / UR Series robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hardware_interface.html">UR Hardware interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hardware_interface_parameters.html">UR Hardware interface parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dashboard_client.html">Dashboard client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../robot_state_helper.html">Robot state helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../controller_stopper.html">Controller stopper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../trajectory_until_node.html">Trajectory until node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../migration_notes.html">Migration notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_tutorials/tutorial_index.html">Tutorial examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../migration_notes.html">Migration Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../build_status.html">Build status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ros2_controller_vs_driver.html">ROS 2 integration paths</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Universal Robots ROS 2 Driver Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">ur_robot_driver</a></li>
+          <li class="breadcrumb-item"><a href="toc.html">Usage</a></li>
+          <li class="breadcrumb-item"><a href="controllers.html">Controllers</a></li>
+      <li class="breadcrumb-item active">Force and Torque Control</li>
+      <li class="wy-breadcrumbs-aside">
+              <!-- User defined GitHub URL -->
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/blob/main/ur_robot_driver/doc/usage/force_torque_control.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="force-and-torque-control">
+<span id="force-torque-control"></span><h1>Force and Torque Control<a class="headerlink" href="#force-and-torque-control" title="Link to this heading"></a></h1>
+<p>This page provides an overview of the force and torque control capabilities available in this
+driver. In ROS 2, joint torque control is also referred to as <strong>effort control</strong>. The driver
+supports both direct joint-level torque control and the robot’s built-in Cartesian force-mode control.</p>
+<p>For position and velocity based control, see <a class="reference internal" href="position_velocity_control.html#position-velocity-control"><span class="std std-ref">Position and Velocity Control</span></a>.</p>
+<p>For utility controllers such as freedrive, tool contact detection, and I/O control, see
+<a class="reference internal" href="utility_controllers.html#utility-controllers"><span class="std std-ref">Utility Controllers</span></a>.</p>
+<section id="joint-torque-control">
+<h2>Joint Torque Control<a class="headerlink" href="#joint-torque-control" title="Link to this heading"></a></h2>
+<p>Direct joint-level torque control lets you command torque values to each of the robot’s joints.
+This is useful for implementing custom compliance, force control strategies, or research
+applications that require direct torque-level access.</p>
+<p>Custom controllers should best be implemented as ros2_control controllers by using the driver’s
+exposed effort interfaces. The <code class="docutils literal notranslate"><span class="pre">forward_effort_controller</span></code> explained below is more of an
+easy-to-use example of how to send direct torque commands to the robot, rather than a building
+block for an application.</p>
+<section id="forward-effort-controller">
+<h3>forward_effort_controller<a class="headerlink" href="#forward-effort-controller" title="Link to this heading"></a></h3>
+<p>Type: <a class="reference external" href="https://control.ros.org/rolling/doc/ros2_controllers/forward_command_controller/doc/userdoc.html">forward_command_controller/ForwardCommandController</a> with <code class="docutils literal notranslate"><span class="pre">interface_name:</span> <span class="pre">effort</span></code></p>
+<p>This controller streams target joint efforts (torques) directly to the robot using the URScript function <code class="docutils literal notranslate"><span class="pre">direct_torque(...)</span></code>. The robot automatically
+compensates for gravity, so the provided target torques should not include gravity compensation. The user is
+responsible for sending commands that are safe and achievable.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This controller requires PolyScope &gt;= 5.25.1 (PolyScope 5) or &gt;= 10.12.1 (PolyScope X).</p>
+</div>
+<p>To activate this controller, deactivate any active motion controller first:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>control<span class="w"> </span>switch_controllers<span class="w"> </span>--deactivate<span class="w"> </span>scaled_joint_trajectory_controller<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--activate<span class="w"> </span>forward_effort_controller
+</pre></div>
+</div>
+<p>The controller accepts commands on its <code class="docutils literal notranslate"><span class="pre">~/commands</span></code> topic as <code class="docutils literal notranslate"><span class="pre">std_msgs/msg/Float64MultiArray</span></code>
+with one value per joint.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This controller is mutually exclusive with position and velocity controllers. Only one
+motion controller can be active at a time.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">effort</span></code> field in <code class="docutils literal notranslate"><span class="pre">sensor_msgs/JointState</span></code> (published by the <code class="docutils literal notranslate"><span class="pre">joint_state_broadcaster</span></code>)
+contains motor currents, not physical joint torques.</p>
+</div>
+</section>
+<section id="friction-compensation">
+<h3>Friction Compensation<a class="headerlink" href="#friction-compensation" title="Link to this heading"></a></h3>
+<p>When using direct torque control, the robot’s internal friction compensation can be tuned using the
+<a class="reference internal" href="../../../ur_controllers/doc/index.html#friction-model-controller"><span class="std std-ref">friction_model_controller</span></a>.</p>
+<p>This controller sets per-joint viscous and Coulomb friction scale factors that determine how much
+internal friction compensation the robot applies during torque control mode. Each scale factor is
+in the range [0, 1], where 0 means no compensation and 1 means full compensation.</p>
+<p>The controller exposes the <code class="docutils literal notranslate"><span class="pre">~/set_friction_model_parameters</span></code> service
+(<a class="reference external" href="https://docs.ros.org/en/rolling/p/ur_msgs/srv/SetFrictionModelParameters.html">ur_msgs/srv/SetFrictionModelParameters</a>) to configure
+these values. It is started as active by default in the driver’s launch file.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The friction model controller is only relevant for effort control. While it is technically
+compatible with all motion controllers, adjusting friction parameters only has an effect during
+direct torque control.</p>
+</div>
+</section>
+</section>
+<section id="force-mode-controller">
+<h2>Force Mode Controller<a class="headerlink" href="#force-mode-controller" title="Link to this heading"></a></h2>
+<p>The <a class="reference internal" href="../../../ur_controllers/doc/index.html#force-mode-controller"><span class="std std-ref">force_mode_controller</span></a> provides Cartesian-space force and torque
+control using the robot’s built-in force mode. This interfaces the URScript function
+<code class="docutils literal notranslate"><span class="pre">force_mode(...)</span></code>.</p>
+<p>Unlike direct joint torque control, force mode operates in Cartesian space: you specify forces and
+torques relative to a task frame, along with a selection vector that determines which axes are
+force-controlled (compliant) and which remain position-controlled.</p>
+<ul class="simple">
+<li><p>In <strong>compliant axes</strong>, the robot adjusts its position to achieve the specified force or torque.</p></li>
+<li><p>In <strong>non-compliant axes</strong>, motion commands from the active position controller are executed
+normally.</p></li>
+</ul>
+<p>Force mode can be combined with all position control modes
+(<code class="docutils literal notranslate"><span class="pre">joint_trajectory_controller</span></code>, <code class="docutils literal notranslate"><span class="pre">passthrough_trajectory_controller</span></code>,
+<code class="docutils literal notranslate"><span class="pre">forward_position_controller</span></code>, etc.) to execute motions under force constraints.</p>
+<p>The controller provides two services:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">~/start_force_mode</span> <span class="pre">[ur_msgs/srv/SetForceMode]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/stop_force_mode</span> <span class="pre">[std_srvs/srv/Trigger]</span></code></p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The robot’s force/torque sensor is a relative sensor, meaning it measures changes in force and
+torque rather than absolute values. For best performance, zero the sensor using the
+<code class="docutils literal notranslate"><span class="pre">~/zero_ftsensor</span></code> service on the <a class="reference internal" href="../../../ur_controllers/doc/index.html#io-and-status-controller"><span class="std std-ref">io_and_status_controller</span></a>
+before activating force mode and before the tool makes contact with the environment.</p>
+</div>
+<p>See the <a class="reference internal" href="../../../ur_controllers/doc/index.html#force-mode-controller"><span class="std std-ref">force_mode_controller</span></a> documentation for full details on
+parameters, the service interface, and the meaning of each field.</p>
+<p>An example demonstrating force mode usage is available at <code class="docutils literal notranslate"><span class="pre">ur_robot_driver/examples/force_mode.py</span></code>.</p>
+</section>
+<section id="freedrive-mode-controller">
+<h2>Freedrive Mode Controller<a class="headerlink" href="#freedrive-mode-controller" title="Link to this heading"></a></h2>
+<p>Type: <a class="reference internal" href="../../../ur_controllers/doc/index.html#freedrive-mode-controller"><span class="std std-ref">ur_controllers/FreedriveModeController</span></a></p>
+<p>Allows manually moving the robot’s joints without any active control. This controller cannot be
+combined with any other motion controller.</p>
+<p>Freedrive mode is activated by publishing <code class="docutils literal notranslate"><span class="pre">True</span></code> messages on the
+<code class="docutils literal notranslate"><span class="pre">~/enable_freedrive_mode</span></code> topic (<code class="docutils literal notranslate"><span class="pre">std_msgs/msg/Bool</span></code>). Messages must be sent continuously to
+keep freedrive active – if no message is received within the <code class="docutils literal notranslate"><span class="pre">inactive_timeout</span></code> (default: 1
+second), freedrive mode is automatically deactivated.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--rate<span class="w"> </span><span class="m">2</span><span class="w"> </span>/freedrive_mode_controller/enable_freedrive_mode<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>std_msgs/msg/Bool<span class="w"> </span><span class="s2">&quot;{data: true}&quot;</span>
+</pre></div>
+</div>
+<p>To deactivate, either publish <code class="docutils literal notranslate"><span class="pre">False</span></code>, deactivate the controller, or simply stop publishing.</p>
+<p>See the <a class="reference internal" href="../../../ur_controllers/doc/index.html#freedrive-mode-controller"><span class="std std-ref">freedrive_mode_controller</span></a> documentation for full
+details.</p>
+</section>
+<section id="force-torque-sensing">
+<h2>Force/Torque Sensing<a class="headerlink" href="#force-torque-sensing" title="Link to this heading"></a></h2>
+<p>The robot’s TCP force/torque sensor is an independent sensing capability. It is <strong>not required</strong>
+for joint torque control to function. However, it can be useful alongside torque
+control for monitoring contact forces or implementing sensor-based control strategies.</p>
+<section id="force-torque-sensor-broadcaster">
+<h3>force_torque_sensor_broadcaster<a class="headerlink" href="#force-torque-sensor-broadcaster" title="Link to this heading"></a></h3>
+<p>Type: <a class="reference external" href="https://control.ros.org/rolling/doc/ros2_controllers/force_torque_sensor_broadcaster/doc/userdoc.html">force_torque_sensor_broadcaster/ForceTorqueSensorBroadcaster</a></p>
+<p>Publishes the TCP wrench (forces and torques) as reported by the robot’s built-in sensor on the
+<code class="docutils literal notranslate"><span class="pre">ft_data</span></code> topic. This broadcaster is read-only and runs alongside any other controller.</p>
+<p>The sensor can be zeroed using the <code class="docutils literal notranslate"><span class="pre">~/zero_ftsensor</span></code> service on the
+<a class="reference internal" href="../../../ur_controllers/doc/index.html#io-and-status-controller"><span class="std std-ref">io_and_status_controller</span></a>.</p>
+</section>
+</section>
+<section id="controller-compatibility">
+<h2>Controller Compatibility<a class="headerlink" href="#controller-compatibility" title="Link to this heading"></a></h2>
+<p>The following table summarizes how torque-related controllers can be combined:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Controller</p></th>
+<th class="head"><p>Can combine with</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">forward_effort_controller</span></code></p></td>
+<td><p>Mutually exclusive with all other joint-level motion controllers (position, velocity,
+trajectory).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">force_mode_controller</span></code></p></td>
+<td><p>All position control modes (<code class="docutils literal notranslate"><span class="pre">joint_trajectory_controller</span></code>,
+<code class="docutils literal notranslate"><span class="pre">passthrough_trajectory_controller</span></code>, <code class="docutils literal notranslate"><span class="pre">forward_position_controller</span></code>, etc.)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">friction_model_controller</span></code></p></td>
+<td><p>All controllers (only affects torque control behavior).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">force_torque_sensor_broadcaster</span></code></p></td>
+<td><p>All controllers (read-only broadcaster).</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<section id="force-mode-py">
+<h3>force_mode.py<a class="headerlink" href="#force-mode-py" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">ur_robot_driver/examples/force_mode.py</span></code> example demonstrates how to:</p>
+<ol class="arabic simple">
+<li><p>Switch to the <code class="docutils literal notranslate"><span class="pre">passthrough_trajectory_controller</span></code> and <code class="docutils literal notranslate"><span class="pre">force_mode_controller</span></code></p></li>
+<li><p>Move the robot to a starting pose</p></li>
+<li><p>Activate force mode with a specified wrench, task frame, and selection vector</p></li>
+<li><p>Deactivate force mode after a set duration</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="position_velocity_control.html" class="btn btn-neutral float-left" title="Position and Velocity Control" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="utility_controllers.html" class="btn btn-neutral float-right" title="Utility Controllers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

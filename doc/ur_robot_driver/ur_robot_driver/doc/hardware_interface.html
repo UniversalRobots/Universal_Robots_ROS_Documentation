@@ -113,7 +113,7 @@ and flexible control of the robot.</p>
 <p>The hardware interface itself doesn’t define how the robot’s motion can be controlled through
 ROS. For that, a <strong>controller</strong> is needed. There are many controllers to choose from, such as
 the <code class="docutils literal notranslate"><span class="pre">JointTrajectoryController</span></code> or the <code class="docutils literal notranslate"><span class="pre">ForceModeController</span></code>. See <a class="reference external" href="https://control.ros.org/rolling/doc/ros2_controllers/doc/controllers_index.html#controllers-for-manipulators-and-other-robots">ros2_controllers</a>
-for “standard” controllers and <a class="reference internal" href="usage/controllers.html#ur-controllers"><span class="std std-ref">Controllers</span></a> for more information on UR-specific
+for “standard” controllers and <a class="reference internal" href="../../ur_controllers/doc/index.html#ur-controllers"><span class="std std-ref">ur_controllers</span></a> for more information on UR-specific
 controllers</p>
 </div>
 <section id="supported-control-modes">
@@ -146,6 +146,9 @@ provides a set of services to interact with the hardware interface directly. The
 comfortably used through the <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">control</span></code> <a class="reference external" href="https://control.ros.org/rolling/doc/ros2_control/ros2controlcli/doc/userdoc.html">command line tool</a>.</p>
 <p>E.g. <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">control</span> <span class="pre">list_hardware_components</span></code> will list all hardware components, including the UR
 hardware interface with its interfaces as listed above.</p>
+<p>When the launch files from this driver are used, a predefined set of controllers is already loaded.
+See <a class="reference internal" href="usage/controllers.html#usage-controllers"><span class="std std-ref">Controllers</span></a> for a description of the available controllers grouped by control mode.</p>
+<p>Users can also load other controllers that use the interfaces provided by the hardware interface.</p>
 </section>
 </section>
 

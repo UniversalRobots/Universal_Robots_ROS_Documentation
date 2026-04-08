@@ -24,7 +24,7 @@
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
-    <link rel="next" title="Simulation" href="simulation.html" />
+    <link rel="next" title="Position and Velocity Control" href="position_velocity_control.html" />
     <link rel="prev" title="Move the robot" href="move.html" /> 
 </head>
 
@@ -57,7 +57,12 @@
 <li class="toctree-l2 current"><a class="reference internal" href="toc.html">Usage</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="startup.html">Startup the driver</a></li>
 <li class="toctree-l3"><a class="reference internal" href="move.html">Move the robot</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Controllers</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Controllers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="position_velocity_control.html">Position and Velocity Control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="force_torque_control.html">Force and Torque Control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="utility_controllers.html">Utility Controllers</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="simulation.html">Simulation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="script_code.html">Sending URScript code to the robot</a></li>
 </ul>
@@ -111,23 +116,52 @@
            <div itemprop="articleBody">
              
   <section id="controllers">
-<span id="ur-controllers"></span><h1>Controllers<a class="headerlink" href="#controllers" title="Link to this heading"></a></h1>
+<span id="usage-controllers"></span><h1>Controllers<a class="headerlink" href="#controllers" title="Link to this heading"></a></h1>
 <p>This help page describes the different controllers available for the <code class="docutils literal notranslate"><span class="pre">ur_robot_driver</span></code>. This
 should help users finding the right controller for their specific use case.</p>
-<section id="where-are-controllers-defined">
-<h2>Where are controllers defined?<a class="headerlink" href="#where-are-controllers-defined" title="Link to this heading"></a></h2>
-<p>Controllers are defined in the <code class="docutils literal notranslate"><span class="pre">config/ur_controllers.yaml</span></code> file.</p>
+<section id="available-controllers">
+<h2>Available Controllers<a class="headerlink" href="#available-controllers" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="position_velocity_control.html">Position and Velocity Control</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="position_velocity_control.html#trajectory-based-control">Trajectory-based Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="position_velocity_control.html#motion-primitives">Motion Primitives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="position_velocity_control.html#streaming-control">Streaming Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="position_velocity_control.html#controller-compatibility">Controller Compatibility</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="force_torque_control.html">Force and Torque Control</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="force_torque_control.html#joint-torque-control">Joint Torque Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="force_torque_control.html#force-mode-controller">Force Mode Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="force_torque_control.html#freedrive-mode-controller">Freedrive Mode Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="force_torque_control.html#force-torque-sensing">Force/Torque Sensing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="force_torque_control.html#controller-compatibility">Controller Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="force_torque_control.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="utility_controllers.html">Utility Controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="utility_controllers.html#joint-state-broadcaster">joint_state_broadcaster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utility_controllers.html#speed-scaling-state-broadcaster">speed_scaling_state_broadcaster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utility_controllers.html#io-and-status-controller">io_and_status_controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utility_controllers.html#tool-contact-controller">tool_contact_controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utility_controllers.html#tcp-pose-broadcaster">tcp_pose_broadcaster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utility_controllers.html#ur-configuration-controller">ur_configuration_controller</a></li>
+</ul>
+</li>
+</ul>
+</div>
 </section>
 <section id="how-do-controllers-get-loaded-and-started">
 <h2>How do controllers get loaded and started?<a class="headerlink" href="#how-do-controllers-get-loaded-and-started" title="Link to this heading"></a></h2>
 <p>As this driver uses <a class="reference external" href="https://control.ros.org">ros2_control</a> all controllers are managed by the
-controller_manager. During startup, a default set of running controllers is loaded and started,
-another set is loaded in stopped mode. Stopped controllers won’t be usable right away, but they
-need to be started individually.</p>
+controller_manager. During startup, a default set of running controllers is loaded and activated,
+another set is loaded in inactive mode. Inactive controllers won’t be usable right away, but they
+need to be activated individually.</p>
 <p>Controllers that are actually writing to some command interfaces (e.g. joint positions) will claim
 those interfaces. Only one controller claiming a certain interface can be active at one point.</p>
 <p>Controllers can be switched either through the controller_manager’s service calls, through the
-<a class="reference external" href="https://control.ros.org/rolling/doc/ros2_control/controller_manager/doc/userdoc.html#rqt-controller-manager">rqt_controller_manager</a> gui or through the <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">control</span></code> verb from the package <code class="docutils literal notranslate"><span class="pre">ros-${ROS_DISTRO}-ros2controlcli</span></code> package.</p>
+<a class="reference external" href="https://control.ros.org/rolling/doc/ros2_control/controller_manager/doc/userdoc.html#rqt-controller-manager">rqt_controller_manager</a>
+gui or through the <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">control</span></code> verb from the <code class="docutils literal notranslate"><span class="pre">ros-${ROS_DISTRO}-ros2controlcli</span></code> package.</p>
 <p>For example, to switch from the default <code class="docutils literal notranslate"><span class="pre">scaled_joint_trajectory_controller</span></code> to the
 <code class="docutils literal notranslate"><span class="pre">forward_position_controller</span></code> you can call</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>control<span class="w"> </span>switch_controllers<span class="w"> </span>--deactivate<span class="w"> </span>scaled_joint_trajectory_controller<span class="w"> </span><span class="se">\</span>
@@ -137,78 +171,9 @@ those interfaces. Only one controller claiming a certain interface can be active
 </pre></div>
 </div>
 </section>
-<section id="read-only-broadcasters">
-<h2>Read-only broadcasters<a class="headerlink" href="#read-only-broadcasters" title="Link to this heading"></a></h2>
-<p>These broadcasters are read-only. They read states from the robot and publish them on a ROS topic.
-As they are read-only, they don’t claim any resources and can be combined freely. By default, they
-are all started and running. Those controllers do not require the robot to have the
-external_control script running.</p>
-<section id="joint-state-broadcaster">
-<h3>joint_state_broadcaster<a class="headerlink" href="#joint-state-broadcaster" title="Link to this heading"></a></h3>
-<p>Type: <a class="reference external" href="https://control.ros.org/rolling/doc/ros2_controllers/joint_state_broadcaster/doc/userdoc.html">joint_state_broadcaster/JointStateBroadcaster</a></p>
-<p>Publishes all joints’ positions, velocities, and motor currents as <code class="docutils literal notranslate"><span class="pre">sensor_msgs/JointState</span></code> on the <code class="docutils literal notranslate"><span class="pre">joint_states</span></code> topic.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The effort field contains the currents reported by the joints and not the actual efforts in a
-physical sense.</p>
-</div>
-</section>
-<section id="speed-scaling-state-broadcaster">
-<h3>speed_scaling_state_broadcaster<a class="headerlink" href="#speed-scaling-state-broadcaster" title="Link to this heading"></a></h3>
-<p>Type: <a class="reference internal" href="../../../ur_controllers/doc/index.html#speed-scaling-state-broadcaster"><span class="std std-ref">ur_controllers/SpeedScalingStateBroadcaster</span></a></p>
-<p>This broadcaster publishes the current actual execution speed as reported by the robot. Values are
-floating points between 0 and 1.</p>
-</section>
-<section id="force-torque-sensor-broadcaster">
-<h3>force_torque_sensor_broadcaster<a class="headerlink" href="#force-torque-sensor-broadcaster" title="Link to this heading"></a></h3>
-<p>Type: <a class="reference external" href="https://control.ros.org/rolling/doc/ros2_controllers/force_torque_sensor_broadcaster/doc/userdoc.html">force_torque_sensor_broadcaster/ForceTorqueSensorBroadcaster</a></p>
-<p>Publishes the robot’s wrench as reported from the controller.</p>
-</section>
-</section>
-<section id="commanding-controllers">
-<h2>Commanding controllers<a class="headerlink" href="#commanding-controllers" title="Link to this heading"></a></h2>
-<p>The commanding controllers control the robot’s motions. Those controllers can’t be combined
-arbitrarily, as they will claim hardware resources. Only one controller can claim one hardware
-resource at a time.</p>
-<section id="scaled-joint-trajectory-controller-default-motion-controller">
-<h3>scaled_joint_trajectory_controller (Default motion controller)<a class="headerlink" href="#scaled-joint-trajectory-controller-default-motion-controller" title="Link to this heading"></a></h3>
-<p>Type: <a class="reference internal" href="../../../ur_controllers/doc/index.html#scaled-jtc"><span class="std std-ref">ur_controllers/ScaledJointTrajectoryController</span></a></p>
-<p>Scaled version of the
-<a class="reference external" href="https://control.ros.org/master/doc/ros2_controllers/joint_trajectory_controller/doc/userdoc.html">joint_trajectory_controller</a>.
-It uses the robot’s speed scaling information and thereby the safety compliance features, like pause on safeguard stop. In addition, it also makes it possible to adjust execution speed using the speed slider on the teach pendant or set the program in pause and restart it again.
-See it’s linked documentation for details.</p>
-</section>
-<section id="io-and-status-controller">
-<h3>io_and_status_controller<a class="headerlink" href="#io-and-status-controller" title="Link to this heading"></a></h3>
-<p>Type: <a class="reference internal" href="../../../ur_controllers/doc/index.html#io-and-status-controller"><span class="std std-ref">ur_controllers/GPIOController</span></a></p>
-<p>Allows setting I/O ports, controlling some UR-specific functionality and publishes status information about the robot.</p>
-</section>
-<section id="forward-effort-controller">
-<h3>forward_effort_controller<a class="headerlink" href="#forward-effort-controller" title="Link to this heading"></a></h3>
-<p>Type: <a class="reference external" href="https://control.ros.org/rolling/doc/ros2_controllers/effort_controllers/doc/userdoc.html#effort-controllers-jointgroupeffortcontroller">effort_controllers/JointGroupEffortController</a></p>
-<p>Allows setting target joint efforts (torques) directly. The user is therefore responsible for sending commands that are achievable. This controller is useful when implementing compliance or force control strategies.</p>
-</section>
-<section id="forward-velocity-controller">
-<h3>forward_velocity_controller<a class="headerlink" href="#forward-velocity-controller" title="Link to this heading"></a></h3>
-<p>Type: <a class="reference external" href="https://control.ros.org/rolling/doc/ros2_controllers/velocity_controllers/doc/userdoc.html#velocity-controllers-jointgroupvelocitycontroller">velocity_controllers/JointGroupVelocityController</a></p>
-<p>Allows setting target joint velocities directly. The user is therefore responsible for sending commands that are achievable. This controller is particularly useful when doing servoing such as <code class="docutils literal notranslate"><span class="pre">moveit_servo</span></code>.</p>
-</section>
-<section id="forward-position-controller">
-<h3>forward_position_controller<a class="headerlink" href="#forward-position-controller" title="Link to this heading"></a></h3>
-<p>Type: <a class="reference external" href="https://control.ros.org/rolling/doc/ros2_controllers/position_controllers/doc/userdoc.html#position-controllers-jointgrouppositioncontroller">position_controllers/JointGroupPositionController</a></p>
-<p>Allows setting target joint positions directly. The robot tries to reach the target position as fast as possible. The user is responsible for sending commands that are achievable. This controller is particularly useful when doing servoing such as <code class="docutils literal notranslate"><span class="pre">moveit_servo</span></code>.</p>
-</section>
-<section id="force-mode-controller">
-<h3>force_mode_controller<a class="headerlink" href="#force-mode-controller" title="Link to this heading"></a></h3>
-<p>Type: <a class="reference internal" href="../../../ur_controllers/doc/index.html#force-mode-controller"><span class="std std-ref">ur_controllers/ForceModeController</span></a></p>
-<p>Allows utilizing the robot’s builtin <em>Force Mode</em>.</p>
-</section>
-<section id="freedrive-mode-controller">
-<h3>freedrive_mode_controller<a class="headerlink" href="#freedrive-mode-controller" title="Link to this heading"></a></h3>
-<p>Type: <a class="reference internal" href="../../../ur_controllers/doc/index.html#freedrive-mode-controller"><span class="std std-ref">ur_controllers/FreedriveModeController</span></a></p>
-<p>Allows utilizing the robot’s <em>Freedrive mode</em>, making it possible to manually move the robot’s
-joints.</p>
-</section>
+<section id="where-are-controllers-defined">
+<h2>Where are controllers defined?<a class="headerlink" href="#where-are-controllers-defined" title="Link to this heading"></a></h2>
+<p>Controllers are defined in the <code class="docutils literal notranslate"><span class="pre">config/ur_controllers.yaml</span></code> file.</p>
 </section>
 </section>
 
@@ -217,7 +182,7 @@ joints.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="move.html" class="btn btn-neutral float-left" title="Move the robot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="simulation.html" class="btn btn-neutral float-right" title="Simulation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="position_velocity_control.html" class="btn btn-neutral float-right" title="Position and Velocity Control" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
