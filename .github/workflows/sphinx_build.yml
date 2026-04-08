@@ -30,6 +30,12 @@ jobs:
         run: |
           mkdir -p doc
           bash scripts/build_docs.sh
+      - name: Upload HTML documentation artifact
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation-html
+          path: _build/html
       - name: clone gh-pages branch
         uses: actions/checkout@v4
         if: ${{ success() && github.event_name != 'pull_request' && !env.ACT }}
