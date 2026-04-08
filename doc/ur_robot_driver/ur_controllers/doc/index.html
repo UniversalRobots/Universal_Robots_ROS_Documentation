@@ -420,12 +420,51 @@ A value larger than 1 can make force mode unstable, e.g. in case of collisions o
 </dl>
 </section>
 </section>
+<section id="ur-controllers-frictionmodelcontroller">
+<span id="friction-model-controller"></span><h3>ur_controllers/FrictionModelController<a class="headerlink" href="#ur-controllers-frictionmodelcontroller" title="Link to this heading"></a></h3>
+<p>This controller allows setting per-joint viscous and Coulomb friction scale factors for direct
+torque control. The friction model scales control how much internal friction compensation the robot
+applies during direct torque control mode.</p>
+<section id="id3">
+<h4>Parameters<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Parameter name</p></td>
+<td><p>Type</p></td>
+<td><p>Default value</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tf_prefix</span></code></p></td>
+<td><p>string</p></td>
+<td><p>&lt;empty&gt;</p></td>
+<td><p>Urdf prefix of the corresponding arm</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">check_io_successful_retries</span></code></p></td>
+<td><p>int</p></td>
+<td><p>10</p></td>
+<td><p>Amount of retries for checking if setting friction scales was
+successful</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id4">
+<h4>Service interface / usage<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
+<p>The controller provides a service for setting friction scale factors. To use this service, the
+controller has to be in <code class="docutils literal notranslate"><span class="pre">active</span></code> state.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">~/set_friction_model_parameters</span> <span class="pre">[ur_msgs/srv/SetFrictionModelParameters]</span></code>: Set per-joint viscous and Coulomb
+friction scale factors for direct torque control. Each array must contain exactly one value for each joint in
+range [0-1] where 0 means no compensation and 1 means full compensation.</p></li>
+</ul>
+</section>
+</section>
 <section id="ur-controllers-freedrivemodecontroller">
 <span id="freedrive-mode-controller"></span><h3>ur_controllers/FreedriveModeController<a class="headerlink" href="#ur-controllers-freedrivemodecontroller" title="Link to this heading"></a></h3>
 <p>This controller activates the robot’s <em>Freedrive Mode</em>, allowing to manually move the robot’ joints.
 This controller can’t be combined with any other motion controller.</p>
-<section id="id3">
-<h4>Parameters<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<section id="id5">
+<h4>Parameters<a class="headerlink" href="#id5" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>Parameter name</p></td>
@@ -473,8 +512,8 @@ motion, and retract to where it first sensed the contact.</p>
 <p>The controller is not a direct representation of the URScript function <a class="reference external" href="https://www.universal-robots.com/manuals/EN/HTML/SW5_21/Content/prod-scriptmanual/all_scripts/tool_contact%28direction%29.htm?Highlight=tool_contact">tool_contact(direction)</a>,
 as it does not allow for choosing the direction. The direction of tool contact will always be the
 current TCP direction of movement.</p>
-<section id="id4">
-<h4>Parameters<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
+<section id="id6">
+<h4>Parameters<a class="headerlink" href="#id6" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>Parameter name</p></td>
@@ -495,8 +534,8 @@ current TCP direction of movement.</p>
 </tbody>
 </table>
 </section>
-<section id="id5">
-<h4>Action interface / usage<a class="headerlink" href="#id5" title="Link to this heading"></a></h4>
+<section id="id7">
+<h4>Action interface / usage<a class="headerlink" href="#id7" title="Link to this heading"></a></h4>
 <p>The controller provides one action for enabling tool contact. For the controller to accept action goals it needs to be in <code class="docutils literal notranslate"><span class="pre">active</span></code> state.</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">~/detect_tool_contact</span> <span class="pre">[ur_msgs/action/ToolContact]</span></code></p>
