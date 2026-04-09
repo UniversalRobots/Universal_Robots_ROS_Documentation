@@ -15,7 +15,7 @@ SUBREPOS=(
   doc/ur_tutorials
 )
 
-DISTROS=(humble jazzy kilted rolling)
+DISTROS=(jazzy kilted rolling)
 REDIRECT_TARGET="${DOCUMENTATION_ROOT_REDIRECT:-rolling}"
 
 clean_subrepos() {

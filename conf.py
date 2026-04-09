@@ -64,7 +64,7 @@ numfig = True
 ros_distro = os.environ.get("ROS_DISTRO", "rolling").lower()
 
 _distro_meta = {
-    "humble": ("Humble", "Humble Hawksbill"),
+    # "humble": ("Humble", "Humble Hawksbill"),
     "jazzy": ("Jazzy", "Jazzy Jalisco"),
     "kilted": ("Kilted", "Kilted Kaiju"),
     "rolling": ("Rolling", "Rolling Ridley"),
@@ -81,7 +81,7 @@ repos_file_branch = os.environ.get("DOCUMENTATION_GIT_BRANCH", "main")
 
 # Pairs (slug, label) for the floating version switcher (paths under _build/html/)
 _DOCUMENTATION_VERSION_SLUGS = (
-    ("humble", "Humble"),
+    # ("humble", "Humble"),
     ("jazzy", "Jazzy"),
     ("kilted", "Kilted"),
     ("rolling", "Rolling"),
