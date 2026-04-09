@@ -25,6 +25,7 @@ clean_subrepos() {
 build_one() {
   local distro="$1"
   export ROS_DISTRO="$distro"
+  echo -e "\n\n====== Building documentation for ROS 2 distro: ${distro} ======\n"
   clean_subrepos
   vcs import --input "${distro}.repos" doc
   sphinx-build -b html . "${ROOT}/_build/html/${distro}"
