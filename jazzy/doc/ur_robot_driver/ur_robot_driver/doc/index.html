@@ -1,0 +1,234 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ur_robot_driver &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/ur_theme.css?v=078fdd0b" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/icon.svg"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Overview" href="overview.html" />
+    <link rel="prev" title="Migration notes" href="../../../ur_description/doc/migration_notes.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Driver Documentation
+              <img src="../../../../_static/ur_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_client_library/doc/index.html">ur_client_library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ur_robot_driver</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/toc.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/toc.html">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operation_modes.html">Operation modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_tool_communication.html">Setting up the tool communication on an e-Series / UR Series robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface.html">UR Hardware interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html">UR Hardware interface parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dashboard_client.html">Dashboard client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="robot_state_helper.html">Robot state helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller_stopper.html">Controller stopper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trajectory_until_node.html">Trajectory until node</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_tutorials/tutorial_index.html">Tutorial examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../migration_notes.html">Migration Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../build_status.html">Build status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ros2_controller_vs_driver.html">ROS 2 integration paths</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Universal Robots ROS 2 Driver Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">ur_robot_driver</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS_Documentation/blob/main//doc/ur_robot_driver/ur_robot_driver/doc/index.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ur-robot-driver">
+<span id="id1"></span><h1>ur_robot_driver<a class="headerlink" href="#ur-robot-driver" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#feature-list-and-roadmap">Feature list and roadmap</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation/toc.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation/installation.html">Installation of the ur_robot_driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/robot_setup.html">Setting up a UR robot for ur_robot_driver</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage/toc.html">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage/startup.html">Startup the driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/move.html">Move the robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/simulation.html">Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/script_code.html">Sending URScript code to the robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/toc.html#quick-start">Quick start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/toc.html#robot-frames">Robot frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/toc.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="operation_modes.html">Operation modes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="operation_modes.html#robot-s-control-modes">Robot’s control modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operation_modes.html#driver-s-operation-modes">Driver’s operation modes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="setup_tool_communication.html">Setting up the tool communication on an e-Series / UR Series robot</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="setup_tool_communication.html#robot-setup">Robot setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_tool_communication.html#setup-the-ros-side">Setup the ROS side</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hardware_interface.html">UR Hardware interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface.html#supported-control-modes">Supported control modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface.html#interacting-with-the-hardware-interface">Interacting with the hardware interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hardware_interface_parameters.html">UR Hardware interface parameters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html#headless-mode">headless_mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html#input-recipe-filename-required">input_recipe_filename (Required)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html#kinematics-hash-required">kinematics/hash (Required)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html#non-blocking-read-default-true">non_blocking_read (default: “true”)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html#output-recipe-filename-required">output_recipe_filename (Required)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html#reverse-port-required">reverse_port (Required)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html#robot-ip-required">robot_ip (Required)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html#script-filename-required">script_filename (Required)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html#script-sender-port-required">script_sender_port (Required)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html#servoj-gain-required">servoj_gain (Required)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html#servoj-lookahead-time-required">servoj_lookahead_time (Required)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html#tool-baud-rate-required">tool_baud_rate (Required)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html#tool-parity-required">tool_parity (Required)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html#tool-rx-idle-chars-required">tool_rx_idle_chars (Required)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html#tool-stop-bits-required">tool_stop_bits (Required)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html#tool-tx-idle-chars-required">tool_tx_idle_chars (Required)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html#tool-voltage-required">tool_voltage (Required)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html#use-tool-communication-required">use_tool_communication (Required)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dashboard_client.html">Dashboard client</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dashboard_client.html#advertised-services">Advertised Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dashboard_client.html#parameters">Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="robot_state_helper.html">Robot state helper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controller_stopper.html">Controller stopper</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="controller_stopper.html#parameters">Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="trajectory_until_node.html">Trajectory until node</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trajectory_until_node.html#action-interface-usage">Action interface / usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trajectory_until_node.html#implementation-details">Implementation details</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../../ur_description/doc/migration_notes.html" class="btn btn-neutral float-left" title="Migration notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="overview.html" class="btn btn-neutral float-right" title="Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> ROS 2</span>
+      Jazzy
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../../../jazzy/doc/ur_robot_driver/ur_robot_driver/doc/index.html">Jazzy</a></dd>
+        
+          <dd><a href="../../../../../kilted/doc/ur_robot_driver/ur_robot_driver/doc/index.html">Kilted</a></dd>
+        
+          <dd><a href="../../../../../rolling/doc/ur_robot_driver/ur_robot_driver/doc/index.html">Rolling</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

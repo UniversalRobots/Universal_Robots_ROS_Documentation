@@ -1,0 +1,602 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ur_controllers &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/ur_theme.css?v=078fdd0b" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/icon.svg"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="ur_moveit_config" href="../../ur_moveit_config/doc/index.html" />
+    <link rel="prev" title="Calibration correction algorithm" href="../../ur_calibration/doc/algorithm.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Driver Documentation
+              <img src="../../../../_static/ur_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_client_library/doc/index.html">ur_client_library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_tutorials/tutorial_index.html">Tutorial examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../migration_notes.html">Migration Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../build_status.html">Build status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ros2_controller_vs_driver.html">ROS 2 integration paths</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Universal Robots ROS 2 Driver Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">ur_controllers</li>
+      <li class="wy-breadcrumbs-aside">
+              <!-- User defined GitHub URL -->
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/blob/main/ur_controllers/doc/index.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ur-controllers">
+<h1>ur_controllers<a class="headerlink" href="#ur-controllers" title="Link to this heading"></a></h1>
+<p>This package contains controllers and hardware interface for <code class="docutils literal notranslate"><span class="pre">ros2_controllers</span></code> that are special to the UR
+robot family. Currently this contains:</p>
+<ul class="simple">
+<li><p>A <strong>speed_scaling_state_broadcaster</strong> that publishes the current execution speed as reported by
+the robot to a topic interface. Values are floating points between 0 and 1.</p></li>
+<li><p>A <strong>scaled_joint_trajectory_controller</strong> that is similar to the <em>joint_trajectory_controller</em>,
+but it uses the speed scaling reported to align progress of the trajectory between the robot and controller.</p></li>
+<li><p>A <strong>io_and_status_controller</strong> that allows setting I/O ports, controlling some UR-specific
+functionality and publishes status information about the robot.</p></li>
+<li><p>A <strong>tool_contact_controller</strong> that exposes an action to enable the tool contact function on the robot.</p></li>
+</ul>
+<section id="about-this-package">
+<h2>About this package<a class="headerlink" href="#about-this-package" title="Link to this heading"></a></h2>
+<p>This package contains controllers not being available in the default <code class="docutils literal notranslate"><span class="pre">ros2_controllers</span></code> set. They are
+created to support more features offered by the UR robot family. Some of these controllers are
+example implementations for certain features and are intended to be generalized and merged
+into the default <code class="docutils literal notranslate"><span class="pre">ros2_controllers</span></code> controller set at some future point.</p>
+</section>
+<section id="controller-description">
+<h2>Controller description<a class="headerlink" href="#controller-description" title="Link to this heading"></a></h2>
+<p>This packages offers a couple of specific controllers that will be explained in the following
+sections.</p>
+<section id="ur-controllers-speedscalingstatebroadcaster">
+<span id="speed-scaling-state-broadcaster"></span><h3>ur_controllers/SpeedScalingStateBroadcaster<a class="headerlink" href="#ur-controllers-speedscalingstatebroadcaster" title="Link to this heading"></a></h3>
+<p>This controller publishes the current actual execution speed as reported by the robot. Values are
+floating points between 0 and 1.</p>
+<p>In the <a class="reference external" href="https://index.ros.org/p/ur_robot_driver">ur_robot_driver</a>
+this is calculated by multiplying the two <a class="reference external" href="https://www.universal-robots.com/articles/ur/real-time-data-exchange-rtde-guide/">RTDE</a> data
+fields <code class="docutils literal notranslate"><span class="pre">speed_scaling</span></code> (which should be equal to the value shown by the speed slider position on the
+teach pendant) and <code class="docutils literal notranslate"><span class="pre">target_speed_fraction</span></code> (Which is the fraction to which execution gets slowed
+down by the controller).</p>
+</section>
+<section id="ur-controlers-scaledjointtrajectorycontroller">
+<span id="scaled-jtc"></span><h3>ur_controlers/ScaledJointTrajectoryController<a class="headerlink" href="#ur-controlers-scaledjointtrajectorycontroller" title="Link to this heading"></a></h3>
+<p>These controllers work similar to the well-known
+<a class="reference external" href="https://control.ros.org/master/doc/ros2_controllers/joint_trajectory_controller/doc/userdoc.html">joint_trajectory_controller</a>.</p>
+<p>However, they are extended to handle the robot’s execution speed specifically. Because the default
+<code class="docutils literal notranslate"><span class="pre">joint_trajectory_controller</span></code> would interpolate the trajectory with the configured time constraints (ie: always assume maximum velocity and acceleration supported by the robot),
+this could lead to significant path deviation due to multiple reasons:</p>
+<ul class="simple">
+<li><p>The speed slider on the robot might not be at 100%, so motion commands sent from ROS would
+effectively get scaled down resulting in a slower execution.</p></li>
+<li><p>The robot could scale down motions based on configured safety limits resulting in a slower motion
+than expected and therefore not reaching the desired target in a control cycle.</p></li>
+<li><p>Motions might not be executed at all, e.g. because the robot is E-stopped or in a protective stop</p></li>
+<li><p>Motion commands sent to the robot might not be interpreted, e.g. because there is no
+<a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS_Driver#prepare-the-robot">external_control</a>
+program node running on the robot controller.</p></li>
+<li><p>The program interpreting motion commands could be paused.</p></li>
+</ul>
+<p>The following plot illustrates the problem:</p>
+<a class="reference external image-reference" href="traj_without_speed_scaling.png"><img alt="Trajectory execution with default trajectory controller" src="../../../../_images/traj_without_speed_scaling.png" />
+</a>
+<p>The graph shows a trajectory with one joint being moved to a target point and back to its starting
+point. As the joint’s speed is limited to a very low setting on the teach pendant, speed scaling
+(black line) activates and limits the joint speed (green line). As a result, the target
+trajectory (light blue) doesn’t get executed by the robot, but instead the pink trajectory is executed.
+The vertical distance between the light blue line and the pink line is the path error in each
+control cycle. We can see that the path deviation gets above 300 degrees at some point and the
+target point at -6 radians never gets reached.</p>
+<p>All of the cases mentioned above are addressed by the scaled trajectory versions. Trajectory execution
+can be transparently scaled down using the speed slider on the teach pendant without leading to
+additional path deviations. Pausing the program or hitting the E-stop effectively leads to
+<code class="docutils literal notranslate"><span class="pre">speed_scaling</span></code> being 0 meaning the trajectory will not be continued until the program is continued.
+This way, trajectory executions can be explicitly paused and continued.</p>
+<p>With the scaled version of the trajectory controller the example motion shown in the previous diagram becomes:</p>
+<a class="reference external image-reference" href="traj_with_speed_scaling.png"><img alt="Trajectory execution with scaled_joint_trajectory_controller" src="../../../../_images/traj_with_speed_scaling.png" />
+</a>
+<p>The deviation between trajectory interpolation on the ROS side and actual robot execution stays minimal and the
+robot reaches the intermediate setpoint instead of returning “too early” as in the example above.</p>
+<p>Under the hood this is implemented by proceeding the trajectory not by a full time step but only by
+the fraction determined by the current speed scaling. If speed scaling is currently at 50% then
+interpolation of the current control cycle will start half a time step after the beginning of the
+previous control cycle.</p>
+</section>
+<section id="ur-controllers-gpiocontroller">
+<span id="io-and-status-controller"></span><h3>ur_controllers/GPIOController<a class="headerlink" href="#ur-controllers-gpiocontroller" title="Link to this heading"></a></h3>
+<p>This controller allows setting I/O ports, controlling some UR-specific functionality and publishes
+status information about the robot.</p>
+<section id="published-topics">
+<h4>Published topics<a class="headerlink" href="#published-topics" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">~/io_states</span> <span class="pre">[ur_msgs/msg/IOStates]</span></code>: Status of all I/O ports</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/robot_mode</span> <span class="pre">[ur_dashboard_msgs/msg/RobotMode]</span></code>: The current robot mode (e.g. <code class="docutils literal notranslate"><span class="pre">POWER_OFF</span></code>,
+<code class="docutils literal notranslate"><span class="pre">IDLE</span></code>, <code class="docutils literal notranslate"><span class="pre">RUNNING</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/robot_program_running</span> <span class="pre">[std_msgs/msg/Bool]</span></code>: Publishes whether <strong>the External Control
+program</strong> is running or not. If this is <code class="docutils literal notranslate"><span class="pre">false</span></code> no commands can be sent to the robot.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/safety_mode</span> <span class="pre">[ur_dashboard_msgs/msg/SafetyMode]</span></code>: The robot’s current safety mode (e.g.
+<code class="docutils literal notranslate"><span class="pre">PROTECTIVE_STOP</span></code>, <code class="docutils literal notranslate"><span class="pre">ROBOT_EMERGENCY_STOP</span></code>, <code class="docutils literal notranslate"><span class="pre">NORMAL</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/tool_data</span> <span class="pre">[ur_msgs/msg/ToolDataMsg]</span></code>: Information about the robot’s tool configuration</p></li>
+</ul>
+</section>
+<section id="advertised-services">
+<h4>Advertised services<a class="headerlink" href="#advertised-services" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">~/hand_back_control</span> <span class="pre">[std_srvs/srv/Trigger]</span></code>: Calling this service will make the robot program
+exit the <em>External Control</em> program node and continue with the rest of the program.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/resend_robot_program</span> <span class="pre">[std_srvs/srv/Trigger]</span></code>: When <a class="reference internal" href="../../ur_robot_driver/doc/operation_modes.html#headless-mode"><span class="std std-ref">Headless mode</span></a> is used, this
+service can be used to restart the <em>External Control</em> program on the robot.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/set_io</span> <span class="pre">[ur_msgs/srv/SetIO]</span></code>: Set an output pin on the robot.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/set_analog_output</span> <span class="pre">[ur_msgs/srv/SetAnalogOutput]</span></code>: Set an analog output on the robot. This
+also allows specifying the domain.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/set_payload</span> <span class="pre">[ur_msgs/srv/SetPayload]</span></code>: Change the robot’s payload on-the-fly.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/set_speed_slider</span> <span class="pre">[ur_msgs/srv/SetSpeedSliderFraction]</span></code>: Set the value of the speed slider.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/zero_ftsensor</span> <span class="pre">[std_srvs/srv/Trigger]</span></code>: Zeroes the reported wrench of the force torque
+sensor.</p></li>
+</ul>
+</section>
+</section>
+<section id="ur-controllers-passthroughtrajectorycontroller">
+<span id="passthrough-trajectory-controller"></span><h3>ur_controllers/PassthroughTrajectoryController<a class="headerlink" href="#ur-controllers-passthroughtrajectorycontroller" title="Link to this heading"></a></h3>
+<p>This controller uses a <code class="docutils literal notranslate"><span class="pre">control_msgs/FollowJointTrajectory</span></code> action but instead of interpolating
+the trajectory on the ROS pc it forwards the complete trajectory to the robot controller for
+interpolation and execution. This way, the realtime requirements for the control PC can be
+massively decreased, since the robot always “knows” what to do next. That means that you should be
+able to run a stable driver connection also without a real-time patched kernel.</p>
+<p>Interpolation depends on the robot controller’s implementation, but in conjunction with the
+ur_robot_driver it defaults to mimicking ros2_control’s spline interpolation. So, any trajectory
+planned e.g. with MoveIt! will be executed following the trajectory exactly.</p>
+<p>A trajectory sent to the controller’s action server will be forwarded to the robot controller and
+executed there. Once all setpoints are transferred to the robot, the controller goes into a waiting
+state where it waits for the trajectory to be finished. While waiting, the controller tracks the
+time spent on the trajectory to ensure the robot isn’t stuck during execution.</p>
+<p>This controller also supports <strong>speed scaling</strong> such that and scaling down of the trajectory done
+by the robot, for example due to safety settings on the robot or simply because a slower execution
+is configured on the teach pendant. This will be considered, during execution monitoring, so the
+controller basically tracks the scaled time instead of the real time.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using this controller with the URSim simulator execution times can be slightly larger than
+the expected time depending on the simulation host’s resources. This effect will not be present
+when using a real UR arm.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This controller can currently only be used with URSim or a real UR robot. Neither mock hardware
+nor gazebo support this type of trajectory interfaces at the time being.</p>
+</div>
+<section id="tolerances">
+<h4>Tolerances<a class="headerlink" href="#tolerances" title="Link to this heading"></a></h4>
+<p>Currently, the trajectory passthrough controller only supports goal tolerances and goal time
+tolerances passed in the action directly. Please make sure that the tolerances are completely
+filled with all joint names.</p>
+<p>A <strong>goal time tolerance</strong> of <code class="docutils literal notranslate"><span class="pre">0.0</span></code> means that no goal time tolerance is set and the action will
+not fail when execution takes too long.</p>
+</section>
+<section id="action-interface-usage">
+<h4>Action interface / usage<a class="headerlink" href="#action-interface-usage" title="Link to this heading"></a></h4>
+<p>To use this controller, publish a goal to the <code class="docutils literal notranslate"><span class="pre">~/follow_joint_trajectory</span></code> action interface
+similar to the <a class="reference external" href="https://control.ros.org/master/doc/ros2_controllers/joint_trajectory_controller/doc/userdoc.html">joint_trajectory_controller</a>.</p>
+<p>Currently, the controller doesn’t support replacing a running trajectory action. While a trajectory
+is being executed, goals will be rejected until the action has finished. If you want to replace it,
+first cancel the running action and then send a new one.</p>
+</section>
+<section id="parameters">
+<h4>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h4>
+<p>The trajectory passthrough controller uses the following parameters:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Parameter name</p></td>
+<td><p>Type</p></td>
+<td><p>Default value</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">joints</span></code> (required)</p></td>
+<td><p>string_array</p></td>
+<td><p>&lt;empty&gt;</p></td>
+<td><p>Joint names to  listen to</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">state_interfaces</span></code> (required)</p></td>
+<td><p>string_array</p></td>
+<td><p>&lt;empty&gt;</p></td>
+<td><p>State interfaces provided by the hardware for all joints. Subset of <code class="docutils literal notranslate"><span class="pre">[&quot;position&quot;,</span> <span class="pre">&quot;velocity&quot;,</span> <span class="pre">&quot;acceleration&quot;]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">speed_scaling_interface_name</span></code></p></td>
+<td><p>string</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">speed_scaling/speed_scaling_factor</span></code></p></td>
+<td><p>Fully qualified name of the speed scaling interface name.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">tf_prefix</span></code></p></td>
+<td><p>string</p></td>
+<td><p>&lt;empty&gt;</p></td>
+<td><p>Urdf prefix of the corresponding arm</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="interfaces">
+<h4>Interfaces<a class="headerlink" href="#interfaces" title="Link to this heading"></a></h4>
+<p>In order to use this, the hardware has to export a command interface for passthrough operations for each joint. It always has
+to export position, velocity and acceleration interfaces in order to be able to project the full
+JointTrajectory definition. This is why there are separate fields used, as for passthrough mode
+accelerations might be relevant also for robots that don’t support commanding accelerations
+directly to their joints.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;gpio</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;${tf_prefix}trajectory_passthrough&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;setpoint_positions_0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;setpoint_positions_1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;setpoint_positions_2&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;setpoint_positions_3&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;setpoint_positions_4&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;setpoint_positions_5&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;setpoint_velocities_0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;setpoint_velocities_1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;setpoint_velocities_2&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;setpoint_velocities_3&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;setpoint_velocities_4&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;setpoint_velocities_5&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;setpoint_accelerations_0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;setpoint_accelerations_1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;setpoint_accelerations_2&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;setpoint_accelerations_3&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;setpoint_accelerations_4&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;setpoint_accelerations_5&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;transfer_state&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;time_from_start&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;abort&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/gpio&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The hardware component has to take care that the passthrough command interfaces cannot be
+activated in parallel to the streaming command interfaces.</p>
+</div>
+</section>
+<section id="implementation-details-dataflow">
+<h4>Implementation details / dataflow<a class="headerlink" href="#implementation-details-dataflow" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>A trajectory passed to the controller will be sent to the hardware component one by one.</p></li>
+<li><p>The controller will send one setpoint and then wait for the hardware to acknowledge that it can
+take a new setpoint.</p></li>
+<li><p>This happens until all setpoints have been transferred to the hardware. Then, the controller goes
+into a waiting state where it monitors execution time and waits for the hardware to finish
+execution.</p></li>
+<li><p>If execution takes longer than anticipated, a warning will be printed.</p></li>
+<li><p>If execution finished taking longer than expected (plus the goal time tolerance), the action will fail.</p></li>
+<li><p>When the hardware reports that execution has been aborted (The <code class="docutils literal notranslate"><span class="pre">passthrough_trajectory_abort</span></code>
+command interface), the action will be aborted.</p></li>
+<li><p>When the action is preempted, execution on the hardware is preempted.</p></li>
+</ul>
+</section>
+</section>
+<section id="ur-controllers-forcemodecontroller">
+<span id="force-mode-controller"></span><h3>ur_controllers/ForceModeController<a class="headerlink" href="#ur-controllers-forcemodecontroller" title="Link to this heading"></a></h3>
+<p>This controller activates the robot’s <em>Force Mode</em>. This allows direct force control running on the
+robot control box. This controller basically interfaces the URScript function <code class="docutils literal notranslate"><span class="pre">force_mode(...)</span></code>.</p>
+<p>Force mode can be combined with (and only with) the <a class="reference internal" href="#passthrough-trajectory-controller"><span class="std std-ref">passthrough trajectory controller</span></a> in order to execute motions under a given force constraints.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is not an admittance controller, as given force constraints in a certain Cartesian
+dimension will overwrite the motion commands in that dimension. E.g. when specifying a certain
+force in the base frame’s <code class="docutils literal notranslate"><span class="pre">z</span></code> direction, any motion resulting from the move command in the
+base frame’s <code class="docutils literal notranslate"><span class="pre">z</span></code> axis will not be executed.</p>
+</div>
+<section id="id2">
+<h4>Parameters<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Parameter name</p></td>
+<td><p>Type</p></td>
+<td><p>Default value</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tf_prefix</span></code></p></td>
+<td><p>string</p></td>
+<td><p>&lt;empty&gt;</p></td>
+<td><p>Urdf prefix of the corresponding arm</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">check_io_successful_retries</span></code></p></td>
+<td><p>int</p></td>
+<td><p>10</p></td>
+<td><p>Amount of retries for checking if setting force_mode was successful</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="service-interface-usage">
+<h4>Service interface / usage<a class="headerlink" href="#service-interface-usage" title="Link to this heading"></a></h4>
+<p>The controller provides two services: One for activating force_mode and one for leaving it. To use
+those services, the controller has to be in <code class="docutils literal notranslate"><span class="pre">active</span></code> state.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">~/stop_force_mode</span> <span class="pre">[std_srvs/srv/Trigger]</span></code>: Stop force mode</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/start_force_mode</span> <span class="pre">[ur_msgs/srv/SetForceMode]</span></code>: Start force mode</p></li>
+</ul>
+<p>In <code class="docutils literal notranslate"><span class="pre">ur_msgs/srv/SetForceMode</span></code> the fields have the following meanings:</p>
+<dl>
+<dt>task_frame</dt><dd><p>All information (selection vector, wrench, limits, etc) will be considered to be relative
+to that pose. The pose’s frame_id can be anything that is transformable to the robot’s
+<code class="docutils literal notranslate"><span class="pre">base</span></code> frame.</p>
+</dd>
+<dt>selection_vector_&lt;x,y,z,rx,ry,rz&gt;</dt><dd><p>1 means that the robot will be compliant in the corresponding axis of the task frame.</p>
+</dd>
+<dt>wrench</dt><dd><p>The forces/torques the robot will apply to its environment. The robot adjusts its position
+along/about compliant axis in order to achieve the specified force/torque. Values have no effect for non-
+compliant axes.
+Actual wrench applied may be lower than requested due to joint safety limits.</p>
+</dd>
+<dt>type</dt><dd><p>An integer [1;3] specifying how the robot interprets the force frame</p>
+<dl class="simple">
+<dt>1</dt><dd><p>The force frame is transformed in a way such that its y-axis is aligned with a vector pointing
+from the robot tcp towards the origin of the force frame.</p>
+</dd>
+<dt>2</dt><dd><p>The force frame is not transformed.</p>
+</dd>
+<dt>3</dt><dd><p>The force frame is transformed in a way such that its x-axis is the projection of the robot tcp
+velocity vector onto the x-y plane of the force frame.</p>
+</dd>
+</dl>
+</dd>
+<dt>speed_limits</dt><dd><p>Maximum allowed tcp speed (relative to the task frame). This is <strong>only relevant for axes marked as
+compliant</strong> in the selection_vector.</p>
+</dd>
+<dt>deviation_limits</dt><dd><p>For <strong>non-compliant axes</strong>, these values are the maximum allowed deviation along/about an axis
+between the actual tcp position and the one set by the program.</p>
+</dd>
+<dt>damping_factor</dt><dd><p>Force mode damping factor. Sets the damping parameter in force mode. In range [0;1], default value is 0.025
+A value of 1 is full damping, so the robot will decelerate quickly if no force is present. A value of 0
+is no damping, here the robot will maintain the speed.</p>
+</dd>
+<dt>gain_scaling</dt><dd><p>Force mode gain scaling factor. Scales the gain in force mode. scaling parameter is in range [0;2], default is 0.5.
+A value larger than 1 can make force mode unstable, e.g. in case of collisions or pushing against hard surfaces.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="ur-controllers-frictionmodelcontroller">
+<span id="friction-model-controller"></span><h3>ur_controllers/FrictionModelController<a class="headerlink" href="#ur-controllers-frictionmodelcontroller" title="Link to this heading"></a></h3>
+<p>This controller allows setting per-joint viscous and Coulomb friction scale factors for direct
+torque control. The friction model scales control how much internal friction compensation the robot
+applies during direct torque control mode.</p>
+<section id="id3">
+<h4>Parameters<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Parameter name</p></td>
+<td><p>Type</p></td>
+<td><p>Default value</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tf_prefix</span></code></p></td>
+<td><p>string</p></td>
+<td><p>&lt;empty&gt;</p></td>
+<td><p>Urdf prefix of the corresponding arm</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">check_io_successful_retries</span></code></p></td>
+<td><p>int</p></td>
+<td><p>10</p></td>
+<td><p>Amount of retries for checking if setting friction scales was
+successful</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id4">
+<h4>Service interface / usage<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
+<p>The controller provides a service for setting friction scale factors. To use this service, the
+controller has to be in <code class="docutils literal notranslate"><span class="pre">active</span></code> state.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">~/set_friction_model_parameters</span> <span class="pre">[ur_msgs/srv/SetFrictionModelParameters]</span></code>: Set per-joint viscous and Coulomb
+friction scale factors for direct torque control. Each array must contain exactly one value for each joint in
+range [0-1] where 0 means no compensation and 1 means full compensation.</p></li>
+</ul>
+</section>
+</section>
+<section id="ur-controllers-freedrivemodecontroller">
+<span id="freedrive-mode-controller"></span><h3>ur_controllers/FreedriveModeController<a class="headerlink" href="#ur-controllers-freedrivemodecontroller" title="Link to this heading"></a></h3>
+<p>This controller activates the robot’s <em>Freedrive Mode</em>, allowing to manually move the robot’ joints.
+This controller can’t be combined with any other motion controller.</p>
+<section id="id5">
+<h4>Parameters<a class="headerlink" href="#id5" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Parameter name</p></td>
+<td><p>Type</p></td>
+<td><p>Default value</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tf_prefix</span></code></p></td>
+<td><p>string</p></td>
+<td><p>&lt;empty&gt;</p></td>
+<td><p>Urdf prefix of the corresponding arm</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">inactive_timeout</span></code></p></td>
+<td><p>int</p></td>
+<td><p>1</p></td>
+<td><p>Time interval (in seconds) of message inactivity after which freedrive is deactivated</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="usage">
+<h4>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h4>
+<p>The controller provides the <code class="docutils literal notranslate"><span class="pre">~/enable_freedrive_mode</span></code> topic of type <code class="docutils literal notranslate"><span class="pre">[std_msgs/msg/Bool]</span></code> for handling activation and deactivation:</p>
+<ul>
+<li><p>to start and keep freedrive active, you’ll have to frequently publish a <code class="docutils literal notranslate"><span class="pre">True</span></code> msg on the indicated topic.
+If no further messages are received by the controller within the <code class="docutils literal notranslate"><span class="pre">inactive_timeout</span></code> seconds,
+freedrive mode will be deactivated. Hence, it is recommended to publish a <code class="docutils literal notranslate"><span class="pre">True</span></code> message at least every
+<code class="docutils literal notranslate"><span class="pre">inactive_timeout/2</span></code> seconds.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ros2</span> <span class="n">topic</span> <span class="n">pub</span> <span class="o">--</span><span class="n">rate</span> <span class="mi">2</span> <span class="o">/</span><span class="n">freedrive_mode_controller</span><span class="o">/</span><span class="n">enable_freedrive_mode</span> <span class="n">std_msgs</span><span class="o">/</span><span class="n">msg</span><span class="o">/</span><span class="n">Bool</span> <span class="s2">&quot;{data: true}&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>to deactivate freedrive mode is enough to publish a <code class="docutils literal notranslate"><span class="pre">False</span></code> msg on the indicated topic or
+to deactivate the controller or to stop publishing <code class="docutils literal notranslate"><span class="pre">True</span></code> on the enable topic and wait for the
+controller timeout.</p></li>
+</ul>
+</section>
+</section>
+<section id="ur-controllers-toolcontactcontroller">
+<span id="tool-contact-controller"></span><h3>ur_controllers/ToolContactController<a class="headerlink" href="#ur-controllers-toolcontactcontroller" title="Link to this heading"></a></h3>
+<p>This controller can enable tool contact on the robot. When tool contact is enabled, and the robot
+senses whether the tool has made contact with something. When that happens, it will stop all
+motion, and retract to where it first sensed the contact.</p>
+<p>This controller can be used with any of the motion controllers.</p>
+<p>The controller is not a direct representation of the URScript function <a class="reference external" href="https://www.universal-robots.com/manuals/EN/HTML/SW5_21/Content/prod-scriptmanual/all_scripts/tool_contact%28direction%29.htm?Highlight=tool_contact">tool_contact(direction)</a>,
+as it does not allow for choosing the direction. The direction of tool contact will always be the
+current TCP direction of movement.</p>
+<section id="id6">
+<h4>Parameters<a class="headerlink" href="#id6" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Parameter name</p></td>
+<td><p>Type</p></td>
+<td><p>Default value</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tf_prefix</span></code></p></td>
+<td><p>string</p></td>
+<td><p>&lt;empty&gt;</p></td>
+<td><p>Urdf prefix of the corresponding arm</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">action_monitor_rate</span></code></p></td>
+<td><p>double</p></td>
+<td><p>20.0</p></td>
+<td><p>The rate at which the action should be monitored in Hz.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id7">
+<h4>Action interface / usage<a class="headerlink" href="#id7" title="Link to this heading"></a></h4>
+<p>The controller provides one action for enabling tool contact. For the controller to accept action goals it needs to be in <code class="docutils literal notranslate"><span class="pre">active</span></code> state.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/detect_tool_contact</span> <span class="pre">[ur_msgs/action/ToolContact]</span></code></p>
+<p>The action definition of <code class="docutils literal notranslate"><span class="pre">ur_msgs/action/ToolContact</span></code> has no fields, as a call to the action implicitly means that tool contact should be enabled.
+The result of the action is available through the status of the action itself. If the action succeeds it means that tool contact was detected, otherwise tool contact will remain active until it is either cancelled by the user, or aborted by the hardware.
+The action provides no feedback.</p>
+<p>The action can be called from the command line using the following command, when the controller is active:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ros2</span> <span class="n">action</span> <span class="n">send_goal</span> <span class="o">/</span><span class="n">tool_contact_controller</span><span class="o">/</span><span class="n">detect_tool_contact</span> <span class="n">ur_msgs</span><span class="o">/</span><span class="n">action</span><span class="o">/</span><span class="n">ToolContact</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../ur_calibration/doc/algorithm.html" class="btn btn-neutral float-left" title="Calibration correction algorithm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../ur_moveit_config/doc/index.html" class="btn btn-neutral float-right" title="ur_moveit_config" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> ROS 2</span>
+      Jazzy
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../../../jazzy/doc/ur_robot_driver/ur_controllers/doc/index.html">Jazzy</a></dd>
+        
+          <dd><a href="../../../../../kilted/doc/ur_robot_driver/ur_controllers/doc/index.html">Kilted</a></dd>
+        
+          <dd><a href="../../../../../rolling/doc/ur_robot_driver/ur_controllers/doc/index.html">Rolling</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

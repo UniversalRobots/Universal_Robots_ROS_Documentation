@@ -1,0 +1,248 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Primary Pipeline example &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/ur_theme.css?v=078fdd0b" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/icon.svg"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Primary Pipeline Calibration example" href="primary_pipeline_calibration.html" />
+    <link rel="prev" title="Instruction Executor example" href="instruction_executor.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Driver Documentation
+              <img src="../../../../_static/ur_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">ur_client_library</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installation.html">Build / installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup.html">Setup a robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../polyscope_compatibility.html">PolyScope version compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html">Library architecture</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../examples.html">Usage examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dashboard_client.html">Dashboard client example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="force_mode.html">Force Mode example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="freedrive.html">Freedrive Mode example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruction_executor.html">Instruction Executor example</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Primary Pipeline example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="primary_pipeline_calibration.html">Primary Pipeline Calibration example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rtde_client.html">RTDE Client example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="external_fts_through_rtde.html">External FTS example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="script_command_interface.html">Script command interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="script_sender.html">Script Sender example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spline_example.html">Spline Interpolation example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tool_contact_example.html">Tool Contact example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="direct_torque_control.html">Torque control example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trajectory_point_interface.html">Trajectory Joint Interface example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ur_driver.html">Example driver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../real_time.html">Setup for real-time scheduling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../migration_notes.html">Migration notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference.html">C++ API Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_tutorials/tutorial_index.html">Tutorial examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../migration_notes.html">Migration Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../build_status.html">Build status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ros2_controller_vs_driver.html">ROS 2 integration paths</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Universal Robots ROS 2 Driver Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">ur_client_library</a></li>
+          <li class="breadcrumb-item"><a href="../examples.html">Usage examples</a></li>
+      <li class="breadcrumb-item active">Primary Pipeline example</li>
+      <li class="wy-breadcrumbs-aside">
+              <!-- User defined GitHub URL -->
+              <a href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/blob/master/doc/examples/primary_pipeline.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="primary-pipeline-example">
+<span id="id1"></span><h1>Primary Pipeline example<a class="headerlink" href="#primary-pipeline-example" title="Link to this heading"></a></h1>
+<p>This example shows how to use the <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> class for the robot’s <a class="reference external" href="https://www.universal-robots.com/articles/ur/interface-communication/overview-of-client-interfaces/">primary interface</a>.
+It reads all packages coming in from the robot’t primary interface and prints their contents.</p>
+<p>At the current time parsing primary interface data is very limited, so this example will print the
+raw binary data for most package types. The example serves to demonstrate the basic control flow
+used for reading data from the robot.</p>
+<p>In this library, a “pipeline” uses a producer / consumer architecture. A producer is reading data
+from a <em>stream</em>, parses that data and puts it into a <em>queue</em>. A consumer reads data from the queue
+and can do whatever its purpose is.</p>
+<section id="producer-setup">
+<h2>Producer setup<a class="headerlink" href="#producer-setup" title="Link to this heading"></a></h2>
+<p>To setup the producer, we need to create a stream, a parser and create a producer with those:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 23 </span><span class="caption-text">examples/primary_pipeline.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">58</span><span class="w">  </span><span class="c1">// First of all, we need a stream that connects to the robot&#39;s primary interface</span>
+<span class="linenos">59</span><span class="w">  </span><span class="n">comm</span><span class="o">::</span><span class="n">URStream</span><span class="o">&lt;</span><span class="n">primary_interface</span><span class="o">::</span><span class="n">PrimaryPackage</span><span class="o">&gt;</span><span class="w"> </span><span class="n">primary_stream</span><span class="p">(</span><span class="n">robot_ip</span><span class="p">,</span><span class="w"> </span><span class="n">urcl</span><span class="o">::</span><span class="n">primary_interface</span><span class="o">::</span><span class="n">UR_PRIMARY_PORT</span><span class="p">);</span>
+<span class="linenos">60</span>
+<span class="linenos">61</span><span class="w">  </span><span class="c1">// This will parse the primary packages</span>
+<span class="linenos">62</span><span class="w">  </span><span class="n">primary_interface</span><span class="o">::</span><span class="n">PrimaryParser</span><span class="w"> </span><span class="n">parser</span><span class="p">;</span>
+<span class="linenos">63</span>
+<span class="linenos">64</span><span class="w">  </span><span class="c1">// The producer needs both, the stream and the parser to fully work</span>
+<span class="linenos">65</span><span class="w">  </span><span class="n">comm</span><span class="o">::</span><span class="n">URProducer</span><span class="o">&lt;</span><span class="n">primary_interface</span><span class="o">::</span><span class="n">PrimaryPackage</span><span class="o">&gt;</span><span class="w"> </span><span class="n">prod</span><span class="p">(</span><span class="n">primary_stream</span><span class="p">,</span><span class="w"> </span><span class="n">parser</span><span class="p">);</span>
+<span class="linenos">66</span>
+<span class="linenos">67</span><span class="w">  </span><span class="c1">// Connect to the stream</span>
+<span class="linenos">68</span><span class="w">  </span><span class="n">prod</span><span class="p">.</span><span class="n">setupProducer</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="consumer-setup">
+<h2>Consumer setup<a class="headerlink" href="#consumer-setup" title="Link to this heading"></a></h2>
+<p>The consumer can be any consumer that is able to consume data produced by the producer, in this
+case <code class="docutils literal notranslate"><span class="pre">urcl::primary_interface::PrimaryPackage</span></code>. Here, we use a <code class="docutils literal notranslate"><span class="pre">ShellExecutor</span></code> that will try to
+print each package’s content to the shell output:</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 24 </span><span class="caption-text">examples/primary_pipeline.cpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">70</span><span class="w">  </span><span class="c1">// The shell consumer will print the package contents to the shell</span>
+<span class="linenos">71</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">consumer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">comm</span><span class="o">::</span><span class="n">ShellConsumer</span><span class="o">&lt;</span><span class="n">primary_interface</span><span class="o">::</span><span class="n">PrimaryPackage</span><span class="o">&gt;&gt;</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="assemble-the-pipeline">
+<h2>Assemble the pipeline<a class="headerlink" href="#assemble-the-pipeline" title="Link to this heading"></a></h2>
+<p>Finally, we need to assemble the pipeline by connecting the producer to the consumer:</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 25 </span><span class="caption-text">examples/primary_pipeline.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">72</span><span class="w">  </span><span class="c1">// The notifer will be called at some points during connection setup / loss. This isn&#39;t fully</span>
+<span class="linenos">73</span><span class="w">  </span><span class="c1">// implemented atm.</span>
+<span class="linenos">74</span><span class="w">  </span><span class="n">comm</span><span class="o">::</span><span class="n">INotifier</span><span class="w"> </span><span class="n">notifier</span><span class="p">;</span>
+<span class="linenos">75</span>
+<span class="linenos">76</span><span class="w">  </span><span class="c1">// Now that we have all components, we can create and start the pipeline to run it all.</span>
+<span class="linenos">77</span><span class="w">  </span><span class="n">comm</span><span class="o">::</span><span class="n">Pipeline</span><span class="o">&lt;</span><span class="n">primary_interface</span><span class="o">::</span><span class="n">PrimaryPackage</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pipeline</span><span class="p">(</span><span class="n">prod</span><span class="p">,</span><span class="w"> </span><span class="n">consumer</span><span class="p">.</span><span class="n">get</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;Pipeline&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">notifier</span><span class="p">);</span>
+<span class="linenos">78</span><span class="w">  </span><span class="n">pipeline</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<p>You can setup a custom notifier that can handle start and stop events of the pipeline. In this
+example we use the basic <code class="docutils literal notranslate"><span class="pre">INotifier</span></code> which doesn’t do anything.</p>
+<p>With all that, we can create the <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> by passing the producer, consumer, a name and the
+notifier to it’s constructor.</p>
+<p>From this point on, the producer will read the data coming on from the stream and that data will be
+processed by the consumer. We keep the example program alive for a while to see some data:</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Listing 26 </span><span class="caption-text">examples/primary_pipeline.cpp</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">83</span><span class="w">  </span><span class="k">do</span>
+<span class="linenos">84</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos">85</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="n">second_to_run</span><span class="p">));</span>
+<span class="linenos">86</span><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">second_to_run</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="linenos">87</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="instruction_executor.html" class="btn btn-neutral float-left" title="Instruction Executor example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="primary_pipeline_calibration.html" class="btn btn-neutral float-right" title="Primary Pipeline Calibration example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> ROS 2</span>
+      Jazzy
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../../../jazzy/doc/ur_client_library/doc/examples/primary_pipeline.html">Jazzy</a></dd>
+        
+          <dd><a href="../../../../../kilted/doc/ur_client_library/doc/examples/primary_pipeline.html">Kilted</a></dd>
+        
+          <dd><a href="../../../../../rolling/doc/ur_client_library/doc/examples/primary_pipeline.html">Rolling</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,240 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulation &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/ur_theme.css?v=078fdd0b" />
+
+  
+    <link rel="shortcut icon" href="../../../../../_static/icon.svg"/>
+      <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../../_static/copybutton.js?v=6dbb43f8"></script>
+      <script src="../../../../../_static/tabs.js?v=3030b3cb"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Sending URScript code to the robot" href="script_code.html" />
+    <link rel="prev" title="Controllers" href="controllers.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Driver Documentation
+              <img src="../../../../../_static/ur_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_client_library/doc/index.html">ur_client_library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">ur_robot_driver</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/toc.html">Installation</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="toc.html">Usage</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="startup.html">Startup the driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="move.html">Move the robot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.html">Controllers</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="script_code.html">Sending URScript code to the robot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../operation_modes.html">Operation modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup_tool_communication.html">Setting up the tool communication on an e-Series / UR Series robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hardware_interface.html">UR Hardware interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hardware_interface_parameters.html">UR Hardware interface parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dashboard_client.html">Dashboard client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../robot_state_helper.html">Robot state helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../controller_stopper.html">Controller stopper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../trajectory_until_node.html">Trajectory until node</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_tutorials/tutorial_index.html">Tutorial examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../migration_notes.html">Migration Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../build_status.html">Build status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ros2_controller_vs_driver.html">ROS 2 integration paths</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Universal Robots ROS 2 Driver Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">ur_robot_driver</a></li>
+          <li class="breadcrumb-item"><a href="toc.html">Usage</a></li>
+      <li class="breadcrumb-item active">Simulation</li>
+      <li class="wy-breadcrumbs-aside">
+              <!-- User defined GitHub URL -->
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/blob/main/ur_robot_driver/doc/usage/simulation.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="simulation">
+<h1>Simulation<a class="headerlink" href="#simulation" title="Link to this heading"></a></h1>
+<p>Apart from being used with a real robot, the ROS driver can be used with ros2_control’s mock hardware or the URSim simulator (which is equivalent from the driver’s perspective).</p>
+<p>Additionally, the robot can be simulated using
+<a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Gazebo_Simulation">Gazebo Classic</a> or
+<a class="reference internal" href="../../../../ur_simulation_gz/ur_simulation_gz/doc/index.html#ur-simulation-gz"><span class="std std-ref">GZ Sim</span></a> but that’s
+outside of this driver’s scope.</p>
+<section id="usage-with-official-ur-simulator">
+<span id="id1"></span><h2>Usage with official UR simulator<a class="headerlink" href="#usage-with-official-ur-simulator" title="Link to this heading"></a></h2>
+<p>The easiest way to use URSim is the Docker
+image provided by Universal Robots. There is an image for each software generation:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://hub.docker.com/r/universalrobots/ursim_polyscopex">PolyScope X</a></p></li>
+<li><p><a class="reference external" href="https://hub.docker.com/r/universalrobots/ursim_e-series">PolyScope 5</a></p></li>
+<li><p><a class="reference external" href="https://hub.docker.com/r/universalrobots/ursim_cb3">CB3</a></p></li>
+</ul>
+<p>We have prepared a script to unify the startup of the simulator independent of the software
+platform version:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>run<span class="w"> </span>ur_client_library<span class="w"> </span>start_ursim.sh<span class="w"> </span>-m<span class="w"> </span>&lt;ur_type&gt;<span class="w"> </span>-v<span class="w"> </span>&lt;ursim_version&gt;
+</pre></div>
+</div>
+<p>If you skip the <code class="docutils literal notranslate"><span class="pre">-v</span></code> option, the script will use the latest version of the PolyScope 5 URSim
+image. If you skip the <code class="docutils literal notranslate"><span class="pre">-m</span></code> option, the robot model will default to a UR5(e) robot.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>run<span class="w"> </span>ur_client_library<span class="w"> </span>start_ursim.sh<span class="w"> </span>-v<span class="w"> </span><span class="m">10</span>.8.0<span class="w"> </span>-m<span class="w"> </span>ur20
+<span class="go">ROBOT_MODEL: ur20</span>
+<span class="go">ROBOT_SERIES: polyscopex</span>
+<span class="go">URSIM_VERSION: 10.8.0</span>
+<span class="go">5b140a83f8600c7ada0b7d75bc7a5808667adbeec77387e8c73b093f10fd2379</span>
+<span class="go">Starting URSim. Waiting for UrService to be up...................................</span>
+<span class="go">UrService is up</span>
+<span class="go">Installing URCapX /home/feex/.ursim/polyscopex/urcaps/external-control-0.1.0.urcapx</span>
+
+
+<span class="go">To access PolyScopeX, open the following URL in a web browser.</span>
+
+
+<span class="go">        http://192.168.56.101</span>
+
+<span class="go">To exit, press CTRL+C</span>
+</pre></div>
+</div>
+<p>Accessing the URSim GUI is done using a web browser. The script will print the URL to access the
+GUI. Depending on the PolyScope version, this is different.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-UG9seVNjb3BlIDUgLyBDQjM=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-UG9seVNjb3BlIDUgLyBDQjM=" name="UG9seVNjb3BlIDUgLyBDQjM=" role="tab" tabindex="0">PolyScope 5 / CB3</button><button aria-controls="panel-0-UG9seVNjb3BlIFg=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-UG9seVNjb3BlIFg=" name="UG9seVNjb3BlIFg=" role="tab" tabindex="-1">PolyScope X</button></div><div aria-labelledby="tab-0-UG9seVNjb3BlIDUgLyBDQjM=" class="sphinx-tabs-panel group-tab" id="panel-0-UG9seVNjb3BlIDUgLyBDQjM=" name="UG9seVNjb3BlIDUgLyBDQjM=" role="tabpanel" tabindex="0"><p>Open <a class="reference external" href="http://192.168.56.101:6080/vnc.html">http://192.168.56.101:6080/vnc.html</a> in a web browser.</p>
+</div><div aria-labelledby="tab-0-UG9seVNjb3BlIFg=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-UG9seVNjb3BlIFg=" name="UG9seVNjb3BlIFg=" role="tabpanel" tabindex="0"><p>Open <a class="reference external" href="http://192.168.56.101">http://192.168.56.101</a> in a web browser.</p>
+</div></div>
+<p>With this, we can spin up a driver using</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>ur_robot_driver<span class="w"> </span>ur_control.launch.py<span class="w"> </span>ur_type:<span class="o">=</span>&lt;ur_type&gt;<span class="w"> </span>robot_ip:<span class="o">=</span><span class="m">192</span>.168.56.101<span class="w"> </span>launch_rviz:<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+<p>When we now move the robot in Polyscope, the robot’s RViz visualization should move accordingly.</p>
+<p>For details on the (PolyScopr 5 and CB3) Docker image, please see the more detailed guide <a class="reference internal" href="../../../../ur_client_library/doc/setup/ursim_docker.html#ursim-docker"><span class="std std-ref">here</span></a>.</p>
+</section>
+<section id="mock-hardware">
+<h2>Mock hardware<a class="headerlink" href="#mock-hardware" title="Link to this heading"></a></h2>
+<p>The package can simulate hardware with the ros2_control <code class="docutils literal notranslate"><span class="pre">MockSystem</span></code>. This emulator enables an
+environment for testing of “piping” of hardware and controllers, as well as testing robot’s
+descriptions. For more details see <a class="reference external" href="https://control.ros.org/rolling/doc/ros2_control/hardware_interface/doc/mock_components_userdoc.html">ros2_control documentation</a>
+for more details.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some driver functionalities currently don’t work with mock hardware:</p>
+<ul class="simple">
+<li><p>The TCP pose broadcaster does not work.</p></li>
+<li><p>The passthrough trajectory controller does not function when calling the follow joint trajectory action.</p></li>
+<li><p>The force mode controller also does not respond when trying to start force mode.</p></li>
+<li><p>The GPIO controller cannot verify that it has changed the state of an I/O pin, so it will report a failure when trying to set an I/O pin.</p></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="controllers.html" class="btn btn-neutral float-left" title="Controllers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="script_code.html" class="btn btn-neutral float-right" title="Sending URScript code to the robot" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> ROS 2</span>
+      Jazzy
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../../../../jazzy/doc/ur_robot_driver/ur_robot_driver/doc/usage/simulation.html">Jazzy</a></dd>
+        
+          <dd><a href="../../../../../../kilted/doc/ur_robot_driver/ur_robot_driver/doc/usage/simulation.html">Kilted</a></dd>
+        
+          <dd><a href="../../../../../../rolling/doc/ur_robot_driver/ur_robot_driver/doc/usage/simulation.html">Rolling</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

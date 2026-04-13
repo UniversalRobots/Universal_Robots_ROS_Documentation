@@ -1,0 +1,350 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard client &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/ur_theme.css?v=078fdd0b" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/icon.svg"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Robot state helper" href="robot_state_helper.html" />
+    <link rel="prev" title="UR Hardware interface parameters" href="hardware_interface_parameters.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Driver Documentation
+              <img src="../../../../_static/ur_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_client_library/doc/index.html">ur_client_library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">ur_robot_driver</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/toc.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/toc.html">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operation_modes.html">Operation modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_tool_communication.html">Setting up the tool communication on an e-Series / UR Series robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface.html">UR Hardware interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html">UR Hardware interface parameters</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Dashboard client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="robot_state_helper.html">Robot state helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller_stopper.html">Controller stopper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trajectory_until_node.html">Trajectory until node</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_tutorials/tutorial_index.html">Tutorial examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../migration_notes.html">Migration Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../build_status.html">Build status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ros2_controller_vs_driver.html">ROS 2 integration paths</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Universal Robots ROS 2 Driver Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">ur_robot_driver</a></li>
+      <li class="breadcrumb-item active">Dashboard client</li>
+      <li class="wy-breadcrumbs-aside">
+              <!-- User defined GitHub URL -->
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/blob/main/ur_robot_driver/doc/dashboard_client.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dashboard-client">
+<span id="dashboard-client-ros2"></span><h1>Dashboard client<a class="headerlink" href="#dashboard-client" title="Link to this heading"></a></h1>
+<section id="advertised-services">
+<h2>Advertised Services<a class="headerlink" href="#advertised-services" title="Link to this heading"></a></h2>
+<section id="add-to-log-ur-dashboard-msgs-addtolog">
+<h3>add_to_log (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/AddToLog.html">ur_dashboard_msgs/AddToLog</a>)<a class="headerlink" href="#add-to-log-ur-dashboard-msgs-addtolog" title="Link to this heading"></a></h3>
+<p>Service to add a message to the robot’s log</p>
+</section>
+<section id="brake-release-std-srvs-trigger">
+<h3>brake_release (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#brake-release-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>Service to release the brakes. If the robot is currently powered off, it will get powered on the fly.</p>
+</section>
+<section id="clear-operational-mode-std-srvs-trigger">
+<h3>clear_operational_mode (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#clear-operational-mode-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>If this service is called the operational mode can again be changed from PolyScope, and the user password is enabled.</p>
+</section>
+<section id="close-popup-std-srvs-trigger">
+<h3>close_popup (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#close-popup-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>Close a (non-safety) popup on the teach pendant.</p>
+</section>
+<section id="close-safety-popup-std-srvs-trigger">
+<h3>close_safety_popup (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#close-safety-popup-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>Close a safety popup on the teach pendant.</p>
+</section>
+<section id="connect-std-srvs-trigger">
+<h3>connect (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#connect-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>Service to reconnect to the dashboard server</p>
+</section>
+<section id="download-program-ur-dashboard-msgs-downloadprogram">
+<h3>download_program (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/DownloadProgram.html">ur_dashboard_msgs/DownloadProgram</a>)<a class="headerlink" href="#download-program-ur-dashboard-msgs-downloadprogram" title="Link to this heading"></a></h3>
+<p><strong>PolyScope X only</strong>: Download a program with the given name from the robot and save it as
+<code class="docutils literal notranslate"><span class="pre">*.urpx</span></code> file locally. This service is only available on a PolyScope X robot with version &gt;=
+10.12.0.</p>
+</section>
+<section id="get-loaded-program-ur-dashboard-msgs-getloadedprogram">
+<h3>get_loaded_program (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetLoadedProgram.html">ur_dashboard_msgs/GetLoadedProgram</a>)<a class="headerlink" href="#get-loaded-program-ur-dashboard-msgs-getloadedprogram" title="Link to this heading"></a></h3>
+<p>Get the name of the currently loaded program.</p>
+</section>
+<section id="get-programs-ur-dashboard-msgs-getprograms">
+<h3>get_programs (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetPrograms.html">ur_dashboard_msgs/GetPrograms</a>)<a class="headerlink" href="#get-programs-ur-dashboard-msgs-getprograms" title="Link to this heading"></a></h3>
+<p><strong>PolyScope X only</strong>: Get a list of all programs on the robot. This service is only available on a
+PolyScope X robot with version &gt;= 10.12.0.</p>
+</section>
+<section id="get-robot-mode-ur-dashboard-msgs-getrobotmode">
+<h3>get_robot_mode (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetRobotMode.html">ur_dashboard_msgs/GetRobotMode</a>)<a class="headerlink" href="#get-robot-mode-ur-dashboard-msgs-getrobotmode" title="Link to this heading"></a></h3>
+<p>Service to query the current robot mode</p>
+</section>
+<section id="get-safety-mode-ur-dashboard-msgs-getsafetymode">
+<h3>get_safety_mode (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetSafetyMode.html">ur_dashboard_msgs/GetSafetyMode</a>)<a class="headerlink" href="#get-safety-mode-ur-dashboard-msgs-getsafetymode" title="Link to this heading"></a></h3>
+<p>Service to query the current safety mode</p>
+</section>
+<section id="is-in-remote-control-ur-dashboard-msgs-isinremotecontrol">
+<h3>is_in_remote_control (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/IsInRemoteControl.html">ur_dashboard_msgs/IsInRemoteControl</a>)<a class="headerlink" href="#is-in-remote-control-ur-dashboard-msgs-isinremotecontrol" title="Link to this heading"></a></h3>
+<p>Service to query whether the robot is in remote control</p>
+</section>
+<section id="load-installation-ur-dashboard-msgs-load">
+<h3>load_installation (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/Load.html">ur_dashboard_msgs/Load</a>)<a class="headerlink" href="#load-installation-ur-dashboard-msgs-load" title="Link to this heading"></a></h3>
+<p>Load a robot installation from a file</p>
+</section>
+<section id="load-program-ur-dashboard-msgs-load">
+<h3>load_program (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/Load.html">ur_dashboard_msgs/Load</a>)<a class="headerlink" href="#load-program-ur-dashboard-msgs-load" title="Link to this heading"></a></h3>
+<p>Load a robot program from a file on the robot. On PolyScope 5, this can be either file in the
+robot’s programs folder or an absolute path to a file. The filename has to include the <code class="docutils literal notranslate"><span class="pre">.urp</span></code>
+ending. On PolyScope X, this has to be the program’s name as shown in the Programs overview on the
+robot, without a <code class="docutils literal notranslate"><span class="pre">.urpx</span></code> suffix.</p>
+</section>
+<section id="pause-std-srvs-trigger">
+<h3>pause (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#pause-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>Pause a running program.</p>
+</section>
+<section id="play-std-srvs-trigger">
+<h3>play (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#play-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>Start execution of a previously loaded program</p>
+</section>
+<section id="popup-ur-dashboard-msgs-popup">
+<h3>popup (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/Popup.html">ur_dashboard_msgs/Popup</a>)<a class="headerlink" href="#popup-ur-dashboard-msgs-popup" title="Link to this heading"></a></h3>
+<p>Service to show a popup on the UR Teach pendant.</p>
+</section>
+<section id="power-off-std-srvs-trigger">
+<h3>power_off (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#power-off-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>Power off the robot motors</p>
+</section>
+<section id="power-on-std-srvs-trigger">
+<h3>power_on (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#power-on-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>Power on the robot motors. To fully start the robot, call ‘brake_release’ afterwards.</p>
+</section>
+<section id="program-running-ur-dashboard-msgs-isprogramrunning">
+<h3>program_running (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/IsProgramRunning.html">ur_dashboard_msgs/IsProgramRunning</a>)<a class="headerlink" href="#program-running-ur-dashboard-msgs-isprogramrunning" title="Link to this heading"></a></h3>
+<p>Query whether there is currently a program running</p>
+</section>
+<section id="program-saved-ur-dashboard-msgs-isprogramsaved">
+<h3>program_saved (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/IsProgramSaved.html">ur_dashboard_msgs/IsProgramSaved</a>)<a class="headerlink" href="#program-saved-ur-dashboard-msgs-isprogramsaved" title="Link to this heading"></a></h3>
+<p>Query whether the current program is saved</p>
+</section>
+<section id="program-state-ur-dashboard-msgs-getprogramstate">
+<h3>program_state (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetProgramState.html">ur_dashboard_msgs/GetProgramState</a>)<a class="headerlink" href="#program-state-ur-dashboard-msgs-getprogramstate" title="Link to this heading"></a></h3>
+<p>Service to query the current program state</p>
+</section>
+<section id="quit-ur-dashboard-msgs-getloadedprogram">
+<h3>quit (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetLoadedProgram.html">ur_dashboard_msgs/GetLoadedProgram</a>)<a class="headerlink" href="#quit-ur-dashboard-msgs-getloadedprogram" title="Link to this heading"></a></h3>
+<p>Disconnect from the dashboard service.</p>
+</section>
+<section id="raw-request-ur-dashboard-msgs-rawrequest">
+<h3>raw_request (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/RawRequest.html">ur_dashboard_msgs/RawRequest</a>)<a class="headerlink" href="#raw-request-ur-dashboard-msgs-rawrequest" title="Link to this heading"></a></h3>
+<p>General purpose service to send arbitrary messages to the dashboard server</p>
+</section>
+<section id="restart-safety-std-srvs-trigger">
+<h3>restart_safety (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#restart-safety-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>Used when robot gets a safety fault or violation to restart the safety. After safety has been rebooted the robot will be in Power Off. NOTE: You should always ensure it is okay to restart the system. It is highly recommended to check the error log before using this command (either via PolyScope or e.g. ssh connection).</p>
+</section>
+<section id="resume-std-srvs-trigger">
+<h3>resume (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#resume-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p><strong>PolyScope X only</strong>: Resume a paused program on a PolyScope X robot. This service is only available on a PolyScope X
+robot with version &gt;= 10.11.0.</p>
+</section>
+<section id="shutdown-std-srvs-trigger">
+<h3>shutdown (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#shutdown-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>Shutdown the robot controller</p>
+</section>
+<section id="stop-std-srvs-trigger">
+<h3>stop (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#stop-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>Stop program execution on the robot</p>
+</section>
+<section id="unlock-protective-stop-std-srvs-trigger">
+<h3>unlock_protective_stop (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#unlock-protective-stop-std-srvs-trigger" title="Link to this heading"></a></h3>
+<p>Dismiss a protective stop to continue robot movements. NOTE: It is the responsibility of the user to ensure the cause of the protective stop is resolved before calling this service.</p>
+</section>
+<section id="update-program-ur-dashboard-msgs-updateprogram">
+<h3>update_program (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/UploadProgram.html">ur_dashboard_msgs/UpdateProgram</a>)<a class="headerlink" href="#update-program-ur-dashboard-msgs-updateprogram" title="Link to this heading"></a></h3>
+<p><strong>PolyScope X only</strong>: Update a program on the robot. If the program does not exist or the program
+is currently loaded, this service call will fail. This service is only available on a PolyScope X
+robot with version &gt;= 10.12.0.</p>
+</section>
+<section id="upload-program-ur-dashboard-msgs-uploadprogram">
+<h3>upload_program (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/UploadProgram.html">ur_dashboard_msgs/UploadProgram</a>)<a class="headerlink" href="#upload-program-ur-dashboard-msgs-uploadprogram" title="Link to this heading"></a></h3>
+<p><strong>PolyScope X only</strong>: Upload a program to the robot. If a program with the same name already
+exists, this service call will fail. This service is only available on a PolyScope X robot with
+version &gt;= 10.12.0.</p>
+</section>
+<section id="get-polyscope-version-ur-dashboard-msgs-getpolyscopeversion">
+<h3>get_polyscope_version (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetPolyScopeVersion.html">ur_dashboard_msgs/GetPolyScopeVersion</a>)<a class="headerlink" href="#get-polyscope-version-ur-dashboard-msgs-getpolyscopeversion" title="Link to this heading"></a></h3>
+<p><strong>CB3 | PolyScope 5</strong> Get polyScope version of robot</p>
+</section>
+<section id="get-serial-number-ur-dashboard-msgs-getserialnumber">
+<h3>get_serial_number (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetSerialNumber.html">ur_dashboard_msgs/GetSerialNumber</a>)<a class="headerlink" href="#get-serial-number-ur-dashboard-msgs-getserialnumber" title="Link to this heading"></a></h3>
+<p><strong>CB3 | PolyScope 5</strong> Get serial number of robot</p>
+</section>
+<section id="get-user-role-ur-dashboard-msgs-getuserrole">
+<h3>get_user_role (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetUserRole.html">ur_dashboard_msgs/GetUserRole</a>)<a class="headerlink" href="#get-user-role-ur-dashboard-msgs-getuserrole" title="Link to this heading"></a></h3>
+<p><strong>CB3 only</strong> Get current user role</p>
+</section>
+<section id="set-user-role-ur-dashboard-msgs-setuserrole">
+<h3>set_user_role (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/SetUserRole.html">ur_dashboard_msgs/SetUserRole</a>)<a class="headerlink" href="#set-user-role-ur-dashboard-msgs-setuserrole" title="Link to this heading"></a></h3>
+<p><strong>CB3 only</strong> Set user role on the robot</p>
+</section>
+<section id="get-operational-mode-ur-dashboard-msgs-getoperationalmode">
+<h3>get_operational_mode (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetOperationalMode.html">ur_dashboard_msgs/GetOperationalMode</a>)<a class="headerlink" href="#get-operational-mode-ur-dashboard-msgs-getoperationalmode" title="Link to this heading"></a></h3>
+<p><strong>PolyScope 5 | PolyScope X 10.12.0 onwards</strong> Get current operational mode of the robot</p>
+</section>
+<section id="set-operational-mode-ur-dashboard-msgs-setoperationalmode">
+<h3>set_operational_mode (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/SetOperationalMode.html">ur_dashboard_msgs/SetOperationalMode</a>)<a class="headerlink" href="#set-operational-mode-ur-dashboard-msgs-setoperationalmode" title="Link to this heading"></a></h3>
+<p><strong>PolyScope 5 only</strong> Set operational mode of the robot. When this has been called, the teach pendant can not be used to change the operational mode until clear_operational_mode has been called.</p>
+</section>
+<section id="get-robot-model-ur-dashboard-msgs-getrobotmodel">
+<h3>get_robot_model (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetRobotModel.html">ur_dashboard_msgs/GetRobotModel</a>)<a class="headerlink" href="#get-robot-model-ur-dashboard-msgs-getrobotmodel" title="Link to this heading"></a></h3>
+<p><strong>CB3 | PolyScope 5</strong> Get the robot model, in the format URx. It should be noted this call does not differentiate between e-series and CB3, so UR5 and UR5e will both report as UR5</p>
+</section>
+<section id="get-safety-status-ur-dashboard-msgs-getsafetystatus">
+<h3>get_safety_status (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetSafetyStatus.html">ur_dashboard_msgs/GetSafetyStatus</a>)<a class="headerlink" href="#get-safety-status-ur-dashboard-msgs-getsafetystatus" title="Link to this heading"></a></h3>
+<p><strong>PolyScope 5 only</strong> Get current safety status of the robot system, this is more detailed than get_safety_mode and should be preferred when possible</p>
+</section>
+<section id="generate-flight-report-ur-dashboard-msgs-generateflightreport">
+<h3>generate_flight_report (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GenerateFlightReport.html">ur_dashboard_msgs/GenerateFlightReport</a>)<a class="headerlink" href="#generate-flight-report-ur-dashboard-msgs-generateflightreport" title="Link to this heading"></a></h3>
+<p><strong>CB3 | PolyScope 5</strong> Generate flight report of the chosen type, defaults to SYSTEM. It is required to wait at least 30 seconds between triggering software or controller reports.</p>
+</section>
+<section id="generate-support-file-ur-dashboard-msgs-generatesupportfile">
+<h3>generate_support_file (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GenerateSupportFile.html">ur_dashboard_msgs/GenerateSupportFile</a>)<a class="headerlink" href="#generate-support-file-ur-dashboard-msgs-generatesupportfile" title="Link to this heading"></a></h3>
+<p><strong>CB3 | PolyScope 5</strong> Generate a support file a the specified location. Location is relative to the programs folder, if saving to a subfolder it must exist prior to the service call.
+Defaults to saving to the programs folder</p>
+</section>
+</section>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<section id="receive-timeout-default-20-0">
+<h3>receive_timeout (default: 20.0)<a class="headerlink" href="#receive-timeout-default-20-0" title="Link to this heading"></a></h3>
+<p>Timeout (in seconds, double) after which a call to the dashboard server will be considered failure if no answer has been received. This defaults to 20 seconds, as some operations (like loading larger programs) can take a while.</p>
+</section>
+<section id="robot-ip-required">
+<h3>robot_ip (Required)<a class="headerlink" href="#robot-ip-required" title="Link to this heading"></a></h3>
+<p>The IP address under which the robot is reachable.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hardware_interface_parameters.html" class="btn btn-neutral float-left" title="UR Hardware interface parameters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="robot_state_helper.html" class="btn btn-neutral float-right" title="Robot state helper" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> ROS 2</span>
+      Jazzy
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../../../jazzy/doc/ur_robot_driver/ur_robot_driver/doc/dashboard_client.html">Jazzy</a></dd>
+        
+          <dd><a href="../../../../../kilted/doc/ur_robot_driver/ur_robot_driver/doc/dashboard_client.html">Kilted</a></dd>
+        
+          <dd><a href="../../../../../rolling/doc/ur_robot_driver/ur_robot_driver/doc/dashboard_client.html">Rolling</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

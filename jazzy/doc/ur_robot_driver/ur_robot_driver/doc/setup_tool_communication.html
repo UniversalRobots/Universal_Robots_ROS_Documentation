@@ -1,0 +1,221 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setting up the tool communication on an e-Series / UR Series robot &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/ur_theme.css?v=078fdd0b" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/icon.svg"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="UR Hardware interface" href="hardware_interface.html" />
+    <link rel="prev" title="Operation modes" href="operation_modes.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Driver Documentation
+              <img src="../../../../_static/ur_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_client_library/doc/index.html">ur_client_library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">ur_robot_driver</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/toc.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/toc.html">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operation_modes.html">Operation modes</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Setting up the tool communication on an e-Series / UR Series robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface.html">UR Hardware interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware_interface_parameters.html">UR Hardware interface parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dashboard_client.html">Dashboard client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="robot_state_helper.html">Robot state helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller_stopper.html">Controller stopper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trajectory_until_node.html">Trajectory until node</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_tutorials/tutorial_index.html">Tutorial examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../migration_notes.html">Migration Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../build_status.html">Build status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ros2_controller_vs_driver.html">ROS 2 integration paths</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Universal Robots ROS 2 Driver Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">ur_robot_driver</a></li>
+      <li class="breadcrumb-item active">Setting up the tool communication on an e-Series / UR Series robot</li>
+      <li class="wy-breadcrumbs-aside">
+              <!-- User defined GitHub URL -->
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/blob/main/ur_robot_driver/doc/setup_tool_communication.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="setting-up-the-tool-communication-on-an-e-series-ur-series-robot">
+<span id="setup-tool-communication"></span><h1>Setting up the tool communication on an e-Series / UR Series robot<a class="headerlink" href="#setting-up-the-tool-communication-on-an-e-series-ur-series-robot" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently, there seems to be issues with having the tool communication setup from this guide and
+the “Robotiq Grippers” URCap running in parallel. If you are planning to use the “Robotiq
+Grippers” URCap then currently please refrain from installing the rs485 URCap.</p>
+<p>See
+<a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ToolComm_Forwarder_URCap/issues/9">this issue</a>
+for details and the current state.</p>
+</div>
+<p>From the e-Series on, Universal Robots provide an rs485 based interface at the tool flange that can be used
+to attach an rs485-based device to the robot’s tcp without the need to wire a separate cable along
+the robot.</p>
+<p>This driver enables forwarding this tool communication interface to an external machine for example
+to start a device’s ROS driver on a remote PC.</p>
+<p>This document will guide you through installing the URCap needed for this and setting up your ROS
+launch files to utilize the robot’s tool communication.</p>
+<section id="robot-setup">
+<h2>Robot setup<a class="headerlink" href="#robot-setup" title="Link to this heading"></a></h2>
+<p>For <strong>PolyScope 5</strong>, please install the <strong>rs485-1.0.urcap</strong> found in the <strong>resources</strong> folder.
+Installing a URCap is explained in the <a class="reference internal" href="../../../ur_client_library/doc/setup/robot_setup.html#install-urcap"><span class="std std-ref">setup guide</span></a> for the <strong>external-control</strong> URCap.</p>
+<p>For <strong>PolyScope X</strong>, you can download the latest tool-comm-forwarder URCapX from its <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ToolComm_Forwarder_URCapX/releases">release
+page</a>.
+After installation, please make sure to activate tool forwarding in the URCap’s application screen.</p>
+<p>After installing the URCap the robot will expose its tool communication device to the network.</p>
+</section>
+<section id="setup-the-ros-side">
+<h2>Setup the ROS side<a class="headerlink" href="#setup-the-ros-side" title="Link to this heading"></a></h2>
+<p>In order to use the tool communication in ROS, simply pass the correct parameters to the bringup
+launch files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ros2<span class="w"> </span>launch<span class="w"> </span>ur_robot_driver<span class="w"> </span>ur_control.launch.py<span class="w"> </span>ur_type:<span class="o">=</span>ur5e<span class="w"> </span>robot_ip:<span class="o">=</span>yyy.yyy.yyy.yyy<span class="w"> </span>use_tool_communication:<span class="o">=</span><span class="nb">true</span><span class="w"> </span>use_mock_hardware:<span class="o">=</span><span class="nb">false</span><span class="w"> </span>launch_rviz:<span class="o">=</span><span class="nb">false</span>
+<span class="w">  </span><span class="c1"># remember that your user needs to have the rights to write that file handle to /tmp/ttyUR</span>
+</pre></div>
+</div>
+<p>Following parameters can be set <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/blob/ros2/urdf/ur.ros2_control.xacro">ur.ros2_control.xacro</a>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">tool_voltage</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tool_parity</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tool_baud_rate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tool_stop_bits</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tool_rx_idle_chars</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tool_tx_idle_chars</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tool_device_name</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tool_tcp_port</span></code></p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">tool_device_name</span></code> is an arbitrary name for the device file at which the device will be
+accessible in the local file system. Most ROS drivers for rs485 devices accept an argument to
+specify the device file path. With the example above you could run the <code class="docutils literal notranslate"><span class="pre">rs485_node</span></code> from the package
+<code class="docutils literal notranslate"><span class="pre">imaginary_drivers</span></code> using the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ros2<span class="w"> </span>run<span class="w"> </span>imaginary_drivers<span class="w"> </span>rs485_node<span class="w"> </span>--ros-args<span class="w"> </span>-p<span class="w"> </span>device:<span class="o">=</span>/tmp/ttyUR
+</pre></div>
+</div>
+<p>You can basically choose any device name, but your user has to have the correct rights to actually
+create a new file handle inside this directory. Therefore, we didn’t use the <code class="docutils literal notranslate"><span class="pre">/dev</span></code> folder in the
+example, as users usually don’t have the access rights to create new files there.</p>
+<p>For all the other tool parameters seen above, please refer to the Universal Robots user manual.</p>
+<p>More information can be found at <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ToolComm_Forwarder_URCap">Universal_Robots_ToolComm_Forwarder_URCap</a>.
+The convenience script for <code class="docutils literal notranslate"><span class="pre">socat</span></code> call is <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/blob/main/ur_robot_driver/scripts/tool_communication.py">here</a> for ROS2 driver and can be run by:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ros2<span class="w"> </span>run<span class="w"> </span>ur_robot_driver<span class="w"> </span>tool_communication.py<span class="w"> </span>--ros-args<span class="w"> </span>-p<span class="w"> </span>robot_ip:<span class="o">=</span><span class="m">192</span>.168.56.101<span class="w"> </span>-p<span class="w"> </span>device_name:<span class="o">=</span>/tmp/ttyUR
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="operation_modes.html" class="btn btn-neutral float-left" title="Operation modes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hardware_interface.html" class="btn btn-neutral float-right" title="UR Hardware interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> ROS 2</span>
+      Jazzy
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../../../jazzy/doc/ur_robot_driver/ur_robot_driver/doc/setup_tool_communication.html">Jazzy</a></dd>
+        
+          <dd><a href="../../../../../kilted/doc/ur_robot_driver/ur_robot_driver/doc/setup_tool_communication.html">Kilted</a></dd>
+        
+          <dd><a href="../../../../../rolling/doc/ur_robot_driver/ur_robot_driver/doc/setup_tool_communication.html">Rolling</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

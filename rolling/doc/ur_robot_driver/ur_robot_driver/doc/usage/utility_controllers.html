@@ -1,0 +1,271 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Utility Controllers &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/ur_theme.css?v=078fdd0b" />
+
+  
+    <link rel="shortcut icon" href="../../../../../_static/icon.svg"/>
+      <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Simulation" href="simulation.html" />
+    <link rel="prev" title="Force and Torque Control" href="force_torque_control.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Driver Documentation
+              <img src="../../../../../_static/ur_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_client_library/doc/index.html">ur_client_library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">ur_robot_driver</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/toc.html">Installation</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="toc.html">Usage</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="startup.html">Startup the driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="move.html">Move the robot</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="controllers.html">Controllers</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="position_velocity_control.html">Position and Velocity Control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="force_torque_control.html">Force and Torque Control</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Utility Controllers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html">Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="script_code.html">Sending URScript code to the robot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../operation_modes.html">Operation modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup_tool_communication.html">Setting up the tool communication on an e-Series / UR Series robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hardware_interface.html">UR Hardware interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hardware_interface_parameters.html">UR Hardware interface parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dashboard_client.html">Dashboard client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../robot_state_helper.html">Robot state helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../controller_stopper.html">Controller stopper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../trajectory_until_node.html">Trajectory until node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../migration_notes.html">Migration notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_tutorials/tutorial_index.html">Tutorial examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../migration_notes.html">Migration Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../build_status.html">Build status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ros2_controller_vs_driver.html">ROS 2 integration paths</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Universal Robots ROS 2 Driver Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">ur_robot_driver</a></li>
+          <li class="breadcrumb-item"><a href="toc.html">Usage</a></li>
+          <li class="breadcrumb-item"><a href="controllers.html">Controllers</a></li>
+      <li class="breadcrumb-item active">Utility Controllers</li>
+      <li class="wy-breadcrumbs-aside">
+              <!-- User defined GitHub URL -->
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/blob/main/ur_robot_driver/doc/usage/utility_controllers.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="utility-controllers">
+<span id="id1"></span><h1>Utility Controllers<a class="headerlink" href="#utility-controllers" title="Link to this heading"></a></h1>
+<p>These controllers provide access to UR robot-specific features that complement the motion control
+modes. They are not motion controllers themselves but provide status information, safety features,
+and special robot modes.</p>
+<p>For position and velocity based control, see <a class="reference internal" href="position_velocity_control.html#position-velocity-control"><span class="std std-ref">Position and Velocity Control</span></a>.</p>
+<p>For force and torque based control, see <a class="reference internal" href="force_torque_control.html#force-torque-control"><span class="std std-ref">Force and Torque Control</span></a>.</p>
+<section id="joint-state-broadcaster">
+<h2>joint_state_broadcaster<a class="headerlink" href="#joint-state-broadcaster" title="Link to this heading"></a></h2>
+<p>Type: <a class="reference external" href="https://control.ros.org/rolling/doc/ros2_controllers/joint_state_broadcaster/doc/userdoc.html">joint_state_broadcaster/JointStateBroadcaster</a></p>
+<p>Publishes all joints’ positions, velocities, and motor currents as <code class="docutils literal notranslate"><span class="pre">sensor_msgs/JointState</span></code> on the <code class="docutils literal notranslate"><span class="pre">joint_states</span></code> topic. This broadcaster is read-only and can run alongside any other controller.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The effort field contains the currents reported by the joints and not the actual efforts in a
+physical sense.</p>
+</div>
+</section>
+<section id="speed-scaling-state-broadcaster">
+<h2>speed_scaling_state_broadcaster<a class="headerlink" href="#speed-scaling-state-broadcaster" title="Link to this heading"></a></h2>
+<p>Type: <a class="reference internal" href="../../../ur_controllers/doc/index.html#speed-scaling-state-broadcaster"><span class="std std-ref">ur_controllers/SpeedScalingStateBroadcaster</span></a></p>
+<p>Publishes the current actual execution speed as reported by the robot. Values are floating points
+between 0 and 1. This broadcaster is read-only and can run alongside any other controller.</p>
+<p>The speed scaling value reflects the combined effect of the speed slider on the teach pendant and
+any controller-imposed speed limits. It is used by the <code class="docutils literal notranslate"><span class="pre">joint_trajectory_controller</span></code> to scale
+trajectory execution on the ROS PC. For the <code class="docutils literal notranslate"><span class="pre">passthrough_trajectory_controller</span></code> and the
+<code class="docutils literal notranslate"><span class="pre">motion_primitive_forward_controller</span></code>, speed scaling is handled directly by the robot controller
+since it performs the interpolation in these modes.</p>
+</section>
+<section id="io-and-status-controller">
+<h2>io_and_status_controller<a class="headerlink" href="#io-and-status-controller" title="Link to this heading"></a></h2>
+<p>Type: <a class="reference internal" href="../../../ur_controllers/doc/index.html#io-and-status-controller"><span class="std std-ref">ur_controllers/GPIOController</span></a></p>
+<p>Allows setting I/O ports, controlling some UR-specific functionality, and publishes status
+information about the robot. This controller is always active.</p>
+<p>Key services include:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">~/set_io</span></code>: Set digital output pins.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/set_payload</span></code>: Change the robot’s payload on-the-fly.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/set_speed_slider</span></code>: Set the speed slider value.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/zero_ftsensor</span></code>: Zero the force/torque sensor.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/resend_robot_program</span></code>: Restart the external control program (<a class="reference internal" href="../operation_modes.html#headless-mode"><span class="std std-ref">headless mode</span></a>).</p></li>
+</ul>
+<p>See the <a class="reference internal" href="../../../ur_controllers/doc/index.html#io-and-status-controller"><span class="std std-ref">io_and_status_controller</span></a> documentation for the full list
+of topics and services.</p>
+</section>
+<section id="tool-contact-controller">
+<h2>tool_contact_controller<a class="headerlink" href="#tool-contact-controller" title="Link to this heading"></a></h2>
+<p>Type: <a class="reference internal" href="../../../ur_controllers/doc/index.html#tool-contact-controller"><span class="std std-ref">ur_controllers/ToolContactController</span></a></p>
+<p>Enables the robot’s tool contact detection. When tool contact is detected, the robot stops all
+motion and retracts to where it first sensed the contact. This is useful for probing, surface
+detection, and safe approach applications.</p>
+<p>The controller works with the <code class="docutils literal notranslate"><span class="pre">joint_trajectory_controller</span></code> and the
+<code class="docutils literal notranslate"><span class="pre">passthrough_trajectory_controller</span></code>.</p>
+<p>The controller provides an action interface:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">~/detect_tool_contact</span> <span class="pre">[ur_msgs/action/ToolContact]</span></code></p></li>
+</ul>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>action<span class="w"> </span>send_goal<span class="w"> </span>/tool_contact_controller/detect_tool_contact<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>ur_msgs/action/ToolContact
+</pre></div>
+</div>
+<p>See the <a class="reference internal" href="../../../ur_controllers/doc/index.html#tool-contact-controller"><span class="std std-ref">tool_contact_controller</span></a> documentation for full details.</p>
+</section>
+<section id="tcp-pose-broadcaster">
+<h2>tcp_pose_broadcaster<a class="headerlink" href="#tcp-pose-broadcaster" title="Link to this heading"></a></h2>
+<p>Type: <a class="reference external" href="https://control.ros.org/rolling/doc/ros2_controllers/pose_broadcaster/doc/userdoc.html">pose_broadcaster/PoseBroadcaster</a></p>
+<p>Publishes the robot’s TCP pose. This broadcaster is read-only and can run alongside any other
+controller.</p>
+<p>The robot’s TCP pose is published both as a <code class="docutils literal notranslate"><span class="pre">geometry_msgs/PoseStamped</span></code> on the <code class="docutils literal notranslate"><span class="pre">tcp_pose_broadcaster/pose</span></code> topic and as a
+<code class="docutils literal notranslate"><span class="pre">tf2</span></code> transform with the frame name <code class="docutils literal notranslate"><span class="pre">tool0_controller</span></code> with <code class="docutils literal notranslate"><span class="pre">base</span></code> as a
+parent.</p>
+<p>Thus, the transformation from <code class="docutils literal notranslate"><span class="pre">base</span></code> to <code class="docutils literal notranslate"><span class="pre">tool0_controller</span></code> doesn’t use the URDF model and
+forward kinematics in ROS, but instead directly uses the robot’s internal kinematics and sensors
+(which will always use the robot’s calibration).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When setting a tool on the robot’s teach pendant, this will affect the tcp pose as published by
+this controller, as the robot will take the tool’s geometry into account when calculating the
+TCP pose.</p>
+<p>Setting up the <a class="reference internal" href="../../../ur_calibration/doc/index.html#ur-calibration"><span class="std std-ref">URDF with the robot’s calibration</span></a> will make the <code class="docutils literal notranslate"><span class="pre">tool0</span></code>
+and <code class="docutils literal notranslate"><span class="pre">tool0_controller</span></code> frames align exactly given no tool is setup on the robot.</p>
+<p>All frames mentioned will be prefixed with the robot’s <code class="docutils literal notranslate"><span class="pre">tf_prefix</span></code> if it is set. It has been
+omitted here for readability.</p>
+</div>
+<figure class="align-center" id="id2">
+<img alt="tcp frames (tool0 and tool0_controller)" src="../../../../../_images/tcp_frames.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">The <code class="docutils literal notranslate"><span class="pre">tool0_controller</span></code> frame is published with <code class="docutils literal notranslate"><span class="pre">base</span></code> as parent directly, while
+<code class="docutils literal notranslate"><span class="pre">tool0</span></code> is attached to the URDF model chain. When a TCP is setup on the robot, the
+<code class="docutils literal notranslate"><span class="pre">tool0_controller</span></code> frame will take that into account (as on the right, where the tool has a
+z-offset of 110 mm).</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="ur-configuration-controller">
+<h2>ur_configuration_controller<a class="headerlink" href="#ur-configuration-controller" title="Link to this heading"></a></h2>
+<p>Type: <a class="reference internal" href="../../../ur_controllers/doc/index.html#ur-configuration-controller"><span class="std std-ref">ur_controllers/URConfigurationController</span></a></p>
+<p>Provides access to UR-specific robot configuration data. This controller is always active.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="force_torque_control.html" class="btn btn-neutral float-left" title="Force and Torque Control" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="simulation.html" class="btn btn-neutral float-right" title="Simulation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> ROS 2</span>
+      Rolling
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../../../../jazzy/doc/ur_robot_driver/ur_robot_driver/doc/usage/utility_controllers.html">Jazzy</a></dd>
+        
+          <dd><a href="../../../../../../kilted/doc/ur_robot_driver/ur_robot_driver/doc/usage/utility_controllers.html">Kilted</a></dd>
+        
+          <dd><a href="../../../../../../rolling/doc/ur_robot_driver/ur_robot_driver/doc/usage/utility_controllers.html">Rolling</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

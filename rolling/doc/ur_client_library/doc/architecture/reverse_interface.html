@@ -1,0 +1,276 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ReverseInterface &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/ur_theme.css?v=078fdd0b" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/icon.svg"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="RTDEClient" href="rtde_client.html" />
+    <link rel="prev" title="DashboardClient" href="dashboard_client.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Driver Documentation
+              <img src="../../../../_static/ur_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">ur_client_library</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installation.html">Build / installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup.html">Setup a robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../polyscope_compatibility.html">PolyScope version compatibility</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../architecture.html">Library architecture</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dashboard_client.html">DashboardClient</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">ReverseInterface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rtde_client.html">RTDEClient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="script_command_interface.html">Script Command Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="script_reader.html">ScriptReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="script_sender.html">ScriptSender</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trajectory_point_interface.html">Trajectory Point Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ur_driver.html">UrDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruction_executor.html">Instruction Executor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html">Usage examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../real_time.html">Setup for real-time scheduling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../migration_notes.html">Migration notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference.html">C++ API Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_tutorials/tutorial_index.html">Tutorial examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../migration_notes.html">Migration Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../build_status.html">Build status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ros2_controller_vs_driver.html">ROS 2 integration paths</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Universal Robots ROS 2 Driver Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">ur_client_library</a></li>
+          <li class="breadcrumb-item"><a href="../architecture.html">Library architecture</a></li>
+      <li class="breadcrumb-item active">ReverseInterface</li>
+      <li class="wy-breadcrumbs-aside">
+              <!-- User defined GitHub URL -->
+              <a href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/blob/master/doc/architecture/reverse_interface.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="reverseinterface">
+<span id="reverse-interface"></span><h1>ReverseInterface<a class="headerlink" href="#reverseinterface" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">ReverseInterface</span></code> opens a TCP port on which a custom protocol is implemented between the
+robot and the control PC. The port can be specified in the class constructor.</p>
+<p>It’s basic functionality is to send a vector of floating point data together with a mode. It is
+meant to send joint positions or velocities together with a mode that tells the robot how to
+interpret those values (e.g. <code class="docutils literal notranslate"><span class="pre">SERVOJ</span></code>, <code class="docutils literal notranslate"><span class="pre">SPEEDJ</span></code>). Therefore, this interface can be used to do
+motion command streaming to the robot.</p>
+<p>In order to use this class in an application together with a robot, make sure that a corresponding
+URScript is running on the robot that can interpret the commands sent. See <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/blob/master/resources/external_control.urscript">this example
+script</a> for reference.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ReverseInterface</span></code> together with the <a class="reference internal" href="script_command_interface.html#script-command-interface"><span class="std std-ref">Script Command Interface</span></a>, the
+<a class="reference internal" href="trajectory_point_interface.html#trajectory-point-interface"><span class="std std-ref">Trajectory Point Interface</span></a> and the
+<a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/blob/master/resources/external_control.urscript">external_control.urscript</a>
+creates a communication protocol in order to control many of the robot’s functionalities.</p>
+<p>Also see the <a class="reference internal" href="script_sender.html#script-sender"><span class="std std-ref">ScriptSender</span></a> for a way to define the corresponding URScript on the
+control PC and sending it to the robot upon request.</p>
+<section id="communication-protocol">
+<h2>Communication protocol<a class="headerlink" href="#communication-protocol" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">ReverseInterface</span></code>’s “reverse_socket” on the robot is expecting 32 bit integer
+representations 8 datafields frequently. The timeout with which new data is expected can vary depending
+on the current control mode and is set as part of the message. The data fields have the following
+meaning:</p>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">reverse_socket message format</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>index</p></th>
+<th class="head"><p>meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>read timeout in milliseconds. The next read from the socket will use this timeout.</p></td>
+</tr>
+<tr class="row-odd"><td><p>1-6</p></td>
+<td><p>Current motion target. depending on the control mode, this can be interpreted as</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>joint positions (SERVOJ)</p></li>
+<li><p>joint velocities (SPEEDJ)</p></li>
+<li><p>trajectory instructions (FORWARD)</p>
+<ul>
+<li><p>field 1: Trajectory control mode(1: TRAJECTORY_MODE_RECEIVE, -1: TRAJECTORY_MODE_CANCEL)</p></li>
+<li><p>field 2: Number of trajectory points left to transfer</p></li>
+</ul>
+</li>
+<li><p>Cartesian velocities (SPEEDL)</p></li>
+<li><p>Cartesian pose (POSE)</p></li>
+<li><p>freedrive instruction (FREEDRIVE)</p>
+<ul>
+<li><p>field 1: Freedrive mode (1: FREEDRIVE_MODE_START, -1: FREEDRIVE_MODE_STOP)</p></li>
+</ul>
+</li>
+<li><p>target joint torques (TORQUE, see <a class="reference internal" href="#direct-torque-control-mode"><span class="std std-ref">Direct torque control mode</span></a>).</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>Control mode. Can be either of</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>-2: STOPPED – status - not meant to be sent</p></li>
+<li><p>-1: UNINITIALIZED – status - not meant to be sent</p></li>
+<li><p>0: IDLE – no motion</p></li>
+<li><p>1: SERVOJ – High-frequent joint position control</p></li>
+<li><p>2: SPEEDJ – High-frequent joint velocity control</p></li>
+<li><p>3: FORWARD – Trajectory interpolation on the robot, see <a class="reference internal" href="trajectory_point_interface.html#trajectory-point-interface"><span class="std std-ref">Trajectory Point Interface</span></a></p></li>
+<li><p>4: SPEEDL – High-frequenct Cartesian velocity control</p></li>
+<li><p>5: POSE – High-frequent Cartesian pose control (servoj using inverse kinematics)</p></li>
+<li><p>6: FREEDRIVE – Use the robot’s freedrive mode</p></li>
+<li><p>7: TOOL_IN_CONTACT – status - not meant to be sent.
+In tool contact mode this will
+encode whether tool contact has been established or not.</p></li>
+<li><p>8: TORQUE – <a class="reference internal" href="#direct-torque-control-mode"><span class="std std-ref">Direct torque control mode</span></a> (since PolyScope 5.23.0 / 10.10.0)</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In URScript the <code class="docutils literal notranslate"><span class="pre">socket_read_binary_integer()</span></code> function is used to read the data from the
+reverse socket. The first index in that function’s return value is the number of integers read,
+so the actual data starts at index 1. The indices in the table above are shifted by one when
+accessing the result array of the URScript function.</p>
+<p>The motion target is encoded into an integer representation and has to be divided by the
+<code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code> constant to get the actual floating point value. This constant is defined in
+<code class="docutils literal notranslate"><span class="pre">ReverseInterface</span></code> class.</p>
+</div>
+<p>Depending on the control mode one can use the <code class="docutils literal notranslate"><span class="pre">write()</span></code> (SERVOJ, SPEEDJ, SPEEDL, POSE, TORQUE), <code class="docutils literal notranslate"><span class="pre">writeTrajectoryControlMessage()</span></code> (FORWARD) or <code class="docutils literal notranslate"><span class="pre">writeFreedriveControlMessage()</span></code> (FREEDRIVE) function to write a message to the “reverse_socket”.</p>
+<section id="direct-torque-control-mode">
+<span id="id1"></span><h3>Direct torque control mode<a class="headerlink" href="#direct-torque-control-mode" title="Link to this heading"></a></h3>
+<p>Direct torque control mode is available since PolyScope version 5.23.0 / 10.10.0. It allows to command
+joint torques directly to the robot.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Target torques are given <strong>after</strong> gravity compensation. A vector of zeros will hold the current position
+given that the payload is known to the controller.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Direct torque control is a very low-level command interface. Commanding high torques in
+free space can make the robot move very fast and hereby trigger a fault due to joint velocities
+or the TCP speed violating the safety settings. Keep that in mind when using this mode.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dashboard_client.html" class="btn btn-neutral float-left" title="DashboardClient" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="rtde_client.html" class="btn btn-neutral float-right" title="RTDEClient" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> ROS 2</span>
+      Rolling
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../../../jazzy/doc/ur_client_library/doc/architecture/reverse_interface.html">Jazzy</a></dd>
+        
+          <dd><a href="../../../../../kilted/doc/ur_client_library/doc/architecture/reverse_interface.html">Kilted</a></dd>
+        
+          <dd><a href="../../../../../rolling/doc/ur_client_library/doc/architecture/reverse_interface.html">Rolling</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

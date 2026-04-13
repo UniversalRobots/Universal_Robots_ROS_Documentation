@@ -1,0 +1,218 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ur_robot_driver &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/ur_theme.css?v=078fdd0b" />
+
+  
+    <link rel="shortcut icon" href="../../../../../_static/icon.svg"/>
+      <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="ur_moveit_config" href="../../../ur_moveit_config/doc/migration/jazzy.html" />
+    <link rel="prev" title="Iron to Jazzy" href="../../../../migration_jazzy.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Driver Documentation
+              <img src="../../../../../_static/ur_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_client_library/doc/index.html">ur_client_library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">ur_robot_driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ur_tutorials/tutorial_index.html">Tutorial examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../migration_notes.html">Migration Notes</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../../migration_jazzy.html">Iron to Jazzy</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">ur_robot_driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../ur_moveit_config/doc/migration/jazzy.html">ur_moveit_config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../ur_description/doc/migration/jazzy.html">ur_description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../ur_simulation_gz/ur_simulation_gz/doc/migration/jazzy.html">ur_simulation_gz</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../migration_kilted.html">Jazzy to Kilted</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../build_status.html">Build status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ros2_controller_vs_driver.html">ROS 2 integration paths</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Universal Robots ROS 2 Driver Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../migration_notes.html">Migration Notes</a></li>
+          <li class="breadcrumb-item"><a href="../../../../migration_jazzy.html">Iron to Jazzy</a></li>
+      <li class="breadcrumb-item active">ur_robot_driver</li>
+      <li class="wy-breadcrumbs-aside">
+              <!-- User defined GitHub URL -->
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/blob/main/ur_robot_driver/doc/migration/jazzy.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ur-robot-driver">
+<h1>ur_robot_driver<a class="headerlink" href="#ur-robot-driver" title="Link to this heading"></a></h1>
+<section id="keep-alive-count-robot-receive-timeout">
+<h2>keep_alive_count -&gt; robot_receive_timeout<a class="headerlink" href="#keep-alive-count-robot-receive-timeout" title="Link to this heading"></a></h2>
+<p>Doing real-time control with a robot requires the control pc to conform to certain timing
+constraints. For this <code class="docutils literal notranslate"><span class="pre">keep_alive_count</span></code> was used to estimate the tolerance that was given to the
+ROS controller in terms of multiples of 20 ms. Now the timeout is directly configured using the
+<code class="docutils literal notranslate"><span class="pre">robot_receive_timeout</span></code> parameter of the hardware interface.</p>
+</section>
+<section id="ros2-control-xacro-tag-moved-to-driver-package">
+<h2>ros2_control xacro tag moved to driver package<a class="headerlink" href="#ros2-control-xacro-tag-moved-to-driver-package" title="Link to this heading"></a></h2>
+<p>The description package no longer adds the <code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> tag to the robot’s URDF. This is done
+in the driver now. Therefore, there is a <code class="docutils literal notranslate"><span class="pre">urdf</span></code> folder containing the macro for generating a
+<code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> tag and a ready-to-use xacro file for a UR robot with a <code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> tag.</p>
+<p>If you want to create your own controlled robot, you should mimic that structure, as done e.g. in
+the <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Tutorials/blob/main/my_robot_cell/my_robot_cell_control/urdf/my_robot_cell_controlled.urdf.xacro">custom_workcell_tutorial</a>.</p>
+</section>
+<section id="robot-description-is-now-distributed-by-the-robot-state-publisher">
+<h2>robot_description is now distributed by the robot_state_publisher<a class="headerlink" href="#robot-description-is-now-distributed-by-the-robot-state-publisher" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">robot_description</span></code> isn’t propagated to all interested parties as a parameter. Instead, only
+the <code class="docutils literal notranslate"><span class="pre">robot_state_publisher</span></code> is provided with the parameter, republishing it on the
+<code class="docutils literal notranslate"><span class="pre">robot_description</span></code> topic.</p>
+<p>Therefore, there is a new launchfile <code class="docutils literal notranslate"><span class="pre">ur_rsp.launch.py</span></code> which takes care about loading the
+description and starting the <code class="docutils literal notranslate"><span class="pre">robot_state_publisher</span></code>. If you create a description that needs
+other parameters than the packaged one, you can write your own <code class="docutils literal notranslate"><span class="pre">rsp</span></code> launch file and pass that as
+<code class="docutils literal notranslate"><span class="pre">description_launchfile</span></code> argument to <code class="docutils literal notranslate"><span class="pre">ur_control.launch.py</span></code>.</p>
+</section>
+<section id="enforce-absolute-paths-in-launchfiles">
+<h2>Enforce absolute paths in launchfiles<a class="headerlink" href="#enforce-absolute-paths-in-launchfiles" title="Link to this heading"></a></h2>
+<p>All launchfiles now expect an absolute path for files that should be used to alter the launch
+process (e.g. description file, controllers file). Before it was expecting e.g. a
+<code class="docutils literal notranslate"><span class="pre">description_package</span></code> and a <code class="docutils literal notranslate"><span class="pre">description_file</span></code> argument with a relative path to the package.</p>
+<p>The default files have not been changed, so unless you specified your custom package / file
+combinations, you will need to update that to an absolute path.</p>
+<p>Absolute paths can still be generated dynamically using a package + relative path structure inside
+other launchfiles or by using <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">pkg</span> <span class="pre">prefix</span></code> on the command line. For example, you can do</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>launch<span class="w"> </span>ur_robot_driver<span class="w"> </span>ur_control.launch.py<span class="w"> </span>ur_type:<span class="o">=</span>ur20<span class="w"> </span>robot_ip:<span class="o">=</span><span class="m">192</span>.168.56.101<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>kinematics_params_file:<span class="o">=</span><span class="k">$(</span>ros2<span class="w"> </span>pkg<span class="w"> </span>prefix<span class="w"> </span>my_robot_cell_control<span class="k">)</span>/share/my_robot_cell_control/config/my_robot_calibration.yaml
+</pre></div>
+</div>
+</section>
+<section id="removal-of-ros2-control-node">
+<h2>Removal of ros2_control_node<a class="headerlink" href="#removal-of-ros2-control-node" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">ros2_control_node</span></code> has been removed from the driver in <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/pull/939">#939</a>. Instead, the
+<code class="docutils literal notranslate"><span class="pre">ur_control.launch.py</span></code> launchfile now uses the <code class="docutils literal notranslate"><span class="pre">controller_manager</span></code>’s <code class="docutils literal notranslate"><span class="pre">ros2_control_node</span></code>
+directly. This change is only relevant if you wrote your own launchfile starting the
+<code class="docutils literal notranslate"><span class="pre">ur_robot_driver</span></code>’s <code class="docutils literal notranslate"><span class="pre">ros2_control_node</span></code>. In that case, you should adapt your launchfile to use
+the <code class="docutils literal notranslate"><span class="pre">controller_manager</span></code>’s <code class="docutils literal notranslate"><span class="pre">ros2_control_node</span></code> instead. Remember to also remove the
+<code class="docutils literal notranslate"><span class="pre">robot_description</span></code> parameter as explained above.</p>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span>ur_control_node = Node(
+<span class="gd">-   package=&quot;ur_robot_driver&quot;,</span>
+<span class="gd">-   executable=&quot;ur_ros2_control_node&quot;,</span>
+<span class="gi">+   package=&quot;controller_manager&quot;,</span>
+<span class="gi">+   executable=&quot;ros2_control_node&quot;,</span>
+<span class="w"> </span>   parameters=[
+<span class="gd">-       robot_description,</span>
+<span class="w"> </span>       update_rate_config_file,
+<span class="w"> </span>       ParameterFile(initial_joint_controllers, allow_substs=True),
+<span class="w"> </span>   ],
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../../../migration_jazzy.html" class="btn btn-neutral float-left" title="Iron to Jazzy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../../ur_moveit_config/doc/migration/jazzy.html" class="btn btn-neutral float-right" title="ur_moveit_config" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> ROS 2</span>
+      Rolling
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../../../../jazzy/doc/ur_robot_driver/ur_robot_driver/doc/migration/jazzy.html">Jazzy</a></dd>
+        
+          <dd><a href="../../../../../../kilted/doc/ur_robot_driver/ur_robot_driver/doc/migration/jazzy.html">Kilted</a></dd>
+        
+          <dd><a href="../../../../../../rolling/doc/ur_robot_driver/ur_robot_driver/doc/migration/jazzy.html">Rolling</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

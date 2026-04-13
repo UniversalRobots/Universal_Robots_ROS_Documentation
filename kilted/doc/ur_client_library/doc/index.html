@@ -1,0 +1,347 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ur_client_library &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/ur_theme.css?v=078fdd0b" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/icon.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Build / installation" href="installation.html" />
+    <link rel="prev" title="Welcome to the Universal Robots ROS 2 driver documentation" href="../../../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Driver Documentation
+              <img src="../../../_static/ur_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ur_client_library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Build / installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">Setup a robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polyscope_compatibility.html">PolyScope version compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html">Library architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Usage examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="real_time.html">Setup for real-time scheduling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration_notes.html">Migration notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference.html">C++ API Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_tutorials/tutorial_index.html">Tutorial examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../migration_notes.html">Migration Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_status.html">Build status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ros2_controller_vs_driver.html">ROS 2 integration paths</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Universal Robots ROS 2 Driver Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">ur_client_library</li>
+      <li class="wy-breadcrumbs-aside">
+              <!-- User defined GitHub URL -->
+              <a href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/blob/master/doc/index.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ur-client-library">
+<span id="id1"></span><h1>ur_client_library<a class="headerlink" href="#ur-client-library" title="Link to this heading"></a></h1>
+<p>This documentation should help you to get started with the UR Client Library. The UR Client Library
+is a C++ library that allows you to control a UR robot from a remote computer. The library is open-source and
+can be found on <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_Client_Library">GitHub</a>.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Build / installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#plain-cmake">Plain cmake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#inside-a-ros-ros-2-workspace">Inside a ROS / ROS 2 workspace</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#ros-noetic">ROS noetic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#ros-2">ROS 2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#use-this-library-in-other-projects">Use this library in other projects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup a robot</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="setup/robot_setup.html">Robot setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="setup/robot_setup.html#urcap-installation">URCap installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="setup/network_setup.html">Network setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="setup/network_setup.html#robot-setup">Robot setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="setup/network_setup.html#remote-pc-setup">Remote PC setup</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="setup/ursim_docker.html">Setup URSim with Docker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="setup/ursim_docker.html#start-a-ursim-docker-container">Start a URSim docker container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="setup/ursim_docker.html#external-control">External Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="setup/ursim_docker.html#network-setup">Network setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="setup/ursim_docker.html#script-startup">Script startup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="polyscope_compatibility.html">PolyScope version compatibility</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="polyscope_compatibility.html#version-breaking-changes">Version-breaking changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polyscope_compatibility.html#features-requiring-a-specific-polyscope-version">Features requiring a specific PolyScope version</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="polyscope_compatibility.html#torque-control-from-version-2-4-0">Torque control (From version 2.4.0)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Library architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture/dashboard_client.html">DashboardClient</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture/dashboard_client.html#cb-3-and-polyscope-5-only">CB 3 and PolyScope 5 only</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture/dashboard_client.html#polyscope-x-only">PolyScope X only</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture/reverse_interface.html">ReverseInterface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture/reverse_interface.html#communication-protocol">Communication protocol</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="architecture/reverse_interface.html#direct-torque-control-mode">Direct torque control mode</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture/rtde_client.html">RTDEClient</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture/rtde_client.html#reading-data">Reading data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture/rtde_client.html#writing-data">Writing data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture/rtde_client.html#read-only-rtdeclient">Read-Only RTDEClient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture/rtde_client.html#rtdewriter">RTDEWriter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture/script_command_interface.html">Script Command Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture/script_command_interface.html#communication-protocol">Communication protocol</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="architecture/script_command_interface.html#data-sent-to-the-robot">Data sent to the robot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="architecture/script_command_interface.html#data-sent-from-the-robot">Data sent from the robot</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture/script_reader.html">ScriptReader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture/script_reader.html#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture/script_reader.html#supported-data">Supported Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="architecture/script_reader.html#data-dictionary-c-side">Data dictionary (C++ side)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="architecture/script_reader.html#script-code-side">Script code side</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture/script_sender.html">ScriptSender</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture/trajectory_point_interface.html">Trajectory Point Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture/trajectory_point_interface.html#communication-protocol">Communication protocol</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture/ur_driver.html">UrDriver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture/ur_driver.html#public-helper-functions">Public helper functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="architecture/ur_driver.html#checkcalibration-const-std-string-checksum"><code class="docutils literal notranslate"><span class="pre">checkCalibration(const</span> <span class="pre">std::string</span> <span class="pre">checksum)</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="architecture/ur_driver.html#sendscript-const-std-string-program"><code class="docutils literal notranslate"><span class="pre">sendScript(const</span> <span class="pre">std::string&amp;</span> <span class="pre">program)</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture/instruction_executor.html">Instruction Executor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#dataflow-overview-with-urdriver">Dataflow overview with UrDriver</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Usage examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/dashboard_client.html">Dashboard client example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/force_mode.html">Force Mode example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/force_mode.html#start-force-mode">Start force mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/force_mode.html#stop-force-mode">Stop force mode</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples/freedrive.html">Freedrive Mode example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/freedrive.html#start-freedrive-mode">Start freedrive mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/freedrive.html#stop-freedrive-mode">Stop freedrive Mode</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples/instruction_executor.html">Instruction Executor example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/instruction_executor.html#execute-a-sequence-of-motions">Execute a sequence of motions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/instruction_executor.html#execute-a-single-motion">Execute a single motion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples/primary_pipeline.html">Primary Pipeline example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/primary_pipeline.html#producer-setup">Producer setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/primary_pipeline.html#consumer-setup">Consumer setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/primary_pipeline.html#assemble-the-pipeline">Assemble the pipeline</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples/primary_pipeline_calibration.html">Primary Pipeline Calibration example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/primary_pipeline_calibration.html#consumer-setup">Consumer setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/primary_pipeline_calibration.html#assemble-the-pipeline">Assemble the pipeline</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples/rtde_client.html">RTDE Client example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/rtde_client.html#creating-an-rtde-client">Creating an RTDE Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/rtde_client.html#reading-data-from-the-rtde-client">Reading data from the RTDE client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/rtde_client.html#writing-data-to-the-rtde-client">Writing Data to the RTDE client</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples/external_fts_through_rtde.html">External FTS example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/external_fts_through_rtde.html#robot-initialization">Robot initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/external_fts_through_rtde.html#input-key-handling">Input key handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/external_fts_through_rtde.html#setting-the-external-force-torque-values">Setting the external force-torque values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/external_fts_through_rtde.html#example-output">Example output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples/script_command_interface.html">Script command interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/script_command_interface.html#sending-script-commands">Sending script commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples/script_sender.html">Script Sender example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/spline_example.html">Spline Interpolation example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tool_contact_example.html">Tool Contact example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/direct_torque_control.html">Torque control example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/direct_torque_control.html#initialization">Initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/direct_torque_control.html#friction-compensation-setup">Friction compensation setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/direct_torque_control.html#move-to-start-position">Move to start position</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/direct_torque_control.html#robot-control-loop">Robot control loop</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples/trajectory_point_interface.html">Trajectory Joint Interface example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/trajectory_point_interface.html#initialization">Initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/trajectory_point_interface.html#movej-trajectory">MoveJ Trajectory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/trajectory_point_interface.html#movel-trajectory">MoveL Trajectory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/trajectory_point_interface.html#spline-based-interpolation">Spline based interpolation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples/ur_driver.html">Example driver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/ur_driver.html#initialization">Initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/ur_driver.html#robot-control-loop">Robot control loop</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="real_time.html">Setup for real-time scheduling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="real_time.html#installing-a-lowlatency-kernel">Installing a lowlatency-kernel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="real_time.html#setting-up-ubuntu-with-a-preempt-rt-kernel">Setting up Ubuntu with a PREEMPT_RT kernel</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="real_time.html#preparing">Preparing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="real_time.html#getting-the-sources-for-a-real-time-kernel">Getting the sources for a real-time kernel</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="real_time.html#verification">Verification</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="real_time.html#compilation">Compilation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="real_time.html#setup-user-privileges-to-use-real-time-scheduling">Setup user privileges to use real-time scheduling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="real_time.html#setup-grub-to-always-boot-the-lowlatency-real-time-kernel">Setup GRUB to always boot the lowlatency / real-time kernel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="real_time.html#reboot-the-pc">Reboot the PC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="real_time.html#check-for-preemption-capabilities">Check for preemption capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="real_time.html#optional-disable-cpu-speed-scaling">Optional: Disable CPU speed scaling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="migration_notes.html">Migration notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="migration_notes.html#migrating-from-1-x-x-to-2-x-x">Migrating from 1.x.x to 2.x.x</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">C++ API Reference</a></li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../../index.html" class="btn btn-neutral float-left" title="Welcome to the Universal Robots ROS 2 driver documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="installation.html" class="btn btn-neutral float-right" title="Build / installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> ROS 2</span>
+      Kilted
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../../jazzy/doc/ur_client_library/doc/index.html">Jazzy</a></dd>
+        
+          <dd><a href="../../../../kilted/doc/ur_client_library/doc/index.html">Kilted</a></dd>
+        
+          <dd><a href="../../../../rolling/doc/ur_client_library/doc/index.html">Rolling</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
