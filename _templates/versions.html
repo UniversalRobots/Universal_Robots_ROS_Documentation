@@ -1,0 +1,20 @@
+{# Read the Docs injects a version menu when READTHEDOCS is set; for GitHub Pages
+   and local multi-distro builds we show the same UI when ``versions`` is set in
+   html-page-context (see conf.py). #}
+{% if versions %}
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="{{ _('Versions') }}">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> ROS 2</span>
+      {{ current_version }}
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>{{ _('Versions') }}</dt>
+        {% for label, url in versions %}
+          <dd><a href="{{ url }}">{{ label }}</a></dd>
+        {% endfor %}
+      </dl>
+    </div>
+  </div>
+{% endif %}
