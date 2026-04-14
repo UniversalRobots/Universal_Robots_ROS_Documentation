@@ -27,7 +27,7 @@ html: clone-subrepos
 	export ROS_DISTRO="$$ros"; \
 	$(SPHINXBUILD) -b html "$(SOURCEDIR)" "$(BUILDDIR)/html/$$ros" $(SPHINXOPTS) $(O)
 
-# Humble, Jazzy, Kilted, Rolling; optional root index redirect (see script)
+# Jazzy, Kilted, Rolling; version-less pages redirect to chosen distro (see script)
 html-all:
 	@./scripts/build_docs.sh
 
