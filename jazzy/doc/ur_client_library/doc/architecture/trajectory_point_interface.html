@@ -186,8 +186,14 @@ representations in 21 datafields. The data fields have the following meaning:</p
 <p>where</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>: 1000000</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">MULT_TIME</span></code>: 1000</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MULT_TIME</span></code>: 1000000</p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>With <code class="docutils literal notranslate"><span class="pre">MULT_TIME</span></code> being 1000000, the maximum duration that can be sent is 2147 seconds, while
+precision is cut off at 1 microsecond. (The same applies to the blend radius, respectively being
+max 2147 m and 1 μm precision.)</p>
+</div>
 </section>
 </section>
 
