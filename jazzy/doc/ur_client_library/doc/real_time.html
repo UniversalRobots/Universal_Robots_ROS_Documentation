@@ -271,7 +271,7 @@ the ones without the <code class="docutils literal notranslate"><span class="pre
 <section id="setup-user-privileges-to-use-real-time-scheduling">
 <h2>Setup user privileges to use real-time scheduling<a class="headerlink" href="#setup-user-privileges-to-use-real-time-scheduling" title="Link to this heading"></a></h2>
 <p>To be able to schedule threads with user privileges (what the driver will do) you’ll have to change
-the user’s limits by changing <code class="docutils literal notranslate"><span class="pre">/etc/security/limits.conf</span></code> (See <a class="reference external" href="https://manpages.ubuntu.com/manpages/noble/en/man5/limits.conf.5.html">the manpage</a> for details)</p>
+the user’s limits by changing <code class="docutils literal notranslate"><span class="pre">/etc/security/limits.conf</span></code> (See <a class="reference external" href="https://manpages.ubuntu.com/manpages/noble/man5/limits.conf.5.html">the manpage</a> for details)</p>
 <p>We recommend to setup a group for real-time users instead of writing a fixed username into the config
 file:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>groupadd<span class="w"> </span>realtime
