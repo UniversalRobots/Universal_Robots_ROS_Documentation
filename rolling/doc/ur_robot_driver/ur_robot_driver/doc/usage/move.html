@@ -115,7 +115,7 @@
 <p>First check the controllers’ state using <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">control</span> <span class="pre">list_controllers</span></code>, before running any commands. (Remember to install the <code class="docutils literal notranslate"><span class="pre">ros2controlcli</span></code> package).</p>
 <ul>
 <li><p>Send goals to the Joint Trajectory Controller by using a demo node from <a class="reference external" href="https://github.com/ros-controls/ros2_controllers/blob/master/ros2_controllers_test_nodes/ros2_controllers_test_nodes/publisher_joint_trajectory_controller.py">ros2_controllers_test_nodes</a> package by starting  the following command in another terminal:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>launch<span class="w"> </span>ur_robot_driver<span class="w"> </span>test_scaled_joint_trajectory_controller.launch.py
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>launch<span class="w"> </span>ur_robot_driver<span class="w"> </span>test_joint_trajectory_controller.launch.py
 </pre></div>
 </div>
 <p>The robot should move, after a few seconds.</p>
@@ -150,7 +150,7 @@ is specified in the <code class="docutils literal notranslate"><span class="pre"
 </ul>
 <p>In case you want to write your own ROS node to move the robot, there is an example python node included that you can use as a start.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>run<span class="w"> </span>ur_robot_driver<span class="w"> </span>example_move.py
-<span class="go">[INFO] [1720623611.547903428] [jtc_client]: Waiting for action server on scaled_joint_trajectory_controller/follow_joint_trajectory</span>
+<span class="go">[INFO] [1720623611.547903428] [jtc_client]: Waiting for action server on joint_trajectory_controller/follow_joint_trajectory</span>
 <span class="go">[INFO] [1720623611.548368095] [jtc_client]: Executing trajectory traj0</span>
 <span class="go">[INFO] [1720623620.530203889] [jtc_client]: Done with result: SUCCESSFUL</span>
 <span class="go">[INFO] [1720623622.530668700] [jtc_client]: Executing trajectory traj1</span>

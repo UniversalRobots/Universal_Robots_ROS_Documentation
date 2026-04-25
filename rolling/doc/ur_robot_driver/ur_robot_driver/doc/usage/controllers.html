@@ -162,9 +162,9 @@ those interfaces. Only one controller claiming a certain interface can be active
 <p>Controllers can be switched either through the controller_manager’s service calls, through the
 <a class="reference external" href="https://control.ros.org/rolling/doc/ros2_control/controller_manager/doc/userdoc.html#rqt-controller-manager">rqt_controller_manager</a>
 gui or through the <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">control</span></code> verb from the <code class="docutils literal notranslate"><span class="pre">ros-${ROS_DISTRO}-ros2controlcli</span></code> package.</p>
-<p>For example, to switch from the default <code class="docutils literal notranslate"><span class="pre">scaled_joint_trajectory_controller</span></code> to the
+<p>For example, to switch from the default <code class="docutils literal notranslate"><span class="pre">joint_trajectory_controller</span></code> to the
 <code class="docutils literal notranslate"><span class="pre">forward_position_controller</span></code> you can call</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>control<span class="w"> </span>switch_controllers<span class="w"> </span>--deactivate<span class="w"> </span>scaled_joint_trajectory_controller<span class="w"> </span><span class="se">\</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>control<span class="w"> </span>switch_controllers<span class="w"> </span>--deactivate<span class="w"> </span>joint_trajectory_controller<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--activate<span class="w"> </span>forward_position_controller
 <span class="go">[INFO 2024-09-23 20:32:04.373] [_ros2cli_1207798]: waiting for service /controller_manager/switch_controller to become available...</span>
 <span class="go">Successfully switched controllers</span>

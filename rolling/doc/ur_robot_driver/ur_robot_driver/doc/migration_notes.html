@@ -166,6 +166,35 @@ the <code class="docutils literal notranslate"><span class="pre">controller_mana
 </div>
 </section>
 </section>
+<section id="kilted-lyrical">
+<h2>Kilted -&gt; Lyrical<a class="headerlink" href="#kilted-lyrical" title="Link to this heading"></a></h2>
+<p>Since the <code class="docutils literal notranslate"><span class="pre">scaled_joint_trajectory_controller</span></code> has been removed in ROS Lyrical Luth, the default
+controller is now the <code class="docutils literal notranslate"><span class="pre">joint_trajectory_controller</span></code>. The reason for this is the scaling capabilities now has been merged upstream to <code class="docutils literal notranslate"><span class="pre">joint_trajectory_controller</span></code>. Thus, making the <code class="docutils literal notranslate"><span class="pre">scaled_joint_trajectory_controller</span></code> redundant.</p>
+<p>User applications will most likely have to change the target action server for execution motions</p>
+<p><code class="docutils literal notranslate"><span class="pre">scaled_joint_trajectory_controller/follow_joint_trajectory</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">joint_trajectory_controller/follow_joint_trajectory</span></code></p>
+<p>In custom controller specification files it is enough to change the controller type and the speed
+scaling state interface parameter. Go from</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">controller_manager</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ros__parameters</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">my_traj_controller</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ur_controllers/ScaledJointTrajectoryController</span>
+<span class="nt">my_traj_controller</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ros__parameters</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">speed_scaling_interface_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$(var tf_prefix)speed_scaling/speed_scaling_factor</span>
+</pre></div>
+</div>
+<p>to</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">controller_manager</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ros__parameters</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">my_traj_controller</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">joint_trajectory_controller/JointTrajectoryController</span>
+<span class="nt">my_traj_controller</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ros__parameters</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">speed_scaling</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">state_interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$(var tf_prefix)speed_scaling/speed_scaling_factor</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 

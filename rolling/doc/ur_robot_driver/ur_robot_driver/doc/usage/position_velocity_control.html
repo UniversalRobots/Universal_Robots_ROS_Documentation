@@ -211,7 +211,7 @@ on tool contact.</p></li>
 <code class="docutils literal notranslate"><span class="pre">forward_velocity_controller</span></code>, <code class="docutils literal notranslate"><span class="pre">forward_effort_controller</span></code>, <code class="docutils literal notranslate"><span class="pre">freedrive_mode_controller</span></code>).</p></li>
 </ul>
 <p>To activate:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>control<span class="w"> </span>switch_controllers<span class="w"> </span>--deactivate<span class="w"> </span>scaled_joint_trajectory_controller<span class="w"> </span><span class="se">\</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>control<span class="w"> </span>switch_controllers<span class="w"> </span>--deactivate<span class="w"> </span>joint_trajectory_controller<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--activate<span class="w"> </span>motion_primitive_forward_controller
 </pre></div>
 </div>
@@ -243,7 +243,7 @@ detect when the robot is scaling down and adapt your commands accordingly.</p>
 <p>Streams target joint positions directly to the robot. The robot moves to each target position as
 fast as possible. This interfaces the URScript function <code class="docutils literal notranslate"><span class="pre">servoj(...)</span></code>.</p>
 <p>To activate:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>control<span class="w"> </span>switch_controllers<span class="w"> </span>--deactivate<span class="w"> </span>scaled_joint_trajectory_controller<span class="w"> </span><span class="se">\</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>control<span class="w"> </span>switch_controllers<span class="w"> </span>--deactivate<span class="w"> </span>joint_trajectory_controller<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--activate<span class="w"> </span>forward_position_controller
 </pre></div>
 </div>
@@ -253,7 +253,7 @@ fast as possible. This interfaces the URScript function <code class="docutils li
 <p>Type: <a class="reference external" href="https://control.ros.org/rolling/doc/ros2_controllers/forward_command_controller/doc/userdoc.html">forward_command_controller/ForwardCommandController</a> with <code class="docutils literal notranslate"><span class="pre">interface_name:</span> <span class="pre">velocity</span></code></p>
 <p>Streams target joint velocities directly to the robot. This interfaces the URScript function <code class="docutils literal notranslate"><span class="pre">speedj(...)</span></code>.</p>
 <p>To activate:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>control<span class="w"> </span>switch_controllers<span class="w"> </span>--deactivate<span class="w"> </span>scaled_joint_trajectory_controller<span class="w"> </span><span class="se">\</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>control<span class="w"> </span>switch_controllers<span class="w"> </span>--deactivate<span class="w"> </span>joint_trajectory_controller<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--activate<span class="w"> </span>forward_velocity_controller
 </pre></div>
 </div>

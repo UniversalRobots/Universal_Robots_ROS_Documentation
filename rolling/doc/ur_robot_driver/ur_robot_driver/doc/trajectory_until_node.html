@@ -117,7 +117,7 @@ The result section contains the other new field called <code class="docutils lit
 <section id="implementation-details">
 <h2>Implementation details<a class="headerlink" href="#implementation-details" title="Link to this heading"></a></h2>
 <p>Upon instantiation of the node, the internal trajectory action client will connect to an action named <code class="docutils literal notranslate"><span class="pre">motion_controller/follow_joint_trajectory</span></code>.
-This action does not exist, but upon launch of the driver, the node is remapped to connect to the <code class="docutils literal notranslate"><span class="pre">initial_joint_controller</span></code>, default is <code class="docutils literal notranslate"><span class="pre">scaled_joint_trajectory_controller</span></code>.
+This action does not exist, but upon launch of the driver, the node is remapped to connect to the <code class="docutils literal notranslate"><span class="pre">initial_joint_controller</span></code>, default is <code class="docutils literal notranslate"><span class="pre">joint_trajectory_controller</span></code>.
 If you wish to use the node with another motion controller use the launch argument <code class="docutils literal notranslate"><span class="pre">initial_joint_controller:=&lt;your_motion_controller&gt;</span></code> when launching the driver.
 The node is only compatible with motion controllers that use the FollowJointTrajectory action interface.</p>
 </section>
