@@ -100,6 +100,8 @@
              
   <section id="ur-robot-driver">
 <h1>ur_robot_driver<a class="headerlink" href="#ur-robot-driver" title="Link to this heading"></a></h1>
+<section id="removal-of-scaled-joint-trajectory-controller">
+<h2>Removal of scaled_joint_trajectory_controller<a class="headerlink" href="#removal-of-scaled-joint-trajectory-controller" title="Link to this heading"></a></h2>
 <p>Since the <code class="docutils literal notranslate"><span class="pre">scaled_joint_trajectory_controller</span></code> has been removed in ROS Lyrical Luth, the default
 controller is now the <code class="docutils literal notranslate"><span class="pre">joint_trajectory_controller</span></code>. The reason for this is the scaling capabilities now has been merged upstream to <code class="docutils literal notranslate"><span class="pre">joint_trajectory_controller</span></code>. Thus, making the <code class="docutils literal notranslate"><span class="pre">scaled_joint_trajectory_controller</span></code> redundant.</p>
 <p>User applications will most likely have to change the target action server for execution motions</p>
@@ -126,6 +128,27 @@ scaling state interface parameter. Go from</p>
 <span class="w">      </span><span class="nt">state_interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$(var tf_prefix)speed_scaling/speed_scaling_factor</span>
 </pre></div>
 </div>
+</section>
+<section id="automatic-robot-model-verification-at-startup">
+<h2>Automatic robot model verification at startup<a class="headerlink" href="#automatic-robot-model-verification-at-startup" title="Link to this heading"></a></h2>
+<p>In Lyrical, the robot model is automatically verified at startup. The robot model will be queried
+from the connected robot and compared to the robot model specified in the URDF. If the models do
+not match, configuring the hardware will fail and an error will be logged.</p>
+<p>This feature is enabled by default, but can be disabled by setting the <code class="docutils literal notranslate"><span class="pre">verify_robot_model</span></code>
+parameter to <code class="docutils literal notranslate"><span class="pre">false</span></code> in the hardware configuration file. For example, the following command will
+launch the driver without verifying the robot model:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ros2</span> <span class="n">launch</span> <span class="n">ur_robot_driver</span> <span class="n">ur_control</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span> \
+  <span class="n">robot_ip</span><span class="o">:=</span><span class="mf">192.168.56.101</span> \
+  <span class="n">ur_type</span><span class="o">:=</span><span class="n">ur18</span> \
+  <span class="n">verify_robot_model</span><span class="o">:=</span><span class="n">false</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This feature is also available in previous ROS distributions, but is disabled by default. It is
+recommended to enable this feature to ensure that the correct robot model is being used.</p>
+</div>
+</section>
 </section>
 
 
