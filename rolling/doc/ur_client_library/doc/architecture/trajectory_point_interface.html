@@ -144,40 +144,86 @@ representations in 21 datafields. The data fields have the following meaning:</p
 </thead>
 <tbody>
 <tr class="row-even"><td><p>0-5</p></td>
-<td><p>trajectory point positions (Multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>)</p></td>
+<td><p>trajectory point positions (multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>).</p>
+<p>Interpreted as joint positions [rad] or as a Cartesian pose ([m, m, m, rad, rad, rad])
+depending on the motion type at index 20 (see below).</p>
+</td>
 </tr>
 <tr class="row-odd"><td><p>6-11</p></td>
-<td><p>trajectory point velocities (Multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>). For MOVEC, this contains the “via pose”.</p></td>
+<td><p>Depending on the motion type, this represents either</p>
+<ul class="simple">
+<li><p>Joint hint <code class="docutils literal notranslate"><span class="pre">q_near</span></code> (six joint positions in radians, <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>-scaled) when
+the motion target is a Cartesian <code class="docutils literal notranslate"><span class="pre">urcl::Pose</span></code> with <code class="docutils literal notranslate"><span class="pre">Pose::q_near</span></code> set on the library
+side. The bundled <code class="docutils literal notranslate"><span class="pre">external_control.urscript</span></code> applies this hint for <code class="docutils literal notranslate"><span class="pre">MOVEJ_POSE</span></code> and
+<code class="docutils literal notranslate"><span class="pre">OPTIMOVEJ_POSE</span></code> (<code class="docutils literal notranslate"><span class="pre">get_inverse_kin</span></code> seed); other pose motion types still receive the
+block on the wire but ignore it in the default script.</p></li>
+<li><p>For all MOVEC variants this field contains the via point (same
+joint-vs-pose interpretation as the target at indices 0-5, see the motion type at
+index 20).</p></li>
+<li><p>trajectory point velocities (multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>) for spline joint types</p></li>
+</ul>
+</td>
 </tr>
 <tr class="row-even"><td><p>12-17</p></td>
-<td><p>trajectory point accelerations (Multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>).</p>
-<p>For MOVEC:</p>
-<ul class="simple">
-<li><p>12: velocity (Multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>)</p></li>
-<li><p>13: acceleration (Multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>)</p></li>
-<li><p>14: mode (Multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>)</p></li>
+<td><p>Depending on the motion type, this represents either</p>
+<ul>
+<li><p>trajectory point accelerations (multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>) for spline joint
+types.</p></li>
+<li><p>for all other motion types</p>
+<ul>
+<li><p>12: velocity (multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>)</p></li>
+<li><p>13: acceleration (multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>)</p></li>
+<li><p>14: Depending on motion type:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MOVEC_*</span></code>: arc mode (multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>)</p></li>
+<li><p>Other non-spline primitives with a Cartesian <code class="docutils literal notranslate"><span class="pre">Pose</span></code> target: <code class="docutils literal notranslate"><span class="pre">1.0</span></code> or <code class="docutils literal notranslate"><span class="pre">0.0</span></code>
+(scaled by <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>) indicating whether indices 6–11 carry <code class="docutils literal notranslate"><span class="pre">q_near</span></code>.
+The bundled URScript consumes <code class="docutils literal notranslate"><span class="pre">q_near</span></code> for <code class="docutils literal notranslate"><span class="pre">MOVEJ_POSE</span></code> and <code class="docutils literal notranslate"><span class="pre">OPTIMOVEJ_POSE</span></code>
+only; the flag and joint block are still defined this way for all such pose motions.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</li>
 </ul>
 </td>
 </tr>
 <tr class="row-odd"><td><p>18</p></td>
-<td><p>trajectory point type</p>
+<td><p>segment duration (seconds, multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_TIME</span></code>; integer microseconds on the wire).</p></td>
+</tr>
+<tr class="row-even"><td><p>19</p></td>
+<td><p>depending on trajectory point type</p>
 <ul class="simple">
-<li><p>0: MOVEJ</p></li>
-<li><p>1: MOVEL</p></li>
-<li><p>2: MOVEP</p></li>
-<li><p>3: MOVEC</p></li>
-<li><p>51: SPLINE)</p></li>
+<li><p>All MOVE* and OPTIMOVE* variants: point blend radius (in meters, multiplied by
+<code class="docutils literal notranslate"><span class="pre">MULT_TIME</span></code>)</p></li>
+<li><p>SPLINE: spline type (1: CUBIC, 2: QUINTIC; raw integer, not <code class="docutils literal notranslate"><span class="pre">MULT_TIME</span></code>-scaled)</p></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td><p>19</p></td>
-<td><p>trajectory point time (in seconds, multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_TIME</span></code>)</p></td>
-</tr>
 <tr class="row-odd"><td><p>20</p></td>
-<td><p>depending on trajectory point type</p>
+<td><p>trajectory point type. The base values below use the URScript command’s “natural”
+target type (joints for <code class="docutils literal notranslate"><span class="pre">movej</span></code> / <code class="docutils literal notranslate"><span class="pre">optimovej</span></code>, Cartesian pose for <code class="docutils literal notranslate"><span class="pre">movel</span></code> /
+<code class="docutils literal notranslate"><span class="pre">movep</span></code> / <code class="docutils literal notranslate"><span class="pre">movec</span></code> / <code class="docutils literal notranslate"><span class="pre">optimovel</span></code>). The <code class="docutils literal notranslate"><span class="pre">*_POSE</span></code> / <code class="docutils literal notranslate"><span class="pre">*_JOINT</span></code> variants indicate
+that the other target kind is being sent instead.</p>
 <ul class="simple">
-<li><p>MOVEJ, MOVEL, MOVEP and MOVEC: point blend radius (in meters, multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_TIME</span></code>)</p></li>
-<li><p>SPLINE: spline type (1: CUBIC, 2: QUINTIC)</p></li>
+<li><p>0: MOVEJ – <code class="docutils literal notranslate"><span class="pre">movej</span></code> to a joint target</p></li>
+<li><p>1: MOVEL – <code class="docutils literal notranslate"><span class="pre">movel</span></code> to a pose target</p></li>
+<li><p>2: MOVEP – <code class="docutils literal notranslate"><span class="pre">movep</span></code> to a pose target</p></li>
+<li><p>3: MOVEC – <code class="docutils literal notranslate"><span class="pre">movec</span></code> with pose via and pose target</p></li>
+<li><p>4: OPTIMOVEJ – <code class="docutils literal notranslate"><span class="pre">optimovej</span></code> to a joint target</p></li>
+<li><p>5: OPTIMOVEL – <code class="docutils literal notranslate"><span class="pre">optimovel</span></code> to a pose target</p></li>
+<li><p>6: MOVEJ_POSE – <code class="docutils literal notranslate"><span class="pre">movej</span></code> to a pose target (IK on the robot controller)</p></li>
+<li><p>7: MOVEL_JOINT – <code class="docutils literal notranslate"><span class="pre">movel</span></code> to the pose implied by a joint target (FK on the
+robot controller)</p></li>
+<li><p>8: MOVEP_JOINT – <code class="docutils literal notranslate"><span class="pre">movep</span></code> to the pose implied by a joint target (FK on the
+robot controller)</p></li>
+<li><p>9: MOVEC_JOINT – <code class="docutils literal notranslate"><span class="pre">movec</span></code> with joint via and joint target</p></li>
+<li><p>10: MOVEC_JOINT_POSE – <code class="docutils literal notranslate"><span class="pre">movec</span></code> with pose via and joint target</p></li>
+<li><p>11: MOVEC_POSE_JOINT – <code class="docutils literal notranslate"><span class="pre">movec</span></code> with joint via and pose target</p></li>
+<li><p>12: OPTIMOVEJ_POSE – <code class="docutils literal notranslate"><span class="pre">optimovej</span></code> to a pose target</p></li>
+<li><p>13: OPTIMOVEL_JOINT – <code class="docutils literal notranslate"><span class="pre">optimovel</span></code> to the pose implied by a joint target</p></li>
+<li><p>51: SPLINE - Cubic or quintic spline.</p></li>
 </ul>
 </td>
 </tr>
@@ -193,6 +239,17 @@ representations in 21 datafields. The data fields have the following meaning:</p
 <p>With <code class="docutils literal notranslate"><span class="pre">MULT_TIME</span></code> being 1000000, the maximum duration that can be sent is 2147 seconds, while
 precision is cut off at 1 microsecond. (The same applies to the blend radius, respectively being
 max 2147 m and 1 μm precision.)</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">*_POSE</span></code> / <code class="docutils literal notranslate"><span class="pre">*_JOINT</span></code> motion-type variants let callers mix joint-space and Cartesian
+targets freely through the high-level APIs (see <a class="reference internal" href="instruction_executor.html#instruction-executor"><span class="std std-ref">Instruction Executor</span></a> and the
+<code class="docutils literal notranslate"><span class="pre">urcl::MotionTarget</span></code> type). On the wire the positions are always packed as a 6-tuple of
+<code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>-scaled integers; which physical quantity they represent (joint angles or
+Cartesian pose components) is determined solely by the motion type field at index 20. The
+corresponding mapping back to <code class="docutils literal notranslate"><span class="pre">movej</span></code> / <code class="docutils literal notranslate"><span class="pre">movel</span></code> / <code class="docutils literal notranslate"><span class="pre">movep</span></code> / <code class="docutils literal notranslate"><span class="pre">movec</span></code> / <code class="docutils literal notranslate"><span class="pre">optimovej</span></code> /
+<code class="docutils literal notranslate"><span class="pre">optimovel</span></code> calls with either <code class="docutils literal notranslate"><span class="pre">q</span></code> or <code class="docutils literal notranslate"><span class="pre">p[...]</span></code> arguments is performed on the robot side
+by <code class="docutils literal notranslate"><span class="pre">resources/external_control.urscript</span></code>.</p>
 </div>
 </section>
 </section>

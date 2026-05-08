@@ -110,7 +110,16 @@
 <span id="id1"></span><h1>Robot setup<a class="headerlink" href="#robot-setup" title="Link to this heading"></a></h1>
 <p>The robot needs to be prepared before it can be used with the client library.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-Q0Iz" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-Q0Iz" name="Q0Iz" role="tab" tabindex="0">CB3</button><button aria-controls="panel-0-UG9seVNjb3BlIDU=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-UG9seVNjb3BlIDU=" name="UG9seVNjb3BlIDU=" role="tab" tabindex="-1">PolyScope 5</button><button aria-controls="panel-0-UG9seVNjb3BlIFg=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-UG9seVNjb3BlIFg=" name="UG9seVNjb3BlIFg=" role="tab" tabindex="-1">PolyScope X</button></div><div aria-labelledby="tab-0-Q0Iz" class="sphinx-tabs-panel group-tab" id="panel-0-Q0Iz" name="Q0Iz" role="tabpanel" tabindex="0"><p>CB3 robots can directly be used with the ur_client_library. No special preparation is needed.</p>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-UG9seVNjb3BlIFg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-UG9seVNjb3BlIFg=" name="UG9seVNjb3BlIFg=" role="tab" tabindex="0">PolyScope X</button><button aria-controls="panel-0-UG9seVNjb3BlIDU=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-UG9seVNjb3BlIDU=" name="UG9seVNjb3BlIDU=" role="tab" tabindex="-1">PolyScope 5</button><button aria-controls="panel-0-Q0Iz" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Q0Iz" name="Q0Iz" role="tab" tabindex="-1">CB3</button></div><div aria-labelledby="tab-0-UG9seVNjb3BlIFg=" class="sphinx-tabs-panel group-tab" id="panel-0-UG9seVNjb3BlIFg=" name="UG9seVNjb3BlIFg=" role="tabpanel" tabindex="0"><p><strong>Enable services:</strong></p>
+<ol class="arabic simple">
+<li><p>Go to the hamburger menu -&gt; settings.</p></li>
+<li><p>Go to Security -&gt; Services.</p></li>
+<li><p>Unlock the menu using the admin password.</p></li>
+<li><p>Enable the Primary Client Interface and Real-Time Data Exchange (RTDE) interfaces.</p></li>
+<li><p>Lock the menu and press exit.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../../_images/services_polyscopex.png"><img alt="Screenshot from PolyScope X screen." src="../../../../_images/services_polyscopex.png" style="width: 600px;" />
+</a>
 </div><div aria-labelledby="tab-0-UG9seVNjb3BlIDU=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-UG9seVNjb3BlIDU=" name="UG9seVNjb3BlIDU=" role="tabpanel" tabindex="0"><p>There are two ways the client library can be enabled to send command to the robot.</p>
 <ul class="simple">
 <li><p><strong>Remote control</strong>: There the full control is given to the client library and enables it to e.g. power on and off, brake release, load PolyScope programs and send URScript programs directly to the controller.</p></li>
@@ -136,16 +145,7 @@
 </ol>
 <a class="reference internal image-reference" href="../../../../_images/services_polyscope5.png"><img alt="Screenshot from PolyScope 5.xx services menu." src="../../../../_images/services_polyscope5.png" style="width: 600px;" />
 </a>
-</div><div aria-labelledby="tab-0-UG9seVNjb3BlIFg=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-UG9seVNjb3BlIFg=" name="UG9seVNjb3BlIFg=" role="tabpanel" tabindex="0"><p><strong>Enable services:</strong></p>
-<ol class="arabic simple">
-<li><p>Go to the hamburger menu -&gt; settings.</p></li>
-<li><p>Go to Security -&gt; Services.</p></li>
-<li><p>Unlock the menu using the admin password.</p></li>
-<li><p>Enable the Primary Client Interface and Real-Time Data Exchange (RTDE) interfaces.</p></li>
-<li><p>Lock the menu and press exit.</p></li>
-</ol>
-<a class="reference internal image-reference" href="../../../../_images/services_polyscopex.png"><img alt="Screenshot from PolyScope X screen." src="../../../../_images/services_polyscopex.png" style="width: 600px;" />
-</a>
+</div><div aria-labelledby="tab-0-Q0Iz" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Q0Iz" name="Q0Iz" role="tabpanel" tabindex="0"><p>CB3 robots can directly be used with the ur_client_library. No special preparation is needed.</p>
 </div></div>
 <section id="urcap-installation">
 <span id="install-urcap"></span><h2>URCap installation<a class="headerlink" href="#urcap-installation" title="Link to this heading"></a></h2>
@@ -154,7 +154,75 @@ installed. It allows a remote PC to control the robot externally. Generally, you
 driver on the remote PC and then start a program from the tech pendant to connect to the remote
 application.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-Q0Iz" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-Q0Iz" name="Q0Iz" role="tab" tabindex="0">CB3</button><button aria-controls="panel-1-UG9seVNjb3BlIDU=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-UG9seVNjb3BlIDU=" name="UG9seVNjb3BlIDU=" role="tab" tabindex="-1">PolyScope 5</button><button aria-controls="panel-1-UG9seVNjb3BlIFg=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-UG9seVNjb3BlIFg=" name="UG9seVNjb3BlIFg=" role="tab" tabindex="-1">PolyScope X</button></div><div aria-labelledby="tab-1-Q0Iz" class="sphinx-tabs-panel group-tab" id="panel-1-Q0Iz" name="Q0Iz" role="tabpanel" tabindex="0"><div class="admonition note">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-UG9seVNjb3BlIFg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-UG9seVNjb3BlIFg=" name="UG9seVNjb3BlIFg=" role="tab" tabindex="0">PolyScope X</button><button aria-controls="panel-1-UG9seVNjb3BlIDU=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-UG9seVNjb3BlIDU=" name="UG9seVNjb3BlIDU=" role="tab" tabindex="-1">PolyScope 5</button><button aria-controls="panel-1-Q0Iz" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-Q0Iz" name="Q0Iz" role="tab" tabindex="-1">CB3</button></div><div aria-labelledby="tab-1-UG9seVNjb3BlIFg=" class="sphinx-tabs-panel group-tab" id="panel-1-UG9seVNjb3BlIFg=" name="UG9seVNjb3BlIFg=" role="tabpanel" tabindex="0"><p>The latest release can be downloaded from <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ExternalControl_URCapX/releases">GitHub (URCapX)</a>.</p>
+<p>To install it you first have to copy it to a USB stick and plug that into the robot’s teach
+pendant.</p>
+<p>On the welcome screen click on the hamburger menu in the top-left corner and select <em>System
+Manager</em> to enter the robot’s setup.  There select <em>URCaps</em> to enter the URCaps installation
+screen. You’ll have to press <em>unlock</em> and enter the admin password to be able to install new
+URCaps.</p>
+<a class="reference external image-reference" href="initial_setup_images/px_01_welcome.png"><img alt="Welcome screen of a PolyScope X robot" src="../../../../_images/px_01_welcome.png" />
+</a>
+<p>There, click the “+URCap” button at the top-right to open the file selector. There you should see
+all urcap files stored on a plugged USB drive.  Select and open
+the <strong>external-control-X.Y.Z.urcapx</strong> file and click <em>Confirm</em>. A popup should ask you to
+confirm the installation.</p>
+<a class="reference external image-reference" href="initial_setup_images/px_05_urcaps_installed.png"><img alt="URCaps screen with installed urcaps" src="../../../../_images/px_05_urcaps_installed.png" />
+</a>
+<p>Upon confirmation, the external-control URCap should be listed as installed.</p>
+<p>After the robot rebooted you should find the <strong>External Control</strong> URCapX on the <em>Application</em>
+Screen. If you open it, you will get to its configuration screen.</p>
+<a class="reference external image-reference" href="initial_setup_images/px_07_installation_excontrol.png"><img alt="Configuration screen of External Control URCapX" src="../../../../_images/px_07_installation_excontrol.png" />
+</a>
+<p>Here you’ll have to setup the IP address of the external PC which will be running the remote
+application. Note that the robot and the external PC have to be in the same network, ideally in a
+direct connection with each other to minimize network disturbances. The custom port should be left
+untouched for now.</p>
+<p>To use the new URCaps, create a new program and insert the <strong>External Control</strong> program node into
+the program tree</p>
+<a class="reference external image-reference" href="initial_setup_images/px_10_prog_structure_urcaps.png"><img alt="Insert the external control node" src="../../../../_images/px_10_prog_structure_urcaps.png" />
+</a>
+<a class="reference external image-reference" href="initial_setup_images/px_11_program_view_excontrol.png"><img alt="Program view of external control" src="../../../../_images/px_11_program_view_excontrol.png" />
+</a>
+<p>If you select the External Control program node, you’ll see a button “Update program”
+appearing next to it. With the external application started, press it to receive the script
+code.</p>
+</div><div aria-labelledby="tab-1-UG9seVNjb3BlIDU=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-UG9seVNjb3BlIDU=" name="UG9seVNjb3BlIDU=" role="tabpanel" tabindex="0"><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A minimal PolyScope version of 5.9.4 is required to use this URCap</p>
+</div>
+<p>The latest release can be downloaded from <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ExternalControl_URCap/releases">its own repository</a>.</p>
+<p>To install it you first have to copy it to the robot’s <strong>programs</strong> folder which can be done either
+via scp or using a USB stick.</p>
+<p>On the welcome screen click on the hamburger menu in the top-right corner and select <em>Settings</em> to enter the robot’s setup.  There select <em>System</em> and then <em>URCaps</em> to enter the URCaps installation screen.</p>
+<a class="reference external image-reference" href="initial_setup_images/es_01_welcome.png"><img alt="Welcome screen of an e-Series robot" src="../../../../_images/es_01_welcome.png" />
+</a>
+<p>There, click the little plus sign at the bottom to open the file selector. There you should see
+all urcap files stored inside the robot’s programs folder or a plugged USB drive.  Select and open
+the <strong>externalcontrol-X.Y.Z.urcap</strong> file and click <em>open</em>. Your URCaps view should now show the
+<strong>External Control</strong> in the list of active URCaps and a notification to restart the robot. Do that
+now.</p>
+<a class="reference external image-reference" href="initial_setup_images/es_05_urcaps_installed.png"><img alt="URCaps screen with installed urcaps" src="../../../../_images/es_05_urcaps_installed.png" />
+</a>
+<p>After the reboot you should find the <strong>External Control</strong> URCaps inside the <em>Installation</em> section.
+For this select <em>Program Robot</em> on the welcome screen, select the <em>Installation</em> tab and select
+<strong>External Control</strong> from the list.</p>
+<a class="reference external image-reference" href="initial_setup_images/es_07_installation_excontrol.png"><img alt="Installation screen of URCaps" src="../../../../_images/es_07_installation_excontrol.png" />
+</a>
+<p>Here you’ll have to setup the IP address of the external PC which will be running the remote
+application. Note that the robot and the external PC have to be in the same network, ideally in a
+direct connection with each other to minimize network disturbances. The custom port should be left
+untouched for now.</p>
+<a class="reference external image-reference" href="initial_setup_images/es_10_prog_structure_urcaps.png"><img alt="Insert the external control node" src="../../../../_images/es_10_prog_structure_urcaps.png" />
+</a>
+<p>To use the new URCaps, create a new program and insert the <strong>External Control</strong> program node into
+the program tree</p>
+<a class="reference external image-reference" href="initial_setup_images/es_11_program_view_excontrol.png"><img alt="Program view of external control" src="../../../../_images/es_11_program_view_excontrol.png" />
+</a>
+<p>If you click on the <em>command</em> tab again, you’ll see the settings entered inside the <em>Installation</em>.
+Check that they are correct, then save the program. Your robot is now ready to be used together with
+this driver.</p>
+</div><div aria-labelledby="tab-1-Q0Iz" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-Q0Iz" name="Q0Iz" role="tabpanel" tabindex="0"><div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>A minimal PolyScope version of 3.14.3 is required to use this URCap</p>
 </div>
@@ -191,74 +259,6 @@ the program tree</p>
 <p>If you click on the <em>command</em> tab again, you’ll see the settings entered inside the <em>Installation</em>.
 Check that they are correct, then save the program. Your robot is now ready to be used together with
 this driver</p>
-</div><div aria-labelledby="tab-1-UG9seVNjb3BlIDU=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-UG9seVNjb3BlIDU=" name="UG9seVNjb3BlIDU=" role="tabpanel" tabindex="0"><div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>A minimal PolyScope version of 5.9.4 is required to use this URCap</p>
-</div>
-<p>The latest release can be downloaded from <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ExternalControl_URCap/releases">its own repository</a>.</p>
-<p>To install it you first have to copy it to the robot’s <strong>programs</strong> folder which can be done either
-via scp or using a USB stick.</p>
-<p>On the welcome screen click on the hamburger menu in the top-right corner and select <em>Settings</em> to enter the robot’s setup.  There select <em>System</em> and then <em>URCaps</em> to enter the URCaps installation screen.</p>
-<a class="reference external image-reference" href="initial_setup_images/es_01_welcome.png"><img alt="Welcome screen of an e-Series robot" src="../../../../_images/es_01_welcome.png" />
-</a>
-<p>There, click the little plus sign at the bottom to open the file selector. There you should see
-all urcap files stored inside the robot’s programs folder or a plugged USB drive.  Select and open
-the <strong>externalcontrol-X.Y.Z.urcap</strong> file and click <em>open</em>. Your URCaps view should now show the
-<strong>External Control</strong> in the list of active URCaps and a notification to restart the robot. Do that
-now.</p>
-<a class="reference external image-reference" href="initial_setup_images/es_05_urcaps_installed.png"><img alt="URCaps screen with installed urcaps" src="../../../../_images/es_05_urcaps_installed.png" />
-</a>
-<p>After the reboot you should find the <strong>External Control</strong> URCaps inside the <em>Installation</em> section.
-For this select <em>Program Robot</em> on the welcome screen, select the <em>Installation</em> tab and select
-<strong>External Control</strong> from the list.</p>
-<a class="reference external image-reference" href="initial_setup_images/es_07_installation_excontrol.png"><img alt="Installation screen of URCaps" src="../../../../_images/es_07_installation_excontrol.png" />
-</a>
-<p>Here you’ll have to setup the IP address of the external PC which will be running the remote
-application. Note that the robot and the external PC have to be in the same network, ideally in a
-direct connection with each other to minimize network disturbances. The custom port should be left
-untouched for now.</p>
-<a class="reference external image-reference" href="initial_setup_images/es_10_prog_structure_urcaps.png"><img alt="Insert the external control node" src="../../../../_images/es_10_prog_structure_urcaps.png" />
-</a>
-<p>To use the new URCaps, create a new program and insert the <strong>External Control</strong> program node into
-the program tree</p>
-<a class="reference external image-reference" href="initial_setup_images/es_11_program_view_excontrol.png"><img alt="Program view of external control" src="../../../../_images/es_11_program_view_excontrol.png" />
-</a>
-<p>If you click on the <em>command</em> tab again, you’ll see the settings entered inside the <em>Installation</em>.
-Check that they are correct, then save the program. Your robot is now ready to be used together with
-this driver.</p>
-</div><div aria-labelledby="tab-1-UG9seVNjb3BlIFg=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-UG9seVNjb3BlIFg=" name="UG9seVNjb3BlIFg=" role="tabpanel" tabindex="0"><p>The latest release can be downloaded from <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ExternalControl_URCapX/releases">GitHub (URCapX)</a>.</p>
-<p>To install it you first have to copy it to a USB stick and plug that into the robot’s teach
-pendant.</p>
-<p>On the welcome screen click on the hamburger menu in the top-left corner and select <em>System
-Manager</em> to enter the robot’s setup.  There select <em>URCaps</em> to enter the URCaps installation
-screen. You’ll have to press <em>unlock</em> and enter the admin password to be able to install new
-URCaps.</p>
-<a class="reference external image-reference" href="initial_setup_images/px_01_welcome.png"><img alt="Welcome screen of a PolyScope X robot" src="../../../../_images/px_01_welcome.png" />
-</a>
-<p>There, click the “+URCap” button at the top-right to open the file selector. There you should see
-all urcap files stored on a plugged USB drive.  Select and open
-the <strong>external-control-X.Y.Z.urcapx</strong> file and click <em>Confirm</em>. A popup should ask you to
-confirm the installation.</p>
-<a class="reference external image-reference" href="initial_setup_images/px_05_urcaps_installed.png"><img alt="URCaps screen with installed urcaps" src="../../../../_images/px_05_urcaps_installed.png" />
-</a>
-<p>Upon confirmation, the external-control URCap should be listed as installed.</p>
-<p>After the robot rebooted you should find the <strong>External Control</strong> URCapX on the <em>Application</em>
-Screen. If you open it, you will get to its configuration screen.</p>
-<a class="reference external image-reference" href="initial_setup_images/px_07_installation_excontrol.png"><img alt="Configuration screen of External Control URCapX" src="../../../../_images/px_07_installation_excontrol.png" />
-</a>
-<p>Here you’ll have to setup the IP address of the external PC which will be running the remote
-application. Note that the robot and the external PC have to be in the same network, ideally in a
-direct connection with each other to minimize network disturbances. The custom port should be left
-untouched for now.</p>
-<p>To use the new URCaps, create a new program and insert the <strong>External Control</strong> program node into
-the program tree</p>
-<a class="reference external image-reference" href="initial_setup_images/px_10_prog_structure_urcaps.png"><img alt="Insert the external control node" src="../../../../_images/px_10_prog_structure_urcaps.png" />
-</a>
-<a class="reference external image-reference" href="initial_setup_images/px_11_program_view_excontrol.png"><img alt="Program view of external control" src="../../../../_images/px_11_program_view_excontrol.png" />
-</a>
-<p>If you select the External Control program node, you’ll see a button “Update program”
-appearing next to it. With the external application started, press it to receive the script
-code.</p>
 </div></div>
 </section>
 </section>

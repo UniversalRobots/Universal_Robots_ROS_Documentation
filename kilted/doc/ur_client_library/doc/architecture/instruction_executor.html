@@ -123,6 +123,24 @@ to point motions easily accessible. Currently, it supports the following instruc
 <li><p>Execute OptimoveL point to point motions (For PolyScope 5.21 / PolyScope 10.8 and later)</p></li>
 <li><p>Execute sequences consisting of the motion primitives above</p></li>
 </ul>
+<section id="joint-and-cartesian-targets">
+<h2>Joint and Cartesian targets<a class="headerlink" href="#joint-and-cartesian-targets" title="Link to this heading"></a></h2>
+<p>Every motion function comes in two flavours:</p>
+<ul class="simple">
+<li><p>A “native” overload whose parameter is the target type that matches the underlying URScript
+command (<code class="docutils literal notranslate"><span class="pre">vector6d_t</span></code> for <code class="docutils literal notranslate"><span class="pre">moveJ</span></code> / <code class="docutils literal notranslate"><span class="pre">optimoveJ</span></code>, <code class="docutils literal notranslate"><span class="pre">urcl::Pose</span></code> for <code class="docutils literal notranslate"><span class="pre">moveL</span></code>, <code class="docutils literal notranslate"><span class="pre">moveP</span></code>,
+<code class="docutils literal notranslate"><span class="pre">moveC</span></code> and <code class="docutils literal notranslate"><span class="pre">optimoveL</span></code>). Braced-initializer-list calls such as
+<code class="docutils literal notranslate"><span class="pre">moveJ({</span> <span class="pre">q1,</span> <span class="pre">q2,</span> <span class="pre">q3,</span> <span class="pre">q4,</span> <span class="pre">q5,</span> <span class="pre">q6</span> <span class="pre">})</span></code> bind to this overload and keep the behaviour from older
+releases.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">urcl::MotionTarget</span></code> overload that accepts either a <code class="docutils literal notranslate"><span class="pre">urcl::Q</span></code> (joint configuration) or a
+<code class="docutils literal notranslate"><span class="pre">urcl::Pose</span></code> (Cartesian pose). This lets the same function perform a motion whose target type
+does not match the URScript command’s natural argument, e.g. <code class="docutils literal notranslate"><span class="pre">moveJ(urcl::Pose{...})</span></code> to reach
+a Cartesian target with a joint-interpolated motion, or <code class="docutils literal notranslate"><span class="pre">moveL(urcl::Q{...})</span></code> to perform a
+linear tool-space motion towards the pose implied by a joint configuration.</p></li>
+</ul>
+<p>An <code class="docutils literal notranslate"><span class="pre">urcl::Pose</span></code> may optionally carry <code class="docutils literal notranslate"><span class="pre">q_near</span></code> (<code class="docutils literal notranslate"><span class="pre">std::optional&lt;urcl::Q&gt;</span></code>), a joint configuration
+hint for inverse kinematic solver to select the desired joint angle solution,
+when the pose is sent over the trajectory interface; see <a class="reference internal" href="trajectory_point_interface.html#trajectory-point-interface"><span class="std std-ref">Trajectory Point Interface</span></a>.</p>
 <p>The Instruction Executor uses the <a class="reference internal" href="trajectory_point_interface.html#trajectory-point-interface"><span class="std std-ref">Trajectory Point Interface</span></a> and the
 <a class="reference internal" href="reverse_interface.html#reverse-interface"><span class="std std-ref">ReverseInterface</span></a>
 for sending motion instructions to the robot. Hence, it requires a <a class="reference internal" href="ur_driver.html#ur-driver"><span class="std std-ref">UrDriver</span></a> object.</p>
@@ -135,6 +153,7 @@ Therefore, all parameters and restrictions of these functions apply. For example
 acceleration parameters will be ignored if there is a time &gt; 0 given.</p>
 </div>
 <p>As a minimal working example, please see the <a class="reference internal" href="../examples/instruction_executor.html#instruction-executor-example"><span class="std std-ref">Instruction Executor example</span></a>.</p>
+</section>
 </section>
 
 
