@@ -54,6 +54,7 @@ Table of Contents
    ur_controllers <doc/ur_robot_driver/ur_controllers/doc/index.rst>
    ur_moveit_config <doc/ur_robot_driver/ur_moveit_config/doc/index.rst>
    ur_simulation_gz <doc/ur_simulation_gz/ur_simulation_gz/doc/index.rst>
+   ur_rtde_ros2_publisher <doc/ur_rtde_ros2_publisher/doc/index.rst>
    Tutorial examples <doc/ur_tutorials/tutorial_index.rst>
    doc/migration_notes.rst
    doc/build_status
