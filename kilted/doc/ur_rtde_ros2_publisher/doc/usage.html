@@ -1,0 +1,258 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Usage &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/ur_theme.css?v=078fdd0b" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/icon.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Architecture" href="architecture.html" />
+    <link rel="prev" title="ur_rtde_publisher" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Driver Documentation
+              <img src="../../../_static/ur_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../ur_client_library/doc/index.html">ur_client_library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_robot_driver/ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">ur_rtde_ros2_publisher</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ur_tutorials/tutorial_index.html">Tutorial examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../migration_notes.html">Migration Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build_status.html">Build status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ros2_controller_vs_driver.html">ROS 2 integration paths</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Universal Robots ROS 2 Driver Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">ur_rtde_publisher</a></li>
+      <li class="breadcrumb-item active">Usage</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS_Documentation/blob/main//doc/ur_rtde_ros2_publisher/doc/usage.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="usage">
+<span id="ur-rtde-pub-usage"></span><h1>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h1>
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading"></a></h2>
+<p>Launch the RTDE publisher node using the provided launch file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>ur_rtde_publisher<span class="w"> </span>rtde_publisher.launch.xml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>robot_ip:<span class="o">=</span><span class="m">192</span>.168.56.101<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>output_recipe:<span class="o">=</span><span class="s1">&#39;[&quot;payload&quot;, &quot;robot_mode&quot;]&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>rtde_frequency:<span class="o">=</span><span class="m">125</span>
+</pre></div>
+</div>
+<p>After launching, verify the node is running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>node<span class="w"> </span>list
+ros2<span class="w"> </span>topic<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>rtde
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If a requested RTDE variable cannot be enabled or is not available on the robot
+controller, the node will continue running and publish the remaining valid variables.
+Failures affecting individual RTDE outputs do not stop the node.</p>
+</div>
+</section>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<p>The following parameters control the node behavior:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">robot_ip</span></code> (string, <strong>required</strong>)</p>
+<p>IP address of the target UR robot controller.</p>
+<p><em>Example:</em> <code class="docutils literal notranslate"><span class="pre">robot_ip:=192.168.56.101</span></code></p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">output_recipe</span></code> (string array, <strong>required</strong>)</p>
+<p>List of RTDE output variables to request from the robot and publish as ROS 2 topics.</p>
+<p>The set of available RTDE output variables is defined by the Universal Robots RTDE interface
+and can be found in the official documentation:
+<a class="reference external" href="https://docs.universal-robots.com/tutorials/communication-protocol-tutorials/rtde-guide.html#robot-controller-outputs">RTDE Robot Controller Outputs</a></p>
+<p>The variable names must be used exactly as specified in the RTDE documentation when
+providing the <code class="docutils literal notranslate"><span class="pre">output_recipe</span></code> parameter in the launch file.</p>
+<p><em>Example:</em> <code class="docutils literal notranslate"><span class="pre">output_recipe:=[&quot;payload&quot;,</span> <span class="pre">&quot;robot_mode&quot;,</span> <span class="pre">&quot;safety_status&quot;]</span></code></p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rtde_frequency</span></code> (int, optional, default: <code class="docutils literal notranslate"><span class="pre">500</span></code>)</p>
+<p>RTDE communication frequency in Hertz (Hz).</p>
+<p>Most robot controllers support RTDE frequencies up to 500 Hz, depending on the
+robot generation. For CB3‑series robots, the maximum supported RTDE frequency
+is 125 Hz.</p>
+<p>The configured frequency must be aligned with the RTDE update cycle, meaning it
+must be an integer divisor of 500 Hz. For instance: <code class="docutils literal notranslate"><span class="pre">100</span></code> Hz, <code class="docutils literal notranslate"><span class="pre">125</span></code> Hz or <code class="docutils literal notranslate"><span class="pre">250</span></code> Hz</p>
+<p><em>Example:</em> <code class="docutils literal notranslate"><span class="pre">rtde_frequency:=125</span></code> to publish RTDE data at 125 Hz.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tf_prefix</span></code> (string, optional, default: <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>)</p>
+<p>Optional prefix applied to the <code class="docutils literal notranslate"><span class="pre">frame_id</span></code> field of stamped ROS 2 messages
+(e.g. <code class="docutils literal notranslate"><span class="pre">PoseStamped</span></code>, <code class="docutils literal notranslate"><span class="pre">TwistStamped</span></code>, <code class="docutils literal notranslate"><span class="pre">WrenchStamped</span></code>).</p>
+<p>This parameter allows users to adapt the published <code class="docutils literal notranslate"><span class="pre">frame_id</span></code> values to their
+TF tree or multi‑robot setups without modifying the default YAML configuration
+file (<code class="docutils literal notranslate"><span class="pre">rtde_map.yaml</span></code>).</p>
+<p>When set, the final <code class="docutils literal notranslate"><span class="pre">frame_id</span></code> is constructed as: <code class="docutils literal notranslate"><span class="pre">&lt;tf_prefix&gt;/&lt;frame_id&gt;</span></code></p>
+<p><em>Example:</em> setting <code class="docutils literal notranslate"><span class="pre">tf_prefix:=robot1</span></code> and the default <code class="docutils literal notranslate"><span class="pre">frame_id</span></code> of <code class="docutils literal notranslate"><span class="pre">base</span></code>
+results in <code class="docutils literal notranslate"><span class="pre">robot1/base</span></code>.</p>
+</li>
+</ul>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h2>
+<p>The node uses a YAML configuration file (<code class="docutils literal notranslate"><span class="pre">config/rtde_map.yaml</span></code>) to define
+the mapping between RTDE variables and ROS 2 message types.</p>
+<p>In normal usage, this file should not be modified, as it reflects the supported RTDE
+variables and their corresponding ROS 2 message mappings.</p>
+<p>End users may optionally customize the configuration to adjust the <code class="docutils literal notranslate"><span class="pre">frame_id</span></code> used
+for stamped ROS 2 messages (e.g. <code class="docutils literal notranslate"><span class="pre">PoseStamped</span></code>, <code class="docutils literal notranslate"><span class="pre">TwistStamped</span></code>, <code class="docutils literal notranslate"><span class="pre">WrenchStamped</span></code>),
+in order to match their TF tree or application-specific coordinate frames.</p>
+<p>As an alternative to editing the YAML file, the <code class="docutils literal notranslate"><span class="pre">tf_prefix</span></code> parameter can be used to
+systematically prepend a prefix to the default <code class="docutils literal notranslate"><span class="pre">frame_id</span></code> values defined in
+<code class="docutils literal notranslate"><span class="pre">rtde_map.yaml</span></code>.</p>
+<p>Apart from frame-related metadata, modifying RTDE variables, message types, or mappings
+is not recommended and may lead to inconsistent behavior.</p>
+</section>
+<section id="typical-workflow">
+<h2>Typical Workflow<a class="headerlink" href="#typical-workflow" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Ensure your UR robot is powered on and network accessible. The <a class="reference external" href="https://docs.universal-robots.com/Universal_Robots_ROS_Documentation/rolling/doc/ur_client_library/doc/setup/robot_setup.html">RTDE service should be enabled</a> in
+the robot’s service settings.</p></li>
+<li><p>Launch the node: <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">launch</span> <span class="pre">ur_rtde_publisher</span> <span class="pre">rtde_publisher.launch.xml</span> <span class="pre">robot_ip:=&lt;YOUR_ROBOT_IP&gt;</span> <span class="pre">output_recipe:='[&quot;payload&quot;,</span> <span class="pre">&quot;robot_mode&quot;]'</span></code></p></li>
+<li><p>Monitor published topics: <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">topic</span> <span class="pre">list</span></code> and <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">topic</span> <span class="pre">echo</span> <span class="pre">&lt;topic_name&gt;</span></code></p></li>
+<li><p>Integrate published data into your ROS 2 application</p></li>
+</ol>
+</section>
+<section id="possible-quirks">
+<h2>Possible quirks<a class="headerlink" href="#possible-quirks" title="Link to this heading"></a></h2>
+<p>There are several aspects users should be aware of when using the RTDE ROS2 Publisher:</p>
+<ul class="simple">
+<li><p><strong>Network dependency</strong>: Network latency may affect data delivery timing under non-real-time conditions. Ensure stable network connectivity between the ROS 2 host and robot controller.</p></li>
+<li><p><strong>PolyScope version compatibility</strong>: RTDE field availability depends on the PolyScope version running on the controller. Some variables may not be available on older firmware versions.</p></li>
+<li><p><strong>Robot state requirements</strong>: The robot should be powered on, and not in error condition for RTDE communication to work properly.</p></li>
+<li><p><strong>Low-latency QoS and sample loss</strong>:
+All topics are published using the ROS 2 <code class="docutils literal notranslate"><span class="pre">SensorDataQoS</span></code> profile, which prioritizes
+low latency over delivery reliability and may result in individual messages being dropped.
+This behavior is expected and acceptable for high-frequency RTDE data streams, where
+newer samples are continuously published.</p></li>
+<li><p><strong>Timestamp origin</strong>:
+By default, published ROS 2 messages are timestamped on the external PC running
+the node, at the time RTDE data is received and published. These timestamps
+therefore reflect host‑side reception time rather than the exact time at which
+the data was produced by the robot controller.
+If precise controller‑side timing is required, users may include the RTDE
+<code class="docutils literal notranslate"><span class="pre">timestamp</span></code> variable in the <code class="docutils literal notranslate"><span class="pre">output_recipe</span></code> and use it as a reference for
+time synchronization or post‑processing.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="ur_rtde_publisher" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="architecture.html" class="btn btn-neutral float-right" title="Architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> ROS 2</span>
+      Kilted
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../../jazzy/doc/ur_rtde_ros2_publisher/doc/usage.html">Jazzy</a></dd>
+        
+          <dd><a href="../../../../kilted/doc/ur_rtde_ros2_publisher/doc/usage.html">Kilted</a></dd>
+        
+          <dd><a href="../../../../rolling/doc/ur_rtde_ros2_publisher/doc/usage.html">Rolling</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
