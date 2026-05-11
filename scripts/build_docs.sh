@@ -13,6 +13,7 @@ SUBREPOS=(
   doc/ur_robot_driver
   doc/ur_simulation_gz
   doc/ur_tutorials
+  doc/ur_rtde_ros2_publisher
 )
 
 DISTROS=(jazzy kilted rolling)
