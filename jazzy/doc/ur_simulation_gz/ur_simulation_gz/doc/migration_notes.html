@@ -122,6 +122,17 @@ other launchfiles or by using <code class="docutils literal notranslate"><span c
 </div>
 </section>
 </section>
+<section id="kilted-lyrical">
+<h2>Kilted -&gt; Lyrical<a class="headerlink" href="#kilted-lyrical" title="Link to this heading"></a></h2>
+<section id="remove-scaled-jtc-and-change-default-controller">
+<h3>Remove scaled JTC and change default controller<a class="headerlink" href="#remove-scaled-jtc-and-change-default-controller" title="Link to this heading"></a></h3>
+<p>The scaled joint torque controller has been removed from ur_controllers in favor of the default
+joint trajectory controller, which is now the default one for the GZ simulation as well. This means
+that if you were using the scaled JTC before, you will need to change your controllers file to use
+the regular JTC instead, and update your MoveIt! configuration accordingly if you were using it
+with MoveIt!.</p>
+</section>
+</section>
 </section>
 
 

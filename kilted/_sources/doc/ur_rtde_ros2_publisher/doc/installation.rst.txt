@@ -1,3 +1,5 @@
+:github_url: https://github.com/UniversalRobots/RTDE_ROS2_Publisher/blob/main/doc/installation.rst
+
 Installation
 ============
 

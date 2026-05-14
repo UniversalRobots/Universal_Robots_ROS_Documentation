@@ -1,3 +1,5 @@
+:github_url: https://github.com/UniversalRobots/RTDE_ROS2_Publisher/blob/main/doc/usage.rst
+
 .. _ur_rtde_pub/usage:
 
 Usage
