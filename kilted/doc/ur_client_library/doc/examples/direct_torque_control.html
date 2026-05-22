@@ -65,6 +65,7 @@
 <li class="toctree-l3"><a class="reference internal" href="external_fts_through_rtde.html">External FTS example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="script_command_interface.html">Script command interface</a></li>
 <li class="toctree-l3"><a class="reference internal" href="script_sender.html">Script Sender example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="send_script.html">Send script example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spline_example.html">Spline Interpolation example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tool_contact_example.html">Tool Contact example</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Torque control example</a></li>
@@ -136,7 +137,7 @@ example.</p>
 <p>At first, we create a <code class="docutils literal notranslate"><span class="pre">ExampleRobotWrapper</span></code> object giving it the robot’s IP address, script file and RTDE
 recipes.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 48 </span><span class="caption-text">examples/direct_torque_control.cpp</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 54 </span><span class="caption-text">examples/direct_torque_control.cpp</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">75</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">headless_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <span class="linenos">76</span><span class="w">  </span><span class="n">g_my_robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">urcl</span><span class="o">::</span><span class="n">ExampleRobotWrapper</span><span class="o">&gt;</span><span class="p">(</span><span class="n">robot_ip</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">headless_mode</span><span class="p">,</span>
 <span class="linenos">77</span><span class="w">                                                           </span><span class="s">&quot;external_control.urp&quot;</span><span class="p">);</span>
@@ -179,7 +180,7 @@ on an older software version, this example will skip gracefully.</p>
 compensation for the other joints is set to zero to keep them more steady. The controlled joint
 gets full compensation (scale factor 1.0) for both viscous and Coulomb friction.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 49 </span><span class="caption-text">examples/direct_torque_control.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 55 </span><span class="caption-text">examples/direct_torque_control.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">104</span><span class="w">  </span><span class="c1">// Scale each individual joint&#39;s friction compensation. This is supported from PolyScope 5.25.1 / PolyScope X 10.12.1</span>
 <span class="linenos">105</span><span class="w">  </span><span class="c1">// and upwards.</span>
 <span class="linenos">106</span><span class="w">  </span><span class="n">urcl</span><span class="o">::</span><span class="n">vector6d_t</span><span class="w"> </span><span class="n">viscous_scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">};</span>
@@ -202,7 +203,7 @@ First, RTDE communication is started and the current joint positions are read. T
 position for <code class="docutils literal notranslate"><span class="pre">JOINT_INDEX</span></code> is set to <code class="docutils literal notranslate"><span class="pre">start_position</span></code> and the robot is moved there using
 <code class="docutils literal notranslate"><span class="pre">moveJ()</span></code>.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 50 </span><span class="caption-text">examples/direct_torque_control.cpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 56 </span><span class="caption-text">examples/direct_torque_control.cpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">115</span><span class="w">  </span><span class="c1">// Once RTDE communication is started, we have to make sure to read from the interface buffer, as</span>
 <span class="linenos">116</span><span class="w">  </span><span class="c1">// otherwise we will get pipeline overflows. Therefor, do this directly before starting your main</span>
 <span class="linenos">117</span><span class="w">  </span><span class="c1">// loop.</span>
@@ -236,7 +237,7 @@ until new data arrives from the robot (with an internal timeout), so the robot�
 effectively controls the timing of this loop. The current joint positions are then extracted from
 the received package:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 51 </span><span class="caption-text">examples/direct_torque_control.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 57 </span><span class="caption-text">examples/direct_torque_control.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">141</span><span class="w">  </span><span class="c1">// Run 10 periods of the sinusoidal</span>
 <span class="linenos">142</span><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">time</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">M_PI</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">OMEGA</span><span class="p">)</span>
 <span class="linenos">143</span><span class="w">  </span><span class="p">{</span>
@@ -262,7 +263,7 @@ the received package:</p>
 </div>
 <p>The target torque for the controlled joint is computed as a sinusoidal function of time:</p>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 52 </span><span class="caption-text">examples/direct_torque_control.cpp</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 58 </span><span class="caption-text">examples/direct_torque_control.cpp</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">162</span><span class="w">    </span><span class="c1">// Open loop control. The target is incremented with a constant each control loop</span>
 <span class="linenos">163</span><span class="w">    </span><span class="n">target_torques</span><span class="p">[</span><span class="n">JOINT_INDEX</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AMPLITUDE</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">OMEGA</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">time</span><span class="p">);</span>
 </pre></div>
@@ -271,7 +272,7 @@ the received package:</p>
 <p>To send the control command, the robot’s <a class="reference internal" href="../architecture/reverse_interface.html#reverse-interface"><span class="std std-ref">ReverseInterface</span></a> is used via the
 <code class="docutils literal notranslate"><span class="pre">writeJointCommand()</span></code> function:</p>
 <div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-number">Listing 53 </span><span class="caption-text">examples/direct_torque_control.cpp</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 59 </span><span class="caption-text">examples/direct_torque_control.cpp</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">165</span><span class="w">    </span><span class="c1">// Setting the RobotReceiveTimeout time is for example purposes only. This will make the example running more</span>
 <span class="linenos">166</span><span class="w">    </span><span class="c1">// reliable on non-realtime systems. Use with caution in productive applications. Having it</span>
 <span class="linenos">167</span><span class="w">    </span><span class="c1">// this high means that the robot will continue a motion for this given time if no new command</span>

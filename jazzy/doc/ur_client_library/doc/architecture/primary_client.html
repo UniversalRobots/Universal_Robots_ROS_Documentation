@@ -1,0 +1,203 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PrimaryClient &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/ur_theme.css?v=078fdd0b" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/icon.svg"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="ReverseInterface" href="reverse_interface.html" />
+    <link rel="prev" title="DashboardClient" href="dashboard_client.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Driver Documentation
+              <img src="../../../../_static/ur_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">ur_client_library</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installation.html">Build / installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup.html">Setup a robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../polyscope_compatibility.html">PolyScope version compatibility</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../architecture.html">Library architecture</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dashboard_client.html">DashboardClient</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">PrimaryClient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reverse_interface.html">ReverseInterface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rtde_client.html">RTDEClient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="script_command_interface.html">Script Command Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="script_reader.html">ScriptReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="script_sender.html">ScriptSender</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trajectory_point_interface.html">Trajectory Point Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ur_driver.html">UrDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruction_executor.html">Instruction Executor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html">Usage examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../real_time.html">Setup for real-time scheduling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../migration_notes.html">Migration notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference.html">C++ API Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_tutorials/tutorial_index.html">Tutorial examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../migration_notes.html">Migration Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../build_status.html">Build status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ros2_controller_vs_driver.html">ROS 2 integration paths</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Universal Robots ROS 2 Driver Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">ur_client_library</a></li>
+          <li class="breadcrumb-item"><a href="../architecture.html">Library architecture</a></li>
+      <li class="breadcrumb-item active">PrimaryClient</li>
+      <li class="wy-breadcrumbs-aside">
+              <!-- User defined GitHub URL -->
+              <a href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/blob/master/doc/architecture/primary_client.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="primaryclient">
+<span id="primary-client"></span><h1>PrimaryClient<a class="headerlink" href="#primaryclient" title="Link to this heading"></a></h1>
+<p>The Primary Client serves as an interface to the robot’s <a class="reference external" href="https://docs.universal-robots.com/tutorials/communication-protocol-tutorials/primary-secondary-guide.html">primary interface</a>, present on port 30001.
+The <code class="docutils literal notranslate"><span class="pre">PrimaryClient</span></code> class supports, among other things, sending URScript code for execution on the robot through the primary interface. Currently it offers two methods of script execution: <code class="docutils literal notranslate"><span class="pre">sendScript</span></code> and <code class="docutils literal notranslate"><span class="pre">sendScriptBlocking</span></code>.</p>
+<section id="script-execution-without-feedback">
+<h2>Script execution without feedback<a class="headerlink" href="#script-execution-without-feedback" title="Link to this heading"></a></h2>
+<p>Method signature:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">sendScript</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">program</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">sendScript</span></code> method will accept valid URScript code, and send it to the robot through the primary interface. This is a non-blocking method, as it will return as soon as the program has been transferred to the robot. It returns true when the program is successfully transferred to the robot, and false otherwise.
+There is no feedback on whether the program is actually executed on the robot.</p>
+</section>
+<section id="script-execution-with-feedback">
+<h2>Script execution with feedback<a class="headerlink" href="#script-execution-with-feedback" title="Link to this heading"></a></h2>
+<p>Method signature:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="n">sendScriptBlocking</span><span class="p">(</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">program</span><span class="p">,</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">script_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="w"> </span><span class="n">timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">fail_on_warnings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">The <code class="docutils literal notranslate"><span class="pre">sendScriptBlocking</span></code> method will also accept valid URScript code, but blocks until the execution result of the given program is available.</div>
+<div class="line">Prior to transferring the program it will first check that the robot is in a state where it can execute programs, if not it returns false.</div>
+<div class="line">If the robot is ready, the program is then transferred, and the method will wait for the robot to report that the program has either started, finished or encountered an error.</div>
+<div class="line">If the program has not started within the given <code class="docutils literal notranslate"><span class="pre">timeout</span></code>, the method returns false.</div>
+<div class="line">If the robot encounters an error or runtime exception during program execution the method also returns false.</div>
+<div class="line">If <code class="docutils literal notranslate"><span class="pre">fail_on_warnings</span></code> is true, it will also return false, if the robot reports a warning during program execution. Note: protective stops are reported as warnings by the robot.</div>
+<div class="line">The method only returns true if the program is successfully executed on the robot.</div>
+<div class="line">This method also accepts secondary programs, but no feedback is available for those, so it will behave similarly to the <code class="docutils literal notranslate"><span class="pre">sendScript</span></code> method in those cases, except for the pre-transfer checks.</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dashboard_client.html" class="btn btn-neutral float-left" title="DashboardClient" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="reverse_interface.html" class="btn btn-neutral float-right" title="ReverseInterface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> ROS 2</span>
+      Jazzy
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../../../jazzy/doc/ur_client_library/doc/architecture/primary_client.html">Jazzy</a></dd>
+        
+          <dd><a href="../../../../../kilted/doc/ur_client_library/doc/architecture/primary_client.html">Kilted</a></dd>
+        
+          <dd><a href="../../../../../rolling/doc/ur_client_library/doc/architecture/primary_client.html">Rolling</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

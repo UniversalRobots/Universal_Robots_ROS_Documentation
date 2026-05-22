@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Send script example &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/ur_theme.css?v=078fdd0b" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/icon.svg"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Spline Interpolation example" href="spline_example.html" />
+    <link rel="prev" title="Script Sender example" href="script_sender.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Driver Documentation
+              <img src="../../../../_static/ur_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">ur_client_library</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installation.html">Build / installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup.html">Setup a robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../polyscope_compatibility.html">PolyScope version compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html">Library architecture</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../examples.html">Usage examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dashboard_client.html">Dashboard client example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="force_mode.html">Force Mode example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="freedrive.html">Freedrive Mode example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruction_executor.html">Instruction Executor example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="primary_pipeline.html">Primary Pipeline example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="primary_pipeline_calibration.html">Primary Pipeline Calibration example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rtde_client.html">RTDE Client example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="external_fts_through_rtde.html">External FTS example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="script_command_interface.html">Script command interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="script_sender.html">Script Sender example</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Send script example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spline_example.html">Spline Interpolation example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tool_contact_example.html">Tool Contact example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="direct_torque_control.html">Torque control example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trajectory_point_interface.html">Trajectory Joint Interface example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ur_driver.html">Example driver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../real_time.html">Setup for real-time scheduling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../migration_notes.html">Migration notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference.html">C++ API Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_rtde_ros2_publisher/doc/index.html">ur_rtde_ros2_publisher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_tutorials/tutorial_index.html">Tutorial examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../migration_notes.html">Migration Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../build_status.html">Build status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ros2_controller_vs_driver.html">ROS 2 integration paths</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Universal Robots ROS 2 Driver Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">ur_client_library</a></li>
+          <li class="breadcrumb-item"><a href="../examples.html">Usage examples</a></li>
+      <li class="breadcrumb-item active">Send script example</li>
+      <li class="wy-breadcrumbs-aside">
+              <!-- User defined GitHub URL -->
+              <a href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/blob/master/doc/examples/send_script.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="send-script-example">
+<span id="id1"></span><h1>Send script example<a class="headerlink" href="#send-script-example" title="Link to this heading"></a></h1>
+<p>This example shows how to send arbitrary URScript code to the robot using the
+<a class="reference internal" href="../architecture/primary_client.html#primary-client"><span class="std std-ref">PrimaryClient</span></a>. It demonstrates both the blocking variant (<code class="docutils literal notranslate"><span class="pre">sendScriptBlocking</span></code>), which
+waits for execution feedback, and the non-blocking variant (<code class="docutils literal notranslate"><span class="pre">sendScript</span></code>), which only confirms
+that the script has been forwarded to the robot.</p>
+<p>The full source code can be found in <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/blob/master/examples/send_script.cpp">send_script.cpp</a>.</p>
+<section id="setting-up-the-primary-client">
+<h2>Setting up the primary client<a class="headerlink" href="#setting-up-the-primary-client" title="Link to this heading"></a></h2>
+<p>The example connects to the robot’s primary interface by creating a <code class="docutils literal notranslate"><span class="pre">PrimaryClient</span></code>. After
+starting the client, the robot’s brakes are released so that motion scripts can actually run, and
+the safety state is checked before any script is sent:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 44 </span><span class="caption-text">examples/send_script.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">19</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">notif</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">comm</span><span class="o">::</span><span class="n">INotifier</span><span class="p">();</span>
+<span class="linenos">20</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">primary_interface</span><span class="o">::</span><span class="n">PrimaryClient</span><span class="p">(</span><span class="n">robot_ip</span><span class="p">,</span><span class="w"> </span><span class="n">notif</span><span class="p">);</span>
+<span class="linenos">21</span><span class="w">  </span><span class="n">client</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="w">  </span><span class="c1">// --------------- INITIALIZATION END -------------------</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="w">  </span><span class="c1">// Make sure the robot is running</span>
+<span class="linenos">26</span><span class="w">  </span><span class="n">client</span><span class="p">.</span><span class="n">commandBrakeRelease</span><span class="p">();</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">client</span><span class="p">.</span><span class="n">safetyModeAllowsExecution</span><span class="p">())</span>
+<span class="linenos">29</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos">30</span><span class="w">    </span><span class="n">URCL_LOG_ERROR</span><span class="p">(</span><span class="s">&quot;Robot is not in a safety state where script execution is possible. Exiting.&quot;</span><span class="p">);</span>
+<span class="linenos">31</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">32</span><span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="sending-scripts-with-execution-feedback">
+<h2>Sending scripts with execution feedback<a class="headerlink" href="#sending-scripts-with-execution-feedback" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">sendScriptBlocking</span></code> function uploads URScript code to the robot and waits until the robot
+reports the result of the execution. The given code can be a fully defined script (with its own
+<code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">...</span> <span class="pre">end</span></code> block) or a snippet that will automatically be wrapped into a function on the
+client side. Comments and whitespace-only lines are stripped before the script is sent.</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 45 </span><span class="caption-text">examples/send_script.cpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">36</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">fully_defined_script</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">&quot;&quot;(</span>
+<span class="linenos">37</span><span class="s"># This is a fully defined script, function definition and all</span>
+<span class="linenos">38</span><span class="s"># All comments in this script will be stripped before sending the script to the robot</span>
+<span class="linenos">39</span>
+<span class="linenos">40</span><span class="s"># Any whitespace-only lines will also be removed</span>
+<span class="linenos">41</span><span class="s">def example_fun():</span>
+<span class="linenos">42</span><span class="s">  movej([0,-1.2,1.2,-0.1,1.57,0])</span>
+<span class="linenos">43</span><span class="s">  sleep(0.1)</span>
+<span class="linenos">44</span><span class="s">  current_pose = get_target_tcp_pose()</span>
+<span class="linenos">45</span><span class="s">  relative_move = p[0,-0.1,0,0,0,0]</span>
+<span class="linenos">46</span><span class="s">  movel(pose_trans(current_pose, relative_move), t=1)</span>
+<span class="linenos">47</span><span class="s">end</span><span class="dl">)&quot;&quot;</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="linenos">48</span>
+<span class="linenos">49</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">client</span><span class="p">.</span><span class="n">sendScriptBlocking</span><span class="p">(</span><span class="n">fully_defined_script</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<p>If you don’t provide a function definition, the library wraps the snippet in one for you. You can
+optionally pass a <code class="docutils literal notranslate"><span class="pre">script_name</span></code> (used in log messages on both the client and the robot) and a
+<code class="docutils literal notranslate"><span class="pre">start_timeout</span></code> that limits how long the call waits for the robot to confirm that the script has
+started. A timeout of <code class="docutils literal notranslate"><span class="pre">0</span></code> means “wait indefinitely”:</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 46 </span><span class="caption-text">examples/send_script.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">53</span><span class="w">    </span><span class="n">client</span><span class="p">.</span><span class="n">sendScriptBlocking</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">textmsg(&quot;Successful program execution&quot;)</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="linenos">54</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">55</span><span class="w">  </span><span class="c1">// A script-function name can also be passed to the method</span>
+<span class="linenos">56</span><span class="w">  </span><span class="c1">// A timeout can also be given to limit the wait for the passed function to start. If timeout = 0, it will</span>
+<span class="linenos">57</span><span class="w">  </span><span class="c1">// wait indefinitely.</span>
+<span class="linenos">58</span><span class="w">  </span><span class="n">client</span><span class="p">.</span><span class="n">sendScriptBlocking</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">textmsg(&quot;hello&quot;)</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cool_function_name&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<p>Secondary programs can also be uploaded through <code class="docutils literal notranslate"><span class="pre">sendScriptBlocking</span></code>. Since the robot does not
+report execution feedback for secondary programs, the call returns as soon as the script has been
+accepted. Note that secondary programs must be <em>fully defined</em> by the user (<code class="docutils literal notranslate"><span class="pre">sec</span> <span class="pre">...</span> <span class="pre">end</span></code>):</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Listing 47 </span><span class="caption-text">examples/send_script.cpp</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">62</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">secondary_script</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span>
+<span class="linenos">63</span><span class="s">sec sec_script():</span>
+<span class="linenos">64</span><span class="s">  textmsg(&quot;Named secondary program&quot;)</span>
+<span class="linenos">65</span><span class="s">end</span>
+<span class="linenos">66</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="linenos">67</span><span class="w">  </span><span class="n">client</span><span class="p">.</span><span class="n">sendScriptBlocking</span><span class="p">(</span><span class="n">secondary_script</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="reporting-bad-script-code">
+<h2>Reporting bad script code<a class="headerlink" href="#reporting-bad-script-code" title="Link to this heading"></a></h2>
+<p>When a script contains errors (e.g. a typo or an undefined symbol), <code class="docutils literal notranslate"><span class="pre">sendScriptBlocking</span></code> will
+report this back to the caller. The example sends a script that uses an undefined variable
+<code class="docutils literal notranslate"><span class="pre">current_pos</span></code> instead of <code class="docutils literal notranslate"><span class="pre">current_pose</span></code>, and logs the result:</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-number">Listing 48 </span><span class="caption-text">examples/send_script.cpp</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">70</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">bad_script_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">&quot;&quot;(</span>
+<span class="linenos">71</span><span class="s">def bad_code():</span>
+<span class="linenos">72</span><span class="s">  current_pose = get_target_tcp_pose()</span>
+<span class="linenos">73</span><span class="s">  movel(current_pos) # note pose vs pos</span>
+<span class="linenos">74</span><span class="s">end</span><span class="dl">)&quot;&quot;</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="linenos">75</span><span class="w">  </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="s">&quot;Sending bad script code...&quot;</span><span class="p">);</span>
+<span class="linenos">76</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="n">sendScriptBlocking</span><span class="p">(</span><span class="n">bad_script_code</span><span class="p">);</span>
+<span class="linenos">77</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos">78</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">stringstream</span><span class="w"> </span><span class="n">ss</span><span class="p">;</span>
+<span class="linenos">79</span><span class="w">    </span><span class="n">ss</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Execution of bad code successful? &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">boolalpha</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">success</span><span class="p">;</span>
+<span class="linenos">80</span><span class="w">    </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ss</span><span class="p">.</span><span class="n">str</span><span class="p">().</span><span class="n">c_str</span><span class="p">());</span>
+<span class="linenos">81</span><span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="sending-scripts-without-feedback">
+<h2>Sending scripts without feedback<a class="headerlink" href="#sending-scripts-without-feedback" title="Link to this heading"></a></h2>
+<p>For situations where execution feedback is not needed, <code class="docutils literal notranslate"><span class="pre">sendScript</span></code> can be
+used. It returns <code class="docutils literal notranslate"><span class="pre">true</span></code> as soon as the script has been transferred to the robot. The library
+performs no further checks, so faulty script code will <em>not</em> be reported back here:</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-number">Listing 49 </span><span class="caption-text">examples/send_script.cpp</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">83</span><span class="w">  </span><span class="c1">// We can also send script code without any checks</span>
+<span class="linenos">84</span><span class="w">  </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="s">&quot;Executing motion without feedback&quot;</span><span class="p">);</span>
+<span class="linenos">85</span><span class="w">  </span><span class="n">client</span><span class="p">.</span><span class="n">sendScript</span><span class="p">(</span><span class="s">&quot;movej([0.1,-0.9,0.9,0,0,0])&quot;</span><span class="p">);</span>
+<span class="linenos">86</span><span class="w">  </span><span class="c1">// But we won&#39;t know when that is done or even if our code was correct.</span>
+<span class="linenos">87</span><span class="w">  </span><span class="c1">// E.g. sending the bad script here will not give us any information</span>
+<span class="linenos">88</span><span class="w">  </span><span class="c1">// The return value will only tell us that the script code has been sent to the robot.</span>
+<span class="linenos">89</span><span class="w">  </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="s">&quot;Sending bad script code without feedback...&quot;</span><span class="p">);</span>
+<span class="linenos">90</span><span class="w">  </span><span class="n">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="n">sendScript</span><span class="p">(</span><span class="n">bad_script_code</span><span class="p">);</span>
+<span class="linenos">91</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos">92</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">stringstream</span><span class="w"> </span><span class="n">ss</span><span class="p">;</span>
+<span class="linenos">93</span><span class="w">    </span><span class="n">ss</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Bad code sent to robot successfully? &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">boolalpha</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">success</span><span class="p">;</span>
+<span class="linenos">94</span><span class="w">    </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ss</span><span class="p">.</span><span class="n">str</span><span class="p">().</span><span class="n">c_str</span><span class="p">());</span>
+<span class="linenos">95</span><span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="script_sender.html" class="btn btn-neutral float-left" title="Script Sender example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="spline_example.html" class="btn btn-neutral float-right" title="Spline Interpolation example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> ROS 2</span>
+      Rolling
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../../../jazzy/doc/ur_client_library/doc/examples/send_script.html">Jazzy</a></dd>
+        
+          <dd><a href="../../../../../kilted/doc/ur_client_library/doc/examples/send_script.html">Kilted</a></dd>
+        
+          <dd><a href="../../../../../rolling/doc/ur_client_library/doc/examples/send_script.html">Rolling</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
