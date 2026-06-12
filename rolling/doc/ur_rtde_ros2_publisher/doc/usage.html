@@ -21,6 +21,7 @@
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -102,7 +103,9 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>ur_rtde_publisher<span class="w"> </span>rtde_publisher.launch.xml<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>robot_ip:<span class="o">=</span><span class="m">192</span>.168.56.101<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>output_recipe:<span class="o">=</span><span class="s1">&#39;[&quot;payload&quot;, &quot;robot_mode&quot;]&#39;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>rtde_frequency:<span class="o">=</span><span class="m">125</span>
+<span class="w">  </span>rtde_frequency:<span class="o">=</span><span class="m">125</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>use_robot_timestamp:<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>t_delay:<span class="o">=</span><span class="m">0</span>.004
 </pre></div>
 </div>
 <p>After launching, verify the node is running:</p>
@@ -153,6 +156,20 @@ file (<code class="docutils literal notranslate"><span class="pre">rtde_map.yaml
 <p><em>Example:</em> setting <code class="docutils literal notranslate"><span class="pre">tf_prefix:=robot1</span></code> and the default <code class="docutils literal notranslate"><span class="pre">frame_id</span></code> of <code class="docutils literal notranslate"><span class="pre">base</span></code>
 results in <code class="docutils literal notranslate"><span class="pre">robot1/base</span></code>.</p>
 </li>
+<li><p><code class="docutils literal notranslate"><span class="pre">use_robot_timestamp</span></code> (bool, optional, default: <code class="docutils literal notranslate"><span class="pre">false</span></code>)</p>
+<p>When enabled, the node uses the robot controller’s internal hardware clock to stamp
+ROS 2 messages instead of the host PC’s local processing time.</p>
+<p>For a detailed explanation of the timeline reconstruction, see the
+<a class="reference internal" href="#timestamp-synchronization">Timestamp Synchronization</a> section.</p>
+<p><em>Example:</em> <code class="docutils literal notranslate"><span class="pre">use_robot_timestamp:=true</span></code></p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">t_delay</span></code> (double, optional, default: <code class="docutils literal notranslate"><span class="pre">0.0</span></code>)</p>
+<p>Constant time offset in seconds (s) to compensate for network latency between the robot and the ROS PC.</p>
+<p>This parameter is only effective when <code class="docutils literal notranslate"><span class="pre">use_robot_timestamp</span></code> is enabled. It shifts the reconstructed
+timeline backward, allowing the ROS timestamps to better approximate the exact moment the physical
+measurement occurred on the robot hardware. See <a class="reference internal" href="#timestamp-synchronization">Timestamp Synchronization</a> for the mathematical implementation.</p>
+<p><em>Example:</em> <code class="docutils literal notranslate"><span class="pre">t_delay:=0.004</span></code> to compensate for an estimated 4 ms communication delay.</p>
+</li>
 </ul>
 </section>
 <section id="configuration">
@@ -169,6 +186,84 @@ systematically prepend a prefix to the default <code class="docutils literal not
 <code class="docutils literal notranslate"><span class="pre">rtde_map.yaml</span></code>.</p>
 <p>Apart from frame-related metadata, modifying RTDE variables, message types, or mappings
 is not recommended and may lead to inconsistent behavior.</p>
+</section>
+<section id="timestamp-synchronization">
+<h2>Timestamp Synchronization<a class="headerlink" href="#timestamp-synchronization" title="Link to this heading"></a></h2>
+<p>When the <code class="docutils literal notranslate"><span class="pre">use_robot_timestamp</span></code> parameter is enabled, the node switches from host-side
+timestamping to a reconstructed timeline anchored directly to the robot controller’s
+internal hardware clock.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The timestamp received over RTDE represents the time in seconds since the controller
+startup (boot time).</p>
+</div>
+<section id="timeline-reconstruction-mechanism">
+<h3>Timeline Reconstruction Mechanism<a class="headerlink" href="#timeline-reconstruction-mechanism" title="Link to this heading"></a></h3>
+<p><strong>1. Anchor Setup (First Packet)</strong></p>
+<p>Upon receiving the first RTDE packet, the node captures the current host ROS time (<span class="math notranslate nohighlight">\(t_{\text{host}}\)</span>)
+and the initial robot hardware timestamp (<span class="math notranslate nohighlight">\(T_0\)</span>). It applies the network latency compensation factor
+<code class="docutils literal notranslate"><span class="pre">t_delay</span></code> to calculate an adjusted host base time (<span class="math notranslate nohighlight">\(t_0\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[t_0 = t_{\text{host}} - t_{\text{delay}}\]</div>
+<p><strong>2. Linear Tracking (Subsequent Packets)</strong></p>
+<p>For all consecutive packets, the node tracks the elapsed hardware time using the incoming robot timestamp (<span class="math notranslate nohighlight">\(T\)</span>).
+The final ROS 2 message timestamp (<span class="math notranslate nohighlight">\(t_{\text{msg}}\)</span>) is linearly extrapolated as:</p>
+<div class="math notranslate nohighlight">
+\[t_{\text{msg}} = t_0 + (T - T_0)\]</div>
+<p><strong>Walkthrough Example:</strong> Consider a configuration using <code class="docutils literal notranslate"><span class="pre">use_robot_timestamp:=true</span></code> and <code class="docutils literal notranslate"><span class="pre">t_delay:=0.004</span></code> (values in seconds):</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 15.0%" />
+<col style="width: 25.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Scope / Step</p></th>
+<th class="head"><p>Variable</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Mathematical Context / Equation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Packet 1</strong> (Initialization)</p></td>
+<td><p><span class="math notranslate nohighlight">\(t_{\text{host}}\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1779781131.140454</span></code></p></td>
+<td><p>Host PC reception time</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(T_0\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">9010.081000</span></code></p></td>
+<td><p>Initial robot hardware timestamp</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(t_{\text{delay}}\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.004</span></code></p></td>
+<td><p>Configured latency compensation</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(t_0\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1779781131.136454</span></code></p></td>
+<td><p>Adjusted base ROS time: <span class="math notranslate nohighlight">\(t_{\text{host}} - t_{\text{delay}}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Packet 2</strong> (Next Cycle)</p></td>
+<td><p><span class="math notranslate nohighlight">\(T\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">9010.087000</span></code></p></td>
+<td><p>Current robot hardware timestamp</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(dt\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.006</span></code></p></td>
+<td><p>Elapsed hardware time: <span class="math notranslate nohighlight">\(T - T_0\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(t_{\text{msg}}\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1779781131.142454</span></code></p></td>
+<td><p>Final ROS message timestamp: <span class="math notranslate nohighlight">\(t_0 + dt\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</section>
 </section>
 <section id="typical-workflow">
 <h2>Typical Workflow<a class="headerlink" href="#typical-workflow" title="Link to this heading"></a></h2>
@@ -197,9 +292,8 @@ By default, published ROS 2 messages are timestamped on the external PC running
 the node, at the time RTDE data is received and published. These timestamps
 therefore reflect host‑side reception time rather than the exact time at which
 the data was produced by the robot controller.
-If precise controller‑side timing is required, users may include the RTDE
-<code class="docutils literal notranslate"><span class="pre">timestamp</span></code> variable in the <code class="docutils literal notranslate"><span class="pre">output_recipe</span></code> and use it as a reference for
-time synchronization or post‑processing.</p></li>
+If precise controller‑side timing is required, users can enable hardware timeline
+reconstruction. See the <a class="reference internal" href="#timestamp-synchronization">Timestamp Synchronization</a> section for details.</p></li>
 </ul>
 </section>
 </section>

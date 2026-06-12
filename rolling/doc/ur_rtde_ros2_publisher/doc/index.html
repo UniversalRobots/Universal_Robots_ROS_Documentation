@@ -109,7 +109,9 @@ distribution, and users need to <a class="reference external" href="https://docs
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>ur_rtde_publisher<span class="w"> </span>rtde_publisher.launch.xml<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>robot_ip:<span class="o">=</span><span class="m">192</span>.168.56.101<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>output_recipe:<span class="o">=</span><span class="s1">&#39;[&quot;payload&quot;, &quot;robot_mode&quot;]&#39;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>rtde_frequency:<span class="o">=</span><span class="m">125</span>
+<span class="w">  </span>rtde_frequency:<span class="o">=</span><span class="m">125</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>use_robot_timestamp:<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>t_delay:<span class="o">=</span><span class="m">0</span>.004
 </pre></div>
 </div>
 <p>See the documentation’s <a class="reference external" href="https://docs.universal-robots.com/Universal_Robots_ROS_Documentation/rolling/doc/ur_rtde_ros2_publisher/doc/usage.html">usage</a> section for more details on how to run the node and verify its operation.</p>
@@ -120,6 +122,8 @@ distribution, and users need to <a class="reference external" href="https://docs
 <li><p><code class="docutils literal notranslate"><span class="pre">output_recipe</span></code> (string[]): List of RTDE output variables to request and publish.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">rtde_frequency</span></code> (int, optional, default: <code class="docutils literal notranslate"><span class="pre">500</span></code>): RTDE communication frequency in Hz.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">tf_prefix</span></code> (string, optional, default: <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>): Optional prefix applied to the <code class="docutils literal notranslate"><span class="pre">frame_id</span></code> of stamped ROS 2 messages.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">use_robot_timestamp</span></code> (bool, optional, default: <code class="docutils literal notranslate"><span class="pre">false</span></code>): If true, uses the robot’s hardware clock.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">t_delay</span></code> (double, optional, default: <code class="docutils literal notranslate"><span class="pre">0.0</span></code>): Network latency compensation in seconds <code class="docutils literal notranslate"><span class="pre">[s]</span></code> to align the data timeline with the actual physical measurement time.</p></li>
 </ul>
 </section>
 </section>
@@ -197,6 +201,10 @@ distribution, and users need to <a class="reference external" href="https://docs
 <li class="toctree-l2"><a class="reference internal" href="usage.html#quick-start">Quick Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="usage.html#parameters">Parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="usage.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#timestamp-synchronization">Timestamp Synchronization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#timeline-reconstruction-mechanism">Timeline Reconstruction Mechanism</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="usage.html#typical-workflow">Typical Workflow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="usage.html#possible-quirks">Possible quirks</a></li>
 </ul>

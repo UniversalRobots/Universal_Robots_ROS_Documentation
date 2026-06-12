@@ -15,7 +15,9 @@ Launch the RTDE publisher node using the provided launch file:
    ros2 launch ur_rtde_publisher rtde_publisher.launch.xml \
      robot_ip:=192.168.56.101 \
      output_recipe:='["payload", "robot_mode"]' \
-     rtde_frequency:=125
+     rtde_frequency:=125 \
+     use_robot_timestamp:=true \
+     t_delay:=0.004 
 
 After launching, verify the node is running:
 
@@ -81,6 +83,26 @@ The following parameters control the node behavior:
   *Example:* setting ``tf_prefix:=robot1`` and the default ``frame_id`` of ``base``
   results in ``robot1/base``.
 
+- ``use_robot_timestamp`` (bool, optional, default: ``false``)
+
+  When enabled, the node uses the robot controller's internal hardware clock to stamp 
+  ROS 2 messages instead of the host PC's local processing time.
+
+  For a detailed explanation of the timeline reconstruction, see the
+  `Timestamp Synchronization`_ section.
+
+  *Example:* ``use_robot_timestamp:=true``
+
+- ``t_delay`` (double, optional, default: ``0.0``)
+
+  Constant time offset in seconds (s) to compensate for network latency between the robot and the ROS PC.
+
+  This parameter is only effective when ``use_robot_timestamp`` is enabled. It shifts the reconstructed
+  timeline backward, allowing the ROS timestamps to better approximate the exact moment the physical
+  measurement occurred on the robot hardware. See `Timestamp Synchronization`_ for the mathematical implementation.
+
+  *Example:* ``t_delay:=0.004`` to compensate for an estimated 4 ms communication delay.
+
 
 
 Configuration
@@ -103,6 +125,76 @@ systematically prepend a prefix to the default ``frame_id`` values defined in
 Apart from frame-related metadata, modifying RTDE variables, message types, or mappings
 is not recommended and may lead to inconsistent behavior.
 
+Timestamp Synchronization
+-----------------------------------
+
+When the ``use_robot_timestamp`` parameter is enabled, the node switches from host-side
+timestamping to a reconstructed timeline anchored directly to the robot controller's
+internal hardware clock.
+
+.. note::
+   The timestamp received over RTDE represents the time in seconds since the controller
+   startup (boot time).
+
+Timeline Reconstruction Mechanism
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**1. Anchor Setup (First Packet)**
+
+Upon receiving the first RTDE packet, the node captures the current host ROS time (:math:`t_{\text{host}}`)
+and the initial robot hardware timestamp (:math:`T_0`). It applies the network latency compensation factor
+``t_delay`` to calculate an adjusted host base time (:math:`t_0`):
+
+.. math::
+   t_0 = t_{\text{host}} - t_{\text{delay}}
+
+**2. Linear Tracking (Subsequent Packets)**
+
+For all consecutive packets, the node tracks the elapsed hardware time using the incoming robot timestamp (:math:`T`).
+The final ROS 2 message timestamp (:math:`t_{\text{msg}}`) is linearly extrapolated as:
+
+.. math::
+   t_{\text{msg}} = t_0 + (T - T_0)
+
+**Walkthrough Example:** Consider a configuration using ``use_robot_timestamp:=true`` and ``t_delay:=0.004`` (values in seconds):
+
+.. list-table::
+   :align: center
+   :widths: 20 15 25 40
+   :header-rows: 1
+
+   * - Scope / Step
+     - Variable
+     - Value
+     - Mathematical Context / Equation
+   * - **Packet 1** (Initialization)
+     - :math:`t_{\text{host}}`
+     - ``1779781131.140454``
+     - Host PC reception time
+   * -
+     - :math:`T_0`
+     - ``9010.081000``
+     - Initial robot hardware timestamp
+   * -
+     - :math:`t_{\text{delay}}`
+     - ``0.004``
+     - Configured latency compensation
+   * -
+     - :math:`t_0`
+     - ``1779781131.136454``
+     - Adjusted base ROS time: :math:`t_{\text{host}} - t_{\text{delay}}`
+   * - **Packet 2** (Next Cycle)
+     - :math:`T`
+     - ``9010.087000``
+     - Current robot hardware timestamp
+   * -
+     - :math:`dt`
+     - ``0.006``
+     - Elapsed hardware time: :math:`T - T_0`
+   * -
+     - :math:`t_{\text{msg}}`
+     - ``1779781131.142454``
+     - Final ROS message timestamp: :math:`t_0 + dt`
 
 Typical Workflow
 ----------------
@@ -136,6 +228,5 @@ There are several aspects users should be aware of when using the RTDE ROS2 Publ
   the node, at the time RTDE data is received and published. These timestamps
   therefore reflect host‑side reception time rather than the exact time at which
   the data was produced by the robot controller.
-  If precise controller‑side timing is required, users may include the RTDE
-  ``timestamp`` variable in the ``output_recipe`` and use it as a reference for
-  time synchronization or post‑processing.
+  If precise controller‑side timing is required, users can enable hardware timeline
+  reconstruction. See the `Timestamp Synchronization`_ section for details.
