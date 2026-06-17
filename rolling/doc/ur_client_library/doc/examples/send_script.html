@@ -170,8 +170,7 @@ client side. Comments and whitespace-only lines are stripped before the script i
 <span class="linenos">45</span><span class="s">  relative_move = p[0,-0.1,0,0,0,0]</span>
 <span class="linenos">46</span><span class="s">  movel(pose_trans(current_pose, relative_move), t=1)</span>
 <span class="linenos">47</span><span class="s">end</span><span class="dl">)&quot;&quot;</span><span class="s">&quot;</span><span class="p">;</span>
-<span class="linenos">48</span>
-<span class="linenos">49</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">client</span><span class="p">.</span><span class="n">sendScriptBlocking</span><span class="p">(</span><span class="n">fully_defined_script</span><span class="p">))</span>
+<span class="linenos">48</span><span class="w">  </span><span class="n">client</span><span class="p">.</span><span class="n">sendScriptBlocking</span><span class="p">(</span><span class="n">fully_defined_script</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -181,12 +180,11 @@ optionally pass a <code class="docutils literal notranslate"><span class="pre">s
 started. A timeout of <code class="docutils literal notranslate"><span class="pre">0</span></code> means “wait indefinitely”:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-number">Listing 46 </span><span class="caption-text">examples/send_script.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">53</span><span class="w">    </span><span class="n">client</span><span class="p">.</span><span class="n">sendScriptBlocking</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">textmsg(&quot;Successful program execution&quot;)</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span>
-<span class="linenos">54</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">55</span><span class="w">  </span><span class="c1">// A script-function name can also be passed to the method</span>
-<span class="linenos">56</span><span class="w">  </span><span class="c1">// A timeout can also be given to limit the wait for the passed function to start. If timeout = 0, it will</span>
-<span class="linenos">57</span><span class="w">  </span><span class="c1">// wait indefinitely.</span>
-<span class="linenos">58</span><span class="w">  </span><span class="n">client</span><span class="p">.</span><span class="n">sendScriptBlocking</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">textmsg(&quot;hello&quot;)</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cool_function_name&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">51</span><span class="w">  </span><span class="n">client</span><span class="p">.</span><span class="n">sendScriptBlocking</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">textmsg(&quot;Successful program execution&quot;)</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="linenos">52</span><span class="w">  </span><span class="c1">// A script-function name can also be passed to the method</span>
+<span class="linenos">53</span><span class="w">  </span><span class="c1">// A timeout can also be given to limit the wait for the passed function to start. If timeout = 0, it will</span>
+<span class="linenos">54</span><span class="w">  </span><span class="c1">// wait indefinitely.</span>
+<span class="linenos">55</span><span class="w">  </span><span class="n">client</span><span class="p">.</span><span class="n">sendScriptBlocking</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">textmsg(&quot;hello&quot;)</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cool_function_name&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
 </pre></div>
 </div>
 </div>
@@ -195,12 +193,12 @@ report execution feedback for secondary programs, the call returns as soon as th
 accepted. Note that secondary programs must be <em>fully defined</em> by the user (<code class="docutils literal notranslate"><span class="pre">sec</span> <span class="pre">...</span> <span class="pre">end</span></code>):</p>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-number">Listing 47 </span><span class="caption-text">examples/send_script.cpp</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">62</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">secondary_script</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span>
-<span class="linenos">63</span><span class="s">sec sec_script():</span>
-<span class="linenos">64</span><span class="s">  textmsg(&quot;Named secondary program&quot;)</span>
-<span class="linenos">65</span><span class="s">end</span>
-<span class="linenos">66</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">;</span>
-<span class="linenos">67</span><span class="w">  </span><span class="n">client</span><span class="p">.</span><span class="n">sendScriptBlocking</span><span class="p">(</span><span class="n">secondary_script</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">59</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">secondary_script</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span>
+<span class="linenos">60</span><span class="s">sec sec_script():</span>
+<span class="linenos">61</span><span class="s">  textmsg(&quot;Named secondary program&quot;)</span>
+<span class="linenos">62</span><span class="s">end</span>
+<span class="linenos">63</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="linenos">64</span><span class="w">  </span><span class="n">client</span><span class="p">.</span><span class="n">sendScriptBlocking</span><span class="p">(</span><span class="n">secondary_script</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -212,18 +210,26 @@ report this back to the caller. The example sends a script that uses an undefine
 <code class="docutils literal notranslate"><span class="pre">current_pos</span></code> instead of <code class="docutils literal notranslate"><span class="pre">current_pose</span></code>, and logs the result:</p>
 <div class="literal-block-wrapper docutils container" id="id6">
 <div class="code-block-caption"><span class="caption-number">Listing 48 </span><span class="caption-text">examples/send_script.cpp</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">70</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">bad_script_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">&quot;&quot;(</span>
-<span class="linenos">71</span><span class="s">def bad_code():</span>
-<span class="linenos">72</span><span class="s">  current_pose = get_target_tcp_pose()</span>
-<span class="linenos">73</span><span class="s">  movel(current_pos) # note pose vs pos</span>
-<span class="linenos">74</span><span class="s">end</span><span class="dl">)&quot;&quot;</span><span class="s">&quot;</span><span class="p">;</span>
-<span class="linenos">75</span><span class="w">  </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="s">&quot;Sending bad script code...&quot;</span><span class="p">);</span>
-<span class="linenos">76</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="n">sendScriptBlocking</span><span class="p">(</span><span class="n">bad_script_code</span><span class="p">);</span>
-<span class="linenos">77</span><span class="w">  </span><span class="p">{</span>
-<span class="linenos">78</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">stringstream</span><span class="w"> </span><span class="n">ss</span><span class="p">;</span>
-<span class="linenos">79</span><span class="w">    </span><span class="n">ss</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Execution of bad code successful? &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">boolalpha</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">success</span><span class="p">;</span>
-<span class="linenos">80</span><span class="w">    </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ss</span><span class="p">.</span><span class="n">str</span><span class="p">().</span><span class="n">c_str</span><span class="p">());</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">67</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">bad_script_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">&quot;&quot;(</span>
+<span class="linenos">68</span><span class="s">def bad_code():</span>
+<span class="linenos">69</span><span class="s">  current_pose = get_target_tcp_pose()</span>
+<span class="linenos">70</span><span class="s">  movel(current_pos) # note pose vs pos</span>
+<span class="linenos">71</span><span class="s">end</span><span class="dl">)&quot;&quot;</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="linenos">72</span><span class="w">  </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="s">&quot;Sending bad script code...&quot;</span><span class="p">);</span>
+<span class="linenos">73</span><span class="w">  </span><span class="k">try</span>
+<span class="linenos">74</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos">75</span><span class="w">    </span><span class="n">client</span><span class="p">.</span><span class="n">sendScriptBlocking</span><span class="p">(</span><span class="n">bad_script_code</span><span class="p">);</span>
+<span class="linenos">76</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">77</span><span class="w">  </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">RobotRuntimeException</span><span class="o">&amp;</span><span class="w"> </span><span class="n">exc</span><span class="p">)</span>
+<span class="linenos">78</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos">79</span><span class="w">    </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="s">&quot;Caught expected runtime exception from sendScriptBlocking&quot;</span><span class="p">);</span>
+<span class="linenos">80</span><span class="w">    </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="n">exc</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
 <span class="linenos">81</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">82</span><span class="w">  </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UrException</span><span class="o">&amp;</span><span class="w"> </span><span class="n">exc</span><span class="p">)</span>
+<span class="linenos">83</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos">84</span><span class="w">    </span><span class="n">URCL_LOG_ERROR</span><span class="p">(</span><span class="s">&quot;Caught unexpected exception from sendScriptBlocking&quot;</span><span class="p">);</span>
+<span class="linenos">85</span><span class="w">    </span><span class="n">URCL_LOG_ERROR</span><span class="p">(</span><span class="n">exc</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
+<span class="linenos">86</span><span class="w">  </span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -235,19 +241,19 @@ used. It returns <code class="docutils literal notranslate"><span class="pre">tr
 performs no further checks, so faulty script code will <em>not</em> be reported back here:</p>
 <div class="literal-block-wrapper docutils container" id="id7">
 <div class="code-block-caption"><span class="caption-number">Listing 49 </span><span class="caption-text">examples/send_script.cpp</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">83</span><span class="w">  </span><span class="c1">// We can also send script code without any checks</span>
-<span class="linenos">84</span><span class="w">  </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="s">&quot;Executing motion without feedback&quot;</span><span class="p">);</span>
-<span class="linenos">85</span><span class="w">  </span><span class="n">client</span><span class="p">.</span><span class="n">sendScript</span><span class="p">(</span><span class="s">&quot;movej([0.1,-0.9,0.9,0,0,0])&quot;</span><span class="p">);</span>
-<span class="linenos">86</span><span class="w">  </span><span class="c1">// But we won&#39;t know when that is done or even if our code was correct.</span>
-<span class="linenos">87</span><span class="w">  </span><span class="c1">// E.g. sending the bad script here will not give us any information</span>
-<span class="linenos">88</span><span class="w">  </span><span class="c1">// The return value will only tell us that the script code has been sent to the robot.</span>
-<span class="linenos">89</span><span class="w">  </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="s">&quot;Sending bad script code without feedback...&quot;</span><span class="p">);</span>
-<span class="linenos">90</span><span class="w">  </span><span class="n">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="n">sendScript</span><span class="p">(</span><span class="n">bad_script_code</span><span class="p">);</span>
-<span class="linenos">91</span><span class="w">  </span><span class="p">{</span>
-<span class="linenos">92</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">stringstream</span><span class="w"> </span><span class="n">ss</span><span class="p">;</span>
-<span class="linenos">93</span><span class="w">    </span><span class="n">ss</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Bad code sent to robot successfully? &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">boolalpha</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">success</span><span class="p">;</span>
-<span class="linenos">94</span><span class="w">    </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ss</span><span class="p">.</span><span class="n">str</span><span class="p">().</span><span class="n">c_str</span><span class="p">());</span>
-<span class="linenos">95</span><span class="w">  </span><span class="p">}</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 88</span><span class="w">  </span><span class="c1">// We can also send script code without any checks</span>
+<span class="linenos"> 89</span><span class="w">  </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="s">&quot;Executing motion without feedback&quot;</span><span class="p">);</span>
+<span class="linenos"> 90</span><span class="w">  </span><span class="n">client</span><span class="p">.</span><span class="n">sendScript</span><span class="p">(</span><span class="s">&quot;movej([0.1,-0.9,0.9,0,0,0])&quot;</span><span class="p">);</span>
+<span class="linenos"> 91</span><span class="w">  </span><span class="c1">// But we won&#39;t know when that is done or even if our code was correct.</span>
+<span class="linenos"> 92</span><span class="w">  </span><span class="c1">// E.g. sending the bad script here will not give us any information</span>
+<span class="linenos"> 93</span><span class="w">  </span><span class="c1">// The return value will only tell us that the script code has been sent to the robot.</span>
+<span class="linenos"> 94</span><span class="w">  </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="s">&quot;Sending bad script code without feedback...&quot;</span><span class="p">);</span>
+<span class="linenos"> 95</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="n">sendScript</span><span class="p">(</span><span class="n">bad_script_code</span><span class="p">);</span>
+<span class="linenos"> 96</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos"> 97</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">stringstream</span><span class="w"> </span><span class="n">ss</span><span class="p">;</span>
+<span class="linenos"> 98</span><span class="w">    </span><span class="n">ss</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Bad code sent to robot successfully? &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">boolalpha</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">success</span><span class="p">;</span>
+<span class="linenos"> 99</span><span class="w">    </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ss</span><span class="p">.</span><span class="n">str</span><span class="p">().</span><span class="n">c_str</span><span class="p">());</span>
+<span class="linenos">100</span><span class="w">  </span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
