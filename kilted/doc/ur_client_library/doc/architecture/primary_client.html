@@ -129,10 +129,11 @@ There is no feedback on whether the program is actually executed on the robot.</
 <h2>Script execution with feedback<a class="headerlink" href="#script-execution-with-feedback" title="Link to this heading"></a></h2>
 <p>Method signature:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="n">sendScriptBlocking</span><span class="p">(</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">program</span><span class="p">,</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">script_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="w"> </span><span class="n">timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">fail_on_warnings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">program</span><span class="p">,</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">script_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="w"> </span><span class="n">start_timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">fail_on_warnings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">retry_on_readonly_interface</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
 <span class="p">);</span>
 </pre></div>
 </div>
@@ -140,12 +141,14 @@ There is no feedback on whether the program is actually executed on the robot.</
 <div class="line">The <code class="docutils literal notranslate"><span class="pre">sendScriptBlocking</span></code> method will also accept valid URScript code, but blocks until the execution result of the given program is available.</div>
 <div class="line">Prior to transferring the program it will first check that the robot is in a state where it can execute programs, otherwise an exception is thrown.</div>
 <div class="line">If the robot is ready, the program is then transferred, and the method will wait for the robot to report that the program has either started, finished or encountered an error.</div>
-<div class="line">If the program has not started within the given <code class="docutils literal notranslate"><span class="pre">timeout</span></code>, the method throws an exception.</div>
+<div class="line">If the program has not started within the given <code class="docutils literal notranslate"><span class="pre">start_timeout</span></code>, the method throws an exception.</div>
 <div class="line">If the robot encounters an error or runtime exception during program execution the method also throws an exception.</div>
 <div class="line">If <code class="docutils literal notranslate"><span class="pre">fail_on_warnings</span></code> is true, it will also throw an exception, if the robot reports a warning during program execution. Note: protective stops are reported as warnings by the robot.</div>
+<div class="line">If <code class="docutils literal notranslate"><span class="pre">retry_on_readonly_interface</span></code> is true, the method will restart the primary interface and retry sending the program, if the primary interface is read-only. It will retry once, and if the interface is still read-only, an exception will be thrown. If false, the exception will be thrown, without restarting/retrying.</div>
 <div class="line">If no exceptions are thrown, the script has been executed successfully.</div>
 <div class="line">This method also accepts secondary programs, but no feedback is available for those, so it will behave similarly to the <code class="docutils literal notranslate"><span class="pre">sendScript</span></code> method in those cases, except for the pre-transfer checks.</div>
 <div class="line">The exact exceptions that are thrown in various cases can be seen in the <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/blob/master/include/ur_client_library/primary/primary_client.h">primary client header file</a>.</div>
+<div class="line">Note: This method clears all stored error codes in the client during execution.</div>
 </div>
 </section>
 </section>
