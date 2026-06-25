@@ -151,19 +151,20 @@ control information. We will also add a custom launchfile to startup our demonst
 <span class="linenos">39</span><span class="w">  </span><span class="nt">&lt;xacro:ur_ros2_control</span>
 <span class="linenos">40</span><span class="w">    </span><span class="na">name=</span><span class="s">&quot;$(arg ur_type)&quot;</span>
 <span class="linenos">41</span><span class="w">    </span><span class="na">tf_prefix=</span><span class="s">&quot;$(arg ur_type)_&quot;</span>
-<span class="linenos">42</span><span class="w">    </span><span class="na">kinematics_parameters_file=</span><span class="s">&quot;$(arg kinematics_parameters_file)&quot;</span>
-<span class="linenos">43</span><span class="w">    </span><span class="na">robot_ip=</span><span class="s">&quot;$(arg robot_ip)&quot;</span>
-<span class="linenos">44</span><span class="w">    </span><span class="na">script_filename=</span><span class="s">&quot;$(arg ur_script_filename)&quot;</span>
-<span class="linenos">45</span><span class="w">    </span><span class="na">output_recipe_filename=</span><span class="s">&quot;$(arg ur_output_recipe_filename)&quot;</span>
-<span class="linenos">46</span><span class="w">    </span><span class="na">input_recipe_filename=</span><span class="s">&quot;$(arg ur_input_recipe_filename)&quot;</span>
-<span class="linenos">47</span><span class="w">    </span><span class="na">use_mock_hardware=</span><span class="s">&quot;$(arg use_mock_hardware)&quot;</span>
-<span class="linenos">48</span><span class="w">    </span><span class="na">mock_sensor_commands=</span><span class="s">&quot;$(arg mock_sensor_commands)&quot;</span>
-<span class="linenos">49</span><span class="w">    </span><span class="na">headless_mode=</span><span class="s">&quot;$(arg headless_mode)&quot;</span>
-<span class="linenos">50</span><span class="w">  </span><span class="nt">/&gt;</span>
-<span class="linenos">51</span>
-<span class="linenos">52</span><span class="w">  </span><span class="cm">&lt;!--If you had more controlled devices in your description, e.g. a gripper, you can add another ros2_control tag here--&gt;</span>
-<span class="linenos">53</span>
-<span class="linenos">54</span><span class="nt">&lt;/robot&gt;</span>
+<span class="linenos">42</span><span class="w">    </span><span class="na">ur_type=</span><span class="s">&quot;$(arg ur_type)&quot;</span>
+<span class="linenos">43</span><span class="w">    </span><span class="na">kinematics_parameters_file=</span><span class="s">&quot;$(arg kinematics_parameters_file)&quot;</span>
+<span class="linenos">44</span><span class="w">    </span><span class="na">robot_ip=</span><span class="s">&quot;$(arg robot_ip)&quot;</span>
+<span class="linenos">45</span><span class="w">    </span><span class="na">script_filename=</span><span class="s">&quot;$(arg ur_script_filename)&quot;</span>
+<span class="linenos">46</span><span class="w">    </span><span class="na">output_recipe_filename=</span><span class="s">&quot;$(arg ur_output_recipe_filename)&quot;</span>
+<span class="linenos">47</span><span class="w">    </span><span class="na">input_recipe_filename=</span><span class="s">&quot;$(arg ur_input_recipe_filename)&quot;</span>
+<span class="linenos">48</span><span class="w">    </span><span class="na">use_mock_hardware=</span><span class="s">&quot;$(arg use_mock_hardware)&quot;</span>
+<span class="linenos">49</span><span class="w">    </span><span class="na">mock_sensor_commands=</span><span class="s">&quot;$(arg mock_sensor_commands)&quot;</span>
+<span class="linenos">50</span><span class="w">    </span><span class="na">headless_mode=</span><span class="s">&quot;$(arg headless_mode)&quot;</span>
+<span class="linenos">51</span><span class="w">  </span><span class="nt">/&gt;</span>
+<span class="linenos">52</span>
+<span class="linenos">53</span><span class="w">  </span><span class="cm">&lt;!--If you had more controlled devices in your description, e.g. a gripper, you can add another ros2_control tag here--&gt;</span>
+<span class="linenos">54</span>
+<span class="linenos">55</span><span class="nt">&lt;/robot&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -193,6 +194,7 @@ control information. We will also add a custom launchfile to startup our demonst
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;xacro:ur_ros2_control</span>
 <span class="w">    </span><span class="na">name=</span><span class="s">&quot;$(arg ur_type)&quot;</span>
 <span class="w">    </span><span class="na">tf_prefix=</span><span class="s">&quot;$(arg ur_type)_&quot;</span>
+<span class="w">    </span><span class="na">ur_type=</span><span class="s">&quot;$(arg ur_type)&quot;</span>
 <span class="w">    </span><span class="na">kinematics_parameters_file=</span><span class="s">&quot;$(arg kinematics_parameters_file)&quot;</span>
 <span class="w">    </span><span class="na">robot_ip=</span><span class="s">&quot;$(arg robot_ip)&quot;</span>
 <span class="w">    </span><span class="na">script_filename=</span><span class="s">&quot;$(arg ur_script_filename)&quot;</span>
