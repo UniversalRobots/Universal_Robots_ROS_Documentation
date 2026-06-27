@@ -179,6 +179,17 @@ compatible with all motion controllers, adjusting friction parameters only has a
 direct torque control.</p>
 </div>
 </section>
+<section id="gravity-compensation">
+<h3>Gravity Compensation<a class="headerlink" href="#gravity-compensation" title="Link to this heading"></a></h3>
+<p>When the robot is mounted in a non-standard orientation, the gravity vector used for internal
+gravity compensation must be updated using the
+<a class="reference internal" href="../../../ur_controllers/doc/index.html#gravity-update-controller"><span class="std std-ref">gravity_update_controller</span></a>.</p>
+<p>The controller exposes the <code class="docutils literal notranslate"><span class="pre">~/set_gravity</span></code> service
+(<a class="reference external" href="https://docs.ros.org/en/rolling/p/ur_msgs/srv/SetGravity.html">ur_msgs/srv/SetGravity</a>) to set the gravity direction
+experienced by the robot. The vector in the request points towards the Earth’s center and can be
+expressed in any frame transformable to the robot’s <code class="docutils literal notranslate"><span class="pre">base</span></code> frame. It is started as active by
+default in the driver’s launch file.</p>
+</section>
 </section>
 <section id="force-mode-controller">
 <h2>Force Mode Controller<a class="headerlink" href="#force-mode-controller" title="Link to this heading"></a></h2>
@@ -264,7 +275,10 @@ trajectory).</p></td>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">friction_model_controller</span></code></p></td>
 <td><p>All controllers (only affects torque control behavior).</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">force_torque_sensor_broadcaster</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">gravity_update_controller</span></code></p></td>
+<td><p>All controllers (updates robot-internal gravity compensation).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">force_torque_sensor_broadcaster</span></code></p></td>
 <td><p>All controllers (read-only broadcaster).</p></td>
 </tr>
 </tbody>

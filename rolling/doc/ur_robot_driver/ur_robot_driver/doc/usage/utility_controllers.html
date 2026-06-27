@@ -215,6 +215,22 @@ z-offset of 110 mm).</span><a class="headerlink" href="#id2" title="Link to this
 <p>Type: <a class="reference internal" href="../../../ur_controllers/doc/index.html#ur-configuration-controller"><span class="std std-ref">ur_controllers/URConfigurationController</span></a></p>
 <p>Provides access to UR-specific robot configuration data. This controller is always active.</p>
 </section>
+<section id="gravity-update-controller">
+<h2>gravity_update_controller<a class="headerlink" href="#gravity-update-controller" title="Link to this heading"></a></h2>
+<p>Type: <a class="reference internal" href="../../../ur_controllers/doc/index.html#gravity-update-controller"><span class="std std-ref">ur_controllers/GravityUpdateController</span></a></p>
+<p>Updates the gravity vector used by the robot for gravity compensation. This is useful when the
+robot is mounted in a non-standard orientation, such as on a wall or ceiling.</p>
+<p>The controller exposes the <code class="docutils literal notranslate"><span class="pre">~/set_gravity</span></code> service
+(<a class="reference external" href="https://docs.ros.org/en/rolling/p/ur_msgs/srv/SetGravity.html">ur_msgs/srv/SetGravity</a>) to
+set the gravity direction. The vector in the request points towards the Earth’s center and can be
+expressed in any frame transformable to the robot’s <code class="docutils literal notranslate"><span class="pre">base</span></code> frame. It is started as active by
+default in the driver’s launch file.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/gravity_update_controller/set_gravity<span class="w"> </span>ur_msgs/srv/SetGravity<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">&quot;{gravity: {header: {frame_id: &#39;base&#39;}, vector: {x: 0.0, y: 0.0, z: -9.82}}}&quot;</span>
+</pre></div>
+</div>
+<p>See the <a class="reference internal" href="../../../ur_controllers/doc/index.html#gravity-update-controller"><span class="std std-ref">gravity_update_controller</span></a> documentation for full details.</p>
+</section>
 </section>
 
 
