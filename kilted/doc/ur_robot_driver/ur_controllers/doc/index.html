@@ -551,6 +551,106 @@ The action provides no feedback.</p>
 </ul>
 </section>
 </section>
+<section id="ur-controllers-urconfigurationcontroller">
+<span id="ur-configuration-controller"></span><h3>ur_controllers/URConfigurationController<a class="headerlink" href="#ur-controllers-urconfigurationcontroller" title="Link to this heading"></a></h3>
+<p>This controller provides access to UR-specific robot configuration data. Currently, it provides a
+service to query the robot’s software version.</p>
+<section id="id8">
+<h4>Parameters<a class="headerlink" href="#id8" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Parameter name</p></td>
+<td><p>Type</p></td>
+<td><p>Default value</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tf_prefix</span></code></p></td>
+<td><p>string</p></td>
+<td><p>&lt;empty&gt;</p></td>
+<td><p>Urdf prefix of the corresponding arm</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id9">
+<h4>Service interface / usage<a class="headerlink" href="#id9" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">~/get_software_version</span> <span class="pre">[ur_msgs/srv/GetRobotSoftwareVersion]</span></code>: Get the robot’s software
+version. The response contains the major, minor and patch version of the robot’s software, as
+well as the build number if available. For example, for a robot running PolyScope 5.12.1 the
+response would be major version 5, minor version 12 and patch version 1.</p></li>
+</ul>
+</section>
+</section>
+<section id="ur-controllers-gravityupdatecontroller">
+<span id="gravity-update-controller"></span><h3>ur_controllers/GravityUpdateController<a class="headerlink" href="#ur-controllers-gravityupdatecontroller" title="Link to this heading"></a></h3>
+<p>This controller updates the gravity vector used by the robot controller. The robot uses this
+vector for gravity compensation during motion and torque control. By default, the robot assumes a
+gravity vector pointing straight down in its base frame (typically <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">-9.82]</span></code> m/s² in a
+standard floor-mounted setup).</p>
+<p>Use this controller when the robot is mounted in a non-standard orientation, for example on a wall
+or ceiling, or when the base frame does not align with the physical gravity direction. The
+controller forwards the requested gravity vector to the robot through the URScript <code class="docutils literal notranslate"><span class="pre">set_gravity()</span></code>
+function.</p>
+<p>The service accepts the gravity direction in any frame that can be transformed to the robot’s
+<code class="docutils literal notranslate"><span class="pre">base</span></code> frame. The controller rotates the vector into the base frame and forwards it to the
+hardware interface.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The service expects the <strong>direction of gravity</strong>, pointing towards the Earth’s center. The
+controller negates this vector internally before sending it to the robot, as the underlying UR
+client library expects an anti-gravity vector (pointing away from the Earth’s center).</p>
+</div>
+<section id="id10">
+<h4>Parameters<a class="headerlink" href="#id10" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Parameter name</p></td>
+<td><p>Type</p></td>
+<td><p>Default value</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tf_prefix</span></code></p></td>
+<td><p>string</p></td>
+<td><p>&lt;empty&gt;</p></td>
+<td><p>Urdf prefix of the corresponding arm</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">check_io_successfull_retries</span></code></p></td>
+<td><p>int</p></td>
+<td><p>10</p></td>
+<td><p>Amount of retries for checking if setting gravity was successful</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id11">
+<h4>Service interface / usage<a class="headerlink" href="#id11" title="Link to this heading"></a></h4>
+<p>The controller provides a service for setting the gravity vector. To use this service, the
+controller has to be in <code class="docutils literal notranslate"><span class="pre">active</span></code> state.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">~/set_gravity</span> <span class="pre">[ur_msgs/srv/SetGravity]</span></code>: Set the gravity direction experienced by the robot.</p></li>
+</ul>
+<p>The request contains a <code class="docutils literal notranslate"><span class="pre">geometry_msgs/Vector3Stamped</span></code> named <code class="docutils literal notranslate"><span class="pre">gravity</span></code>. The vector specifies
+the direction of gravity (towards the Earth’s center) and <code class="docutils literal notranslate"><span class="pre">header.frame_id</span></code> specifies the frame
+in which the vector is expressed. Any frame that can be transformed to the robot’s <code class="docutils literal notranslate"><span class="pre">base</span></code> frame
+can be used.</p>
+<p>Example for a standard floor-mounted robot (gravity pointing down in the <code class="docutils literal notranslate"><span class="pre">base</span></code> frame):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 service call /gravity_update_controller/set_gravity ur_msgs/srv/SetGravity \</span>
+<span class="go">  &quot;{gravity: {header: {frame_id: &#39;base&#39;}, vector: {x: 0.0, y: 0.0, z: -9.82}}}&quot;</span>
+</pre></div>
+</div>
+<p>Example for a ceiling-mounted robot (gravity pointing up in the <code class="docutils literal notranslate"><span class="pre">base</span></code> frame):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 service call /gravity_update_controller/set_gravity ur_msgs/srv/SetGravity \</span>
+<span class="go">  &quot;{gravity: {header: {frame_id: &#39;base&#39;}, vector: {x: 0.0, y: 0.0, z: 9.82}}}&quot;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using the mocked hardware interface, the service may report failure even though the command
+was accepted, because the mock does not emulate the asynchronous success feedback from the robot.</p>
+</div>
+</section>
+</section>
 </section>
 </section>
 
