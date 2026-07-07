@@ -108,7 +108,7 @@ detail about the URDF / xacro files, not the complete package structure. Please 
 <section id="workcell-description">
 <h2>Workcell description<a class="headerlink" href="#workcell-description" title="Link to this heading"></a></h2>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 71 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 78 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
 <span class="linenos"> 2</span><span class="nt">&lt;robot</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;my_robot_cell&quot;</span><span class="w"> </span><span class="na">xmlns:xacro=</span><span class="s">&quot;http://ros.org/wiki/xacro&quot;</span><span class="nt">&gt;</span>
 <span class="linenos"> 3</span>
@@ -140,7 +140,7 @@ detail about the URDF / xacro files, not the complete package structure. Please 
 <p>Let’s break it down:</p>
 <p>First, we’ll have to <strong>include</strong> the macro to generate our custom workcell:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 72 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 79 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;xacro:include</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;$(find my_robot_cell_description)/urdf/my_robot_cell_macro.xacro&quot;</span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
@@ -149,7 +149,7 @@ detail about the URDF / xacro files, not the complete package structure. Please 
 <p>We will need to provide some parameters to our workcell in order to parametrize the arm. Therefore,
 we need to declare certain arguments that must be passed to the macro.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 73 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 80 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ur_type&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;ur20&quot;</span><span class="nt">/&gt;</span>
 <span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;joint_limits_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg ur_type)/joint_limits.yaml&quot;</span><span class="nt">/&gt;</span>
 <span class="w">  </span><span class="nt">&lt;xacro:arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;kinematics_parameters_file&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur_description)/config/$(arg ur_type)/default_kinematics.yaml&quot;</span><span class="nt">/&gt;</span>
@@ -162,7 +162,7 @@ we need to declare certain arguments that must be passed to the macro.</p>
 experienced in writing URDFs, you may want to refer to this  <a class="reference external" href="https://docs.ros.org/en/rolling/Tutorials/Intermediate/URDF/URDF-Main.html">tutorial</a>. The macro’s content
 is generated using</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 74 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 81 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell.urdf.xacro</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;world&quot;</span><span class="nt">/&gt;</span>
 <span class="w">  </span><span class="cm">&lt;!--This will create the scene where the robot is located in--&gt;</span>
 <span class="w">  </span><span class="nt">&lt;xacro:my_robot_cell</span>
@@ -184,7 +184,7 @@ is generated using</p>
 <h2>Workcell macro<a class="headerlink" href="#workcell-macro" title="Link to this heading"></a></h2>
 <p>The workcell macro is defined in the following manner:</p>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 75 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell_macro.xacro</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 82 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell_macro.xacro</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
 <span class="linenos"> 2</span><span class="nt">&lt;robot</span><span class="w"> </span><span class="na">xmlns:xacro=</span><span class="s">&quot;http://ros.org/wiki/xacro&quot;</span><span class="nt">&gt;</span>
 <span class="linenos"> 3</span><span class="w">  </span><span class="nt">&lt;xacro:include</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;$(find ur_description)/urdf/ur_macro.xacro&quot;</span><span class="nt">/&gt;</span>
@@ -292,7 +292,7 @@ this instance, our workspace comprises a table in front of a wall, featuring a m
 <p>Ensure that your custom workcell includes the parent link, which must be passed to the <strong>ur_robot</strong>
 macro. In this example, we chose to create a link named <strong>robot_mount</strong>.</p>
 <div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-number">Listing 76 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell_macro.xacro</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 83 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell_macro.xacro</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="w">    </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;robot_mount&quot;</span><span class="nt">/&gt;</span>
 <span class="linenos">2</span><span class="w">    </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;base_to_robot_mount&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
 <span class="linenos">3</span><span class="w">      </span><span class="nt">&lt;parent</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;table&quot;</span><span class="nt">/&gt;</span>
@@ -304,7 +304,7 @@ macro. In this example, we chose to create a link named <strong>robot_mount</str
 </div>
 <p>After that we are finally able to actually <strong>create the robot arm</strong> by calling the macro.</p>
 <div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-number">Listing 77 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell_macro.xacro</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 84 </span><span class="caption-text">my_robot_cell_description/urdf/my_robot_cell_macro.xacro</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w">    </span><span class="nt">&lt;xacro:ur_robot</span>
 <span class="linenos"> 2</span><span class="w">      </span><span class="na">name=</span><span class="s">&quot;${ur_type}&quot;</span>
 <span class="linenos"> 3</span><span class="w">      </span><span class="na">tf_prefix=</span><span class="s">&quot;${ur_type}_&quot;</span>
