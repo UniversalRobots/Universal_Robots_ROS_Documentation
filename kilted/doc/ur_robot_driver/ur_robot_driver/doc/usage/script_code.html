@@ -166,6 +166,50 @@ between each statement:</p>
 </div>
 </section>
 </section>
+<section id="scripts-with-execution-monitoring">
+<h2>Scripts with execution monitoring<a class="headerlink" href="#scripts-with-execution-monitoring" title="Link to this heading"></a></h2>
+<p>The action server at <code class="docutils literal notranslate"><span class="pre">/urscript_interface/execute_script</span></code> allows executing script programs and getting the information when execution is done and whether there was an error during execution.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">SendScript</span></code> action definition can be seen in the <a class="reference external" href="https://docs.ros.org/en/rolling/p/ur_msgs/__action_definitions.html/">ur_msgs action definitions</a></p>
+<p>This action server is a ROS wrapper around the <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/blob/master/doc/architecture/primary_client.rst/">URCL primary client’s</a>
+SendScriptBlocking method, and the meaning of parameters can be seen there.
+The action will be reported as successful if no errors occur during script execution. See <a class="reference internal" href="#script-cancel"><span class="std std-ref">Script cancellation</span></a> for additional info about when the action might be reported as successful.
+If an error is detected, a message explaining what went wrong will be made available in the action result.
+While the action server is waiting for a script to finish execution, it will reject any further action goals, and the <code class="docutils literal notranslate"><span class="pre">/urscript_interface/script_command</span></code> topic will also be ignored during this time.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The previous note about restarting the external control URCap also applies when using the action server.</p>
+</div>
+<section id="script-cancellation">
+<span id="script-cancel"></span><h3>Script cancellation<a class="headerlink" href="#script-cancellation" title="Link to this heading"></a></h3>
+<p>If script execution is canceled through the ROS2 action interface, the running script will be stopped, and the action will be reported as canceled. If script execution is stopped via the teach pendant or <strong>any</strong> other non-ROS means, the corresponding ROS action will be reported as successful, as the action server can not distinguish between successful programs and programs that were stopped outside of ROS.</p>
+</section>
+<section id="command-line-example">
+<h3>Command line example<a class="headerlink" href="#command-line-example" title="Link to this heading"></a></h3>
+<p>The action server can be called from the command line like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>action<span class="w"> </span>send_goal<span class="w"> </span>/urscript_interface/execute_script<span class="w"> </span>ur_msgs/action/SendScript<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">  program: &quot;popup(\&quot;cmd line example\&quot;)&quot;,</span>
+<span class="s1">  script_name: &quot;cmd_line_example&quot;,</span>
+<span class="s1">  start_timeout: {sec: 1.0, nanosec: 0},</span>
+<span class="s1">  fail_on_warnings: true}&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">robot_ip</span></code> (string, <strong>required</strong>)</p>
+<p>The IP address at which the robot is reachable.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">retry_on_readonly_interface</span></code> (boolean, default: <code class="docutils literal notranslate"><span class="pre">true</span></code>)</p>
+<p>When the client is currently connected to a read-only interface (because the robot is not in
+remote_control mode / was put to local control mode since the client connected) script code will
+not be accepted by the primary interface.</p>
+<p>When set to <code class="docutils literal notranslate"><span class="pre">true</span></code> the client will attempt to reconnect to the primary interface and send the
+script again once. This mechanism is only active when using the action interface.</p>
+</li>
+</ul>
+</section>
+</section>
 </section>
 
 
