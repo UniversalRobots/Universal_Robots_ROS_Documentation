@@ -167,7 +167,7 @@ between each statement:</p>
 <section id="scripts-with-execution-monitoring">
 <h2>Scripts with execution monitoring<a class="headerlink" href="#scripts-with-execution-monitoring" title="Link to this heading"></a></h2>
 <p>The action server at <code class="docutils literal notranslate"><span class="pre">/urscript_interface/execute_script</span></code> allows executing script programs and getting the information when execution is done and whether there was an error during execution.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">SendScript</span></code> action definition can be seen in the <a class="reference external" href="https://docs.ros.org/en/rolling/p/ur_msgs/__action_definitions.html/">ur_msgs action definitions</a></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">SendScript</span></code> action definition can be seen in the <a class="reference external" href="https://docs.ros.org/en/rolling/p/ur_msgs/action/SendScript.html">ur_msgs/action/SendScript</a></p>
 <p>This action server is a ROS wrapper around the <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/blob/master/doc/architecture/primary_client.rst/">URCL primary client’s</a>
 SendScriptBlocking method, and the meaning of parameters can be seen there.
 The action will be reported as successful if no errors occur during script execution. See <a class="reference internal" href="#script-cancel"><span class="std std-ref">Script cancellation</span></a> for additional info about when the action might be reported as successful.
