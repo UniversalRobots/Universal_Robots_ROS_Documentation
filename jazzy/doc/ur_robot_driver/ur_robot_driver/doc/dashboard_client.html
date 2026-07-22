@@ -127,7 +127,7 @@
 </section>
 <section id="connect-std-srvs-trigger">
 <h3>connect (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#connect-std-srvs-trigger" title="Link to this heading"></a></h3>
-<p>Service to reconnect to the dashboard server</p>
+<p>Service to connect or reconnect to the dashboard server. Required after startup when <code class="docutils literal notranslate"><span class="pre">autoconnect</span></code> is <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
 </section>
 <section id="download-program-ur-dashboard-msgs-downloadprogram">
 <h3>download_program (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/DownloadProgram.html">ur_dashboard_msgs/DownloadProgram</a>)<a class="headerlink" href="#download-program-ur-dashboard-msgs-downloadprogram" title="Link to this heading"></a></h3>
@@ -284,6 +284,13 @@ Defaults to saving to the programs folder</p>
 </section>
 <section id="parameters">
 <h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<section id="autoconnect-default-true">
+<h3>autoconnect (default: true)<a class="headerlink" href="#autoconnect-default-true" title="Link to this heading"></a></h3>
+<p>If <code class="docutils literal notranslate"><span class="pre">true</span></code> (default), the dashboard client connects to the robot during startup and retries until
+the connection succeeds or ROS is shut down. If <code class="docutils literal notranslate"><span class="pre">false</span></code>, the node starts without contacting the
+robot and only exposes the <code class="docutils literal notranslate"><span class="pre">~/connect</span></code> service until a connection succeeds; call <code class="docutils literal notranslate"><span class="pre">~/connect</span></code>
+once the robot is available to register the remaining dashboard services.</p>
+</section>
 <section id="receive-timeout-default-20-0">
 <h3>receive_timeout (default: 20.0)<a class="headerlink" href="#receive-timeout-default-20-0" title="Link to this heading"></a></h3>
 <p>Timeout (in seconds, double) after which a call to the dashboard server will be considered failure if no answer has been received. This defaults to 20 seconds, as some operations (like loading larger programs) can take a while.</p>
