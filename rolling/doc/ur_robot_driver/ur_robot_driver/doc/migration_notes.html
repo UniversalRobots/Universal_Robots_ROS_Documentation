@@ -221,6 +221,19 @@ recommended to enable this feature to ensure that the correct robot model is bei
 </section>
 <section id="lyrical-maoka">
 <h2>Lyrical -&gt; Maoka<a class="headerlink" href="#lyrical-maoka" title="Link to this heading"></a></h2>
+<section id="blocking-read-enabled-by-default-in-launch-files">
+<h3>Blocking read enabled by default in launch files<a class="headerlink" href="#blocking-read-enabled-by-default-in-launch-files" title="Link to this heading"></a></h3>
+<p>From ROS Makoa onwards, the <code class="docutils literal notranslate"><span class="pre">ur_robot_driver</span></code> launch files have blocking read enabled by default.
+If you want to disable this behavior, you can set the <code class="docutils literal notranslate"><span class="pre">blocking_read</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">false</span></code> in your
+launch file.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Blocking read might not be the desired behavior in multi-robot (or multi hardware-interface)
+setups, in which case you should create your own launch files anyway. This is why in the URDF
+the default value of the <code class="docutils literal notranslate"><span class="pre">blocking_read</span></code> parameter is still <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+</div>
+<p>See <a class="reference internal" href="usage/startup.html#blocking-read"><span class="std std-ref">Blocking read</span></a> for more details on that feature.</p>
+</section>
 <section id="interface-change-of-set-payload-service">
 <h3>Interface change of set_payload service<a class="headerlink" href="#interface-change-of-set-payload-service" title="Link to this heading"></a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">SetPayload</span></code> service in <code class="docutils literal notranslate"><span class="pre">ur_msgs</span></code> has changed to use <code class="docutils literal notranslate"><span class="pre">geometry_msgs.msg.Inertia</span></code> as the
