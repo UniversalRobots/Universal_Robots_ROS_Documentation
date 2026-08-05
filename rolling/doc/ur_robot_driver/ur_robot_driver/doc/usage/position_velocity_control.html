@@ -209,7 +209,8 @@ force constraints.</p></li>
 on tool contact.</p></li>
 <li><p>Mutually exclusive with all other motion controllers (<code class="docutils literal notranslate"><span class="pre">joint_trajectory_controller</span></code>,
 <code class="docutils literal notranslate"><span class="pre">passthrough_trajectory_controller</span></code>, <code class="docutils literal notranslate"><span class="pre">forward_position_controller</span></code>,
-<code class="docutils literal notranslate"><span class="pre">forward_velocity_controller</span></code>, <code class="docutils literal notranslate"><span class="pre">forward_effort_controller</span></code>, <code class="docutils literal notranslate"><span class="pre">freedrive_mode_controller</span></code>).</p></li>
+<code class="docutils literal notranslate"><span class="pre">forward_velocity_controller</span></code>, <code class="docutils literal notranslate"><span class="pre">forward_effort_controller</span></code>, <code class="docutils literal notranslate"><span class="pre">freedrive_mode_controller</span></code>,
+<code class="docutils literal notranslate"><span class="pre">twist_controller</span></code>).</p></li>
 </ul>
 <p>To activate:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>control<span class="w"> </span>switch_controllers<span class="w"> </span>--deactivate<span class="w"> </span>joint_trajectory_controller<span class="w"> </span><span class="se">\</span>
@@ -259,6 +260,32 @@ fast as possible. This interfaces the URScript function <code class="docutils li
 </pre></div>
 </div>
 </section>
+<section id="twist-controller">
+<h3>twist_controller<a class="headerlink" href="#twist-controller" title="Link to this heading"></a></h3>
+<p>Type: <a class="reference internal" href="../../../ur_controllers/doc/index.html#twist-controller"><span class="std std-ref">ur_controllers/TwistController</span></a></p>
+<p>Streams Cartesian TCP velocities directly to the robot. This interfaces the URScript function
+<code class="docutils literal notranslate"><span class="pre">speedl(...)</span></code>. Unlike the <code class="docutils literal notranslate"><span class="pre">forward_velocity_controller</span></code>, which commands joint-space velocities,
+this controller commands tool-space velocities in the robot’s <code class="docutils literal notranslate"><span class="pre">base</span></code> frame.</p>
+<p><strong>Key features:</strong></p>
+<ul class="simple">
+<li><p>Cartesian velocity control in the robot’s <code class="docutils literal notranslate"><span class="pre">base</span></code> frame via <code class="docutils literal notranslate"><span class="pre">geometry_msgs/msg/TwistStamped</span></code>.</p></li>
+<li><p>Can be combined with the <a class="reference internal" href="../../../ur_controllers/doc/index.html#tool-contact-controller"><span class="std std-ref">tool_contact_controller</span></a> to stop motion
+on tool contact or with <a class="reference internal" href="../../../ur_controllers/doc/index.html#force-mode-controller"><span class="std std-ref">force_mode_controller</span></a>.</p></li>
+<li><p>Mutually exclusive with all other motion controllers.</p></li>
+</ul>
+<p>To activate:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>control<span class="w"> </span>switch_controllers<span class="w"> </span>--deactivate<span class="w"> </span>joint_trajectory_controller<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--activate<span class="w"> </span>twist_controller
+</pre></div>
+</div>
+<p>Example command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--rate<span class="w"> </span><span class="m">50</span><span class="w"> </span>/twist_controller/twist<span class="w"> </span>geometry_msgs/msg/TwistStamped<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">&quot;{header: {frame_id: &#39;base&#39;}, twist: {linear: {x: 0.05}}}&quot;</span>
+</pre></div>
+</div>
+<p>See the <a class="reference internal" href="../../../ur_controllers/doc/index.html#twist-controller"><span class="std std-ref">twist_controller</span></a> documentation for full details on parameters,
+frame requirements, and hardware interfaces.</p>
+</section>
 </section>
 <section id="controller-compatibility">
 <h2>Controller Compatibility<a class="headerlink" href="#controller-compatibility" title="Link to this heading"></a></h2>
@@ -286,7 +313,11 @@ fast as possible. This interfaces the URScript function <code class="docutils li
 <td><p>Mutually exclusive with other motion controllers. Can combine with
 <code class="docutils literal notranslate"><span class="pre">force_mode_controller</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">motion_primitive_forward_controller</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">twist_controller</span></code></p></td>
+<td><p>Mutually exclusive with other motion controllers. Can combine with
+<code class="docutils literal notranslate"><span class="pre">tool_contact_controller</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">motion_primitive_forward_controller</span></code></p></td>
 <td><p>Mutually exclusive with other motion controllers. Can combine with
 <code class="docutils literal notranslate"><span class="pre">force_mode_controller</span></code> and <code class="docutils literal notranslate"><span class="pre">tool_contact_controller</span></code>.</p></td>
 </tr>

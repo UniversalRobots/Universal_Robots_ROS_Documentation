@@ -99,6 +99,7 @@ but it uses the speed scaling reported to align progress of the trajectory betwe
 <li><p>A <strong>io_and_status_controller</strong> that allows setting I/O ports, controlling some UR-specific
 functionality and publishes status information about the robot.</p></li>
 <li><p>A <strong>tool_contact_controller</strong> that exposes an action to enable the tool contact function on the robot.</p></li>
+<li><p>A <strong>twist_controller</strong> that streams Cartesian TCP velocities to the robot.</p></li>
 </ul>
 <section id="about-this-package">
 <h2>About this package<a class="headerlink" href="#about-this-package" title="Link to this heading"></a></h2>
@@ -288,6 +289,106 @@ command interface), the action will be aborted.</p></li>
 </ul>
 </section>
 </section>
+<section id="ur-controllers-twistcontroller">
+<span id="twist-controller"></span><h3>ur_controllers/TwistController<a class="headerlink" href="#ur-controllers-twistcontroller" title="Link to this heading"></a></h3>
+<p>This controller streams Cartesian TCP velocities to the robot. It accepts velocity commands on a
+topic and forwards them to the hardware interface, which executes them using the URScript function
+<code class="docutils literal notranslate"><span class="pre">speedl(...)</span></code>.</p>
+<p>Unlike the <code class="docutils literal notranslate"><span class="pre">forward_velocity_controller</span></code>, which commands joint-space velocities via <code class="docutils literal notranslate"><span class="pre">speedj</span></code>,
+this controller commands tool-space velocities in the robot’s <code class="docutils literal notranslate"><span class="pre">base</span></code> frame.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>With the twist controller, the user is responsible for sending commands that are safe and
+achievable. The robot will try to follow commands as fast as possible without trajectory
+planning.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The robot will scale down the execution speed if its safety limits or speed slider require it.
+Unlike trajectory-based controllers, the twist controller does not automatically account for
+this scaling. Monitor the <a class="reference internal" href="#speed-scaling-state-broadcaster"><span class="std std-ref">speed_scaling_state_broadcaster</span></a> to
+detect when the robot is scaling down and adapt your commands accordingly.</p>
+</div>
+<section id="id2">
+<h4>Parameters<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Parameter name</p></td>
+<td><p>Type</p></td>
+<td><p>Default value</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tf_prefix</span></code></p></td>
+<td><p>string</p></td>
+<td><p>&lt;empty&gt;</p></td>
+<td><p>Urdf prefix of the corresponding arm</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="topic-interface-usage">
+<h4>Topic interface / usage<a class="headerlink" href="#topic-interface-usage" title="Link to this heading"></a></h4>
+<p>The controller provides the <code class="docutils literal notranslate"><span class="pre">~/twist</span></code> topic of type <code class="docutils literal notranslate"><span class="pre">geometry_msgs/msg/TwistStamped</span></code> for
+streaming velocity commands. To use this topic, the controller has to be in <code class="docutils literal notranslate"><span class="pre">active</span></code> state.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">header.frame_id</span></code> must be the robot’s base frame (<code class="docutils literal notranslate"><span class="pre">base</span></code> or <code class="docutils literal notranslate"><span class="pre">${tf_prefix}base</span></code> when using
+a prefixed robot). Commands in other frames are currently ignored.</p>
+<p>Linear velocities are given in m/s and angular velocities in rad/s. Both are expressed in the
+robot’s <code class="docutils literal notranslate"><span class="pre">base</span></code> frame.</p>
+<p>When the controller is activated or deactivated, all velocity commands are reset to zero. While
+active, the last received command is held until a new message arrives.</p>
+<p>To activate the controller, first deactivate any other motion controller that claims the same
+hardware interfaces:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 control switch_controllers --deactivate joint_trajectory_controller \</span>
+<span class="go">  --activate twist_controller</span>
+</pre></div>
+</div>
+<p>Example command to move the TCP slowly along the base x axis:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 topic pub --rate 50 /twist_controller/twist geometry_msgs/msg/TwistStamped \</span>
+<span class="go">  &quot;{header: {frame_id: &#39;base&#39;}, twist: {linear: {x: 0.05}}}&quot;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For continuous motion, publish commands at a steady rate. When you stop publishing, the robot
+will continue executing the last received velocity until you send a zero twist or deactivate the
+controller.</p>
+</div>
+</section>
+<section id="controller-compatibility">
+<h4>Controller compatibility<a class="headerlink" href="#controller-compatibility" title="Link to this heading"></a></h4>
+<p>The twist controller is mutually exclusive with all other motion controllers
+(<code class="docutils literal notranslate"><span class="pre">joint_trajectory_controller</span></code>, <code class="docutils literal notranslate"><span class="pre">passthrough_trajectory_controller</span></code>,
+<code class="docutils literal notranslate"><span class="pre">forward_position_controller</span></code>, <code class="docutils literal notranslate"><span class="pre">forward_velocity_controller</span></code>, <code class="docutils literal notranslate"><span class="pre">forward_effort_controller</span></code>,
+<code class="docutils literal notranslate"><span class="pre">freedrive_mode_controller</span></code> and <code class="docutils literal notranslate"><span class="pre">motion_primitive_forward_controller</span></code>).
+It can be combined with the
+<a class="reference internal" href="#tool-contact-controller"><span class="std std-ref">tool_contact_controller</span></a> and the <a class="reference internal" href="#force-mode-controller"><span class="std std-ref">force_mode_controller</span></a>*.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When combining force_mode and twist remember that force_mode will “claim” axes that aren’t
+available for twist commands anymore.</p>
+</div>
+</section>
+<section id="id3">
+<h4>Interfaces<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<p>In order to use this controller, the hardware has to export command interfaces for Cartesian
+velocities:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;gpio</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;${tf_prefix}twist&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;linear_velocity_x&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;linear_velocity_y&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;linear_velocity_z&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;angular_velocity_x&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;angular_velocity_y&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command_interface</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;angular_velocity_z&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/gpio&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The hardware component ensures that the twist command interfaces cannot be activated in
+parallel to other streaming or trajectory command interfaces.</p>
+</div>
+</section>
+</section>
 <section id="ur-controllers-forcemodecontroller">
 <span id="force-mode-controller"></span><h3>ur_controllers/ForceModeController<a class="headerlink" href="#ur-controllers-forcemodecontroller" title="Link to this heading"></a></h3>
 <p>This controller activates the robot’s <em>Force Mode</em>. This allows direct force control running on the
@@ -300,8 +401,8 @@ dimension will overwrite the motion commands in that dimension. E.g. when specif
 force in the base frame’s <code class="docutils literal notranslate"><span class="pre">z</span></code> direction, any motion resulting from the move command in the
 base frame’s <code class="docutils literal notranslate"><span class="pre">z</span></code> axis will not be executed.</p>
 </div>
-<section id="id2">
-<h4>Parameters<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
+<section id="id4">
+<h4>Parameters<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>Parameter name</p></td>
@@ -376,8 +477,8 @@ A value larger than 1 can make force mode unstable, e.g. in case of collisions o
 <p>This controller allows setting per-joint viscous and Coulomb friction scale factors for direct
 torque control. The friction model scales control how much internal friction compensation the robot
 applies during direct torque control mode.</p>
-<section id="id3">
-<h4>Parameters<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<section id="id5">
+<h4>Parameters<a class="headerlink" href="#id5" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>Parameter name</p></td>
@@ -399,8 +500,8 @@ successful</p></td>
 </tbody>
 </table>
 </section>
-<section id="id4">
-<h4>Service interface / usage<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
+<section id="id6">
+<h4>Service interface / usage<a class="headerlink" href="#id6" title="Link to this heading"></a></h4>
 <p>The controller provides a service for setting friction scale factors. To use this service, the
 controller has to be in <code class="docutils literal notranslate"><span class="pre">active</span></code> state.</p>
 <ul class="simple">
@@ -414,8 +515,8 @@ range [0-1] where 0 means no compensation and 1 means full compensation.</p></li
 <span id="freedrive-mode-controller"></span><h3>ur_controllers/FreedriveModeController<a class="headerlink" href="#ur-controllers-freedrivemodecontroller" title="Link to this heading"></a></h3>
 <p>This controller activates the robot’s <em>Freedrive Mode</em>, allowing to manually move the robot’ joints.
 This controller can’t be combined with any other motion controller.</p>
-<section id="id5">
-<h4>Parameters<a class="headerlink" href="#id5" title="Link to this heading"></a></h4>
+<section id="id7">
+<h4>Parameters<a class="headerlink" href="#id7" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>Parameter name</p></td>
@@ -463,8 +564,8 @@ motion, and retract to where it first sensed the contact.</p>
 <p>The controller is not a direct representation of the URScript function <a class="reference external" href="https://www.universal-robots.com/manuals/EN/HTML/SW5_21/Content/prod-scriptmanual/all_scripts/tool_contact%28direction%29.htm?Highlight=tool_contact">tool_contact(direction)</a>,
 as it does not allow for choosing the direction. The direction of tool contact will always be the
 current TCP direction of movement.</p>
-<section id="id6">
-<h4>Parameters<a class="headerlink" href="#id6" title="Link to this heading"></a></h4>
+<section id="id8">
+<h4>Parameters<a class="headerlink" href="#id8" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>Parameter name</p></td>
@@ -485,8 +586,8 @@ current TCP direction of movement.</p>
 </tbody>
 </table>
 </section>
-<section id="id7">
-<h4>Action interface / usage<a class="headerlink" href="#id7" title="Link to this heading"></a></h4>
+<section id="id9">
+<h4>Action interface / usage<a class="headerlink" href="#id9" title="Link to this heading"></a></h4>
 <p>The controller provides one action for enabling tool contact. For the controller to accept action goals it needs to be in <code class="docutils literal notranslate"><span class="pre">active</span></code> state.</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">~/detect_tool_contact</span> <span class="pre">[ur_msgs/action/ToolContact]</span></code></p>
@@ -505,8 +606,8 @@ The action provides no feedback.</p>
 <span id="ur-configuration-controller"></span><h3>ur_controllers/URConfigurationController<a class="headerlink" href="#ur-controllers-urconfigurationcontroller" title="Link to this heading"></a></h3>
 <p>This controller provides access to UR-specific robot configuration data. Currently, it provides a
 service to query the robot’s software version.</p>
-<section id="id8">
-<h4>Parameters<a class="headerlink" href="#id8" title="Link to this heading"></a></h4>
+<section id="id10">
+<h4>Parameters<a class="headerlink" href="#id10" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>Parameter name</p></td>
@@ -522,8 +623,8 @@ service to query the robot’s software version.</p>
 </tbody>
 </table>
 </section>
-<section id="id9">
-<h4>Service interface / usage<a class="headerlink" href="#id9" title="Link to this heading"></a></h4>
+<section id="id11">
+<h4>Service interface / usage<a class="headerlink" href="#id11" title="Link to this heading"></a></h4>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">~/get_software_version</span> <span class="pre">[ur_msgs/srv/GetRobotSoftwareVersion]</span></code>: Get the robot’s software
 version. The response contains the major, minor and patch version of the robot’s software, as
@@ -551,8 +652,8 @@ hardware interface.</p>
 controller negates this vector internally before sending it to the robot, as the underlying UR
 client library expects an anti-gravity vector (pointing away from the Earth’s center).</p>
 </div>
-<section id="id10">
-<h4>Parameters<a class="headerlink" href="#id10" title="Link to this heading"></a></h4>
+<section id="id12">
+<h4>Parameters<a class="headerlink" href="#id12" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>Parameter name</p></td>
@@ -573,8 +674,8 @@ client library expects an anti-gravity vector (pointing away from the Earth’s 
 </tbody>
 </table>
 </section>
-<section id="id11">
-<h4>Service interface / usage<a class="headerlink" href="#id11" title="Link to this heading"></a></h4>
+<section id="id13">
+<h4>Service interface / usage<a class="headerlink" href="#id13" title="Link to this heading"></a></h4>
 <p>The controller provides a service for setting the gravity vector. To use this service, the
 controller has to be in <code class="docutils literal notranslate"><span class="pre">active</span></code> state.</p>
 <ul class="simple">

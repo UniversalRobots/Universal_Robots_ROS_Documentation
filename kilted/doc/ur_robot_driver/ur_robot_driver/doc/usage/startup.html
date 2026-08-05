@@ -137,7 +137,10 @@ nodes for UR robots. The only required arguments are the <code class="docutils l
 <li><p><code class="docutils literal notranslate"><span class="pre">headless_mode</span></code> (default: <em>false</em>) - Start driver in <a class="reference internal" href="../operation_modes.html#headless-mode"><span class="std std-ref">Headless mode</span></a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">launch_rviz</span></code> (default: <em>true</em>) - Start RViz together with the driver.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">initial_joint_controller</span></code> (default: <em>scaled_joint_trajectory_controller</em>) - Use this if you
-want to start the robot with another controller.</p>
+want to start the robot with another controller.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">blocking_read</span></code> (default: <em>false</em>) - Make the robot’s communication drive the ROS control loop’s
+pace. Deactivate this  if you don’t have a reliable robot communication setup. See
+<a class="reference internal" href="#blocking-read"><span class="std std-ref">Blocking read</span></a> for more details.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>When the driver is started, you can list all loaded controllers using the <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">control</span>
@@ -151,6 +154,19 @@ want to start the robot with another controller.</p>
 </pre></div>
 </div>
 <p>Also, there are predefined launch files for all supported types of UR robots.</p>
+</section>
+<section id="blocking-read">
+<span id="id1"></span><h2>Blocking read<a class="headerlink" href="#blocking-read" title="Link to this heading"></a></h2>
+<p>When using the <code class="docutils literal notranslate"><span class="pre">ur_robot_driver</span></code>, there are effectively two control loops active: The ROS driver
+has it’s own control loop, where it reads the robot’s state, updates controllers and sends new
+commands to the robot. The robot itself also has a control loop, where it reads new commands and
+executes them. In most control modes the robot expects to receive new commands at a fixed rate.
+When both control loops run at different clocks, there will be a phase shift between the two loops,
+which can lead to problems. To avoid this, the driver can be started with the <code class="docutils literal notranslate"><span class="pre">blocking_read</span></code>
+parameter set to <code class="docutils literal notranslate"><span class="pre">true</span></code>. In this case, the driver will wait for new robot state data before
+updating the controllers and sending new commands. This way, the robot’s control loop drives the
+ROS control loop’s pace. This is the recommended setting for single robot setups and therefore the
+default value for the startup launch file.</p>
 </section>
 <section id="finish-startup-on-the-robot">
 <span id="robot-startup-program"></span><h2>Finish startup on the robot<a class="headerlink" href="#finish-startup-on-the-robot" title="Link to this heading"></a></h2>
@@ -187,7 +203,7 @@ output after launching the <code class="docutils literal notranslate"><span clas
 Verify that the printed checksum matches that on the final line of your extracted calibration file.</p>
 </section>
 <section id="continuation-after-interruptions">
-<span id="id1"></span><h2>Continuation after interruptions<a class="headerlink" href="#continuation-after-interruptions" title="Link to this heading"></a></h2>
+<span id="id2"></span><h2>Continuation after interruptions<a class="headerlink" href="#continuation-after-interruptions" title="Link to this heading"></a></h2>
 <p>Whenever the <em>External Control URCap</em> program gets interrupted, it has to be unpaused / restarted.</p>
 <p>If that happens, you will see the output <code class="docutils literal notranslate"><span class="pre">Connection</span> <span class="pre">to</span> <span class="pre">reverse</span> <span class="pre">interface</span> <span class="pre">dropped.</span></code></p>
 <p>This can happen, e,g, when</p>
