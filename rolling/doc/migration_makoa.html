@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Iron to Jazzy &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
+  <title>Lyrical to Makoa &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -24,8 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="ur_robot_driver" href="ur_robot_driver/ur_robot_driver/doc/migration/jazzy.html" />
-    <link rel="prev" title="Migration Notes" href="migration_notes.html" /> 
+    <link rel="next" title="ur_robot_driver" href="ur_robot_driver/ur_robot_driver/doc/migration/makoa.html" />
+    <link rel="prev" title="ur_robot_driver" href="ur_robot_driver/ur_robot_driver/doc/migration/lyrical.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -59,16 +59,13 @@
 <li class="toctree-l1"><a class="reference internal" href="ur_rtde_ros2_publisher/doc/index.html">ur_rtde_ros2_publisher</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ur_tutorials/tutorial_index.html">Tutorial examples</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="migration_notes.html">Migration Notes</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Iron to Jazzy</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="ur_robot_driver/ur_robot_driver/doc/migration/jazzy.html">ur_robot_driver</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ur_robot_driver/ur_moveit_config/doc/migration/jazzy.html">ur_moveit_config</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ur_description/doc/migration/jazzy.html">ur_description</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ur_simulation_gz/ur_simulation_gz/doc/migration/jazzy.html">ur_simulation_gz</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="migration_jazzy.html">Iron to Jazzy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="migration_kilted.html">Jazzy to Kilted</a></li>
 <li class="toctree-l2"><a class="reference internal" href="migration_lyrical.html">Kilted to Lyrical</a></li>
-<li class="toctree-l2"><a class="reference internal" href="migration_makoa.html">Lyrical to Makoa</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lyrical to Makoa</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ur_robot_driver/ur_robot_driver/doc/migration/makoa.html">ur_robot_driver</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="build_status.html">Build status</a></li>
@@ -90,9 +87,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="migration_notes.html">Migration Notes</a></li>
-      <li class="breadcrumb-item active">Iron to Jazzy</li>
+      <li class="breadcrumb-item active">Lyrical to Makoa</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS_Documentation/blob/main//doc/migration_jazzy.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/UniversalRobots/Universal_Robots_ROS_Documentation/blob/main//doc/migration_makoa.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -100,34 +97,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="iron-to-jazzy">
-<h1>Iron to Jazzy<a class="headerlink" href="#iron-to-jazzy" title="Link to this heading"></a></h1>
+  <section id="lyrical-to-makoa">
+<h1>Lyrical to Makoa<a class="headerlink" href="#lyrical-to-makoa" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="ur_robot_driver/ur_robot_driver/doc/migration/jazzy.html">ur_robot_driver</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ur_robot_driver/ur_robot_driver/doc/migration/jazzy.html#keep-alive-count-robot-receive-timeout">keep_alive_count -&gt; robot_receive_timeout</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ur_robot_driver/ur_robot_driver/doc/migration/jazzy.html#ros2-control-xacro-tag-moved-to-driver-package">ros2_control xacro tag moved to driver package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ur_robot_driver/ur_robot_driver/doc/migration/jazzy.html#robot-description-is-now-distributed-by-the-robot-state-publisher">robot_description is now distributed by the robot_state_publisher</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ur_robot_driver/ur_robot_driver/doc/migration/jazzy.html#enforce-absolute-paths-in-launchfiles">Enforce absolute paths in launchfiles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ur_robot_driver/ur_robot_driver/doc/migration/jazzy.html#removal-of-ros2-control-node">Removal of ros2_control_node</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="ur_robot_driver/ur_moveit_config/doc/migration/jazzy.html">ur_moveit_config</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ur_robot_driver/ur_moveit_config/doc/migration/jazzy.html#restructuring-for-moveit-configs-builder-compatibility">Restructuring for moveit_configs_builder compatibility</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ur_robot_driver/ur_moveit_config/doc/migration/jazzy.html#robot-description-and-semantic-description-updates">Robot description and semantic description updates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ur_robot_driver/ur_moveit_config/doc/migration/jazzy.html#removed-tf-prefix-support">Removed tf_prefix support</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="ur_description/doc/migration/jazzy.html">ur_description</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ur_description/doc/migration/jazzy.html#ros2-control-xacro-tag-moved-to-driver-package">ros2_control xacro tag moved to driver package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ur_description/doc/migration/jazzy.html#enforce-absolute-paths-in-launchfiles">Enforce absolute paths in launchfiles</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="ur_simulation_gz/ur_simulation_gz/doc/migration/jazzy.html">ur_simulation_gz</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ur_simulation_gz/ur_simulation_gz/doc/migration/jazzy.html#updated-argument-name-for-tf-prefix">Updated argument name for tf_prefix</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ur_simulation_gz/ur_simulation_gz/doc/migration/jazzy.html#update-arguments-for-moveit">Update arguments for MoveIt!</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ur_simulation_gz/ur_simulation_gz/doc/migration/jazzy.html#enforce-absolute-paths-in-launchfiles">Enforce absolute paths in launchfiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ur_robot_driver/ur_robot_driver/doc/migration/makoa.html">ur_robot_driver</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ur_robot_driver/ur_robot_driver/doc/migration/makoa.html#blocking-read-enabled-by-default-in-launch-files">Blocking read enabled by default in launch files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ur_robot_driver/ur_robot_driver/doc/migration/makoa.html#interface-change-of-set-payload-service">Interface change of set_payload service</a></li>
 </ul>
 </li>
 </ul>
@@ -138,8 +115,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="migration_notes.html" class="btn btn-neutral float-left" title="Migration Notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="ur_robot_driver/ur_robot_driver/doc/migration/jazzy.html" class="btn btn-neutral float-right" title="ur_robot_driver" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="ur_robot_driver/ur_robot_driver/doc/migration/lyrical.html" class="btn btn-neutral float-left" title="ur_robot_driver" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ur_robot_driver/ur_robot_driver/doc/migration/makoa.html" class="btn btn-neutral float-right" title="ur_robot_driver" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -170,11 +147,11 @@
       <dl>
         <dt>Versions</dt>
         
-          <dd><a href="../../jazzy/doc/migration_jazzy.html">Jazzy</a></dd>
+          <dd><a href="../../jazzy/doc/migration_makoa.html">Jazzy</a></dd>
         
-          <dd><a href="../../kilted/doc/migration_jazzy.html">Kilted</a></dd>
+          <dd><a href="../../kilted/doc/migration_makoa.html">Kilted</a></dd>
         
-          <dd><a href="../../rolling/doc/migration_jazzy.html">Rolling</a></dd>
+          <dd><a href="../../rolling/doc/migration_makoa.html">Rolling</a></dd>
         
       </dl>
     </div>

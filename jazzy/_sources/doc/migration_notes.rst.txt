@@ -1,13 +1,9 @@
 Migration Notes
 ===============
 
-Iron to Jazzy
--------------
-
 .. toctree::
    :maxdepth: 4
-   :caption: Contents:
+   :caption: Distributions
+   :glob:
 
-   migration_jazzy
-   migration_kilted
-   migration_lyrical
+   migration_*
