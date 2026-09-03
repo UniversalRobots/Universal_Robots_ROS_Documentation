@@ -312,6 +312,13 @@ response, you can use the <code class="docutils literal notranslate"><span class
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="s2">&quot;PAUSED&quot;</span><span class="p">,</span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="s2">&quot;Program state changed: PAUSED&quot;</span><span class="p">,</span><span class="nt">&quot;details&quot;</span><span class="p">:</span><span class="s2">&quot;Pause successful&quot;</span><span class="p">}</span>
 </pre></div>
 </div>
+<p>The following commands are only available for PolyScope X robots and will throw a
+<code class="docutils literal notranslate"><span class="pre">NotImplementedException</span></code> when called on G5 (CB3 / PolyScope 5) robots:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">commandDownloadSupportFiles(save_path)</span></code>: Downloads support files from the robot as a zip
+archive and saves them to the given path on the local machine. Available from PolyScope X
+10.14.0 onward.</p></li>
+</ul>
 </section>
 </section>
 

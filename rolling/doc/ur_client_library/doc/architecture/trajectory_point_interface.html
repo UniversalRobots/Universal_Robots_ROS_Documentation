@@ -162,14 +162,14 @@ block on the wire but ignore it in the default script.</p></li>
 <li><p>For all MOVEC variants this field contains the via point (same
 joint-vs-pose interpretation as the target at indices 0-5, see the motion type at
 index 20).</p></li>
-<li><p>trajectory point velocities (multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>) for spline joint types</p></li>
+<li><p>trajectory point velocities (multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_VEL_ACC</span></code>) for spline joint types</p></li>
 </ul>
 </td>
 </tr>
 <tr class="row-even"><td><p>12-17</p></td>
 <td><p>Depending on the motion type, this represents either</p>
 <ul>
-<li><p>trajectory point accelerations (multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>) for spline joint
+<li><p>trajectory point accelerations (multiplied by <code class="docutils literal notranslate"><span class="pre">MULT_VEL_ACC</span></code>) for spline joint
 types.</p></li>
 <li><p>for all other motion types</p>
 <ul>
@@ -235,12 +235,23 @@ robot controller)</p></li>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>: 1000000</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">MULT_TIME</span></code>: 1000000</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MULT_VEL_ACC</span></code>: 100000000</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>With <code class="docutils literal notranslate"><span class="pre">MULT_TIME</span></code> being 1000000, the maximum duration that can be sent is 2147 seconds, while
 precision is cut off at 1 microsecond. (The same applies to the blend radius, respectively being
 max 2147 m and 1 μm precision.)</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Spline point velocities and accelerations use the finer <code class="docutils literal notranslate"><span class="pre">MULT_VEL_ACC</span></code> scaling, giving 1e-8
+resolution with a maximum magnitude of ~21.47 rad/s (rad/s²). The coarser <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>
+scaling quantizes near-zero accelerations, causing reconstructed acceleration
+profile to become jagged, which can trigger controller faults. Values exceeding the maximum magnitude are rejected by the library.</p>
+<p>Finer scaling is only used when the control script defines the matching multiplier through
+the <code class="docutils literal notranslate"><span class="pre">{{VEL_ACC_REPLACE}}</span></code> placeholder. For user-supplied scripts without that placeholder the
+library falls back to encoding spline velocities and accelerations with <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
