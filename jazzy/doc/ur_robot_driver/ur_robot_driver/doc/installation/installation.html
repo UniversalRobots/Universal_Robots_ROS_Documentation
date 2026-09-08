@@ -121,8 +121,8 @@ the robot controller without a switch.</p>
 <section id="install-from-binary-packages">
 <h2>Install from binary packages<a class="headerlink" href="#install-from-binary-packages" title="Link to this heading"></a></h2>
 <ol class="arabic">
-<li><p><a class="reference external" href="https://docs.ros.org/en/rolling/Installation/Ubuntu-Install-Debians.html">Install ROS2</a>. This
-branch supports only ROS2 Rolling. For other ROS2 versions, please see the respective branches.</p></li>
+<li><p><a class="reference external" href="https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html">Install ROS2</a>. This
+branch supports only ROS2 Jazzy. For other ROS2 versions, please see the respective branches.</p></li>
 <li><p>Install the driver using</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ros-<span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span>-ur
 </pre></div>
@@ -140,9 +140,9 @@ require upstream repositories to be present in a certain version as otherwise bu
 Starting from scratch following exactly the steps below should always work, but simply pulling and
 building might fail occasionally.</p>
 <ol class="arabic">
-<li><p><a class="reference external" href="https://docs.ros.org/en/rolling/Installation/Ubuntu-Install-Debians.html">Install ROS2</a>. This
-branch supports only ROS2 Rolling. For other ROS2 versions, please see the respective branches.</p>
-<p>Once installed, please make sure to actually <a class="reference external" href="https://docs.ros.org/en/rolling/Tutorials/Beginner-CLI-Tools/Configuring-ROS2-Environment.html#source-the-setup-files">source ROS2</a> before proceeding.</p>
+<li><p><a class="reference external" href="https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html">Install ROS2</a>. This
+branch supports only ROS2 Jazzy. For other ROS2 versions, please see the respective branches.</p>
+<p>Once installed, please make sure to actually <a class="reference external" href="https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Configuring-ROS2-Environment.html#source-the-setup-files">source ROS2</a> before proceeding.</p>
 </li>
 </ol>
 <ol class="arabic" start="3">
@@ -157,7 +157,7 @@ mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$COLCON_
 </pre></div>
 </div>
 </li>
-<li><p>Clone relevant packages (replace <code class="docutils literal notranslate"><span class="pre">&lt;branch&gt;</span></code> with <code class="docutils literal notranslate"><span class="pre">humble</span></code>, <code class="docutils literal notranslate"><span class="pre">iron</span></code> or <code class="docutils literal notranslate"><span class="pre">main</span></code> for rolling), install dependencies, compile, and source the workspace by using:</p>
+<li><p>Clone relevant packages (replace <code class="docutils literal notranslate"><span class="pre">&lt;branch&gt;</span></code> with the correct one as listed on the <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver#release-status">README</a>), install dependencies, compile, and source the workspace by using:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$COLCON_WS</span>
 git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>&lt;branch&gt;<span class="w"> </span>https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver.git<span class="w"> </span>src/Universal_Robots_ROS2_Driver
 vcs<span class="w"> </span>import<span class="w"> </span>src<span class="w"> </span>--skip-existing<span class="w"> </span>--input<span class="w"> </span>src/Universal_Robots_ROS2_Driver/Universal_Robots_ROS2_Driver-not-released.<span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span>.repos
