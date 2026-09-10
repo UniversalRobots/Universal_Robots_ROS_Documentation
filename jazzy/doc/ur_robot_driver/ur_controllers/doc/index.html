@@ -235,6 +235,9 @@ tolerances passed in the action directly. Please make sure that the tolerances a
 filled with all joint names.</p>
 <p>A <strong>goal time tolerance</strong> of <code class="docutils literal notranslate"><span class="pre">0.0</span></code> means that no goal time tolerance is set and the action will
 not fail when execution takes too long.</p>
+<p>A goal tolerance of <code class="docutils literal notranslate"><span class="pre">0.0</span></code> disables the corresponding tolerance check. For example, a
+position tolerance of <code class="docutils literal notranslate"><span class="pre">0.0</span></code> means that the final joint position is not checked. The same
+applies to velocity and acceleration tolerances.</p>
 </section>
 <section id="action-interface-usage">
 <h4>Action interface / usage<a class="headerlink" href="#action-interface-usage" title="Link to this heading"></a></h4>

@@ -109,7 +109,7 @@
 <h2>Advertised Services<a class="headerlink" href="#advertised-services" title="Link to this heading"></a></h2>
 <section id="add-to-log-ur-dashboard-msgs-addtolog">
 <h3>add_to_log (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/AddToLog.html">ur_dashboard_msgs/AddToLog</a>)<a class="headerlink" href="#add-to-log-ur-dashboard-msgs-addtolog" title="Link to this heading"></a></h3>
-<p>Service to add a message to the robot’s log</p>
+<p>Service to add a message to the robot’s log. On PolyScope X this requires version &gt;= 10.14.0.</p>
 </section>
 <section id="brake-release-std-srvs-trigger">
 <h3>brake_release (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#brake-release-std-srvs-trigger" title="Link to this heading"></a></h3>
@@ -121,11 +121,11 @@
 </section>
 <section id="close-popup-std-srvs-trigger">
 <h3>close_popup (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#close-popup-std-srvs-trigger" title="Link to this heading"></a></h3>
-<p>Close a (non-safety) popup on the teach pendant.</p>
+<p>Close a (non-safety) popup on the teach pendant. On PolyScope X this requires version &gt;= 10.14.0.</p>
 </section>
 <section id="close-safety-popup-std-srvs-trigger">
 <h3>close_safety_popup (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#close-safety-popup-std-srvs-trigger" title="Link to this heading"></a></h3>
-<p>Close a safety popup on the teach pendant.</p>
+<p>Close a safety popup on the teach pendant. On PolyScope X this requires version &gt;= 10.14.0.</p>
 </section>
 <section id="connect-std-srvs-trigger">
 <h3>connect (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#connect-std-srvs-trigger" title="Link to this heading"></a></h3>
@@ -179,7 +179,8 @@ robot, without a <code class="docutils literal notranslate"><span class="pre">.u
 </section>
 <section id="popup-ur-dashboard-msgs-popup">
 <h3>popup (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/Popup.html">ur_dashboard_msgs/Popup</a>)<a class="headerlink" href="#popup-ur-dashboard-msgs-popup" title="Link to this heading"></a></h3>
-<p>Service to show a popup on the UR Teach pendant.</p>
+<p>Service to show a popup on the UR Teach pendant. On PolyScope X (&gt;= 10.14.0) an optional <code class="docutils literal notranslate"><span class="pre">title</span></code>
+can be provided; on PolyScope 5 / CB3 the title is ignored.</p>
 </section>
 <section id="power-off-std-srvs-trigger">
 <h3>power_off (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#power-off-std-srvs-trigger" title="Link to this heading"></a></h3>
@@ -220,7 +221,7 @@ robot with version &gt;= 10.11.0.</p>
 </section>
 <section id="shutdown-std-srvs-trigger">
 <h3>shutdown (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#shutdown-std-srvs-trigger" title="Link to this heading"></a></h3>
-<p>Shutdown the robot controller</p>
+<p>Shutdown the robot controller. On PolyScope X this requires version &gt;= 10.14.0.</p>
 </section>
 <section id="stop-std-srvs-trigger">
 <h3>stop (<a class="reference external" href="http://docs.ros.org/en/rolling/p/std_srvs/srv/Trigger.html">std_srvs/Trigger</a>)<a class="headerlink" href="#stop-std-srvs-trigger" title="Link to this heading"></a></h3>
@@ -244,11 +245,11 @@ version &gt;= 10.12.0.</p>
 </section>
 <section id="get-polyscope-version-ur-dashboard-msgs-getpolyscopeversion">
 <h3>get_polyscope_version (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetPolyScopeVersion.html">ur_dashboard_msgs/GetPolyScopeVersion</a>)<a class="headerlink" href="#get-polyscope-version-ur-dashboard-msgs-getpolyscopeversion" title="Link to this heading"></a></h3>
-<p><strong>CB3 | PolyScope 5</strong> Get polyScope version of robot</p>
+<p><strong>CB3 | PolyScope 5 | PolyScope X &gt;= 10.14.0</strong> Get PolyScope version of the robot</p>
 </section>
 <section id="get-serial-number-ur-dashboard-msgs-getserialnumber">
 <h3>get_serial_number (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetSerialNumber.html">ur_dashboard_msgs/GetSerialNumber</a>)<a class="headerlink" href="#get-serial-number-ur-dashboard-msgs-getserialnumber" title="Link to this heading"></a></h3>
-<p><strong>CB3 | PolyScope 5</strong> Get serial number of robot</p>
+<p><strong>CB3 | PolyScope 5 | PolyScope X &gt;= 10.14.0</strong> Get serial number of robot</p>
 </section>
 <section id="get-user-role-ur-dashboard-msgs-getuserrole">
 <h3>get_user_role (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetUserRole.html">ur_dashboard_msgs/GetUserRole</a>)<a class="headerlink" href="#get-user-role-ur-dashboard-msgs-getuserrole" title="Link to this heading"></a></h3>
@@ -268,7 +269,7 @@ version &gt;= 10.12.0.</p>
 </section>
 <section id="get-robot-model-ur-dashboard-msgs-getrobotmodel">
 <h3>get_robot_model (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetRobotModel.html">ur_dashboard_msgs/GetRobotModel</a>)<a class="headerlink" href="#get-robot-model-ur-dashboard-msgs-getrobotmodel" title="Link to this heading"></a></h3>
-<p><strong>CB3 | PolyScope 5</strong> Get the robot model, in the format URx. It should be noted this call does not differentiate between e-series and CB3, so UR5 and UR5e will both report as UR5</p>
+<p><strong>CB3 | PolyScope 5 | PolyScope X &gt;= 10.14.0</strong> Get the robot model, in the format URx. It should be noted this call does not differentiate between e-series and CB3, so UR5 and UR5e will both report as UR5</p>
 </section>
 <section id="get-safety-status-ur-dashboard-msgs-getsafetystatus">
 <h3>get_safety_status (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GetSafetyStatus.html">ur_dashboard_msgs/GetSafetyStatus</a>)<a class="headerlink" href="#get-safety-status-ur-dashboard-msgs-getsafetystatus" title="Link to this heading"></a></h3>
@@ -276,12 +277,16 @@ version &gt;= 10.12.0.</p>
 </section>
 <section id="generate-flight-report-ur-dashboard-msgs-generateflightreport">
 <h3>generate_flight_report (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GenerateFlightReport.html">ur_dashboard_msgs/GenerateFlightReport</a>)<a class="headerlink" href="#generate-flight-report-ur-dashboard-msgs-generateflightreport" title="Link to this heading"></a></h3>
-<p><strong>CB3 | PolyScope 5</strong> Generate flight report of the chosen type, defaults to SYSTEM. It is required to wait at least 30 seconds between triggering software or controller reports.</p>
+<p><strong>CB3 | PolyScope 5 | PolyScope X &gt;= 10.14.0</strong> Generate flight report of the chosen type, defaults to SYSTEM. On PolyScope 5 / CB3 it is required to wait at least 30 seconds between triggering software or controller reports. On PolyScope X the <code class="docutils literal notranslate"><span class="pre">report_type</span></code> argument is ignored.</p>
 </section>
 <section id="generate-support-file-ur-dashboard-msgs-generatesupportfile">
 <h3>generate_support_file (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/GenerateSupportFile.html">ur_dashboard_msgs/GenerateSupportFile</a>)<a class="headerlink" href="#generate-support-file-ur-dashboard-msgs-generatesupportfile" title="Link to this heading"></a></h3>
 <p><strong>CB3 | PolyScope 5</strong> Generate a support file a the specified location. Location is relative to the programs folder, if saving to a subfolder it must exist prior to the service call.
-Defaults to saving to the programs folder</p>
+Defaults to saving to the programs folder. On PolyScope X use <a class="reference internal" href="#dashboard-download-support-file"><span class="std std-ref">download_support_file</span></a> instead.</p>
+</section>
+<section id="download-support-file-ur-dashboard-msgs-downloadsupportfile">
+<span id="dashboard-download-support-file"></span><h3>download_support_file (<a class="reference external" href="http://docs.ros.org/en/rolling/p/ur_dashboard_msgs/srv/DownloadSupportFile.html">ur_dashboard_msgs/DownloadSupportFile</a>)<a class="headerlink" href="#download-support-file-ur-dashboard-msgs-downloadsupportfile" title="Link to this heading"></a></h3>
+<p><strong>PolyScope X only (&gt;= 10.14.0)</strong>: Download the robot’s support files as a zip archive to <code class="docutils literal notranslate"><span class="pre">target_path</span></code> on the machine running the dashboard client.</p>
 </section>
 </section>
 <section id="parameters">
