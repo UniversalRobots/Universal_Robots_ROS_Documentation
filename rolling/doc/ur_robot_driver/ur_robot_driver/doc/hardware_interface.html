@@ -125,6 +125,10 @@ controllers</p>
 <li><p><strong>Velocity control</strong>: The robot’s joints are controlled by specifying target velocities.</p></li>
 <li><p><strong>Effort control</strong>: The robot’s joints are controlled by specifying target efforts (torques).
 (Only available when running PolyScope &gt;= 5.23.0 / 10.10.0)</p></li>
+<li><p><strong>Effort state interfaces</strong>: Joint efforts are reported as torques by default
+(<code class="docutils literal notranslate"><span class="pre">actual_current_as_torque</span></code>, requires PolyScope &gt;= 5.23.0 / 10.11.0). Set
+<code class="docutils literal notranslate"><span class="pre">use_currents_as_efforts</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code> to report motor currents instead.
+See <a class="reference internal" href="hardware_interface_parameters.html#hardware-interface-parameters"><span class="std std-ref">UR Hardware interface parameters</span></a> for more information.</p></li>
 <li><p><strong>Force control</strong>: The robot’s end-effector is controlled by specifying target forces
 in Cartesian space.</p></li>
 <li><p><strong>Freedrive mode</strong>: The robot can be moved freely by the user without any active control.</p></li>

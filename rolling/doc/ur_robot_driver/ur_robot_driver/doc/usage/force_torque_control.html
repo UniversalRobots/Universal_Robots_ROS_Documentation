@@ -158,8 +158,13 @@ motion controller can be active at a time.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">effort</span></code> field in <code class="docutils literal notranslate"><span class="pre">sensor_msgs/JointState</span></code> (published by the <code class="docutils literal notranslate"><span class="pre">joint_state_broadcaster</span></code>)
-contains motor currents, not physical joint torques.</p>
+<p>On older ROS distributions, the effort interfaces reported motor currents instead of actual
+torques. This is no longer the case, and the driver now reports actual joint torques by
+default, which requires PolyScope &gt;= 5.23.0 / 10.11.0. If you are using an older robot
+software version, the driver will fail to start and print an error about the missing RTDE
+variable <code class="docutils literal notranslate"><span class="pre">actual_current_as_torque</span></code>. To revert to the previous behavior, set the hardware
+parameter <code class="docutils literal notranslate"><span class="pre">use_currents_as_efforts</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code>. See
+<a class="reference internal" href="../hardware_interface_parameters.html#hardware-interface-parameters"><span class="std std-ref">UR Hardware interface parameters</span></a> for details.</p>
 </div>
 </section>
 <section id="friction-compensation">

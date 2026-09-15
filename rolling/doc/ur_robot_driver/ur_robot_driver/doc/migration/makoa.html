@@ -101,6 +101,22 @@
              
   <section id="ur-robot-driver">
 <h1>ur_robot_driver<a class="headerlink" href="#ur-robot-driver" title="Link to this heading"></a></h1>
+<section id="joint-effort-state-interfaces-report-torques-by-default">
+<h2>Joint effort state interfaces report torques by default<a class="headerlink" href="#joint-effort-state-interfaces-report-torques-by-default" title="Link to this heading"></a></h2>
+<p>The joint effort state interfaces (and therefore the <code class="docutils literal notranslate"><span class="pre">effort</span></code> field of
+<code class="docutils literal notranslate"><span class="pre">sensor_msgs/JointState</span></code>) now report joint torques from RTDE
+(<code class="docutils literal notranslate"><span class="pre">actual_current_as_torque</span></code>) by default instead of motor currents.</p>
+<p>This requires PolyScope &gt;= 5.23.0 / 10.11.0. On older software versions the driver will fail to
+init and print an error about the missing variable <code class="docutils literal notranslate"><span class="pre">actual_current_as_torque</span></code> on the robot.</p>
+<p>To keep reporting motor currents as efforts (e.g. on a CB3 robot), set <code class="docutils literal notranslate"><span class="pre">use_currents_as_efforts</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ros2</span> <span class="n">launch</span> <span class="n">ur_robot_driver</span> <span class="n">ur_control</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span> \
+  <span class="n">robot_ip</span><span class="o">:=</span><span class="mf">192.168.56.101</span> \
+  <span class="n">ur_type</span><span class="o">:=</span><span class="n">ur5e</span> \
+  <span class="n">use_currents_as_efforts</span><span class="o">:=</span><span class="n">true</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="../hardware_interface_parameters.html#hardware-interface-parameters"><span class="std std-ref">UR Hardware interface parameters</span></a> for details.</p>
+</section>
 <section id="blocking-read-enabled-by-default-in-launch-files">
 <h2>Blocking read enabled by default in launch files<a class="headerlink" href="#blocking-read-enabled-by-default-in-launch-files" title="Link to this heading"></a></h2>
 <p>From ROS Makoa onwards, the <code class="docutils literal notranslate"><span class="pre">ur_robot_driver</span></code> launch files have blocking read enabled by default.
