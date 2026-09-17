@@ -119,16 +119,18 @@ Docker containers using your current user.</p>
 <section id="start-a-ursim-docker-container">
 <h2>Start a URSim docker container<a class="headerlink" href="#start-a-ursim-docker-container" title="Link to this heading"></a></h2>
 <p>To startup a simulated robot run the following command. This will start a Docker container named
-<code class="docutils literal notranslate"><span class="pre">ursim</span></code> and startup a simulated UR5e robot. It exposes ports 5900 and 6080 for the browser-based
-polyscope access. Note that this will expose the simulated robot to your local area network if you
-don’t have any further level of security such as a firewall active. To prevent this, you can either
-skip the port forwarding instructions (skip the two <code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">port:port</span></code> statements) in which case
-you’ll have to use the container’s IP address to access the polyscope gui rather than <code class="docutils literal notranslate"><span class="pre">localhost</span></code> or
-you can restrict the port forwarding to a certain network interface (such as the looppack interface)
-see Docker’s upstream documentation on port exposure for further information.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">5900</span>:5900<span class="w"> </span>-p<span class="w"> </span><span class="m">6080</span>:6080<span class="w"> </span>--name<span class="w"> </span>ursim<span class="w"> </span>universalrobots/ursim_e-series
+<code class="docutils literal notranslate"><span class="pre">ursim</span></code> and startup a simulated UR5e robot. It publishes ports 5900 and 6080 for VNC / browser-based
+PolyScope access. Binding those ports to the loopback interface (<code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code>) keeps the GUI off your
+LAN. If you omit the bind address (for example <code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">6080:6080</span></code>), Docker listens on all interfaces and
+exposes the simulator to the local network unless a firewall prevents that. You can also skip port
+publishing entirely and reach PolyScope via the container IP, or bind to another interface — including
+a bracketed IPv6 address such as <code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">'[::1]:6080:6080'</span></code>. See Docker’s documentation on
+<a class="reference external" href="https://docs.docker.com/engine/network/#published-ports">publish ports</a> for details.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">127</span>.0.0.1:5900:5900<span class="w"> </span>-p<span class="w"> </span><span class="m">127</span>.0.0.1:6080:6080<span class="w"> </span>--name<span class="w"> </span>ursim<span class="w"> </span>universalrobots/ursim_e-series
 </pre></div>
 </div>
+<p>With the loopback binds above, open <a class="reference external" href="http://127.0.0.1:6080/vnc.html">http://127.0.0.1:6080/vnc.html</a> (or connect a VNC client to
+<code class="docutils literal notranslate"><span class="pre">127.0.0.1:5900</span></code>) on the Docker host.</p>
 </section>
 <section id="external-control">
 <h2>External Control<a class="headerlink" href="#external-control" title="Link to this heading"></a></h2>
@@ -149,7 +151,7 @@ curl<span class="w"> </span>-L<span class="w"> </span>-o<span class="w"> </span>
 </pre></div>
 </div>
 <p>With this, start your URSim containers with the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">5900</span>:5900<span class="w"> </span>-p<span class="w"> </span><span class="m">6080</span>:6080<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.ursim/urcaps:/urcaps<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.ursim/programs:/ursim/programs<span class="w"> </span>--name<span class="w"> </span>ursim<span class="w"> </span>universalrobots/ursim_e-series
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">127</span>.0.0.1:5900:5900<span class="w"> </span>-p<span class="w"> </span><span class="m">127</span>.0.0.1:6080:6080<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.ursim/urcaps:/urcaps<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.ursim/programs:/ursim/programs<span class="w"> </span>--name<span class="w"> </span>ursim<span class="w"> </span>universalrobots/ursim_e-series
 </pre></div>
 </div>
 <p>With this, you should be able to setup the <code class="docutils literal notranslate"><span class="pre">external_control</span></code> URCap and create a program as
@@ -162,16 +164,36 @@ always get the same IP address assigned every time, as long as you don’t have 
 However, to make things a bit more explicit, we can setup our own docker network where we can assign a static IP
 address to our URSim container.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>network<span class="w"> </span>create<span class="w"> </span>--subnet<span class="o">=</span><span class="m">192</span>.168.56.0/24<span class="w"> </span>ursim_net
-docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">5900</span>:5900<span class="w"> </span>-p<span class="w"> </span><span class="m">6080</span>:6080<span class="w"> </span>--net<span class="w"> </span>ursim_net<span class="w"> </span>--ip<span class="w"> </span><span class="m">192</span>.168.56.101<span class="w"> </span>universalrobots/ursim_e-series
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">127</span>.0.0.1:5900:5900<span class="w"> </span>-p<span class="w"> </span><span class="m">127</span>.0.0.1:6080:6080<span class="w"> </span>--net<span class="w"> </span>ursim_net<span class="w"> </span>--ip<span class="w"> </span><span class="m">192</span>.168.56.101<span class="w"> </span>universalrobots/ursim_e-series
 </pre></div>
 </div>
 <p>The above commands first create a network for docker and then create a container with the URSim
 image attaching to this network.</p>
-<p>We can skip the port exposure, as we use a fixed IP address for the simulated robot. Therefore, the VNC web server will be available at <a class="reference external" href="http://192.168.56.101:6080/vnc.html">http://192.168.56.101:6080/vnc.html</a>.</p>
+<p>With a fixed container IP you can also skip publishing the GUI ports and open
+<a class="reference external" href="http://192.168.56.101:6080/vnc.html">http://192.168.56.101:6080/vnc.html</a> when the browser can reach that address (typically when
+Docker and the browser run on the same host). Published ports remain useful behind Docker Desktop /
+NAT, or when you deliberately bind only to loopback / a specific interface.</p>
 </section>
 <section id="script-startup">
 <h2>Script startup<a class="headerlink" href="#script-startup" title="Link to this heading"></a></h2>
 <p>All of the above is put together in a script in the <code class="docutils literal notranslate"><span class="pre">ur_client_library</span></code> package.</p>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">start_ursim.sh</span></code>:</p>
+<ul class="simple">
+<li><p>Attaches the container to <code class="docutils literal notranslate"><span class="pre">ursim_net</span></code> at <code class="docutils literal notranslate"><span class="pre">192.168.56.101</span></code></p></li>
+<li><p>Publishes the robot interface ports (<code class="docutils literal notranslate"><span class="pre">30001-30004</span></code>, and <code class="docutils literal notranslate"><span class="pre">29999</span></code> for CB3 / PolyScope 5)</p></li>
+<li><p>Publishes the GUI on loopback only: VNC <code class="docutils literal notranslate"><span class="pre">127.0.0.1:5900</span></code> / <code class="docutils literal notranslate"><span class="pre">127.0.0.1:6080</span></code> (CB3 / PolyScope 5),
+or the PolyScope X web UI at <code class="docutils literal notranslate"><span class="pre">127.0.0.1:8000</span></code> (container port <code class="docutils literal notranslate"><span class="pre">80</span></code>)</p></li>
+</ul>
+<p>After startup, the script prints both the container-IP URLs and the host endpoints taken from
+<code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">port</span></code> for any published GUI ports. Override publishing with <code class="docutils literal notranslate"><span class="pre">-f</span></code> (pass <code class="docutils literal notranslate"><span class="pre">DISABLED</span></code> to
+turn it off). Examples:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Custom host ports on all interfaces</span>
+./scripts/start_ursim.sh<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;-p 30001-30004:30001-30004 -p 16080:6080 -p 15900:5900&quot;</span>
+
+<span class="c1"># Bind GUI ports to IPv6 loopback (keep the -f argument in double quotes)</span>
+./scripts/start_ursim.sh<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;-p 30001-30004:30001-30004 -p [::1]:6080:6080 -p [::1]:5900:5900&quot;</span>
+</pre></div>
+</div>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">ROS 1</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">ROS 2</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">Other</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rosrun<span class="w"> </span>ur_client_library<span class="w"> </span>start_ursim.sh
 </pre></div>
