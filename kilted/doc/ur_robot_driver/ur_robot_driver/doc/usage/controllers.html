@@ -147,11 +147,14 @@ external_control script running.</p>
 <section id="joint-state-broadcaster">
 <h3>joint_state_broadcaster<a class="headerlink" href="#joint-state-broadcaster" title="Link to this heading"></a></h3>
 <p>Type: <a class="reference external" href="https://control.ros.org/rolling/doc/ros2_controllers/joint_state_broadcaster/doc/userdoc.html">joint_state_broadcaster/JointStateBroadcaster</a></p>
-<p>Publishes all joints’ positions, velocities, and motor currents as <code class="docutils literal notranslate"><span class="pre">sensor_msgs/JointState</span></code> on the <code class="docutils literal notranslate"><span class="pre">joint_states</span></code> topic.</p>
+<p>Publishes all joints’ positions, velocities, and efforts as <code class="docutils literal notranslate"><span class="pre">sensor_msgs/JointState</span></code> on the
+<code class="docutils literal notranslate"><span class="pre">joint_states</span></code> topic.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The effort field contains the currents reported by the joints and not the actual efforts in a
-physical sense.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">effort</span></code> field contains motor currents, not physical joint torques by default. On newer
+robot software versions (&gt;= 5.23.0 / 10.11.0), the driver can report the actual joint torques as
+efforts. To achieve that, set the hardware parameter <code class="docutils literal notranslate"><span class="pre">use_currents_as_efforts</span></code> to <code class="docutils literal notranslate"><span class="pre">false</span></code>.
+See <a class="reference internal" href="../hardware_interface_parameters.html#hardware-interface-parameters"><span class="std std-ref">UR Hardware interface parameters</span></a> for details.</p>
 </div>
 </section>
 <section id="speed-scaling-state-broadcaster">

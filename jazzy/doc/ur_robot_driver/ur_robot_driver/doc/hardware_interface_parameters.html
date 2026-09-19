@@ -102,7 +102,7 @@
            <div itemprop="articleBody">
              
   <section id="ur-hardware-interface-parameters">
-<h1>UR Hardware interface parameters<a class="headerlink" href="#ur-hardware-interface-parameters" title="Link to this heading"></a></h1>
+<span id="hardware-interface-parameters"></span><h1>UR Hardware interface parameters<a class="headerlink" href="#ur-hardware-interface-parameters" title="Link to this heading"></a></h1>
 <p>Note that parameters are passed through the ros2_control xacro definition.</p>
 <section id="headless-mode">
 <h2>headless_mode<a class="headerlink" href="#headless-mode" title="Link to this heading"></a></h2>
@@ -190,6 +190,22 @@ higher delay between the commands sent from ROS and the motion being executed on
 <h2>tool_voltage (Required)<a class="headerlink" href="#tool-voltage-required" title="Link to this heading"></a></h2>
 <p>Tool voltage that will be set as soon as the UR-Program on the robot is started. Note: This parameter is only evaluated, when the parameter “use_tool_communication” is set to <code class="docutils literal notranslate"><span class="pre">true</span></code>. Then, this parameter is required.</p>
 <p>This can also be configured using the robot teach pendant. Remember to save the installation on the robot to keep the setting after reboot.</p>
+</section>
+<section id="use-currents-as-efforts-default-true">
+<h2>use_currents_as_efforts (default: “true”)<a class="headerlink" href="#use-currents-as-efforts-default-true" title="Link to this heading"></a></h2>
+<p>Selects which RTDE values are exported on the joint effort state interfaces.</p>
+<ul class="simple">
+<li><p>When set to <code class="docutils literal notranslate"><span class="pre">false</span></code>, the driver reports the joint torques from the RTDE field
+<code class="docutils literal notranslate"><span class="pre">actual_current_as_torque</span></code>. This requires PolyScope &gt;= 5.23.0 / 10.11.0. On older software
+versions, configuring the hardware interface will fail.</p></li>
+<li><p>When set to <code class="docutils literal notranslate"><span class="pre">true</span></code> (default), the driver keeps the previous behavior and reports motor currents from
+<code class="docutils literal notranslate"><span class="pre">actual_current</span></code> as efforts.</p></li>
+<li><p>When set to <code class="docutils literal notranslate"><span class="pre">false</span></code> on robot software versions &lt; 5.23.0 / 10.11.0, the driver will
+fail to initialize, printing an error about the missing variable <code class="docutils literal notranslate"><span class="pre">actual_current_as_torque</span></code> on
+the robot.</p></li>
+</ul>
+<p>This parameter can also be set through the <code class="docutils literal notranslate"><span class="pre">use_currents_as_efforts</span></code> launch argument of
+<code class="docutils literal notranslate"><span class="pre">ur_control.launch.py</span></code> / <code class="docutils literal notranslate"><span class="pre">ur_rsp.launch.py</span></code>.</p>
 </section>
 <section id="use-tool-communication-required">
 <h2>use_tool_communication (Required)<a class="headerlink" href="#use-tool-communication-required" title="Link to this heading"></a></h2>

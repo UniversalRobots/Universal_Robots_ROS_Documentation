@@ -134,6 +134,9 @@ nodes for UR robots. The only required arguments are the <code class="docutils l
 <li><p><code class="docutils literal notranslate"><span class="pre">use_mock_hardware</span></code> (default: <em>false</em> ) - Use simple hardware emulator from ros2_control. Useful for testing launch files, descriptions, etc.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">headless_mode</span></code> (default: <em>false</em>) - Start driver in <a class="reference internal" href="../operation_modes.html#headless-mode"><span class="std std-ref">Headless mode</span></a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">launch_rviz</span></code> (default: <em>true</em>) - Start RViz together with the driver.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">use_currents_as_efforts</span></code> (default: <em>true</em>) - Report motor currents as joint efforts
+when <code class="docutils literal notranslate"><span class="pre">true</span></code>. When <code class="docutils literal notranslate"><span class="pre">false</span></code>, joint torques from the robot are used instead (requires
+PolyScope &gt;= 5.23.0 / 10.11.0). See <a class="reference internal" href="../hardware_interface_parameters.html#hardware-interface-parameters"><span class="std std-ref">UR Hardware interface parameters</span></a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">initial_joint_controller</span></code> (default: <em>scaled_joint_trajectory_controller</em>) - Use this if you
 want to start the robot with another controller.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">blocking_read</span></code> (default: <em>false</em>) - Make the robot’s communication drive the ROS control loop’s
