@@ -279,12 +279,8 @@ file:</p>
 </pre></div>
 </div>
 <p>Then, make sure <code class="docutils literal notranslate"><span class="pre">/etc/security/limits.conf</span></code> contains</p>
-<div class="highlight-linuxconfig notranslate"><div class="highlight"><pre><span></span><span class="s">@realtime soft rtprio 99</span>
-<span class="s">@realtime soft priority 99</span>
-<span class="s">@realtime soft memlock 102400</span>
-<span class="s">@realtime hard rtprio 99</span>
-<span class="s">@realtime hard priority 99</span>
-<span class="s">@realtime hard memlock 102400</span>
+<div class="highlight-linuxconfig notranslate"><div class="highlight"><pre><span></span><span class="s">@realtime - rtprio 99</span>
+<span class="s">@realtime - memlock unlimited</span>
 </pre></div>
 </div>
 <p>Note: You will have to log out and log back in (Not only close your terminal window) for these
