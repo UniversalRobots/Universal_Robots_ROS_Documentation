@@ -159,6 +159,16 @@ fault.</p>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">play_program</span></code> flag is used to start the program after the robot state has been set. This has
 the same effects as explained in <a class="reference internal" href="usage/startup.html#continuation-after-interruptions"><span class="std std-ref">Continuation after interruptions</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Starting programs through the dashboard client on PolyScope X robots is only available from
+PolyScope 10.11.0 onwards. On earlier versions, requesting <code class="docutils literal notranslate"><span class="pre">play_program</span></code> outside headless mode
+causes the <code class="docutils literal notranslate"><span class="pre">set_mode</span></code> action to report failure, and the program is not started.</p>
+<p>The same thing is true for restarting the safety system. On PolyScope X robots, the safety system can be
+restarted through the dashboard client from PolyScope 10.11.0 onwards. For earlier versions, the
+safety system will not be restarted and the robot cannot recover from a fault using the robot
+state helper.</p>
+</div>
 </section>
 
 
