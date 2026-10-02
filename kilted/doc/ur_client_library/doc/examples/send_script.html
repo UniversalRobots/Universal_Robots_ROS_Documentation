@@ -62,6 +62,7 @@
 <li class="toctree-l3"><a class="reference internal" href="primary_pipeline.html">Primary Pipeline example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="primary_pipeline_calibration.html">Primary Pipeline Calibration example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="rtde_client.html">RTDE Client example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rtde_roundtrip.html">RTDE register round-trip example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="external_fts_through_rtde.html">External FTS example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="script_command_interface.html">Script command interface</a></li>
 <li class="toctree-l3"><a class="reference internal" href="script_sender.html">Script Sender example</a></li>
@@ -132,7 +133,7 @@ that the script has been forwarded to the robot.</p>
 starting the client, the robot’s brakes are released so that motion scripts can actually run, and
 the safety state is checked before any script is sent:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 44 </span><span class="caption-text">examples/send_script.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 52 </span><span class="caption-text">examples/send_script.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">19</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">notif</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">comm</span><span class="o">::</span><span class="n">INotifier</span><span class="p">();</span>
 <span class="linenos">20</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">primary_interface</span><span class="o">::</span><span class="n">PrimaryClient</span><span class="p">(</span><span class="n">robot_ip</span><span class="p">,</span><span class="w"> </span><span class="n">notif</span><span class="p">);</span>
 <span class="linenos">21</span><span class="w">  </span><span class="n">client</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
@@ -158,7 +159,7 @@ reports the result of the execution. The given code can be a fully defined scrip
 <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">...</span> <span class="pre">end</span></code> block) or a snippet that will automatically be wrapped into a function on the
 client side. Comments and whitespace-only lines are stripped before the script is sent.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 45 </span><span class="caption-text">examples/send_script.cpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 53 </span><span class="caption-text">examples/send_script.cpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">36</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">fully_defined_script</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">&quot;&quot;(</span>
 <span class="linenos">37</span><span class="s"># This is a fully defined script, function definition and all</span>
 <span class="linenos">38</span><span class="s"># All comments in this script will be stripped before sending the script to the robot</span>
@@ -180,7 +181,7 @@ optionally pass a <code class="docutils literal notranslate"><span class="pre">s
 <code class="docutils literal notranslate"><span class="pre">start_timeout</span></code> that limits how long the call waits for the robot to confirm that the script has
 started. A timeout of <code class="docutils literal notranslate"><span class="pre">0</span></code> means “wait indefinitely”:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 46 </span><span class="caption-text">examples/send_script.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 54 </span><span class="caption-text">examples/send_script.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">51</span><span class="w">  </span><span class="n">client</span><span class="p">.</span><span class="n">sendScriptBlocking</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">textmsg(&quot;Successful program execution&quot;)</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span>
 <span class="linenos">52</span><span class="w">  </span><span class="c1">// A script-function name can also be passed to the method</span>
 <span class="linenos">53</span><span class="w">  </span><span class="c1">// A timeout can also be given to limit the wait for the passed function to start. If timeout = 0, it will</span>
@@ -193,7 +194,7 @@ started. A timeout of <code class="docutils literal notranslate"><span class="pr
 report execution feedback for secondary programs, the call returns as soon as the script has been
 accepted. Note that secondary programs must be <em>fully defined</em> by the user (<code class="docutils literal notranslate"><span class="pre">sec</span> <span class="pre">...</span> <span class="pre">end</span></code>):</p>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 47 </span><span class="caption-text">examples/send_script.cpp</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 55 </span><span class="caption-text">examples/send_script.cpp</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">59</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">secondary_script</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span>
 <span class="linenos">60</span><span class="s">sec sec_script():</span>
 <span class="linenos">61</span><span class="s">  textmsg(&quot;Named secondary program&quot;)</span>
@@ -210,7 +211,7 @@ accepted. Note that secondary programs must be <em>fully defined</em> by the use
 report this back to the caller. The example sends a script that uses an undefined variable
 <code class="docutils literal notranslate"><span class="pre">current_pos</span></code> instead of <code class="docutils literal notranslate"><span class="pre">current_pose</span></code>, and logs the result:</p>
 <div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-number">Listing 48 </span><span class="caption-text">examples/send_script.cpp</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 56 </span><span class="caption-text">examples/send_script.cpp</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">67</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">bad_script_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">&quot;&quot;(</span>
 <span class="linenos">68</span><span class="s">def bad_code():</span>
 <span class="linenos">69</span><span class="s">  current_pose = get_target_tcp_pose()</span>
@@ -241,7 +242,7 @@ report this back to the caller. The example sends a script that uses an undefine
 used. It returns <code class="docutils literal notranslate"><span class="pre">true</span></code> as soon as the script has been transferred to the robot. The library
 performs no further checks, so faulty script code will <em>not</em> be reported back here:</p>
 <div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-number">Listing 49 </span><span class="caption-text">examples/send_script.cpp</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 57 </span><span class="caption-text">examples/send_script.cpp</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 88</span><span class="w">  </span><span class="c1">// We can also send script code without any checks</span>
 <span class="linenos"> 89</span><span class="w">  </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="s">&quot;Executing motion without feedback&quot;</span><span class="p">);</span>
 <span class="linenos"> 90</span><span class="w">  </span><span class="n">client</span><span class="p">.</span><span class="n">sendScript</span><span class="p">(</span><span class="s">&quot;movej([0.1,-0.9,0.9,0,0,0])&quot;</span><span class="p">);</span>

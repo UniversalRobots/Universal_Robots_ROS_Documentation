@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="External FTS example" href="external_fts_through_rtde.html" />
+    <link rel="next" title="RTDE register round-trip example" href="rtde_roundtrip.html" />
     <link rel="prev" title="Primary Pipeline Calibration example" href="primary_pipeline_calibration.html" /> 
 </head>
 
@@ -62,6 +62,7 @@
 <li class="toctree-l3"><a class="reference internal" href="primary_pipeline.html">Primary Pipeline example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="primary_pipeline_calibration.html">Primary Pipeline Calibration example</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">RTDE Client example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rtde_roundtrip.html">RTDE register round-trip example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="external_fts_through_rtde.html">External FTS example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="script_command_interface.html">Script command interface</a></li>
 <li class="toctree-l3"><a class="reference internal" href="script_sender.html">Script Sender example</a></li>
@@ -143,10 +144,10 @@ output and an input recipe. Optionally, a communication frequency can be passed 
 omitted, RTDE communication will be established at the robot’s control frequency.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-number">Listing 31 </span><span class="caption-text">examples/rtde_client.cpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">76</span><span class="w">  </span><span class="n">comm</span><span class="o">::</span><span class="n">INotifier</span><span class="w"> </span><span class="n">notifier</span><span class="p">;</span>
-<span class="linenos">77</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">rtde_frequency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span><span class="w">  </span><span class="c1">// Hz</span>
-<span class="linenos">78</span><span class="w">  </span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">RTDEClient</span><span class="w"> </span><span class="nf">my_client</span><span class="p">(</span><span class="n">robot_ip</span><span class="p">,</span><span class="w"> </span><span class="n">notifier</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">rtde_frequency</span><span class="p">);</span>
-<span class="linenos">79</span><span class="w">  </span><span class="n">my_client</span><span class="p">.</span><span class="n">init</span><span class="p">();</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">75</span><span class="w">  </span><span class="n">comm</span><span class="o">::</span><span class="n">INotifier</span><span class="w"> </span><span class="n">notifier</span><span class="p">;</span>
+<span class="linenos">76</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">rtde_frequency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span><span class="w">  </span><span class="c1">// Hz</span>
+<span class="linenos">77</span><span class="w">  </span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">RTDEClient</span><span class="w"> </span><span class="nf">my_client</span><span class="p">(</span><span class="n">robot_ip</span><span class="p">,</span><span class="w"> </span><span class="n">notifier</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">rtde_frequency</span><span class="p">);</span>
+<span class="linenos">78</span><span class="w">  </span><span class="n">my_client</span><span class="p">.</span><span class="n">init</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -158,38 +159,41 @@ for details on two possible strategies. In this example, we do not use backgroun
 fetch data synchronously. Hence, we pass <code class="docutils literal notranslate"><span class="pre">false</span></code> to the <code class="docutils literal notranslate"><span class="pre">start()</span></code> method.</p>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-number">Listing 32 </span><span class="caption-text">examples/rtde_client.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 86</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">data_pkg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">DataPackage</span><span class="o">&gt;</span><span class="p">(</span><span class="n">my_client</span><span class="p">.</span><span class="n">getOutputRecipe</span><span class="p">());</span>
-<span class="linenos"> 87</span><span class="w">  </span><span class="c1">// Once RTDE communication is started, we have to make sure to read from the interface buffer, as</span>
-<span class="linenos"> 88</span><span class="w">  </span><span class="c1">// otherwise we will get pipeline overflows. Therefor, do this directly before starting your main</span>
-<span class="linenos"> 89</span><span class="w">  </span><span class="c1">// loop.</span>
-<span class="linenos"> 90</span><span class="w">  </span><span class="n">my_client</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span><span class="w">  </span><span class="c1">// false -&gt; do not start background read thread.</span>
-<span class="linenos"> 91</span>
-<span class="linenos"> 92</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">start_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">steady_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
-<span class="linenos"> 93</span><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">second_to_run</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span>
-<span class="linenos"> 94</span><span class="w">         </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">duration_cast</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">steady_clock</span><span class="o">::</span><span class="n">now</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="p">).</span><span class="n">count</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span>
-<span class="linenos"> 95</span><span class="w">             </span><span class="n">second_to_run</span><span class="p">)</span>
-<span class="linenos"> 96</span><span class="w">  </span><span class="p">{</span>
-<span class="linenos"> 97</span><span class="w">    </span><span class="c1">// Wait for a DataPackage. In a real-world application this thread should be scheduled with real-time priority in</span>
-<span class="linenos"> 98</span><span class="w">    </span><span class="c1">// order to ensure that this is called in time.</span>
-<span class="linenos"> 99</span><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_client</span><span class="p">.</span><span class="n">getDataPackageBlocking</span><span class="p">(</span><span class="n">data_pkg</span><span class="p">);</span>
-<span class="linenos">100</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">success</span><span class="p">)</span>
-<span class="linenos">101</span><span class="w">    </span><span class="p">{</span>
-<span class="linenos">102</span><span class="w">      </span><span class="c1">// Data fields in the data package are accessed by their name. Only names present in the</span>
-<span class="linenos">103</span><span class="w">      </span><span class="c1">// output recipe can be accessed. Otherwise this function will return false.</span>
-<span class="linenos">104</span><span class="w">      </span><span class="c1">// We preallocated the string TARGET_SPEED_FRACTION to avoid allocations in the main loop.</span>
-<span class="linenos">105</span><span class="w">      </span><span class="n">data_pkg</span><span class="o">-&gt;</span><span class="n">getData</span><span class="p">(</span><span class="n">TARGET_SPEED_FRACTION</span><span class="p">,</span><span class="w"> </span><span class="n">target_speed_fraction</span><span class="p">);</span>
-<span class="linenos">106</span><span class="w">      </span><span class="n">printFraction</span><span class="p">(</span><span class="n">target_speed_fraction</span><span class="p">,</span><span class="w"> </span><span class="n">TARGET_SPEED_FRACTION</span><span class="p">);</span>
-<span class="linenos">107</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">108</span><span class="w">    </span><span class="k">else</span>
-<span class="linenos">109</span><span class="w">    </span><span class="p">{</span>
-<span class="linenos">110</span><span class="w">      </span><span class="c1">// The client isn&#39;t connected properly anymore / doesn&#39;t receive any data anymore. Stop the</span>
-<span class="linenos">111</span><span class="w">      </span><span class="c1">// program.</span>
-<span class="linenos">112</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Could not get fresh data package from robot&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="linenos">113</span><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="linenos">114</span><span class="w">    </span><span class="p">}</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 85</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">data_pkg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">DataPackage</span><span class="o">&gt;</span><span class="p">(</span><span class="n">my_client</span><span class="p">.</span><span class="n">getOutputRecipe</span><span class="p">());</span>
+<span class="linenos"> 86</span><span class="w">  </span><span class="c1">// Once RTDE communication is started, we have to make sure to read from the interface buffer, as</span>
+<span class="linenos"> 87</span><span class="w">  </span><span class="c1">// otherwise we will get pipeline overflows. Therefor, do this directly before starting your main</span>
+<span class="linenos"> 88</span><span class="w">  </span><span class="c1">// loop.</span>
+<span class="linenos"> 89</span><span class="w">  </span><span class="n">my_client</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span><span class="w">  </span><span class="c1">// false -&gt; do not start background read thread.</span>
+<span class="linenos"> 90</span>
+<span class="linenos"> 91</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">start_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">steady_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+<span class="linenos"> 92</span><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">second_to_run</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span>
+<span class="linenos"> 93</span><span class="w">         </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">duration_cast</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">steady_clock</span><span class="o">::</span><span class="n">now</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="p">).</span><span class="n">count</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span>
+<span class="linenos"> 94</span><span class="w">             </span><span class="n">second_to_run</span><span class="p">)</span>
+<span class="linenos"> 95</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos"> 96</span><span class="w">    </span><span class="c1">// Wait for a DataPackage. In a real-world application this thread should be scheduled with real-time priority in</span>
+<span class="linenos"> 97</span><span class="w">    </span><span class="c1">// order to ensure that this is called in time.</span>
+<span class="linenos"> 98</span><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_client</span><span class="p">.</span><span class="n">getDataPackageBlocking</span><span class="p">(</span><span class="n">data_pkg</span><span class="p">);</span>
+<span class="linenos"> 99</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">success</span><span class="p">)</span>
+<span class="linenos">100</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">101</span><span class="w">      </span><span class="c1">// Data fields in the data package are accessed by their name. Only names present in the</span>
+<span class="linenos">102</span><span class="w">      </span><span class="c1">// output recipe can be accessed. Otherwise this function will return false.</span>
+<span class="linenos">103</span><span class="w">      </span><span class="n">data_pkg</span><span class="o">-&gt;</span><span class="n">getData</span><span class="p">(</span><span class="n">TARGET_SPEED_FRACTION</span><span class="p">,</span><span class="w"> </span><span class="n">target_speed_fraction</span><span class="p">);</span>
+<span class="linenos">104</span><span class="w">      </span><span class="n">printFraction</span><span class="p">(</span><span class="n">target_speed_fraction</span><span class="p">,</span><span class="w"> </span><span class="n">TARGET_SPEED_FRACTION</span><span class="p">);</span>
+<span class="linenos">105</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">106</span><span class="w">    </span><span class="k">else</span>
+<span class="linenos">107</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">108</span><span class="w">      </span><span class="c1">// The client isn&#39;t connected properly anymore / doesn&#39;t receive any data anymore. Stop the</span>
+<span class="linenos">109</span><span class="w">      </span><span class="c1">// program.</span>
+<span class="linenos">110</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Could not get fresh data package from robot&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">111</span><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">112</span><span class="w">    </span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
+<p>The loop reuses a package built from the negotiated output recipe, keeping the normal data receive
+path allocation-free. Null pointers allocate a package, and foreign-recipe repair may allocate;
+error handling, non-data messages and reconnection are outside this guarantee. The recipe only
+names the fields, so the first read applies their negotiated types in place without allocation.</p>
 <p>In our main loop, we wait for a new data package to arrive using the blocking read method. Once
 received, data from the received package can be accessed using the <code class="docutils literal notranslate"><span class="pre">getData()</span></code> method of the
 <code class="docutils literal notranslate"><span class="pre">DataPackage</span></code> object. This method takes the key of the data to be accessed as a parameter and
@@ -197,9 +201,9 @@ returns the corresponding value.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The key used to access data has to be part of the output recipe used to initialize the RTDE
-client. Passing a string literal, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;actual_q&quot;</span></code>, is possible but not recommended as it is
-converted to an <code class="docutils literal notranslate"><span class="pre">std::string</span></code> automatically, causing heap allocations which should be avoided
-in Real-Time contexts.</p>
+client. <code class="docutils literal notranslate"><span class="pre">getData()</span></code> returns <code class="docutils literal notranslate"><span class="pre">false</span></code> for an unknown key. If the type of the passed
+variable doesn’t match the type the robot reported for that field, it throws
+<code class="docutils literal notranslate"><span class="pre">std::bad_variant_access</span></code>.</p>
 </div>
 </section>
 <section id="writing-data-to-the-rtde-client">
@@ -212,13 +216,13 @@ has methods implemented for each data type that can be sent to the robot. The in
 initialize the RTDE client has to contain the keys necessary to send that specific data.</p>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-number">Listing 33 </span><span class="caption-text">examples/rtde_client.cpp</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">131</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">my_client</span><span class="p">.</span><span class="n">getWriter</span><span class="p">().</span><span class="n">sendSpeedSlider</span><span class="p">(</span><span class="n">speed_slider_fraction</span><span class="p">))</span>
-<span class="linenos">132</span><span class="w">    </span><span class="p">{</span>
-<span class="linenos">133</span><span class="w">      </span><span class="c1">// This will happen for example, when the required keys are not configured inside the input</span>
-<span class="linenos">134</span><span class="w">      </span><span class="c1">// recipe.</span>
-<span class="linenos">135</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[1;31mSending RTDE data failed.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[0m</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="linenos">136</span><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="linenos">137</span><span class="w">    </span><span class="p">}</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">129</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">my_client</span><span class="p">.</span><span class="n">getWriter</span><span class="p">().</span><span class="n">sendSpeedSlider</span><span class="p">(</span><span class="n">speed_slider_fraction</span><span class="p">))</span>
+<span class="linenos">130</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">131</span><span class="w">      </span><span class="c1">// This will happen for example, when the required keys are not configured inside the input</span>
+<span class="linenos">132</span><span class="w">      </span><span class="c1">// recipe.</span>
+<span class="linenos">133</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[1;31mSending RTDE data failed.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[0m</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">134</span><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">135</span><span class="w">    </span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -230,10 +234,12 @@ for more information.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Every <code class="docutils literal notranslate"><span class="pre">send...</span></code> call to the RTDEWriter triggers a package sent to the robot. If you
-want to modify more than one input at a time, it is recommended to use the <code class="docutils literal notranslate"><span class="pre">sendPackage()</span></code>
-method. That allows setting up the complete data package with its input recipe and sending that
-to the robot at once.</p>
+<p>Every successful <code class="docutils literal notranslate"><span class="pre">send...</span></code> call updates the pending buffer and notifies the writer
+thread. Calls may be coalesced before transmission; they are not queued as separate packages.
+To submit several inputs together, use <code class="docutils literal notranslate"><span class="pre">createInputDataPackage()</span></code> after <code class="docutils literal notranslate"><span class="pre">init()</span></code>, fill the
+fields and pass the package to <code class="docutils literal notranslate"><span class="pre">sendPackage()</span></code>. Separate helper calls can otherwise be
+transmitted between updates. Neither API confirms delivery to the robot; see the
+<a class="reference internal" href="rtde_roundtrip.html#rtde-roundtrip-example"><span class="std std-ref">RTDE register round-trip example</span></a> for verification using robot outputs.</p>
 </div>
 </section>
 </section>
@@ -243,7 +249,7 @@ to the robot at once.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="primary_pipeline_calibration.html" class="btn btn-neutral float-left" title="Primary Pipeline Calibration example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="external_fts_through_rtde.html" class="btn btn-neutral float-right" title="External FTS example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="rtde_roundtrip.html" class="btn btn-neutral float-right" title="RTDE register round-trip example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

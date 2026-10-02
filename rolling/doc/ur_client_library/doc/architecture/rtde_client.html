@@ -141,10 +141,30 @@ the <a class="reference internal" href="../examples/rtde_client.html#rtde-client
 <span class="p">{</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">my_client</span><span class="p">.</span><span class="n">getDataPackage</span><span class="p">(</span><span class="n">data_pkg</span><span class="p">,</span><span class="w"> </span><span class="n">READ_TIMEOUT</span><span class="p">))</span>
 <span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">data_pkg</span><span class="o">-&gt;</span><span class="n">toString</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">data_pkg</span><span class="p">.</span><span class="n">toString</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Recommended:</strong> Construct a <code class="docutils literal notranslate"><span class="pre">DataPackage</span></code> from <code class="docutils literal notranslate"><span class="pre">getOutputRecipe()</span></code> after <code class="docutils literal notranslate"><span class="pre">init()</span></code> and
+reuse it in your control loop. With a matching recipe, the normal data receive path of
+<code class="docutils literal notranslate"><span class="pre">getDataPackage()</span></code> and <code class="docutils literal notranslate"><span class="pre">getDataPackageBlocking()</span></code> does not allocate.</p>
+<p><strong>Still supported, but not recommended:</strong> The older flow that lets the client allocate a
+package remains available for compatibility. The
+<code class="docutils literal notranslate"><span class="pre">std::unique_ptr&lt;rtde_interface::DataPackage&gt;</span> <span class="pre">getDataPackage(timeout)</span></code> overload (Deprecated,
+use <code class="docutils literal notranslate"><span class="pre">getDataPackage(DataPackage&amp;,</span> <span class="pre">timeout)</span></code> instead) allocates a new package on each call, and
+passing a null unique pointer to either read method also allocates a package. Passing a package
+with a foreign recipe is supported through automatic repair, which may allocate. The null-pointer and foreign-recipe paths log
+warnings; these warn about allocation, not unsupported usage. Prefer a reusable, matching-recipe
+package for new code, especially in real-time loops.</p>
+<p>The allocation-free guarantee applies only to the normal data receive path with that reused
+package. It does not cover error handling, non-data messages or reconnection.</p>
+<p>A recipe only lists field names. The data types belonging to them are reported by the robot when
+it acknowledges the recipe, and the first read applies them to your <code class="docutils literal notranslate"><span class="pre">DataPackage</span></code> without
+allocation. Until that has happened <code class="docutils literal notranslate"><span class="pre">getData()</span></code> throws <code class="docutils literal notranslate"><span class="pre">std::bad_variant_access</span></code>. See
+<a class="reference internal" href="#field-data-types">Field data types</a> for how to ask a package what type it gave a field.</p>
 </div>
 <p>Upon construction, two recipe files have to be given, one for the RTDE inputs, one for the RTDE
 outputs. Please refer to the <a class="reference external" href="https://www.universal-robots.com/articles/ur-articles/real-time-data-exchange-rtde-guide/">RTDE
@@ -166,10 +186,104 @@ following will work</p>
 </div>
 <section id="reading-data">
 <h2>Reading data<a class="headerlink" href="#reading-data" title="Link to this heading"></a></h2>
-<p>After calling <code class="docutils literal notranslate"><span class="pre">my_client.start()</span></code>, data can be read from the
-<code class="docutils literal notranslate"><span class="pre">RTDEClient</span></code> by calling <code class="docutils literal notranslate"><span class="pre">getDataPackage()</span></code> (with background thread running) or <code class="docutils literal notranslate"><span class="pre">getDataPackageBlocking()</span></code> (without background thread running) respectively.</p>
+<p>After calling <code class="docutils literal notranslate"><span class="pre">my_client.start()</span></code>, data can be read from the <code class="docutils literal notranslate"><span class="pre">RTDEClient</span></code>. Which read method
+to use depends on how the client was started:</p>
+<p>With background reading, <code class="docutils literal notranslate"><span class="pre">start(true)</span></code> (the default):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">getDataPackage(DataPackage&amp;</span> <span class="pre">data_package,</span> <span class="pre">std::chrono::milliseconds</span> <span class="pre">timeout)</span></code>:
+copies the latest package received by the background reader thread into the caller’s package.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">getDataPackage(std::unique_ptr&lt;DataPackage&gt;&amp;</span> <span class="pre">data_package,</span> <span class="pre">std::chrono::milliseconds</span> <span class="pre">timeout)</span></code>:
+same, for a caller-owned pointer; a null pointer is allocated (with a warning) only on success.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">std::unique_ptr&lt;DataPackage&gt;</span> <span class="pre">getDataPackage(std::chrono::milliseconds</span> <span class="pre">timeout)</span></code>
+(Deprecated, use <code class="docutils literal notranslate"><span class="pre">getDataPackage(DataPackage&amp;</span> <span class="pre">data_package,</span> <span class="pre">std::chrono::milliseconds</span> <span class="pre">timeout)</span></code>
+instead): allocates a new package on every call. It will be removed in May 2027.</p></li>
+</ul>
+<p>Without background reading, <code class="docutils literal notranslate"><span class="pre">start(false)</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">getDataPackageBlocking(std::unique_ptr&lt;DataPackage&gt;&amp;</span> <span class="pre">data_package)</span></code>:
+waits for the next package from the robot and parses it straight into the caller’s package.</p></li>
+</ul>
+<p>Calling a method from the other group logs an error and returns <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
 <p>Remember that, when not using a background thread, data has to be polled regularly, as the robot
 will shutdown RTDE communication if the receiving side doesn’t empty its buffer.</p>
+<p>Reusing a package with the negotiated recipe keeps the normal data receive path free of memory
+allocations; prefer an overload that fills an existing, reusable package, especially for real-time
+use.</p>
+<p>Always check the return value before using received data. A background read returns <code class="docutils literal notranslate"><span class="pre">false</span></code> on
+timeout or when stopping or reconnecting cancels the pending read; restarting the reader does not
+make a cancelled read succeed with stale data. Both unique-pointer overloads retain caller
+ownership on failure and assign a previously null pointer only on success. A failed blocking read
+can still partially update an existing package’s values if the incoming data is malformed.</p>
+<section id="pacing-a-loop-with-the-robot">
+<h3>Pacing a loop with the robot<a class="headerlink" href="#pacing-a-loop-with-the-robot" title="Link to this heading"></a></h3>
+<p>Both read modes can pace an application loop at the robot’s negotiated RTDE output frequency,
+without a separate fixed-period sleep. Choose the mode according to how directly the loop should
+follow incoming packages:</p>
+<ul class="simple">
+<li><p>With <code class="docutils literal notranslate"><span class="pre">start(false)</span></code>, <code class="docutils literal notranslate"><span class="pre">getDataPackageBlocking()</span></code> waits for the next package when no data is
+already buffered. Calling it at the start of each iteration lets packet arrival pace the loop,
+coupling it directly to the RTDE stream without a background-reader handoff. This is useful
+when each iteration should read data and then compute and submit a response. See the
+<a class="reference internal" href="../examples/rtde_roundtrip.html#rtde-roundtrip-example"><span class="std std-ref">RTDE register round-trip example</span></a>.</p></li>
+<li><p>With <code class="docutils literal notranslate"><span class="pre">start(true)</span></code>, <code class="docutils literal notranslate"><span class="pre">getDataPackage(package,</span> <span class="pre">timeout)</span></code> can also pace the loop: after the
+latest sample has been consumed, it waits for the background reader to publish another one,
+up to the timeout. If a newer sample is already available, it returns immediately. This mode
+decouples socket reading from application work and favors the latest sample; intermediate
+samples can be overwritten when the application is slower than the stream. It suits loops
+that need less direct synchronization and do not need to process every received sample.</p></li>
+</ul>
+<p>For background reads used as a loop clock, allow enough timeout for the expected RTDE period
+and scheduling jitter, and handle a <code class="docutils literal notranslate"><span class="pre">false</span></code> return instead of processing old data. In either
+mode, the loop must keep up with the negotiated frequency for steady pacing. Buffered data can
+make synchronous reads return immediately, and network or scheduling delays can make arrivals
+irregular. Neither mode guarantees phase synchronization with the robot’s internal control cycle
+or receipt of a command in the next cycle. Use the output <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> to track robot time and
+detect gaps between samples.</p>
+</section>
+<section id="field-data-types">
+<h3>Field data types<a class="headerlink" href="#field-data-types" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">getData()</span></code> has to be given a variable of the field’s own type. A missing name returns
+<code class="docutils literal notranslate"><span class="pre">false</span></code>; a type mismatch throws <code class="docutils literal notranslate"><span class="pre">std::bad_variant_access</span></code>.
+Rather than hardcoding which type a field has, ask the package: <code class="docutils literal notranslate"><span class="pre">getDataType()</span></code> reports the
+<code class="docutils literal notranslate"><span class="pre">DataType</span></code> a field currently holds. A successful client read applies the robot’s negotiated
+types to an output package; <code class="docutils literal notranslate"><span class="pre">init()</span></code> alone does not type application-owned packages.
+<code class="docutils literal notranslate"><span class="pre">createInputDataPackage()</span></code> returns an input package with the negotiated types already applied.
+On a recipe-only package, <code class="docutils literal notranslate"><span class="pre">setData()</span></code> establishes an untyped field’s type from the value written;
+subsequent writes must match that type. An untouched field has no type. This is useful for code
+that has to handle whatever recipe it is configured with, such as a bridge to another middleware:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">DataType</span><span class="o">&gt;</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data_pkg</span><span class="p">.</span><span class="n">getDataType</span><span class="p">(</span><span class="n">field_name</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">type</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="c1">// Not part of the recipe, or the field has no type yet</span>
+<span class="w">  </span><span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// For &quot;actual_q&quot; this prints &quot;VECTOR6D&quot;, the same spelling the RTDE guide uses</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">field_name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; is a &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">toString</span><span class="p">(</span><span class="o">*</span><span class="n">type</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">type</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">rtde_interface</span><span class="o">::</span><span class="no">DataType</span><span class="o">::</span><span class="no">DOUBLE</span><span class="p">:</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
+<span class="w">    </span><span class="n">data_pkg</span><span class="p">.</span><span class="n">getData</span><span class="p">(</span><span class="n">field_name</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+<span class="w">    </span><span class="k">break</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">rtde_interface</span><span class="o">::</span><span class="no">DataType</span><span class="o">::</span><span class="no">VECTOR6D</span><span class="p">:</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">vector6d_t</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
+<span class="w">    </span><span class="n">data_pkg</span><span class="p">.</span><span class="n">getData</span><span class="p">(</span><span class="n">field_name</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+<span class="w">    </span><span class="k">break</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="c1">// ... remaining types</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">DataType</span></code> covers the complete set the protocol defines: <code class="docutils literal notranslate"><span class="pre">BOOL</span></code>, <code class="docutils literal notranslate"><span class="pre">UINT8</span></code>, <code class="docutils literal notranslate"><span class="pre">UINT32</span></code>,
+<code class="docutils literal notranslate"><span class="pre">UINT64</span></code>, <code class="docutils literal notranslate"><span class="pre">INT32</span></code>, <code class="docutils literal notranslate"><span class="pre">DOUBLE</span></code>, <code class="docutils literal notranslate"><span class="pre">VECTOR3D</span></code>, <code class="docutils literal notranslate"><span class="pre">VECTOR6D</span></code>, <code class="docutils literal notranslate"><span class="pre">VECTOR6INT32</span></code> and
+<code class="docutils literal notranslate"><span class="pre">VECTOR6UINT32</span></code>. Switching over it exhaustively means the compiler will point out any case a
+future protocol addition leaves unhandled.</p>
+</section>
 </section>
 <section id="writing-data">
 <h2>Writing data<a class="headerlink" href="#writing-data" title="Link to this heading"></a></h2>
@@ -203,11 +317,11 @@ an empty input recipe, like this:</p>
 <span class="c1">// Alternatively, pass an empty filename when using recipe files</span>
 <span class="c1">// rtde_interface::RTDEClient my_client(ROBOT_IP, notifier, OUTPUT_RECIPE_FILE, &quot;&quot;);</span>
 <span class="n">my_client</span><span class="p">.</span><span class="n">init</span><span class="p">();</span>
-<span class="k">auto</span><span class="w"> </span><span class="n">data_pkg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">DataPackage</span><span class="o">&gt;</span><span class="p">(</span><span class="n">my_client</span><span class="o">-&gt;</span><span class="n">getOutputRecipe</span><span class="p">());</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">data_pkg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">DataPackage</span><span class="o">&gt;</span><span class="p">(</span><span class="n">my_client</span><span class="p">.</span><span class="n">getOutputRecipe</span><span class="p">());</span>
 <span class="n">my_client</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
 <span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">my_client</span><span class="p">.</span><span class="n">getDataPackage</span><span class="p">(</span><span class="n">data_package</span><span class="p">,</span><span class="w"> </span><span class="n">READ_TIMEOUT</span><span class="p">))</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">my_client</span><span class="p">.</span><span class="n">getDataPackage</span><span class="p">(</span><span class="n">data_pkg</span><span class="p">,</span><span class="w"> </span><span class="n">READ_TIMEOUT</span><span class="p">))</span>
 <span class="w">  </span><span class="p">{</span>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">data_pkg</span><span class="o">-&gt;</span><span class="n">toString</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
@@ -219,13 +333,54 @@ an empty input recipe, like this:</p>
 <h2>RTDEWriter<a class="headerlink" href="#rtdewriter" title="Link to this heading"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">RTDEWriter</span></code> class provides an interface to write data to the RTDE interface. Data fields that
 should be written have to be defined inside the <code class="docutils literal notranslate"><span class="pre">INPUT_RECIPE</span></code> as noted above.</p>
-<p>The class offers specific methods for every RTDE input possible to write.</p>
-<p>Data is sent asynchronously to the RTDE interface.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Use RTDEClient to initialize and access RTDEWriter (recommended).</strong> Create an <code class="docutils literal notranslate"><span class="pre">RTDEClient</span></code>
+with a non-empty input recipe, call <code class="docutils literal notranslate"><span class="pre">init()</span></code>, then use its writer through <code class="docutils literal notranslate"><span class="pre">getWriter()</span></code>.
+The client handles the connection, protocol negotiation, input recipe setup and writer
+initialization, including the field types and recipe ID reported by the robot.</p>
+<p>Constructing and using <code class="docutils literal notranslate"><span class="pre">RTDEWriter</span></code> directly is still supported, but is a lower-level option
+for applications that manage the RTDE connection and handshake themselves. It is not the
+recommended approach for normal application code.</p>
+</div>
+<p>The class offers convenience methods for common inputs and <code class="docutils literal notranslate"><span class="pre">sendPackage()</span></code> for a complete input
+recipe.</p>
+<p>Data is sent asynchronously to the RTDE interface. A successful <code class="docutils literal notranslate"><span class="pre">sendPackage()</span></code> or <code class="docutils literal notranslate"><span class="pre">send...()</span></code>
+call updates the pending send buffer and notifies the writer thread; it does not confirm delivery
+or processing by the robot. This is not a FIFO queue of calls: multiple updates before the writer
+consumes the pending buffer can be coalesced, and a later <code class="docutils literal notranslate"><span class="pre">sendPackage()</span></code> can replace an earlier
+pending package. Separate helper calls may be transmitted separately or coalesced, depending on
+when the writer runs. Use <code class="docutils literal notranslate"><span class="pre">sendPackage()</span></code> to submit related fields together in one buffer update,
+not to guarantee a distinct transmission for every call.</p>
+<p>To write several fields at once, ask the client for a package that already carries the data types
+the robot reported for the input recipe. Call <code class="docutils literal notranslate"><span class="pre">createInputDataPackage()</span></code> after a successful
+<code class="docutils literal notranslate"><span class="pre">init()</span></code> with a non-empty input recipe, fill the fields you care about and pass it to
+<code class="docutils literal notranslate"><span class="pre">sendPackage()</span></code>. The new package starts with zero values; when reusing it, fields retain their
+previous values unless explicitly changed or reset. Because the package is already typed,
+<code class="docutils literal notranslate"><span class="pre">setData()</span></code> reports a value written with the wrong type immediately:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">DataPackage</span><span class="w"> </span><span class="n">input_pkg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_client</span><span class="p">.</span><span class="n">createInputDataPackage</span><span class="p">();</span>
+<span class="n">input_pkg</span><span class="p">.</span><span class="n">setData</span><span class="p">(</span><span class="s">&quot;speed_slider_mask&quot;</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="p">{</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">});</span>
+<span class="n">input_pkg</span><span class="p">.</span><span class="n">setData</span><span class="p">(</span><span class="s">&quot;speed_slider_fraction&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">);</span>
+<span class="n">my_client</span><span class="p">.</span><span class="n">getWriter</span><span class="p">().</span><span class="n">sendPackage</span><span class="p">(</span><span class="n">input_pkg</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>A package constructed from <code class="docutils literal notranslate"><span class="pre">getInputRecipe()</span></code> still works. Its types are taken from the values
+written to it and are checked when the package is submitted to <code class="docutils literal notranslate"><span class="pre">sendPackage()</span></code>. The field names
+and order must match the negotiated input recipe. Fields that remain untyped are sent as typed
+zeros, while incompatible types cause <code class="docutils literal notranslate"><span class="pre">sendPackage()</span></code> to return <code class="docutils literal notranslate"><span class="pre">false</span></code>. See the
+<a class="reference internal" href="../examples/rtde_roundtrip.html#rtde-roundtrip-example"><span class="std std-ref">RTDE register round-trip example</span></a> for a complete example.</p>
+<p>If direct <code class="docutils literal notranslate"><span class="pre">RTDEWriter</span></code> use is required instead of the recommended <code class="docutils literal notranslate"><span class="pre">RTDEClient</span></code> flow, perform the RTDE handshake
+and configure the stopped writer with <code class="docutils literal notranslate"><span class="pre">setProtocolVersion(negotiated_version)</span></code> and
+<code class="docutils literal notranslate"><span class="pre">setRecipeTypes(acknowledged_types)</span></code> before calling <code class="docutils literal notranslate"><span class="pre">init(recipe_id)</span></code> with the acknowledged
+input recipe ID. Constructing the writer or calling <code class="docutils literal notranslate"><span class="pre">init(recipe_id)</span></code> alone does not establish
+the field types. <code class="docutils literal notranslate"><span class="pre">RTDEClient::init()</span></code> handles these steps automatically.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">RTDEWriter</span></code> will return <code class="docutils literal notranslate"><span class="pre">false</span></code> on any writing attempts for fields that have not been
 setup in the <code class="docutils literal notranslate"><span class="pre">INPUT_RECIPE</span></code>. When no input recipe was provided, all write operations will
-return <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+return <code class="docutils literal notranslate"><span class="pre">false</span></code>. No writer thread is started in that case, and <code class="docutils literal notranslate"><span class="pre">createInputDataPackage()</span></code>
+throws <code class="docutils literal notranslate"><span class="pre">UrException</span></code> even after successful client initialization. The factory also throws
+before input recipe negotiation or while the writer is stopped.</p>
 </div>
 </section>
 </section>

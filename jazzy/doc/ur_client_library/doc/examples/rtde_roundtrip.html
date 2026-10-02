@@ -1,0 +1,458 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RTDE register round-trip example &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/ur_theme.css?v=078fdd0b" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/icon.svg"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="External FTS example" href="external_fts_through_rtde.html" />
+    <link rel="prev" title="RTDE Client example" href="rtde_client.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Universal Robots ROS 2 Driver Documentation
+              <img src="../../../../_static/ur_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">ur_client_library</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installation.html">Build / installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup.html">Setup a robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../polyscope_compatibility.html">PolyScope version compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html">Library architecture</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../examples.html">Usage examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dashboard_client.html">Dashboard client example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="force_mode.html">Force Mode example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="freedrive.html">Freedrive Mode example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruction_executor.html">Instruction Executor example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="primary_pipeline.html">Primary Pipeline example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="primary_pipeline_calibration.html">Primary Pipeline Calibration example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rtde_client.html">RTDE Client example</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">RTDE register round-trip example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="external_fts_through_rtde.html">External FTS example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="script_command_interface.html">Script command interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="script_sender.html">Script Sender example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="send_script.html">Send script example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spline_example.html">Spline Interpolation example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tool_contact_example.html">Tool Contact example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="direct_torque_control.html">Torque control example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trajectory_point_interface.html">Trajectory Joint Interface example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trajectory_streaming.html">Trajectory streaming example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ur_driver.html">Example driver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../real_time.html">Setup for real-time scheduling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../migration_notes.html">Migration notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference.html">C++ API Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_description/doc/index.html">ur_description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_robot_driver/doc/index.html">ur_robot_driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_calibration/doc/index.html">ur_calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_controllers/doc/index.html">ur_controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_robot_driver/ur_moveit_config/doc/index.html">ur_moveit_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_simulation_gz/ur_simulation_gz/doc/index.html">ur_simulation_gz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ur_tutorials/tutorial_index.html">Tutorial examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../migration_notes.html">Migration Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../build_status.html">Build status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ros2_controller_vs_driver.html">ROS 2 integration paths</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Universal Robots ROS 2 Driver Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">ur_client_library</a></li>
+          <li class="breadcrumb-item"><a href="../examples.html">Usage examples</a></li>
+      <li class="breadcrumb-item active">RTDE register round-trip example</li>
+      <li class="wy-breadcrumbs-aside">
+              <!-- User defined GitHub URL -->
+              <a href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/blob/master/doc/examples/rtde_roundtrip.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="rtde-register-round-trip-example">
+<span id="rtde-roundtrip-example"></span><h1>RTDE register round-trip example<a class="headerlink" href="#rtde-register-round-trip-example" title="Link to this heading"></a></h1>
+<p>This example shows how to write several <a class="reference external" href="https://www.universal-robots.com/articles/ur/interface-communication/real-time-data-exchange-rtde-guide/">Real-Time Data Exchange (RTDE)</a>
+inputs to the robot in a single package, at the robot’s maximum frequency, and how to prove that
+the robot processed them.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">send...()</span></code> helpers on <code class="docutils literal notranslate"><span class="pre">RTDEWriter</span></code> update individual inputs and notify the asynchronous
+writer separately. When several general purpose registers have to change together,
+<code class="docutils literal notranslate"><span class="pre">sendPackage()</span></code> submits them together in one pending-buffer update, avoiding a transmission
+between separate helper calls. It does not guarantee a separate transmission for every call.</p>
+<p>The example’s source code can be found in <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_Client_Library/blob/master/examples/rtde_roundtrip.cpp">rtde_roundtrip.cpp</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>PolyScope 5 and PolyScope X robots have to be powered on and in <em>remote control mode</em>
+for the register-processing program to be accepted.</p>
+</div>
+<section id="recipes-as-argument-lists">
+<h2>Recipes as argument lists<a class="headerlink" href="#recipes-as-argument-lists" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">RTDEClient</span></code> takes the input and output recipes as two lists of field names. Recipe files work
+as well; see <a class="reference internal" href="rtde_client.html#rtde-client-example"><span class="std std-ref">RTDE Client example</span></a>. <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> is part of the output recipe either way,
+because the client adds it if it is missing.</p>
+<p>The general purpose register ranges reserved for external RTDE clients are bit registers
+<code class="docutils literal notranslate"><span class="pre">64..127</span></code> and integer and double registers <code class="docutils literal notranslate"><span class="pre">24..47</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 34 </span><span class="caption-text">examples/rtde_roundtrip.cpp</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">48</span><span class="c1">// We write the inputs, the robot program below writes the outputs.</span>
+<span class="linenos">49</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">INPUT_BIT_REGISTER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;input_bit_register_64&quot;</span><span class="p">;</span>
+<span class="linenos">50</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">INPUT_INT_REGISTER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;input_int_register_24&quot;</span><span class="p">;</span>
+<span class="linenos">51</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">INPUT_DOUBLE_REGISTER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;input_double_register_24&quot;</span><span class="p">;</span>
+<span class="linenos">52</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">OUTPUT_BIT_REGISTER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;output_bit_register_64&quot;</span><span class="p">;</span>
+<span class="linenos">53</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">OUTPUT_INT_REGISTER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;output_int_register_24&quot;</span><span class="p">;</span>
+<span class="linenos">54</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">OUTPUT_DOUBLE_REGISTER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;output_double_register_24&quot;</span><span class="p">;</span>
+<span class="linenos">55</span>
+<span class="linenos">56</span><span class="c1">// RTDE recipes as argument lists, so this example needs no recipe files. RTDEClient also takes two</span>
+<span class="linenos">57</span><span class="c1">// filenames instead; see examples/rtde_client.cpp. The general purpose register ranges used here</span>
+<span class="linenos">58</span><span class="c1">// are the ones the RTDE guide reserves for external clients: bit registers 64..127, integer and</span>
+<span class="linenos">59</span><span class="c1">// double registers 24..47. Register fields need no companion &quot;_mask&quot; key.</span>
+<span class="linenos">60</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">INPUT_RECIPE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">INPUT_BIT_REGISTER</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_INT_REGISTER</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_DOUBLE_REGISTER</span><span class="w"> </span><span class="p">};</span>
+<span class="linenos">61</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">OUTPUT_RECIPE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;timestamp&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;runtime_state&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT_BIT_REGISTER</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT_INT_REGISTER</span><span class="p">,</span>
+<span class="linenos">62</span><span class="w">                                                 </span><span class="n">OUTPUT_DOUBLE_REGISTER</span><span class="w"> </span><span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Register fields, unlike the digital and analog outputs and the speed slider, need no
+companion <code class="docutils literal notranslate"><span class="pre">_mask</span></code> key in the input recipe.</p>
+</div>
+</section>
+<section id="processing-the-registers-on-the-robot">
+<h2>Processing the registers on the robot<a class="headerlink" href="#processing-the-registers-on-the-robot" title="Link to this heading"></a></h2>
+<p>Input registers cannot be written from URScript, and output registers cannot be written through
+RTDE. Getting values back therefore requires a program on the robot.</p>
+<p>The program does not copy the values. RTDE also exposes the input registers as outputs, so a
+plain echo would be indistinguishable from that read-back. Instead the program inverts the bit,
+adds one to the integer and negates the double. A value that satisfies those relations can only
+have been produced by this program. <code class="docutils literal notranslate"><span class="pre">sync()</span></code> runs the loop once per control cycle.</p>
+<p><code class="docutils literal notranslate"><span class="pre">sendScript()</span></code> is used rather than <code class="docutils literal notranslate"><span class="pre">sendScriptBlocking()</span></code>, because the latter would wait until
+the program stops, and this one loops forever.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 35 </span><span class="caption-text">examples/rtde_roundtrip.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">81</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">MIRROR_PROGRAM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">def rtde_register_mirror():</span>
+<span class="linenos">82</span><span class="s">  while (True):</span>
+<span class="linenos">83</span><span class="s">    write_output_boolean_register(64, not read_input_boolean_register(64))</span>
+<span class="linenos">84</span><span class="s">    write_output_integer_register(24, read_input_integer_register(24) + 1)</span>
+<span class="linenos">85</span><span class="s">    write_output_float_register(24, -1.0 * read_input_float_register(24))</span>
+<span class="linenos">86</span><span class="s">    sync()</span>
+<span class="linenos">87</span><span class="s">  end</span>
+<span class="linenos">88</span><span class="s">end</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 36 </span><span class="caption-text">examples/rtde_roundtrip.cpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">137</span><span class="w">  </span><span class="c1">// Start the robot program that processes the registers</span>
+<span class="linenos">138</span><span class="w">  </span><span class="n">primary_interface</span><span class="o">::</span><span class="n">PrimaryClient</span><span class="w"> </span><span class="nf">primary_client</span><span class="p">(</span><span class="n">robot_ip</span><span class="p">,</span><span class="w"> </span><span class="n">notifier</span><span class="p">);</span>
+<span class="linenos">139</span><span class="w">  </span><span class="n">primary_client</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+<span class="linenos">140</span><span class="w">  </span><span class="k">try</span>
+<span class="linenos">141</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos">142</span><span class="w">    </span><span class="n">primary_client</span><span class="p">.</span><span class="n">commandBrakeRelease</span><span class="p">();</span>
+<span class="linenos">143</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">144</span><span class="w">  </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UrException</span><span class="o">&amp;</span><span class="w"> </span><span class="n">e</span><span class="p">)</span>
+<span class="linenos">145</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos">146</span><span class="w">    </span><span class="n">URCL_LOG_WARN</span><span class="p">(</span><span class="s">&quot;Could not release the brakes: %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
+<span class="linenos">147</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">148</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">primary_client</span><span class="p">.</span><span class="n">sendScript</span><span class="p">(</span><span class="n">MIRROR_PROGRAM</span><span class="p">))</span>
+<span class="linenos">149</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos">150</span><span class="w">    </span><span class="n">URCL_LOG_WARN</span><span class="p">(</span><span class="s">&quot;Could not upload the register-processing program. Output registers will stay at &quot;</span>
+<span class="linenos">151</span><span class="w">                  </span><span class="s">&quot;zero until a matching program is running on the robot.&quot;</span><span class="p">);</span>
+<span class="linenos">152</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">153</span><span class="w">  </span><span class="c1">// The program keeps running until we stop it later.</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="an-input-package-with-the-robot-s-field-types">
+<h2>An input package with the robot’s field types<a class="headerlink" href="#an-input-package-with-the-robot-s-field-types" title="Link to this heading"></a></h2>
+<p>The data types of the input recipe belong to the robot and arrive with the handshake, so the
+package has to be created after <code class="docutils literal notranslate"><span class="pre">init()</span></code>. <code class="docutils literal notranslate"><span class="pre">createInputDataPackage()</span></code> returns a zeroed package
+that already carries those types: <code class="docutils literal notranslate"><span class="pre">setData()</span></code> then rejects a wrong type immediately, and
+copying the package into the send buffer is a single memcpy.</p>
+<p>A package constructed from <code class="docutils literal notranslate"><span class="pre">getInputRecipe()</span></code> still works. Its types are taken from the values
+written to it and are only checked when the package is sent.</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 37 </span><span class="caption-text">examples/rtde_roundtrip.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">155</span><span class="w">  </span><span class="c1">// RTDE client at the robot&#39;s maximum frequency</span>
+<span class="linenos">156</span><span class="w">  </span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">RTDEClient</span><span class="w"> </span><span class="nf">my_client</span><span class="p">(</span><span class="n">robot_ip</span><span class="p">,</span><span class="w"> </span><span class="n">notifier</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_RECIPE</span><span class="p">);</span>
+<span class="linenos">157</span><span class="w">  </span><span class="n">my_client</span><span class="p">.</span><span class="n">init</span><span class="p">();</span>
+<span class="linenos">158</span><span class="w">  </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="s">&quot;RTDE target frequency: %f Hz&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">my_client</span><span class="p">.</span><span class="n">getTargetFrequency</span><span class="p">());</span>
+<span class="linenos">159</span>
+<span class="linenos">160</span><span class="w">  </span><span class="c1">// An input package carrying the data types the robot reported for the input recipe. Those types</span>
+<span class="linenos">161</span><span class="w">  </span><span class="c1">// are only known once the RTDE handshake has run, which is why this is created after init().</span>
+<span class="linenos">162</span><span class="w">  </span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">DataPackage</span><span class="w"> </span><span class="n">input_pkg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_client</span><span class="p">.</span><span class="n">createInputDataPackage</span><span class="p">();</span>
+<span class="linenos">163</span><span class="w">  </span><span class="c1">// The output package is still untyped; the first read applies the robot&#39;s types to it in place.</span>
+<span class="linenos">164</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">output_pkg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">DataPackage</span><span class="o">&gt;</span><span class="p">(</span><span class="n">my_client</span><span class="p">.</span><span class="n">getOutputRecipe</span><span class="p">());</span>
+<span class="linenos">165</span>
+<span class="linenos">166</span><span class="w">  </span><span class="n">my_client</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">target_frequency</span> <span class="pre">=</span> <span class="pre">0.0</span></code> (the default) requests the robot’s maximum: 125 Hz on CB3, 500 Hz on
+PolyScope 5 and PolyScope X robots. See <a class="reference internal" href="../real_time.html#real-time-setup"><span class="std std-ref">Setup for real-time scheduling</span></a> and <a class="reference internal" href="../architecture/rtde_client.html#rtde-client"><span class="std std-ref">RTDEClient</span></a>.</p>
+<p>Both <code class="docutils literal notranslate"><span class="pre">DataPackage</span></code> objects are allocated before the loop, so the normal RTDE data receive and
+submission paths reuse their storage without allocation. This does not extend to logging, error
+handling or reconnection. The output package is built from <code class="docutils literal notranslate"><span class="pre">getOutputRecipe()</span></code> and is therefore
+still untyped; the first read applies the robot’s types to it in place, without allocation.</p>
+</section>
+<section id="letting-the-robot-pace-the-loop">
+<h2>Letting the robot pace the loop<a class="headerlink" href="#letting-the-robot-pace-the-loop" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">start(false)</span></code> leaves the background read thread off. <code class="docutils literal notranslate"><span class="pre">getDataPackageBlocking()</span></code> returns once
+per RTDE cycle and is this loop’s time base. The input package is produced immediately after the
+read so it reaches the robot in time to be acted on in the next cycle. Printing is throttled to
+about once per second, so it stays out of the hot path.</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Listing 38 </span><span class="caption-text">examples/rtde_roundtrip.cpp</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">183</span><span class="w">    </span><span class="c1">// The blocking read is this loop&#39;s clock</span>
+<span class="linenos">184</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">my_client</span><span class="p">.</span><span class="n">getDataPackageBlocking</span><span class="p">(</span><span class="n">output_pkg</span><span class="p">))</span>
+<span class="linenos">185</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">186</span><span class="w">      </span><span class="c1">// Ctrl-C interrupts the blocking read, which is a normal stop rather than an error.</span>
+<span class="linenos">187</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">running</span><span class="p">)</span>
+<span class="linenos">188</span><span class="w">      </span><span class="p">{</span>
+<span class="linenos">189</span><span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="linenos">190</span><span class="w">      </span><span class="p">}</span>
+<span class="linenos">191</span><span class="w">      </span><span class="n">URCL_LOG_ERROR</span><span class="p">(</span><span class="s">&quot;Could not get a fresh data package from the robot.&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="writing-several-inputs-in-one-package">
+<h2>Writing several inputs in one package<a class="headerlink" href="#writing-several-inputs-in-one-package" title="Link to this heading"></a></h2>
+<p>The newly created input package contains zeros. Reusing it preserves previously written values
+unless they are changed or reset. <code class="docutils literal notranslate"><span class="pre">sendPackage()</span></code> copies all fields into the pending buffer and
+notifies the writer thread without waiting for transmission. Multiple calls before the writer
+consumes that buffer can be coalesced, with a later package replacing an earlier pending one.
+Separate <code class="docutils literal notranslate"><span class="pre">send...()</span></code> calls may be transmitted separately or coalesced; they are not an atomic
+update of several fields. A successful return means the buffer update was accepted, not that the
+robot received or processed it.</p>
+<p>Without a run duration the loop runs until Ctrl-C is pressed, so the counter wraps at one million
+rather than growing past what an integer register can hold. Every answer carries the counter value
+it belongs to, so verification is unaffected, and the lag is measured modulo the same period.</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-number">Listing 39 </span><span class="caption-text">examples/rtde_roundtrip.cpp</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">233</span><span class="w">    </span><span class="c1">// Writing several general purpose inputs in one package</span>
+<span class="linenos">234</span><span class="w">    </span><span class="o">++</span><span class="n">cycles</span><span class="p">;</span>
+<span class="linenos">235</span><span class="w">    </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">COUNTER_WRAP</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">236</span><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">sent_bit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">237</span><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">sent_double</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">counter</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">SINE_INCREMENT</span><span class="p">);</span>
+<span class="linenos">238</span><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">write_ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">input_pkg</span><span class="p">.</span><span class="n">setData</span><span class="p">(</span><span class="n">INPUT_BIT_REGISTER</span><span class="p">,</span><span class="w"> </span><span class="n">sent_bit</span><span class="p">);</span>
+<span class="linenos">239</span><span class="w">    </span><span class="n">write_ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">write_ok</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">input_pkg</span><span class="p">.</span><span class="n">setData</span><span class="p">(</span><span class="n">INPUT_INT_REGISTER</span><span class="p">,</span><span class="w"> </span><span class="n">counter</span><span class="p">);</span>
+<span class="linenos">240</span><span class="w">    </span><span class="n">write_ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">write_ok</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">input_pkg</span><span class="p">.</span><span class="n">setData</span><span class="p">(</span><span class="n">INPUT_DOUBLE_REGISTER</span><span class="p">,</span><span class="w"> </span><span class="n">sent_double</span><span class="p">);</span>
+<span class="linenos">241</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">write_ok</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="n">my_client</span><span class="p">.</span><span class="n">getWriter</span><span class="p">().</span><span class="n">sendPackage</span><span class="p">(</span><span class="n">input_pkg</span><span class="p">))</span>
+<span class="linenos">242</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">243</span><span class="w">      </span><span class="n">URCL_LOG_ERROR</span><span class="p">(</span><span class="s">&quot;Sending RTDE data failed.&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="verifying-that-the-robot-processed-the-data">
+<h2>Verifying that the robot processed the data<a class="headerlink" href="#verifying-that-the-robot-processed-the-data" title="Link to this heading"></a></h2>
+<p>All three values sent in a cycle are derived from the cycle counter, so the integer the robot
+returns identifies which cycle an answer belongs to. <code class="docutils literal notranslate"><span class="pre">echoed_int</span> <span class="pre">-</span> <span class="pre">1</span></code> is that counter. The
+expected bit is its inversion and the expected double is the negated sine. The robot’s double
+register is a 64-bit value, so the negated sine comes back bit for bit and is compared exactly.
+Together with the inverted bit, that is what makes an answer attributable to this program rather
+than to RTDE’s own read-back of the input registers.</p>
+<p>Against URSim the lag is one cycle: the values written after the read of cycle N are processed by
+the robot and observed in the read of cycle N+1. <code class="docutils literal notranslate"><span class="pre">getData()</span></code> needs a variable of the field’s own
+type; <code class="docutils literal notranslate"><span class="pre">getDataType()</span></code> reports that type if the recipe is not known in advance.</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-number">Listing 40 </span><span class="caption-text">examples/rtde_roundtrip.cpp</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">197</span><span class="w">    </span><span class="c1">// Reading what the robot made of the previous package</span>
+<span class="linenos">198</span><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">echoed_bit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="linenos">199</span><span class="w">    </span><span class="kt">int32_t</span><span class="w"> </span><span class="n">echoed_int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">200</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">echoed_double</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="linenos">201</span><span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">runtime_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">202</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">output_pkg</span><span class="o">-&gt;</span><span class="n">getData</span><span class="p">(</span><span class="n">OUTPUT_BIT_REGISTER</span><span class="p">,</span><span class="w"> </span><span class="n">echoed_bit</span><span class="p">)</span><span class="w"> </span><span class="o">||</span>
+<span class="linenos">203</span><span class="w">        </span><span class="o">!</span><span class="n">output_pkg</span><span class="o">-&gt;</span><span class="n">getData</span><span class="p">(</span><span class="n">OUTPUT_INT_REGISTER</span><span class="p">,</span><span class="w"> </span><span class="n">echoed_int</span><span class="p">)</span><span class="w"> </span><span class="o">||</span>
+<span class="linenos">204</span><span class="w">        </span><span class="o">!</span><span class="n">output_pkg</span><span class="o">-&gt;</span><span class="n">getData</span><span class="p">(</span><span class="n">OUTPUT_DOUBLE_REGISTER</span><span class="p">,</span><span class="w"> </span><span class="n">echoed_double</span><span class="p">)</span><span class="w"> </span><span class="o">||</span>
+<span class="linenos">205</span><span class="w">        </span><span class="o">!</span><span class="n">output_pkg</span><span class="o">-&gt;</span><span class="n">getData</span><span class="p">(</span><span class="s">&quot;runtime_state&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">runtime_state</span><span class="p">))</span>
+<span class="linenos">206</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">207</span><span class="w">      </span><span class="n">URCL_LOG_ERROR</span><span class="p">(</span><span class="s">&quot;Could not read the output registers from the received package.&quot;</span><span class="p">);</span>
+<span class="linenos">208</span><span class="w">      </span><span class="n">exit_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">209</span><span class="w">      </span><span class="k">break</span><span class="p">;</span>
+<span class="linenos">210</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">211</span>
+<span class="linenos">212</span><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">verified_this_cycle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="linenos">213</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">echoed_int</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">214</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">215</span><span class="w">      </span><span class="k">const</span><span class="w"> </span><span class="kt">int32_t</span><span class="w"> </span><span class="n">origin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">echoed_int</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">  </span><span class="c1">// the counter value the robot processed</span>
+<span class="linenos">216</span><span class="w">      </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">expected_bit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="p">((</span><span class="n">origin</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="linenos">217</span><span class="w">      </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">expected_double</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">origin</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">SINE_INCREMENT</span><span class="p">);</span>
+<span class="linenos">218</span><span class="w">      </span><span class="c1">// Taken modulo the wrap period, so a lag measured across a wrap is still a small number.</span>
+<span class="linenos">219</span><span class="w">      </span><span class="n">last_lag_cycles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">counter</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">origin</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">COUNTER_WRAP</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">COUNTER_WRAP</span><span class="p">;</span>
+<span class="linenos">220</span><span class="w">      </span><span class="c1">// The robot&#39;s double register is a 64-bit value, so the negated sine has to come back bit</span>
+<span class="linenos">221</span><span class="w">      </span><span class="c1">// for bit. Together with the inverted bit that is the proof the robot processed this cycle.</span>
+<span class="linenos">222</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">echoed_bit</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">expected_bit</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">echoed_double</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">expected_double</span><span class="p">)</span>
+<span class="linenos">223</span><span class="w">      </span><span class="p">{</span>
+<span class="linenos">224</span><span class="w">        </span><span class="o">++</span><span class="n">verified</span><span class="p">;</span>
+<span class="linenos">225</span><span class="w">        </span><span class="n">verified_this_cycle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="linenos">226</span><span class="w">      </span><span class="p">}</span>
+<span class="linenos">227</span><span class="w">      </span><span class="k">else</span>
+<span class="linenos">228</span><span class="w">      </span><span class="p">{</span>
+<span class="linenos">229</span><span class="w">        </span><span class="o">++</span><span class="n">mismatches</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="cleanup">
+<h2>Cleanup<a class="headerlink" href="#cleanup" title="Link to this heading"></a></h2>
+<p>The input registers are reset and the robot program is stopped. A failed stop is only logged,
+because CI runs the example for one second and still requires exit code 0.</p>
+<p>The loop ends when the run duration has passed, when an RTDE read or write fails, or when Ctrl-C
+is pressed. A <code class="docutils literal notranslate"><span class="pre">SIGINT</span></code> handler only clears <code class="docutils literal notranslate"><span class="pre">running</span></code>, so every one of these paths leaves the
+loop and runs <code class="docutils literal notranslate"><span class="pre">cleanup()</span></code>, and the program does not keep running on the robot. Ctrl-C can
+interrupt the blocking read, so a failed read after Ctrl-C ends the example normally. Resetting
+the registers may then fail, but the robot program is still stopped.</p>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-number">Listing 41 </span><span class="caption-text">examples/rtde_roundtrip.cpp</span><a class="headerlink" href="#id8" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 90</span><span class="c1">// Cleared on Ctrl-C, so the main loop ends and the cleanup below still runs.</span>
+<span class="linenos"> 91</span><span class="k">volatile</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">sig_atomic_t</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos"> 92</span>
+<span class="linenos"> 93</span><span class="kt">void</span><span class="w"> </span><span class="nf">signalHandler</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="cm">/*signum*/</span><span class="p">)</span>
+<span class="linenos"> 94</span><span class="p">{</span>
+<span class="linenos"> 95</span><span class="w">  </span><span class="n">running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 96</span><span class="p">}</span>
+<span class="linenos"> 97</span>
+<span class="linenos"> 98</span><span class="c1">// Reset the input registers and stop the robot program before leaving</span>
+<span class="linenos"> 99</span><span class="kt">void</span><span class="w"> </span><span class="nf">cleanup</span><span class="p">(</span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">RTDEClient</span><span class="o">&amp;</span><span class="w"> </span><span class="n">rtde_client</span><span class="p">,</span><span class="w"> </span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">DataPackage</span><span class="o">&amp;</span><span class="w"> </span><span class="n">input_pkg</span><span class="p">,</span>
+<span class="linenos">100</span><span class="w">             </span><span class="n">primary_interface</span><span class="o">::</span><span class="n">PrimaryClient</span><span class="o">&amp;</span><span class="w"> </span><span class="n">primary_client</span><span class="p">)</span>
+<span class="linenos">101</span><span class="p">{</span>
+<span class="linenos">102</span><span class="w">  </span><span class="n">input_pkg</span><span class="p">.</span><span class="n">setData</span><span class="p">(</span><span class="n">INPUT_BIT_REGISTER</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span>
+<span class="linenos">103</span><span class="w">  </span><span class="n">input_pkg</span><span class="p">.</span><span class="n">setData</span><span class="p">(</span><span class="n">INPUT_INT_REGISTER</span><span class="p">,</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+<span class="linenos">104</span><span class="w">  </span><span class="n">input_pkg</span><span class="p">.</span><span class="n">setData</span><span class="p">(</span><span class="n">INPUT_DOUBLE_REGISTER</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span>
+<span class="linenos">105</span><span class="w">  </span><span class="n">rtde_client</span><span class="p">.</span><span class="n">getWriter</span><span class="p">().</span><span class="n">sendPackage</span><span class="p">(</span><span class="n">input_pkg</span><span class="p">);</span>
+<span class="linenos">106</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span>
+<span class="linenos">107</span><span class="w">  </span><span class="k">try</span>
+<span class="linenos">108</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos">109</span><span class="w">    </span><span class="n">primary_client</span><span class="p">.</span><span class="n">commandStop</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+<span class="linenos">110</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">111</span><span class="w">  </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UrException</span><span class="o">&amp;</span><span class="w"> </span><span class="n">e</span><span class="p">)</span>
+<span class="linenos">112</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos">113</span><span class="w">    </span><span class="n">URCL_LOG_WARN</span><span class="p">(</span><span class="s">&quot;Could not stop the robot program: %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
+<span class="linenos">114</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">115</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="example-output">
+<h2>Example output<a class="headerlink" href="#example-output" title="Link to this heading"></a></h2>
+<p>The following shows a run against URSim 5.25.1 asking for 500 Hz. The echoed integer trails the
+sent integer by one cycle, and <code class="docutils literal notranslate"><span class="pre">verified=1</span></code> means the bit and the double match the
+transformations the robot program applies to that cycle.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">INFO</span><span class="p">]</span> <span class="n">RTDE</span> <span class="n">target</span> <span class="n">frequency</span><span class="p">:</span> <span class="mf">500.000000</span> <span class="n">Hz</span>
+<span class="n">sent</span><span class="p">:</span> <span class="n">bit</span><span class="o">=</span><span class="mi">1</span> <span class="nb">int</span><span class="o">=</span><span class="mi">484</span> <span class="n">double</span><span class="o">=-</span><span class="mf">0.991869</span> <span class="o">|</span> <span class="n">robot</span><span class="p">:</span> <span class="n">bit</span><span class="o">=</span><span class="mi">0</span> <span class="nb">int</span><span class="o">=</span><span class="mi">483</span> <span class="n">double</span><span class="o">=</span><span class="mf">0.994216</span> <span class="o">|</span> <span class="n">verified</span><span class="o">=</span><span class="mi">1</span> <span class="n">lag_cycles</span><span class="o">=</span><span class="mi">1</span> <span class="n">freq</span><span class="o">=</span><span class="mf">483.063</span> <span class="n">Hz</span> <span class="n">playing</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">sent</span><span class="p">:</span> <span class="n">bit</span><span class="o">=</span><span class="mi">0</span> <span class="nb">int</span><span class="o">=</span><span class="mi">967</span> <span class="n">double</span><span class="o">=-</span><span class="mf">0.242772</span> <span class="o">|</span> <span class="n">robot</span><span class="p">:</span> <span class="n">bit</span><span class="o">=</span><span class="mi">1</span> <span class="nb">int</span><span class="o">=</span><span class="mi">966</span> <span class="n">double</span><span class="o">=</span><span class="mf">0.223323</span> <span class="o">|</span> <span class="n">verified</span><span class="o">=</span><span class="mi">1</span> <span class="n">lag_cycles</span><span class="o">=</span><span class="mi">1</span> <span class="n">freq</span><span class="o">=</span><span class="mf">482.826</span> <span class="n">Hz</span> <span class="n">playing</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">sent</span><span class="p">:</span> <span class="n">bit</span><span class="o">=</span><span class="mi">1</span> <span class="nb">int</span><span class="o">=</span><span class="mi">1450</span> <span class="n">double</span><span class="o">=</span><span class="mf">0.934895</span> <span class="o">|</span> <span class="n">robot</span><span class="p">:</span> <span class="n">bit</span><span class="o">=</span><span class="mi">0</span> <span class="nb">int</span><span class="o">=</span><span class="mi">1449</span> <span class="n">double</span><span class="o">=-</span><span class="mf">0.941806</span> <span class="o">|</span> <span class="n">verified</span><span class="o">=</span><span class="mi">1</span> <span class="n">lag_cycles</span><span class="o">=</span><span class="mi">1</span> <span class="n">freq</span><span class="o">=</span><span class="mf">482.669</span> <span class="n">Hz</span> <span class="n">playing</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">[</span><span class="n">INFO</span><span class="p">]</span> <span class="n">Cycles</span><span class="p">:</span> <span class="mi">1931</span><span class="p">,</span> <span class="n">average</span> <span class="n">frequency</span><span class="p">:</span> <span class="mf">482.628400</span> <span class="n">Hz</span><span class="p">,</span> <span class="n">verified</span><span class="p">:</span> <span class="mi">1929</span><span class="p">,</span> <span class="n">mismatches</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">last</span> <span class="n">lag</span><span class="p">:</span> <span class="mi">1</span> <span class="n">cycles</span>
+</pre></div>
+</div>
+<p>A simulator shares the host’s CPU, so the measured frequency stays somewhat below the requested
+one; on a real controller it tracks the target closely.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="rtde_client.html" class="btn btn-neutral float-left" title="RTDE Client example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="external_fts_through_rtde.html" class="btn btn-neutral float-right" title="External FTS example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Universal Robots A/S.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> ROS 2</span>
+      Jazzy
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../../../jazzy/doc/ur_client_library/doc/examples/rtde_roundtrip.html">Jazzy</a></dd>
+        
+          <dd><a href="../../../../../kilted/doc/ur_client_library/doc/examples/rtde_roundtrip.html">Kilted</a></dd>
+        
+          <dd><a href="../../../../../rolling/doc/ur_client_library/doc/examples/rtde_roundtrip.html">Rolling</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

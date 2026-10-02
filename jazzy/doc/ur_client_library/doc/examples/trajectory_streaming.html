@@ -62,6 +62,7 @@
 <li class="toctree-l3"><a class="reference internal" href="primary_pipeline.html">Primary Pipeline example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="primary_pipeline_calibration.html">Primary Pipeline Calibration example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="rtde_client.html">RTDE Client example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rtde_roundtrip.html">RTDE register round-trip example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="external_fts_through_rtde.html">External FTS example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="script_command_interface.html">Script command interface</a></li>
 <li class="toctree-l3"><a class="reference internal" href="script_sender.html">Script Sender example</a></li>
@@ -133,7 +134,7 @@ example code and refers back to that section for the authoritative contract.</p>
 <p>As with the other examples, we create a <code class="docutils literal notranslate"><span class="pre">UrDriver</span></code> (here through <code class="docutils literal notranslate"><span class="pre">ExampleRobotWrapper</span></code>) and
 register a callback that fires when a trajectory finishes:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 66 </span><span class="caption-text">examples/trajectory_streaming.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 74 </span><span class="caption-text">examples/trajectory_streaming.cpp</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">137</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">headless_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <span class="linenos">138</span><span class="w">  </span><span class="n">g_my_robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">urcl</span><span class="o">::</span><span class="n">ExampleRobotWrapper</span><span class="o">&gt;</span><span class="p">(</span><span class="n">robot_ip</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">headless_mode</span><span class="p">,</span>
 <span class="linenos">139</span><span class="w">                                                           </span><span class="s">&quot;external_control.urp&quot;</span><span class="p">);</span>
@@ -150,7 +151,7 @@ register a callback that fires when a trajectory finishes:</p>
 <p>Trajectory execution is asynchronous, so completion is reported through a callback. The result
 distinguishes a successful run from a cancellation or a failure:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 67 </span><span class="caption-text">examples/trajectory_streaming.cpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 75 </span><span class="caption-text">examples/trajectory_streaming.cpp</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">71</span><span class="kt">void</span><span class="w"> </span><span class="nf">trajDoneCallback</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">urcl</span><span class="o">::</span><span class="n">control</span><span class="o">::</span><span class="n">TrajectoryResult</span><span class="o">&amp;</span><span class="w"> </span><span class="n">result</span><span class="p">)</span>
 <span class="linenos">72</span><span class="p">{</span>
 <span class="linenos">73</span><span class="w">  </span><span class="n">g_trajectory_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
@@ -164,7 +165,7 @@ distinguishes a successful run from a cancellation or a failure:</p>
 still alive. We do this by sending <code class="docutils literal notranslate"><span class="pre">TRAJECTORY_NOOP</span></code> messages while we wait; without them the robot
 program stops waiting for input and the <code class="docutils literal notranslate"><span class="pre">external_control</span></code> program exits:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 68 </span><span class="caption-text">examples/trajectory_streaming.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 76 </span><span class="caption-text">examples/trajectory_streaming.cpp</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">78</span><span class="c1">// Pump TRAJECTORY_NOOP on the reverse socket while waiting for the</span>
 <span class="linenos">79</span><span class="c1">// trajectory-done callback. Without this the URScript dispatcher&#39;s</span>
 <span class="linenos">80</span><span class="c1">// reverse_socket read times out, which terminates the external_control</span>
@@ -188,7 +189,7 @@ blend has zero velocity and acceleration at both endpoints, which – as the str
 recommends – gives the final point the controlled-stop property needed to bring the robot cleanly to
 rest:</p>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 69 </span><span class="caption-text">examples/trajectory_streaming.cpp</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 77 </span><span class="caption-text">examples/trajectory_streaming.cpp</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 91</span><span class="c1">// Sample a quintic-Hermite interpolation between q_start and q_end with zero</span>
 <span class="linenos"> 92</span><span class="c1">// boundary velocity and acceleration, evaluated at fractional time s in [0, 1]</span>
 <span class="linenos"> 93</span><span class="c1">// for a segment of total duration t_total:</span>
@@ -233,7 +234,7 @@ rest:</p>
 <p>Before streaming, we park the robot at a known start pose using an ordinary finite trajectory. This
 doubles as a demonstration of the <code class="docutils literal notranslate"><span class="pre">TRAJECTORY_START</span></code> path for comparison:</p>
 <div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-number">Listing 70 </span><span class="caption-text">examples/trajectory_streaming.cpp</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 78 </span><span class="caption-text">examples/trajectory_streaming.cpp</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">149</span><span class="w">  </span><span class="c1">// Park the robot at a known starting pose before the streaming demo. This</span>
 <span class="linenos">150</span><span class="w">  </span><span class="c1">// also exercises the finite TRAJECTORY_START path for comparison.</span>
 <span class="linenos">151</span>
@@ -261,7 +262,7 @@ doubles as a demonstration of the <code class="docutils literal notranslate"><sp
 <p>We precompute all of the points up front. The final point inherits the <code class="docutils literal notranslate"><span class="pre">qd</span> <span class="pre">=</span> <span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">qdd</span> <span class="pre">=</span> <span class="pre">0</span></code>
 boundary condition of the quintic blend, so it is a compliant controlled-stop terminal:</p>
 <div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-number">Listing 71 </span><span class="caption-text">examples/trajectory_streaming.cpp</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 79 </span><span class="caption-text">examples/trajectory_streaming.cpp</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">169</span><span class="w">  </span><span class="c1">// Stream a quintic-Hermite motion from pose A to pose B. All points are</span>
 <span class="linenos">170</span><span class="w">  </span><span class="c1">// precomputed and written back-to-back; the robot works through them at its</span>
 <span class="linenos">171</span><span class="w">  </span><span class="c1">// own pace. See doc/examples/trajectory_streaming.rst for details.</span>
@@ -286,7 +287,7 @@ boundary condition of the quintic blend, so it is a compliant controlled-stop te
 write every point back-to-back, then close it, passing the total number of points written so the
 controller knows how many are still outstanding before it reports completion:</p>
 <div class="literal-block-wrapper docutils container" id="id8">
-<div class="code-block-caption"><span class="caption-number">Listing 72 </span><span class="caption-text">examples/trajectory_streaming.cpp</span><a class="headerlink" href="#id8" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 80 </span><span class="caption-text">examples/trajectory_streaming.cpp</span><a class="headerlink" href="#id8" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">187</span><span class="w">  </span><span class="n">URCL_LOG_INFO</span><span class="p">(</span><span class="s">&quot;Streaming %d points over %.2f s nominal motion duration&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">k_num_points</span><span class="p">,</span><span class="w"> </span><span class="n">k_motion_duration_s</span><span class="p">);</span>
 <span class="linenos">188</span><span class="w">  </span><span class="n">g_trajectory_done</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="linenos">189</span><span class="w">  </span><span class="n">g_trajectory_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">urcl</span><span class="o">::</span><span class="n">control</span><span class="o">::</span><span class="n">TrajectoryResult</span><span class="o">::</span><span class="n">TRAJECTORY_RESULT_UNKNOWN</span><span class="p">;</span>
