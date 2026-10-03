@@ -280,6 +280,15 @@ commands’ docstrings for details.</p>
 </pre></div>
 </div>
 </div>
+<section id="connection-timeout">
+<h2>Connection timeout<a class="headerlink" href="#connection-timeout" title="Link to this heading"></a></h2>
+<p>When the robot is switched off, it neither accepts nor refuses connection requests. Use
+<code class="docutils literal notranslate"><span class="pre">setConnectTimeout()</span></code> before calling <code class="docutils literal notranslate"><span class="pre">connect()</span></code> to limit how long a single connection attempt
+may take. By default, the connect timeout is disabled for CB3 and PolyScope 5, where each attempt
+waits until the operating system gives up (Up to about two minutes on Linux), and set to 5 seconds for
+PolyScope X. For PolyScope X, a timeout of zero selects the HTTP library’s built-in limit of 300
+seconds.</p>
+</section>
 <section id="cb-3-and-polyscope-5-only">
 <h2>CB 3 and PolyScope 5 only<a class="headerlink" href="#cb-3-and-polyscope-5-only" title="Link to this heading"></a></h2>
 <p>All commands are blocking and will wait for the necessary action being done. The dashboard server’s

@@ -184,6 +184,19 @@ following will work</p>
 <p class="admonition-title">Note</p>
 <p><code class="docutils literal notranslate"><span class="pre">timestamp</span></code> will always be a part of the output recipe and will be added afterwards, if not defined. As the <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> used for verifying the connectivity.</p>
 </div>
+<section id="connection-timeout">
+<h2>Connection timeout<a class="headerlink" href="#connection-timeout" title="Link to this heading"></a></h2>
+<p>When the robot is switched off, it neither accepts nor refuses connection requests, and each
+connection attempt of <code class="docutils literal notranslate"><span class="pre">init()</span></code> waits until the operating system gives up. On Linux this takes
+up to about two minutes. To give up earlier, set a connect timeout before calling <code class="docutils literal notranslate"><span class="pre">init()</span></code>. It applies
+to each single connection attempt, including automatic reconnects:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">rtde_interface</span><span class="o">::</span><span class="n">RTDEClient</span><span class="w"> </span><span class="nf">my_client</span><span class="p">(</span><span class="n">ROBOT_IP</span><span class="p">,</span><span class="w"> </span><span class="n">notifier</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT_RECIPE</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_RECIPE</span><span class="p">);</span>
+<span class="n">my_client</span><span class="p">.</span><span class="n">setConnectTimeout</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+<span class="n">my_client</span><span class="p">.</span><span class="n">init</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w">  </span><span class="c1">// Throws after about 2 seconds, if the robot does not answer</span>
+</pre></div>
+</div>
+<p>By default, the connect timeout is disabled and the operating system’s timeout applies.</p>
+</section>
 <section id="reading-data">
 <h2>Reading data<a class="headerlink" href="#reading-data" title="Link to this heading"></a></h2>
 <p>After calling <code class="docutils literal notranslate"><span class="pre">my_client.start()</span></code>, data can be read from the <code class="docutils literal notranslate"><span class="pre">RTDEClient</span></code>. Which read method

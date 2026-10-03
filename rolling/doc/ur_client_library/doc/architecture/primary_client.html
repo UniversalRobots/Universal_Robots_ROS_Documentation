@@ -116,6 +116,12 @@
 <span id="primary-client"></span><h1>PrimaryClient<a class="headerlink" href="#primaryclient" title="Link to this heading"></a></h1>
 <p>The Primary Client serves as an interface to the robot’s <a class="reference external" href="https://docs.universal-robots.com/tutorials/communication-protocol-tutorials/primary-secondary-guide.html">primary interface</a>, present on port 30001.
 The <code class="docutils literal notranslate"><span class="pre">PrimaryClient</span></code> class supports, among other things, sending URScript code for execution on the robot through the primary interface. Currently it offers two methods of script execution: <code class="docutils literal notranslate"><span class="pre">sendScript</span></code> and <code class="docutils literal notranslate"><span class="pre">sendScriptBlocking</span></code>.</p>
+<section id="connection-timeout">
+<h2>Connection timeout<a class="headerlink" href="#connection-timeout" title="Link to this heading"></a></h2>
+<p>When the robot is switched off, it neither accepts nor refuses connection requests, and each connection attempt of <code class="docutils literal notranslate"><span class="pre">start()</span></code> waits until the operating system gives up. In some cases on Linux this can take about two minutes.
+To give up earlier, set a connect timeout with <code class="docutils literal notranslate"><span class="pre">setConnectTimeout()</span></code> before calling <code class="docutils literal notranslate"><span class="pre">start()</span></code>. It applies to each single connection attempt, including automatic reconnects.
+By default, the connect timeout is disabled and the operating system’s timeout applies.</p>
+</section>
 <section id="script-execution-without-feedback">
 <h2>Script execution without feedback<a class="headerlink" href="#script-execution-without-feedback" title="Link to this heading"></a></h2>
 <p>Method signature:</p>
