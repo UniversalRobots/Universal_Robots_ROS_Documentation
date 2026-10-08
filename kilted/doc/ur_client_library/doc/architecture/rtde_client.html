@@ -385,7 +385,9 @@ zeros, while incompatible types cause <code class="docutils literal notranslate"
 <p>If direct <code class="docutils literal notranslate"><span class="pre">RTDEWriter</span></code> use is required instead of the recommended <code class="docutils literal notranslate"><span class="pre">RTDEClient</span></code> flow, perform the RTDE handshake
 and configure the stopped writer with <code class="docutils literal notranslate"><span class="pre">setProtocolVersion(negotiated_version)</span></code> and
 <code class="docutils literal notranslate"><span class="pre">setRecipeTypes(acknowledged_types)</span></code> before calling <code class="docutils literal notranslate"><span class="pre">init(recipe_id)</span></code> with the acknowledged
-input recipe ID. Constructing the writer or calling <code class="docutils literal notranslate"><span class="pre">init(recipe_id)</span></code> alone does not establish
+input recipe ID. <code class="docutils literal notranslate"><span class="pre">acknowledged_types</span></code> is a <code class="docutils literal notranslate"><span class="pre">std::vector&lt;rtde_interface::DataType&gt;</span></code>; the
+type names of the robot’s setup answer are converted with <code class="docutils literal notranslate"><span class="pre">rtde_interface::parseDataTypes()</span></code>,
+which also keeps the <code class="docutils literal notranslate"><span class="pre">NOT_FOUND</span></code> and <code class="docutils literal notranslate"><span class="pre">IN_USE</span></code> entries visible. Constructing the writer or calling <code class="docutils literal notranslate"><span class="pre">init(recipe_id)</span></code> alone does not establish
 the field types. <code class="docutils literal notranslate"><span class="pre">RTDEClient::init()</span></code> handles these steps automatically.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
