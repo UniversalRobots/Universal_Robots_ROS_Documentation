@@ -136,7 +136,7 @@ acceleration parameters will be ignored if there is a time &gt; 0 given.</p>
 <section id="communication-protocol">
 <h2>Communication protocol<a class="headerlink" href="#communication-protocol" title="Link to this heading"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">TrajectoryPointInterface</span></code>’s “trajectory_socket” on the robot is expecting 32 bit integer
-representations in 21 datafields. The data fields have the following meaning:</p>
+representations in 22 datafields. The data fields have the following meaning:</p>
 <table class="docutils align-default" id="id2">
 <caption><span class="caption-number">Table 17 </span><span class="caption-text">trajectory_socket message format</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
 <thead>
@@ -229,6 +229,25 @@ robot controller)</p></li>
 </ul>
 </td>
 </tr>
+<tr class="row-even"><td><p>21</p></td>
+<td><p>the identifier of the move this point belongs to, as a raw integer. The robot executes
+only those points whose identifier matches the move it is currently running, and
+discards the rest. This is what keeps points that a producer wrote for a move which has
+already failed or been cancelled from being executed by whichever move runs next, since
+the producer cannot learn of the end of a move instantly and may keep writing for a
+short while afterwards. The identifier is announced to the robot in the control message
+that begins the move, and is assigned by <code class="docutils literal notranslate"><span class="pre">UrDriver</span></code>, which increments it once per
+move for the life of a connection. A value of 0 belongs to no move and is what the
+robot holds before it has been told about any.</p>
+<p>Callers driving the interfaces directly opt in by setting the identifier with
+<code class="docutils literal notranslate"><span class="pre">setMoveId()</span></code> on both this interface and the <code class="docutils literal notranslate"><span class="pre">ReverseInterface</span></code>. If they never do,
+both stay 0, the robot executes every point it receives, and it cannot recognize points
+left over from an earlier move.</p>
+<p>A point carries the identifier current when it is written, so this depends on the caller
+finishing a move’s writes before beginning the next, which is required of producers in
+any case. See <a class="reference internal" href="reverse_interface.html#reverse-interface"><span class="std std-ref">ReverseInterface</span></a>.</p>
+</td>
+</tr>
 </tbody>
 </table>
 <p>where</p>
@@ -252,6 +271,14 @@ profile to become jagged, which can trigger controller faults. Values exceeding 
 <p>Finer scaling is only used when the control script defines the matching multiplier through
 the <code class="docutils literal notranslate"><span class="pre">{{VEL_ACC_REPLACE}}</span></code> placeholder. For user-supplied scripts without that placeholder the
 library falls back to encoding spline velocities and accelerations with <code class="docutils literal notranslate"><span class="pre">MULT_JOINTSTATE</span></code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The move identifier at index 21 is only sent when the control script declares support for it
+through the <code class="docutils literal notranslate"><span class="pre">{{TRAJECTORY_MOVE_IDS_REPLACE}}</span></code> placeholder. For user-supplied scripts without
+that placeholder, <code class="docutils literal notranslate"><span class="pre">UrDriver</span></code> sends the 21 field record that predates move identifiers and
+assigns none, so such a script cannot recognize points left over from an earlier move. Callers
+driving the interface directly select the record with <code class="docutils literal notranslate"><span class="pre">setMoveIdSupport()</span></code>.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

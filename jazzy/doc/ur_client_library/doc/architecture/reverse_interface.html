@@ -155,6 +155,7 @@ meaning:</p>
 <ul>
 <li><p>field 1: Trajectory control mode (1: TRAJECTORY_MODE_RECEIVE, 2: TRAJECTORY_MODE_STREAM_START, 3: TRAJECTORY_MODE_STREAM_END, -1: TRAJECTORY_MODE_CANCEL). See <a class="reference internal" href="#streaming-trajectories"><span class="std std-ref">Streaming trajectories</span></a> for the streaming modes.</p></li>
 <li><p>field 2: Trajectory point count. Its interpretation depends on the control mode in field 1.</p></li>
+<li><p>field 3: The identifier of the move that is being started, for the two control modes which start one. The robot adopts this identifier and then executes only those trajectory points which carry it, and that is what prevents points left over from a move that has already ended from running as part of the next one. The remaining control modes do not start a move, and the robot ignores the field for them. The field is 0 unless set with <code class="docutils literal notranslate"><span class="pre">setMoveId()</span></code>, which <code class="docutils literal notranslate"><span class="pre">UrDriver</span></code> does for every move. See <a class="reference internal" href="trajectory_point_interface.html#trajectory-point-interface"><span class="std std-ref">Trajectory Point Interface</span></a> for the point record which carries the identifier back.</p></li>
 </ul>
 </li>
 <li><p>Cartesian velocities (SPEEDL)</p></li>
@@ -232,7 +233,7 @@ account for those still in flight before completing. Aborting a stream with <cod
 requires the same count, for the same reason. (For a finite <code class="docutils literal notranslate"><span class="pre">TRAJECTORY_START</span></code> trajectory the
 cancel argument is unused.)</p>
 </div>
-<p>Two obligations fall on the producer:</p>
+<p>Three obligations fall on the producer:</p>
 <ul class="simple">
 <li><p><strong>Do not starve the controller.</strong> The robot consumes the stream as it executes it, so the producer
 must keep work available: the next primitive must arrive before the robot finishes the ones it
@@ -246,6 +247,10 @@ them back, is the natural way to satisfy this.</p></li>
 controlled stop, with zero velocity and acceleration, so the spline interpolates smoothly to rest at
 the goal. The trajectory thread issues <code class="docutils literal notranslate"><span class="pre">stopj</span></code> on exit regardless, so a non-zero terminal point
 still stops the robot, but the transition will be less smooth.</p></li>
+<li><p><strong>Keep each move’s points within its own bounds.</strong> All of a move’s points must be written after the
+control message that begins it, and before the control message that ends it or begins the next. A
+producer running on its own thread must be quiesced, not merely signalled to stop, before another
+thread sends either.</p></li>
 </ul>
 <p>On completion the callback registered with <code class="docutils literal notranslate"><span class="pre">setTrajectoryEndCallback()</span></code> reports
 <code class="docutils literal notranslate"><span class="pre">TRAJECTORY_RESULT_SUCCESS</span></code> for a clean end (<code class="docutils literal notranslate"><span class="pre">TRAJECTORY_STREAM_END</span></code> processed, all points
