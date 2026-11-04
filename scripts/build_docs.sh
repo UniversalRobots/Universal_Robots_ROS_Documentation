@@ -43,7 +43,9 @@ build_one() {
   echo -e "\n\n====== Building documentation for ROS 2 distro: ${distro} ======\n"
   clean_subrepos
   vcs import --input "${distro}.repos" doc
-  sphinx-build -b html . "${ROOT}/_build/html/${distro}"
+  sphinx-build \
+    -d "${ROOT}/_build/doctrees/${distro}" \
+    -b html . "${ROOT}/_build/html/${distro}"
 }
 
 # Place a version-less HTML stub for each page in <target>/ so that
