@@ -129,7 +129,7 @@ status information about the robot.</p>
 <section id="published-topics">
 <h4>Published topics<a class="headerlink" href="#published-topics" title="Link to this heading"></a></h4>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">~/io_states</span> <span class="pre">[ur_msgs/msg/IOStates]</span></code>: Status of all I/O ports</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/io_states</span> <span class="pre">[ur_msgs/msg/IOStates]</span></code>: Status of all I/O ports (except T1 and T2)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">~/robot_mode</span> <span class="pre">[ur_dashboard_msgs/msg/RobotMode]</span></code>: The current robot mode (e.g. <code class="docutils literal notranslate"><span class="pre">POWER_OFF</span></code>,
 <code class="docutils literal notranslate"><span class="pre">IDLE</span></code>, <code class="docutils literal notranslate"><span class="pre">RUNNING</span></code>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">~/robot_program_running</span> <span class="pre">[std_msgs/msg/Bool]</span></code>: Publishes whether <strong>the External Control
@@ -137,6 +137,21 @@ program</strong> is running or not. If this is <code class="docutils literal not
 <li><p><code class="docutils literal notranslate"><span class="pre">~/safety_mode</span> <span class="pre">[ur_dashboard_msgs/msg/SafetyMode]</span></code>: The robot’s current safety mode (e.g.
 <code class="docutils literal notranslate"><span class="pre">PROTECTIVE_STOP</span></code>, <code class="docutils literal notranslate"><span class="pre">ROBOT_EMERGENCY_STOP</span></code>, <code class="docutils literal notranslate"><span class="pre">NORMAL</span></code>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">~/tool_data</span> <span class="pre">[ur_msgs/msg/ToolDataMsg]</span></code>: Information about the robot’s tool configuration</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/tool_data_t1</span> <span class="pre">[ur_msgs/msg/ToolDataT1Msg]</span></code>: Smart Panel (T1) inputs and outputs on a V2 tool flange</p></li>
+</ul>
+</section>
+<section id="smart-panel-t1">
+<h4>Smart Panel (T1)<a class="headerlink" href="#smart-panel-t1" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">~/tool_data_t1</span></code> publishes the Smart Panel signals on a V2 tool flange:</p>
+<ul class="simple">
+<li><p>Left button, <code class="docutils literal notranslate"><span class="pre">T1_DI0</span></code> (<code class="docutils literal notranslate"><span class="pre">smart_panel_digital_in_states[0]</span></code>)</p></li>
+<li><p>Center button, <code class="docutils literal notranslate"><span class="pre">T1_DI1</span></code> (<code class="docutils literal notranslate"><span class="pre">smart_panel_digital_in_states[1]</span></code>)</p></li>
+<li><p>Right button, <code class="docutils literal notranslate"><span class="pre">T1_DI2</span></code> (<code class="docutils literal notranslate"><span class="pre">smart_panel_digital_in_states[2]</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T1_CI0</span></code> and <code class="docutils literal notranslate"><span class="pre">T1_CI1</span></code> (<code class="docutils literal notranslate"><span class="pre">configurable_digital_in_states</span></code>). This pair is a configurable
+safety-rated 2PE and can be used as the Freedrive pair.</p></li>
+<li><p>Smart Panel detect, <code class="docutils literal notranslate"><span class="pre">T1_CONNECTED</span></code> (<code class="docutils literal notranslate"><span class="pre">smart_panel_connected</span></code>)</p></li>
+<li><p>Smart Panel LED, <code class="docutils literal notranslate"><span class="pre">T1_DO0</span></code> (<code class="docutils literal notranslate"><span class="pre">digital_out_states[0]</span></code>). <code class="docutils literal notranslate"><span class="pre">digital_out_states</span></code> is
+<code class="docutils literal notranslate"><span class="pre">T1_DO0</span></code>–<code class="docutils literal notranslate"><span class="pre">T1_DO3</span></code>.</p></li>
 </ul>
 </section>
 <section id="advertised-services">

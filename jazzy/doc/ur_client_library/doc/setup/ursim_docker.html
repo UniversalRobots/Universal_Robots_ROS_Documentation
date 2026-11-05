@@ -220,6 +220,22 @@ compiled it yourself, run the <code class="docutils literal notranslate"><span c
 <code class="docutils literal notranslate"><span class="pre">scripts</span></code> folder.</p>
 </div></div>
 </section>
+<section id="using-another-registry-or-image">
+<h2>Using another registry or image<a class="headerlink" href="#using-another-registry-or-image" title="Link to this heading"></a></h2>
+<p>By default the script starts <code class="docutils literal notranslate"><span class="pre">universalrobots/ursim_&lt;series&gt;:&lt;version&gt;</span></code>. <code class="docutils literal notranslate"><span class="pre">-r</span> <span class="pre">&lt;registry&gt;</span></code>
+replaces the <code class="docutils literal notranslate"><span class="pre">universalrobots</span></code> prefix. A trailing slash is stripped. The container keeps the
+tag you requested. If that image is already available locally, its URSim version label is still
+used for the version checks and setup:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./scripts/start_ursim.sh<span class="w"> </span>-r<span class="w"> </span>registry.example.com/ur<span class="w"> </span>-v<span class="w"> </span><span class="m">5</span>.21.0
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">-I</span> <span class="pre">&lt;image[:tag]&gt;</span></code> uses that image as given. <code class="docutils literal notranslate"><span class="pre">-m</span></code> and <code class="docutils literal notranslate"><span class="pre">-v</span></code> still select the robot series,
+the version checks, the volume mounts and the environment variables. <code class="docutils literal notranslate"><span class="pre">-I</span></code> takes precedence
+over <code class="docutils literal notranslate"><span class="pre">-r</span></code>. The version label inside an arbitrary image is not inspected.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./scripts/start_ursim.sh<span class="w"> </span>-I<span class="w"> </span>registry.example.com/robots/custom-ursim:latest<span class="w"> </span>-m<span class="w"> </span>ur10g-1750<span class="w"> </span>-v<span class="w"> </span><span class="m">10</span>.15.0
+</pre></div>
+</div>
+</section>
 </section>
 
 

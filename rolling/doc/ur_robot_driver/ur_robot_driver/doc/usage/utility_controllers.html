@@ -166,6 +166,36 @@ information about the robot. This controller is always active.</p>
 </ul>
 <p>See the <a class="reference internal" href="../../../ur_controllers/doc/index.html#io-and-status-controller"><span class="std std-ref">io_and_status_controller</span></a> documentation for the full list
 of topics and services.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On <strong>CB7</strong> robots, the (non-configurable) digital outputs have been transformed to configurable
+outputs. The driver uses a concatenated list for both, unconfigurable and configurable outputs,
+where indices 8-15 refer to the configurable outputs CO0-CO7. This mapping has been kept for CB7
+robots. Hence, CO8-CO15 are mapped to indices 0-7. This affects both, the <code class="docutils literal notranslate"><span class="pre">~/set_io</span></code> service
+and the <code class="docutils literal notranslate"><span class="pre">~/io_states</span></code> topic.</p>
+<p>The following table shows the mapping for both configurations:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>index mapping in io states</p></th>
+<th class="head"><p>digital_outputs (0-7)</p></th>
+<th class="head"><p>configurable_outputs (0-7)</p></th>
+<th class="head"><p>configurable_outputs (8-15)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CB3, CB5</p></td>
+<td><p>0-7</p></td>
+<td><p>8-15</p></td>
+<td><p>n/a</p></td>
+</tr>
+<tr class="row-odd"><td><p>CB7</p></td>
+<td><p>n/a</p></td>
+<td><p>8-15</p></td>
+<td><p>0-7</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
 <section id="tool-contact-controller">
 <h2>tool_contact_controller<a class="headerlink" href="#tool-contact-controller" title="Link to this heading"></a></h2>
