@@ -175,6 +175,13 @@ The convenience script for <code class="docutils literal notranslate"><span clas
 </pre></div>
 </div>
 </section>
+<section id="connector-t2-48-v">
+<h2>Connector T2 (48 V)<a class="headerlink" href="#connector-t2-48-v" title="Link to this heading"></a></h2>
+<p>Tool Flange V2, on PolyScope X 10.15 and later, has a second power connector, T2, with 0, 24 and 48 V. Connector T0 is unchanged and still accepts only 0, 12 and 24 V.</p>
+<p><code class="docutils literal notranslate"><span class="pre">tool_voltage_t2</span></code> sets the T2 voltage when the robot program starts, whether or not <code class="docutils literal notranslate"><span class="pre">use_tool_communication</span></code> is true. A robot that does not report Tool Flange V2 refuses to start rather than ignoring the request.</p>
+<p>At runtime, call <code class="docutils literal notranslate"><span class="pre">/io_and_status_controller/set_io</span></code> with <code class="docutils literal notranslate"><span class="pre">fun</span></code> set to <code class="docutils literal notranslate"><span class="pre">FUN_SET_TOOL_VOLTAGE_T2</span></code> and <code class="docutils literal notranslate"><span class="pre">state</span></code> set to 0, 24 or 48. This does not require tool communication. <code class="docutils literal notranslate"><span class="pre">/io_and_status_controller/tool_data_t2</span></code> publishes the measured <code class="docutils literal notranslate"><span class="pre">tool_output_voltage</span></code> and <code class="docutils literal notranslate"><span class="pre">tool_current</span></code> only while the robot reports that connector T2 is present. No message means the connector is not present.</p>
+<p>A custom robot description must declare <code class="docutils literal notranslate"><span class="pre">tool_voltage_t2_cmd</span></code>, <code class="docutils literal notranslate"><span class="pre">tool_flange_type</span></code>, <code class="docutils literal notranslate"><span class="pre">tool_output_voltage_2</span></code> and <code class="docutils literal notranslate"><span class="pre">tool_output_current_2</span></code> in its gpio component, as <code class="docutils literal notranslate"><span class="pre">ur.ros2_control.xacro</span></code> does.</p>
+</section>
 </section>
 
 
