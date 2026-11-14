@@ -187,7 +187,10 @@ program</strong> is running or not. If this is <code class="docutils literal not
 <li><p><code class="docutils literal notranslate"><span class="pre">~/safety_mode</span> <span class="pre">[ur_dashboard_msgs/msg/SafetyMode]</span></code>: The robot’s current safety mode (e.g.
 <code class="docutils literal notranslate"><span class="pre">PROTECTIVE_STOP</span></code>, <code class="docutils literal notranslate"><span class="pre">ROBOT_EMERGENCY_STOP</span></code>, <code class="docutils literal notranslate"><span class="pre">NORMAL</span></code>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">~/tool_data</span> <span class="pre">[ur_msgs/msg/ToolDataMsg]</span></code>: Information about the robot’s tool configuration</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">~/tool_data_t1</span> <span class="pre">[ur_msgs/msg/ToolDataT1Msg]</span></code>: Smart Panel (T1) inputs and outputs on a V2 tool flange</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/tool_data_t1</span> <span class="pre">[ur_msgs/msg/ToolDataT1Msg]</span></code>: Smart Panel (T1) inputs and outputs on a V2 tool
+flange. A message is published only while the robot reports Tool Flange V2 or later.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/tool_data_t2</span> <span class="pre">[ur_msgs/msg/ToolDataT2Msg]</span></code>: Measured voltage and current of connector T2.
+A message is published only while the robot reports Tool Flange V2 or later.</p></li>
 </ul>
 </section>
 <section id="smart-panel-t1">
