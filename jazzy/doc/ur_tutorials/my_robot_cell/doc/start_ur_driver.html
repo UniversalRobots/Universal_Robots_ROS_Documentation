@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Start the ur_robot_driver &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/ur_theme.css?v=078fdd0b" />
@@ -224,12 +224,12 @@ parameter and redistribute it via the <code class="docutils literal notranslate"
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-number">Listing 97 </span><span class="caption-text">my_robot_cell_control/launch/rsp.launch.py</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
 <div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span>
-<span class="linenos">  2</span><span class="kn">from</span> <span class="nn">launch_ros.actions</span> <span class="kn">import</span> <span class="n">Node</span>
-<span class="linenos">  3</span><span class="kn">from</span> <span class="nn">launch_ros.substitutions</span> <span class="kn">import</span> <span class="n">FindPackageShare</span>
+<span class="linenos">  2</span><span class="kn">from</span><span class="w"> </span><span class="nn">launch_ros.actions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+<span class="linenos">  3</span><span class="kn">from</span><span class="w"> </span><span class="nn">launch_ros.substitutions</span><span class="w"> </span><span class="kn">import</span> <span class="n">FindPackageShare</span>
 <span class="linenos">  4</span>
-<span class="linenos">  5</span><span class="kn">from</span> <span class="nn">launch</span> <span class="kn">import</span> <span class="n">LaunchDescription</span>
-<span class="linenos">  6</span><span class="kn">from</span> <span class="nn">launch.actions</span> <span class="kn">import</span> <span class="n">DeclareLaunchArgument</span>
-<span class="linenos">  7</span><span class="kn">from</span> <span class="nn">launch.substitutions</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="linenos">  5</span><span class="kn">from</span><span class="w"> </span><span class="nn">launch</span><span class="w"> </span><span class="kn">import</span> <span class="n">LaunchDescription</span>
+<span class="linenos">  6</span><span class="kn">from</span><span class="w"> </span><span class="nn">launch.actions</span><span class="w"> </span><span class="kn">import</span> <span class="n">DeclareLaunchArgument</span>
+<span class="linenos">  7</span><span class="kn">from</span><span class="w"> </span><span class="nn">launch.substitutions</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
 <span class="linenos">  8</span>    <span class="n">Command</span><span class="p">,</span>
 <span class="linenos">  9</span>    <span class="n">FindExecutable</span><span class="p">,</span>
 <span class="linenos"> 10</span>    <span class="n">LaunchConfiguration</span><span class="p">,</span>
@@ -237,7 +237,7 @@ parameter and redistribute it via the <code class="docutils literal notranslate"
 <span class="linenos"> 12</span><span class="p">)</span>
 <span class="linenos"> 13</span>
 <span class="linenos"> 14</span>
-<span class="linenos"> 15</span><span class="k">def</span> <span class="nf">generate_launch_description</span><span class="p">():</span>
+<span class="linenos"> 15</span><span class="k">def</span><span class="w"> </span><span class="nf">generate_launch_description</span><span class="p">():</span>
 <span class="linenos"> 16</span>    <span class="n">ur_type</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;ur_type&quot;</span><span class="p">)</span>
 <span class="linenos"> 17</span>    <span class="n">robot_ip</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;robot_ip&quot;</span><span class="p">)</span>
 <span class="linenos"> 18</span>
@@ -375,15 +375,15 @@ launchfile that includes the <code class="docutils literal notranslate"><span cl
 launchfile and prefix:</p>
 <div class="literal-block-wrapper docutils container" id="id6">
 <div class="code-block-caption"><span class="caption-number">Listing 98 </span><span class="caption-text">my_robot_cell_control/launch/start_robot.launch.py</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
-<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">launch_ros.actions</span> <span class="kn">import</span> <span class="n">Node</span>
-<span class="linenos"> 2</span><span class="kn">from</span> <span class="nn">launch_ros.parameter_descriptions</span> <span class="kn">import</span> <span class="n">ParameterFile</span>
-<span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">launch_ros.substitutions</span> <span class="kn">import</span> <span class="n">FindPackageShare</span>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span><span class="w"> </span><span class="nn">launch_ros.actions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+<span class="linenos"> 2</span><span class="kn">from</span><span class="w"> </span><span class="nn">launch_ros.parameter_descriptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">ParameterFile</span>
+<span class="linenos"> 3</span><span class="kn">from</span><span class="w"> </span><span class="nn">launch_ros.substitutions</span><span class="w"> </span><span class="kn">import</span> <span class="n">FindPackageShare</span>
 <span class="linenos"> 4</span>
-<span class="linenos"> 5</span><span class="kn">from</span> <span class="nn">launch</span> <span class="kn">import</span> <span class="n">LaunchDescription</span>
-<span class="linenos"> 6</span><span class="kn">from</span> <span class="nn">launch.actions</span> <span class="kn">import</span> <span class="n">DeclareLaunchArgument</span><span class="p">,</span> <span class="n">IncludeLaunchDescription</span>
-<span class="linenos"> 7</span><span class="kn">from</span> <span class="nn">launch.launch_description_sources</span> <span class="kn">import</span> <span class="n">PythonLaunchDescriptionSource</span>
-<span class="linenos"> 8</span><span class="kn">from</span> <span class="nn">launch.conditions</span> <span class="kn">import</span> <span class="n">IfCondition</span>
-<span class="linenos"> 9</span><span class="kn">from</span> <span class="nn">launch.substitutions</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="linenos"> 5</span><span class="kn">from</span><span class="w"> </span><span class="nn">launch</span><span class="w"> </span><span class="kn">import</span> <span class="n">LaunchDescription</span>
+<span class="linenos"> 6</span><span class="kn">from</span><span class="w"> </span><span class="nn">launch.actions</span><span class="w"> </span><span class="kn">import</span> <span class="n">DeclareLaunchArgument</span><span class="p">,</span> <span class="n">IncludeLaunchDescription</span>
+<span class="linenos"> 7</span><span class="kn">from</span><span class="w"> </span><span class="nn">launch.launch_description_sources</span><span class="w"> </span><span class="kn">import</span> <span class="n">PythonLaunchDescriptionSource</span>
+<span class="linenos"> 8</span><span class="kn">from</span><span class="w"> </span><span class="nn">launch.conditions</span><span class="w"> </span><span class="kn">import</span> <span class="n">IfCondition</span>
+<span class="linenos"> 9</span><span class="kn">from</span><span class="w"> </span><span class="nn">launch.substitutions</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
 <span class="linenos">10</span>    <span class="n">Command</span><span class="p">,</span>
 <span class="linenos">11</span>    <span class="n">FindExecutable</span><span class="p">,</span>
 <span class="linenos">12</span>    <span class="n">LaunchConfiguration</span><span class="p">,</span>
@@ -392,7 +392,7 @@ launchfile and prefix:</p>
 <span class="linenos">15</span><span class="p">)</span>
 <span class="linenos">16</span>
 <span class="linenos">17</span>
-<span class="linenos">18</span><span class="k">def</span> <span class="nf">generate_launch_description</span><span class="p">():</span>
+<span class="linenos">18</span><span class="k">def</span><span class="w"> </span><span class="nf">generate_launch_description</span><span class="p">():</span>
 <span class="linenos">19</span>    <span class="n">ur_type</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;ur_type&quot;</span><span class="p">)</span>
 <span class="linenos">20</span>    <span class="n">robot_ip</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;robot_ip&quot;</span><span class="p">)</span>
 <span class="linenos">21</span>    <span class="n">declared_arguments</span> <span class="o">=</span> <span class="p">[]</span>

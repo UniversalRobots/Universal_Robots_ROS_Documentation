@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DashboardClient &mdash; Universal Robots ROS 2 Driver Documentation 0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/ur_theme.css?v=078fdd0b" />
@@ -289,6 +289,15 @@ may take. By default, the connect timeout is disabled for CB3 and PolyScope 5, w
 waits until the operating system gives up (Up to about two minutes on Linux), and set to 5 seconds for
 PolyScope X. For PolyScope X, a timeout of zero selects the HTTP library’s built-in limit of 300
 seconds.</p>
+<p><code class="docutils literal notranslate"><span class="pre">connect()</span></code> treats malformed version replies as a failed connection and returns <code class="docutils literal notranslate"><span class="pre">false</span></code>. Callers
+should check that return value and retry or surface a connection error rather than assuming the
+client is ready.</p>
+</section>
+<section id="network-exposure">
+<h2>Network exposure<a class="headerlink" href="#network-exposure" title="Link to this heading"></a></h2>
+<p>The CB3 / PolyScope 5 dashboard protocol on TCP port 29999 is unauthenticated plaintext. Restrict
+dashboard and Robot API access to trusted hosts on a protected robot-control network, and do not
+expose those ports through untrusted proxies or otherwise routable paths.</p>
 </section>
 <section id="cb-3-and-polyscope-5-only">
 <h2>CB 3 and PolyScope 5 only<a class="headerlink" href="#cb-3-and-polyscope-5-only" title="Link to this heading"></a></h2>
