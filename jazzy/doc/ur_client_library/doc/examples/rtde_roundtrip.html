@@ -258,7 +258,7 @@ about once per second, so it stays out of the hot path.</p>
 <span class="linenos">184</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">my_client</span><span class="p">.</span><span class="n">getDataPackageBlocking</span><span class="p">(</span><span class="n">output_pkg</span><span class="p">))</span>
 <span class="linenos">185</span><span class="w">    </span><span class="p">{</span>
 <span class="linenos">186</span><span class="w">      </span><span class="c1">// Ctrl-C interrupts the blocking read, which is a normal stop rather than an error.</span>
-<span class="linenos">187</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">running</span><span class="p">)</span>
+<span class="linenos">187</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">g_running</span><span class="p">)</span>
 <span class="linenos">188</span><span class="w">      </span><span class="p">{</span>
 <span class="linenos">189</span><span class="w">        </span><span class="k">break</span><span class="p">;</span>
 <span class="linenos">190</span><span class="w">      </span><span class="p">}</span>
@@ -358,11 +358,11 @@ the registers may then fail, but the robot program is still stopped.</p>
 <div class="literal-block-wrapper docutils container" id="id8">
 <div class="code-block-caption"><span class="caption-number">Listing 41 </span><span class="caption-text">examples/rtde_roundtrip.cpp</span><a class="headerlink" href="#id8" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 90</span><span class="c1">// Cleared on Ctrl-C, so the main loop ends and the cleanup below still runs.</span>
-<span class="linenos"> 91</span><span class="k">volatile</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">sig_atomic_t</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos"> 91</span><span class="k">volatile</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">sig_atomic_t</span><span class="w"> </span><span class="n">g_running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="linenos"> 92</span>
 <span class="linenos"> 93</span><span class="kt">void</span><span class="w"> </span><span class="nf">signalHandler</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="cm">/*signum*/</span><span class="p">)</span>
 <span class="linenos"> 94</span><span class="p">{</span>
-<span class="linenos"> 95</span><span class="w">  </span><span class="n">running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos"> 95</span><span class="w">  </span><span class="n">g_running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="linenos"> 96</span><span class="p">}</span>
 <span class="linenos"> 97</span>
 <span class="linenos"> 98</span><span class="c1">// Reset the input registers and stop the robot program before leaving</span>
